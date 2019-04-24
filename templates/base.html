@@ -1,0 +1,64 @@
+
+<html>
+	<head>
+<!--		<meta http-equiv="refresh" content="5" >-->
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="../static/index.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<title>{{title}}</title>
+
+	</head>	
+
+	<div class="sidebar">
+	</div>
+
+	<br class="page-top">
+
+
+	<!--Header-->
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="header col-auto">
+				Alex Calderwood
+			</div>
+		</div>
+
+		<div class="menu-bar row justify-content-md-center">
+			<div class="menu-item col-auto">
+				<a href="{{url_for('bio')}}">
+					About
+				</a>
+			</div>
+			<div class="menu-item col-auto">
+				<a href="{{url_for('projects')}}">
+					Projects
+				</a>
+			</div>
+			<div class="menu-item col-auto">
+				<a href="{{url_for('blog')}}">
+					Blog
+				</a>
+			</div>
+			<div class="menu-item col-auto">
+				<a href="{{url_for('contact')}}">
+					Contact
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="page-content col-auto">
+
+				{% block body %}
+				{% endblock %}
+
+			</div>
+		</div>
+	</div>
+
+</html>
