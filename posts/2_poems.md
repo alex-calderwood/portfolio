@@ -1,7 +1,7 @@
 # 10:04
 ## January 31, 2019
 
-Alex Calderwood
+_Alex Calderwood_
 
 Scratch a physicist and you’ll reveal a mystic
 
@@ -26,7 +26,7 @@ and is refined I guess
 # Reflections of a Dual Degree Dropout
 ## July 27, 2018
 
-Alex Calderwood
+_Alex Calderwood_
 
 I’ve always wanted to drop out of something, and now that I have I’m kind of sad that it’s all over. In so many ways, last year was the most intense of my life, vacillating between a deep-seated imposter’s syndrome and moments of brand-new clarity, utter reward. I was a member of Columbia’s fifth or sixth cohort of the Dual Degree in Journalism and Computer Science, a program that costs an estimated $210,000 over the two years, factoring in the cost of living in NYC. I want this post to address some of my thoughts about the program: where it shines, and why I left.
 
@@ -39,11 +39,9 @@ Little has been written about the degree since some initial buzz in 2010, and fe
 The program was conceived as a Frankenstein Hail Mary from a troubled industry. It was meant to breathe a bit of life into the school, at a time when Facebook and Google are drawing most of the advertising money away from traditional media outlets, away from, “an able, disinterested, public-spirited press.” At least that’s how it was pitched. In our acceptance letter, dual-degree students are told:
 
  
-
-Our four-semester academic program will further enhance your training in computer science and journalism, enabling you to create and refine new news gathering and digital media technologies that will redefine journalism as we know it.
+> Our four-semester academic program will further enhance your training in computer science and journalism, enabling you to create and refine new news gathering and digital media technologies that will redefine journalism as we know it.
 
  
-
 It’s a clever sales pitch.
 
  
@@ -235,7 +233,7 @@ anywhere it doesn't belong.
 # On Klein's Dilemma
 ##May 27, 2018
 
-Alex Calderwood
+_Alex Calderwood_
 
 An entry about my final trip into the colorless void of mathematics and the poem I wrote about the experience. 
 
@@ -367,7 +365,7 @@ For those interested, here is a link to the poem. Though I also think I did a be
 #116th & Amsterdam
 ##March 18, 2018
 
-Alex Calderwood
+_Alex Calderwood_
 
 
 A poem written upon visiting my future school for the first time.
@@ -445,7 +443,7 @@ and I wake at night.
 ## February 13, 2018
 
 
-Alex Calderwood
+_Alex Calderwood_
 
 See me
 

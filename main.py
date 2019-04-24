@@ -10,6 +10,11 @@ app = Flask(__name__)
 from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
 Markdown(app)
 
+# from google.appengine.ext import vendor
+
+# Add any libraries installed in the "lib" folder.
+# vendor.add('lib')
+
 
 @app.route('/')
 def index():
@@ -36,12 +41,17 @@ def blog():
 def contact():
     title = 'Contact'
 
-    number = "four oh six three eight one nine six three six".split(' ')
-    phones = [pronouncing.phones_for_word(word) for word in number]
+    letters = "four oh six three eight one nine six three six".split(' ')
+    phones = [pronouncing.phones_for_word(word) for word in letters]
+    phones = [phone for word in phones for phone in word]  # flatten
+    phones = [phone.replace('1', '').replace('0', '').replace(' ', '-') for phone in phones]
+    numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
 
-    flattened = [phone for word in phones for phone in word]
-    number = ' '.join(flattened)
-    number = number.replace('1', '').replace('0', '')
+    number_text = []
+    for (letter, phone, number) in zip(letters, phones, numbers):
+        number_text.append(random.choice((letter, phone, str(number))))
+
+    number_text = ' '.join(number_text)
 
     return render_template('contact.html', **locals())
 
