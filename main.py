@@ -1,19 +1,25 @@
-from flask import Flask
-from flask import render_template
-from flask import Markup
-import os
-import pronouncing, random
+# Built in libraries
+import os, random
+
+# Add libraries installed in the 'lib' folger
+from google.appengine.ext import vendor
+vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
+
+# Import installed librarirs
+from flask import  Flask, render_template
+import pronouncing
+
+# App engine tutorial
 # https://cloud.google.com/appengine/docs/standard/python/getting-started/python-standard-env
 
+# Create Flask app
 app = Flask(__name__)
 
+# Libraries requiring Flask app
 from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
 Markdown(app)
 
-# from google.appengine.ext import vendor
-
-# Add any libraries installed in the "lib" folder.
-# vendor.add('lib')
+# End libraries
 
 
 @app.route('/')
@@ -30,6 +36,7 @@ def blog():
     posts_dir = './posts/'
     for post_name in os.listdir(posts_dir):
         content = open(os.path.join(posts_dir, post_name), 'r').read()
+        content = content.decode('UTF-8')
         blog_text.append(content)
 
     content = '\n'.join(blog_text)
@@ -61,6 +68,8 @@ def bio():
     title = 'Bio'
     text = open('./bio.md', 'r').read()
 
+    text = text.decode('UTF-8')
+
     return render_template('bio.html', **locals())
 
 
@@ -77,5 +86,5 @@ def projects():
     return render_template('projects.html', **locals())
 
 
-app.run(debug=True)
+# app.run(debug=True)
 
