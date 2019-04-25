@@ -43,7 +43,9 @@ def contact():
 
     letters = "four oh six three eight one nine six three six".split(' ')
     phones = [pronouncing.phones_for_word(word) for word in letters]
-    phones = [phone for word in phones for phone in word]  # flatten
+    # flatten
+    phones = [phone for word in phones for phone in word]
+    # clean
     phones = [phone.replace('1', '').replace('0', '').replace(' ', '-') for phone in phones]
     numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
 
