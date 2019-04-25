@@ -57,3 +57,7 @@ blockquote {
   margin-right: 40px;
 }
 
+.active_title {
+    text-decoration: underline;
+}
+

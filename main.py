@@ -1,12 +1,13 @@
 # Built in libraries
 import os, random
+import utils
 
 # Add libraries installed in the 'lib' folger
-from google.appengine.ext import vendor
-vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
+# from google.appengine.ext import vendor
+# vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
 
 # Import installed librarirs
-from flask import  Flask, render_template
+from flask import  Flask, render_template, redirect, url_for
 import pronouncing
 
 # App engine tutorial
@@ -34,14 +35,52 @@ def blog():
     blog_text = []
 
     posts_dir = './posts/'
-    for post_name in os.listdir(posts_dir):
-        content = open(os.path.join(posts_dir, post_name), 'r').read()
-        content = content.decode('UTF-8')
+    posts = os.listdir(posts_dir)
+    random.shuffle(posts)
+    for post_name in posts:
+
+        content = utils.read_md(posts_dir, post_name)
+
         blog_text.append(content)
 
     content = '\n'.join(blog_text)
 
     return render_template('blog.html', **locals())
+
+@app.route('/poetry')
+def poetry():
+    title = 'Poetry'
+
+    blog_text = []
+
+    posts_dir = './poetry/'
+    posts = os.listdir(posts_dir)
+    random.shuffle(posts)
+    for post_name in posts:
+
+        content = utils.read_md(posts_dir, post_name)
+
+        blog_text.append(content)
+
+    content = '\n'.join(blog_text)
+
+    return render_template('poetry.html', **locals())
+
+
+@app.route('/blog/<post_name>')
+def blog_post(post_name=None):
+
+    post_name = os.path.basename(post_name).split('.')[0]
+    print(post_name)
+
+    all_posts = os.listdir('./posts/')
+    post_names = [os.path.basename(post).split('.')[0] for post in all_posts]
+
+    if post_name in post_names:
+        content = utils.read_md('./posts/', post_name + '.md')
+        return render_template('blog.html', **locals())
+
+    return redirect(url_for('index'))
 
 
 @app.route('/contact')
@@ -70,7 +109,10 @@ def bio():
     title = 'Bio'
     text = open('./bio.md', 'r').read()
 
-    text = text.decode('UTF-8')
+    try:
+        text = text.decode('UTF-8')
+    except AttributeError:
+        pass
 
     return render_template('bio.html', **locals())
 
@@ -90,3 +132,12 @@ def projects():
 
 # app.run(debug=True)
 
+"""
+TODO
+* Get pages set up
+* Make sure my old posts are indexed the same
+https://www.alexcalderwood.blog/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout
+
+
+
+"""
