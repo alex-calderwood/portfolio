@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
-{% block more_header %}
 
+{% block head %}
+<script>
+    $( document ).ready(function() {
+        $("div.top-menu-bar div:nth-child(3)").addClass('active_title');
+    });
+    $( document ).ready(function() {
+        $("div.menu-bar div:nth-child(1)").addClass('active_title');
+    });
+</script>
+{% endblock %}
+
+
+{% block more_header %}
 
 <div class="menu-bar row justify-content-md-center">
     <div class="menu-item col-auto">

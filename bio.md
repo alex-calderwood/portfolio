@@ -3,6 +3,8 @@
 
 I am interested in creative technology, journalism, ethics, and applied natural language processing. 
 
+I am currently a technical consultant for for company Production Pro, for which I work on film / theatre script analysis and NLP. I am Staff Writer at Columbia University's Brown Institute for Media Innovation. I am also a TA / researcher in the Computer Science Department.
+
 # Education
 
 _Columbia University (2017 - 2019)_

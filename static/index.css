@@ -29,6 +29,11 @@ a {
 	color: rgb(100, 100, 100);
 }
 
+a:hover {
+    text-decoration: inherit;
+    color: inherit;
+}
+
 p {
     margin: 0.75%;
 }
@@ -58,6 +63,9 @@ blockquote {
 }
 
 .active_title {
-    text-decoration: underline;
+    background-color: rgb(180, 180, 180);
 }
 
+.menu-item:hover {
+    background-color: rgb(180, 180, 180);
+}

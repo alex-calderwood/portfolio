@@ -2,13 +2,14 @@
 import os, random
 import utils
 
-# Add libraries installed in the 'lib' folger
+# Add libraries installed in the 'lib' folder
 # from google.appengine.ext import vendor
 # vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
 
-# Import installed librarirs
+# Import installed libraries
 from flask import  Flask, render_template, redirect, url_for
 import pronouncing
+from flask_sqlalchemy import SQLAlchemy
 
 # App engine tutorial
 # https://cloud.google.com/appengine/docs/standard/python/getting-started/python-standard-env
@@ -20,11 +21,21 @@ app = Flask(__name__)
 from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
 Markdown(app)
 
-# End libraries
+# Setup database
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.sqlite"
+db = SQLAlchemy(app)
+
+
+# Provide a way for models.py (and any other files that needs it) to get access to the database
+def get_db():
+    return db
+
+# End flask setup
 
 
 @app.route('/')
 def index():
+    title = "Alex Calderwood's Site"
     return render_template('index.html', **locals())
 
 
@@ -46,6 +57,7 @@ def blog():
     content = '\n'.join(blog_text)
 
     return render_template('blog.html', **locals())
+
 
 @app.route('/poetry')
 def poetry():
@@ -134,10 +146,8 @@ def projects():
 
 """
 TODO
+
 * Get pages set up
 * Make sure my old posts are indexed the same
 https://www.alexcalderwood.blog/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout
-
-
-
 """

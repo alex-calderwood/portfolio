@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block head %}
+<script>
+    $( document ).ready(function() {
+        $("div.top-menu-bar div:nth-child(1)").addClass('active_title');
+    });
+</script>
+{% endblock %}
+
 {% block body %}
 
 {{text | markdown}}
