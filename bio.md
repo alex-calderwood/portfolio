@@ -1,9 +1,9 @@
 
-# About Me
+I'm interested in creative technology, journalism, ethics, and applied natural language processing. 
 
-I am interested in creative technology, journalism, ethics, and applied natural language processing. 
+Technical Consultant - Production Pro, where I work on film / theatre script analysis and NLP. 
 
-I am currently a technical consultant for for company Production Pro, for which I work on film / theatre script analysis and NLP. I am Staff Writer at Columbia University's Brown Institute for Media Innovation. I am also a TA / researcher in the Computer Science Department.
+[Staff Writer - Columbia University's Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
 
 # Education
 

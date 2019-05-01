@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script>
+    $( document ).ready(function() {
+        $("div.top-menu-bar div:nth-child(2)").addClass('active_title');
+    });
+</script>
+
+<script src="static/circles.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="justify-content-center">
+    <svg id="drawing" height="100" width="300">
+<!--      <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="none" />-->
+<!--      <circle cx="150" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
+<!--      <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
+    </svg>
+</div>
+
+<svg height="100" width="100">
+</svg>
+
+<!--{{text}}-->
+
+{% endblock %}

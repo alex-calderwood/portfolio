@@ -77,3 +77,5 @@ I want to study in and around spaces like these. More than anything, I want to b
 
 
 But I am leaving. Though the ideas excite me, and the program as it was sold is exactly the thing I want to do, for whatever reason I just don’t vibe with it. Maybe I’m too contrarian, maybe in some way, my desire to drop out is just an anti-authoritarian angst that I would have felt anywhere. All told, I feel like I got a lot out of the year I spent at the J-School, and I know I’ll be able to leverage some of what I learned far into the future. I also know to expect brilliant things from those that have stayed, and those that are to enter institutions like these.
+
+

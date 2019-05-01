@@ -7,6 +7,9 @@
 		<link rel="stylesheet" href="../static/index.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+		<script src="static/snap.svg-min.js"></script>
+
 		<title>{{title}}</title>
 
 		{% block head %}
@@ -29,9 +32,9 @@
 		</div>
 
 		<div class="top-menu-bar row justify-content-md-center">
-			<div class="check menu-item col-auto">
-				<a href="{{url_for('bio')}}">
-					About
+			<div class="menu-item col-auto">
+				<a href="{{url_for('blog')}}">
+					Words
 				</a>
 			</div>
 			<div class="menu-item col-auto">
@@ -39,9 +42,9 @@
 					Projects
 				</a>
 			</div>
-			<div class="menu-item col-auto">
-				<a href="{{url_for('blog')}}">
-					Words
+			<div class="check menu-item col-auto">
+				<a href="{{url_for('bio')}}">
+					About
 				</a>
 			</div>
 			<div class="menu-item col-auto">
