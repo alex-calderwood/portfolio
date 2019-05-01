@@ -11,19 +11,19 @@ $( document ).ready(function() {
     circle1.attr({
       fill: "none",
       stroke: "black",
-      strokeWidth: 2,
+      strokeWidth: 1,
     });
 
     circle2.attr({
       fill: "none",
       stroke: "black",
-      strokeWidth: 2,
+      strokeWidth: 1,
     });
 
     circle3.attr({
       fill: "none",
       stroke: "black",
-      strokeWidth: 2,
+      strokeWidth: 1,
     });
 
     function sleep(miliseconds) {
@@ -98,9 +98,9 @@ $( document ).ready(function() {
 
     var anim10 = function() {
         sleep(1000)
-        circle1.animate({cx: 183, cy: 190, r: 60}, 500, mina.easeinout())
+        circle1.animate({cx: 183.5, cy: 190, r: 60}, 500, mina.easeinout())
         circle2.animate({cx: 150, cy: 100, r: 40}, 500, mina.easeinout())
-        circle3.animate({cx: 217, cy: 100, r: 40}, 500, mina.easeinout(), anim11)
+        circle3.animate({cx: 217.5, cy: 100, r: 40}, 500, mina.easeinout(), anim11)
     }
 
      var anim11 = function() {
