@@ -33,15 +33,22 @@ def get_db():
 # End flask setup
 
 
+def get_name():
+    return utils.sometimes_pronounce('Alex Calderwood')
+
+
 @app.route('/')
 def index():
     title = "Alex Calderwood's Site"
+    name = get_name()
+
     return render_template('index.html', **locals())
 
 
 @app.route('/blog')
 def blog():
     title = 'Blog'
+    name = get_name()
 
     blog_text = []
 
@@ -62,6 +69,8 @@ def blog():
 @app.route('/poetry')
 def poetry():
     title = 'Poetry'
+    name = get_name()
+
 
     blog_text = []
 
@@ -81,6 +90,7 @@ def poetry():
 
 @app.route('/blog/<post_name>')
 def blog_post(post_name=None):
+    name = get_name()
 
     post_name = os.path.basename(post_name).split('.')[0]
     print(post_name)
@@ -98,9 +108,11 @@ def blog_post(post_name=None):
 @app.route('/contact')
 def contact():
     title = 'Contact'
+    name = get_name()
 
-    letters = "four oh six three eight one nine six three six".split(' ')
-    phones = [pronouncing.phones_for_word(word) for word in letters]
+
+    number_words = "four oh six three eight one nine six three six".split(' ')
+    phones = [pronouncing.phones_for_word(word) for word in number_words]
     # flatten
     phones = [phone for word in phones for phone in word]
     # clean
@@ -108,7 +120,7 @@ def contact():
     numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
 
     number_text = []
-    for (letter, phone, number) in zip(letters, phones, numbers):
+    for (letter, phone, number) in zip(number_words, phones, numbers):
         number_text.append(random.choice((letter, phone, str(number))))
 
     number_text = ' '.join(number_text)
@@ -119,6 +131,8 @@ def contact():
 @app.route('/bio')
 def bio():
     title = 'Bio'
+    name = get_name()
+
     text = open('./bio.md', 'r').read()
 
     try:
@@ -132,11 +146,12 @@ def bio():
 @app.route('/projects')
 def projects():
     title = 'Projects'
+    name = get_name()
 
     tools = 'tools'
     tools = pronouncing.rhymes(tools)
     tools = random.choice(tools)
-    text = 'the {} are the art'.format(tools)
+    text = '{} are the art'.format(tools)
     text = text.replace('\'', '')
 
     return render_template('projects.html', **locals())

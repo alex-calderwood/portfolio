@@ -74,3 +74,11 @@ blockquote {
 .menu-item:hover {
     background-color: rgb(180, 180, 180);
 }
+
+
+.circle-container {
+  position: fixed;
+  top: -875;
+  left: -600;
+  z-index: -1;
+}
