@@ -11,6 +11,8 @@ from flask import  Flask, render_template, redirect, url_for
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
 
+# https://gcpexp.com/posts/appengine-standard-and-sqlalchemy/
+
 # App engine tutorial
 # https://cloud.google.com/appengine/docs/standard/python/getting-started/python-standard-env
 
@@ -152,6 +154,10 @@ def projects():
 
     return render_template('projects.html', **locals())
 
+
+
+if __name__ == '__main__':
+    app.run()
 
 # app.run(debug=True)
 
