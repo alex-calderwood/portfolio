@@ -22,7 +22,7 @@ from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdow
 Markdown(app)
 
 # Setup database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///example.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
 db = SQLAlchemy(app)
 
 
@@ -33,8 +33,11 @@ def get_db():
 # End flask setup
 
 
+from models import Post
+
+
 def get_name():
-    return utils.sometimes_pronounce('Alex Calderwood')
+    return 'Alex Calderwood'
 
 
 @app.route('/')
@@ -52,12 +55,9 @@ def blog():
 
     blog_text = []
 
-    posts_dir = './posts/'
-    posts = os.listdir(posts_dir)
-    random.shuffle(posts)
-    for post_name in posts:
-
-        content = utils.read_md(posts_dir, post_name)
+    for post in sorted(Post.query.filter_by(category=Post.Category.blog),
+                       key=lambda p: p.posted_at, reverse=True):
+        content = post.content
 
         blog_text.append(content)
 
@@ -71,15 +71,11 @@ def poetry():
     title = 'Poetry'
     name = get_name()
 
-
     blog_text = []
 
-    posts_dir = './poetry/'
-    posts = os.listdir(posts_dir)
-    random.shuffle(posts)
-    for post_name in posts:
-
-        content = utils.read_md(posts_dir, post_name)
+    for post in sorted(Post.query.filter_by(category=Post.Category.poetry),
+                       key=lambda p: p.posted_at, reverse=True):
+        content = post.content
 
         blog_text.append(content)
 

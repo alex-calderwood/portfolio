@@ -1,6 +1,8 @@
 from main import get_db
 import datetime
-from datetime import timedelta
+from datetime import timedelta, datetime
+import dateparser
+from os import path
 
 # Get an instance of the db from __init__
 db = get_db()
@@ -49,8 +51,70 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.String(200), nullable=False)
-    posted_at = db.Column(db.String(200), nullable=False)  # String representation of datetime
+    posted_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     content = db.Column(db.String(200), nullable=False)
     content_type = db.Column(db.String(200), default="md", nullable=False)  # md / html
-    category = db.Column(db.String(200), nullable=False)  # poetry / blog
+    category = db.Column(db.String(200), nullable=False, default="blog")  # poetry / blog
 
+    class Type:
+        md = "md"
+        html = "html"
+
+    class Category:
+        poetry = "poetry"
+        blog = "blog"
+
+    def valid_type(self, type):
+        return type in self.Type.__dict__.keys()
+
+    def valid_category(self, cat):
+        return cat in self.Category.__dict__.keys()
+
+    def __init__(self, path_to_post, name=None, date=None, category=None):
+        """Leave optional fields empty to let them be inferred."""
+        super(Post, self).__init__()
+
+        if not path.exists(path_to_post):
+            raise RuntimeError(path_to_post + " does not exist")
+
+        # Get and set content
+        self.content = open(path_to_post, 'rb').read().decode('utf-8')
+        content_lines = self.content.split('\n')
+
+        basename = path.basename(path_to_post).split('.')
+
+        # Set type of post
+        self.content_type = basename[1]
+        if not self.valid_type(self.content_type):
+            raise RuntimeError(self.content_type + "is not a valid type.")
+
+        # Set name
+        if name is None:
+            if self.content_type == self.Type.md:
+                # Name is contained in first line
+                self.name = content_lines[0].replace("#", '').strip()
+            else:
+                self.name = basename[0]
+        else:
+            self.name = name
+
+        # Set date
+        if date is None:
+            if self.content_type == self.Type.md:
+                # Date should be stored in text on the second line
+                # Use a library to convert from natural text to datetime
+                self.posted_at = dateparser.parse(content_lines[1].replace('#', '').strip())
+        else:
+            self.posted_at = date
+
+        # Set category
+        if category is None:
+            self.category = self.Category.blog
+        else:
+            if not self.valid_category(category):
+                raise RuntimeError(category + " is not a valid category.")
+            self.category = category
+
+
+    def __repr__(self):
+        return '<({}) Post> {} {} {}'.format(self.category, self.name, self.content_type, self.posted_at)
