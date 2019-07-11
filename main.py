@@ -24,7 +24,10 @@ from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdow
 Markdown(app)
 
 # Setup database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
@@ -153,11 +156,6 @@ def projects():
     text = text.replace('\'', '')
 
     return render_template('projects.html', **locals())
-
-
-
-if __name__ == '__main__':
-    app.run()
 
 # app.run(debug=True)
 
