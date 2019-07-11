@@ -10,6 +10,7 @@ import utils
 from flask import  Flask, render_template, redirect, url_for
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
+from flask_heroku import Heroku
 
 # https://gcpexp.com/posts/appengine-standard-and-sqlalchemy/
 
@@ -25,11 +26,11 @@ Markdown(app)
 
 # Setup database
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
+heroku = Heroku(app)
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
 def get_db():
