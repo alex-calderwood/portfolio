@@ -24,13 +24,14 @@ app = Flask(__name__)
 from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
 Markdown(app)
 
-# Setup database
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
-
-# http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
+# This speeds things up. NOt sure what it does
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-heroku = Heroku(app)
+
+# Set the database, depending if on server or local
+if 'ON_LOCAL_MACHINE' not in os.environ:
+    heroku = Heroku(app)  # Based on: http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/blog'
 db = SQLAlchemy(app)
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
@@ -44,7 +45,7 @@ from models import Post
 
 
 def get_name():
-    return 'Alex Calderwood'
+    return utils.sometimes_pronounce('Alex Calderwood')
 
 
 @app.route('/')

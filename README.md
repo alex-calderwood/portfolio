@@ -9,5 +9,8 @@ pip install -t lib -r requirements.txt --upgrade
 export FLASK_APP=main.py
 flask run
 
-# Run on gcloud
-gcloud deploy app.yaml
+# To publish to heroku
+git push heroku master
+
+# Reset the heroku database if it's already created:
+heroku pg:reset DATABASE_URL
