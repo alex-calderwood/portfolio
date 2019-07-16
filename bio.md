@@ -1,17 +1,15 @@
 
 I'm interested in creative technology, journalism, ethics, and applied natural language processing. 
 
-[Staff Writer - Columbia University's Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
+[Staff Writer - Columbia University - Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
 
-Technical Consultant - Production Pro, where I work on film / theatre script analysis and NLP. 
+Technical Consultant - ProductionPro Technologies - Film / theatre script analysis and NLP. 
 
 # Education
 
 _Columbia University (2017 - 2019)_
 
-M.S. Computer Science - Natural Language Processing
-
-(I transferred to this program after spending a year in a dual M.S. for CS + journalism)
+M.S. Computer Science - Natural Language Processing - Transferred after spending a year in the Dual MS for Journalism & CS
 
 _Montana State University (2013 - 2017)_
 
@@ -39,16 +37,15 @@ May 2018 - Present, Technical Consultant - _[ProductionPro Technologies](https:/
 
 _Columbia University_ 
 
-Fall 2018 Teaching Assistant - Artificial Intelligence
-
 Spring 2019 Teaching Assistant - Ethical CS Couriculum Development / UI Design
 
+Fall 2018 Teaching Assistant - Artificial Intelligence
 
 _Montana State University_
 
-Fall 2016 Student Fellow - Texts and Critics (Honors Freshman Seminar)
-
 Spring 2017 Undergraduate Course Assistant - Programming with C
+
+Fall 2016 Student Fellow - Texts and Critics (Freshman Honors Seminar)
 
 Fall 2016 Undergraduate Course Assistant - Introduction to Programming with Java
 

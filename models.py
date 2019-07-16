@@ -46,7 +46,7 @@ def time_ago(earlier_datetime):
 
 
 class Post(db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'post'
 
     id = db.Column(db.Integer, primary_key=True)
 

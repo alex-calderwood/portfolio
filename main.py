@@ -28,9 +28,10 @@ Markdown(app)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.sqlite"
 # app.config["SQLALCHEMY_DATABASE_URI"] = os.environ['DATABASE_URL']
 
+# http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 heroku = Heroku(app)
+db = SQLAlchemy(app)
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
 def get_db():
