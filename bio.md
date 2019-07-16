@@ -5,16 +5,6 @@ I'm interested in creative technology, journalism, ethics, and applied natural l
 
 Technical Consultant - ProductionPro Technologies - Film / theatre script analysis and NLP. 
 
-# Education
-
-_Columbia University (2017 - 2019)_
-
-M.S. Computer Science - Natural Language Processing - Transferred after spending a year in the Dual MS for Journalism & CS
-
-_Montana State University (2013 - 2017)_
-
-B.S. Computer Science | Minor - English Literature | Minor - Math
-
 # Reporting
 
 Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound Up on Twitter's List of Russian Bots.” Wired, Conde Nast, 20 July 2018, [www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/](www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/)
@@ -32,6 +22,16 @@ Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound
 May 2018 - Present, Technical Consultant - _[ProductionPro Technologies](https://production.pro/)_
 
 2014 - 2015, Software Development Internship - _Oracle_
+
+# Education
+
+_Columbia University (2017 - 2019)_
+
+M.S. Computer Science - Natural Language Processing - Transferred after spending a year in the Dual MS for Journalism & CS
+
+_Montana State University (2013 - 2017)_
+
+B.S. Computer Science | Minor - English Literature | Minor - Math
 
 # Teaching / Tutoring
 
