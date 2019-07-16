@@ -18,7 +18,11 @@ def publish(dir, category):
     print("Created and published all posts in " + dir)
 
 
-if __name__ == '__main__':
+def publish_all():
     db.create_all()
     publish('./posts', 'blog')
     publish('./poetry', 'poetry')
+
+
+if __name__ == '__main__':
+    publish_all()
