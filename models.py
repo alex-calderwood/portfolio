@@ -52,7 +52,7 @@ class Post(db.Model):
 
     name = db.Column(db.String(200), nullable=False)
     posted_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    content = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.String(120000), nullable=False)
     content_type = db.Column(db.String(200), default="md", nullable=False)  # md / html
     category = db.Column(db.String(200), nullable=False, default="blog")  # poetry / blog
 
