@@ -1,14 +1,12 @@
 let xstart, ystart;
 let canvas;
+let backAlpha = 2
 
 function setup() {
     smooth();
     canvas = createCanvas(windowWidth, windowHeight);
-//    canvas.elt.style.position = 'absolute';
-//    canvas.elt.style.top = 0;
-//    canvas.elt.style.z_index = -1000;
     console.log(canvas.elt)
-    frameRate(30);
+    frameRate(24);
 
     xstart = random(10);
     ystart = random(10);
@@ -17,15 +15,18 @@ function setup() {
 }
 
 function draw() {
-    background(color(0, 0, 0, 4));
+
+    alph = Math.log(backAlpha += 0.001)
+    background(color(0, 0, 0, alph));
 
     var ynoise = ystart += 0.01;
-    xstart += 0.02;
+    xstart += 0.01;
 
-    for (var y = 0; y < windowHeight; y += 50) {
-        ynoise += 0.1;
+    const space = 75
+    for (var y = 0; y < windowHeight + space; y += space) {
+        ynoise += 0.05;
         var xnoise = xstart;
-        for (var x = 0; x < windowWidth; x += 50) {
+        for (var x = 0; x < windowWidth + space; x += space) {
             xnoise += 0.1;
             drawPoint(x, y, noise(xnoise, ynoise), sin(frameCount/200) ** 4);
         }
@@ -35,7 +36,7 @@ function draw() {
 function drawPoint(x, y, noiseFactor, secondaryNoiseFactor) {
     rotation = (noiseFactor * TWO_PI);
 //    stroke(40, 140  * (1 - noiseFactor) + 60, 70  * noiseFactor + 20, 220);
-    stroke(255, 255, 255, 50 + (170 * secondaryNoiseFactor));
+    stroke(255, 255, 255, 50 + (120 * secondaryNoiseFactor));
 
     var r = 100 + (80 * secondaryNoiseFactor);
     var x2 = x + r * cos(rotation);
