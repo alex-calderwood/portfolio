@@ -71,7 +71,7 @@ class Post(db.Model):
     def valid_category(self, cat):
         return cat in self.Category.__dict__.keys()
 
-    def __init__(self, path_to_post, name=None, date=None, category=None):
+    def __init__(self, path_to_post, name=None, date=None, category=None, content_type=None):
         """Leave optional fields empty to let them be inferred."""
         super(Post, self).__init__()
 
@@ -83,6 +83,9 @@ class Post(db.Model):
         content_lines = self.content.split('\n')
 
         basename = path.basename(path_to_post).split('.')
+
+        if content_type is not None:
+            self.content_type = content_type
 
         # Set type of post
         self.content_type = basename[1]
@@ -116,6 +119,22 @@ class Post(db.Model):
                 raise RuntimeError(category + " is not a valid category.")
             self.category = category
 
-
     def __repr__(self):
         return '<({}) Post> {} {} {}'.format(self.category, self.name, self.content_type, self.posted_at)
+
+
+class Project(Post):
+    __tablename__ = 'project'
+
+    id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True)
+    thumbnail = db.Column(db.String(200))
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'project',
+    }
+
+    def __init__(self, path_to_post, name=None, date=None):
+        """Leave optional fields empty to let them be inferred."""
+
+
+        super(Post, self).__init__(path_to_post, name, date, category=Post.Category.project)
