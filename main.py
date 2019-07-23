@@ -1,5 +1,5 @@
 # Built in libraries
-import os, random
+import os, random, sys
 import utils
 
 # Add libraries installed in the 'lib' folder
@@ -92,6 +92,33 @@ def poetry():
     return render_template('poetry.html', **locals())
 
 
+@app.route('/projects')
+def projects():
+    title = 'Projects'
+    name = get_name()
+
+    text = []
+
+    for post in sorted(Post.query.filter_by(category=Post.Category.project),
+                       key=lambda p: p.posted_at, reverse=True):
+
+        # Create the title in markdown
+        title = "# {}".format(post.name)
+
+        post_content = utils.add_link_to_title(title, url_for('project', post_name=post.name))
+        text.append(post_content)
+
+    content = '\n'.join(text)
+
+    # tools = 'tools'
+    # tools = pronouncing.rhymes(tools)
+    # tools = random.choice(tools)
+    # text = '{} are the art'.format(tools)
+    # text = text.replace('\'', '')
+
+    return render_template('projects.html', **locals())
+
+
 @app.route('/blog/<post_name>')
 def blog_post(post_name=None):
     name = get_name()
@@ -118,11 +145,25 @@ def poem(post_name=None):
     return redirect(url_for('poetry'))
 
 
+@app.route('/projects/<post_name>')
+def project(post_name=None):
+    name = get_name()
+
+    post = Post.query.filter_by(category=Post.Category.project, name=post_name).first()
+
+    if post:
+        script_path = url_for('static', filename=os.path.join("projects/js/", post.name + '.js'))
+        project_html = post.content
+        print(project_html)
+        return render_template('posts/project.html', **locals())
+
+    return redirect(url_for('projects'))
+
+
 @app.route('/contact')
 def contact():
     title = 'Contact'
     name = get_name()
-
 
     number_words = "four oh six three eight one nine six three six".split(' ')
     phones = [pronouncing.phones_for_word(word) for word in number_words]
@@ -155,19 +196,6 @@ def bio():
 
     return render_template('bio.html', **locals())
 
-
-@app.route('/projects')
-def projects():
-    title = 'Projects'
-    name = get_name()
-
-    tools = 'tools'
-    tools = pronouncing.rhymes(tools)
-    tools = random.choice(tools)
-    text = '{} are the art'.format(tools)
-    text = text.replace('\'', '')
-
-    return render_template('projects.html', **locals())
 
 # app.run(debug=True)
 

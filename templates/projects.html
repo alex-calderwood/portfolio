@@ -5,7 +5,6 @@
 <script type="text/javascript" src="static/lib/p5.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bmoren/p5.collide2D@0.6/p5.collide2d.min.js"></script>
 <script type="text/javascript" src="static/js/waves.js"></script>
-<script type="text/javascript" src="static/lib/snap.svg-min.js"></script>
 
 <script>
     $( document ).ready(function() {
@@ -13,28 +12,17 @@
     });
 </script>
 
-<script src="static/js/circles.js"></script>
-
-
 {% endblock %}
 
 {% block body %}
 
-<div class="circle-container justify-content-center">
-    <svg id="circles" class="circle-container" height="2400" width="2400" viewBox="0 0 300 300">
-<!--      <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="none" />-->
-<!--      <circle cx="150" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
-<!--      <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
-    </svg>
-</div>
-
-	<div class="container">
-		<div class="row justify-content-md-center">
-			<div class="page-content col-auto">
-                {{text}}
-			</div>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="page-content col-auto">
+			{{content | markdown}}
 		</div>
 	</div>
+</div>
 
 
 {% endblock %}

@@ -5,6 +5,7 @@ let backAlpha = 2
 function setup() {
     smooth();
     canvas = createCanvas(windowWidth, windowHeight);
+    console.log(canvas.elt)
     frameRate(24);
 
     xstart = random(10);

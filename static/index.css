@@ -76,14 +76,6 @@ blockquote {
     background-color: rgb(180, 180, 180);
 }
 
-
-.circle-container {
-  position: fixed;
-  top: -875;
-  left: -600;
-  z-index: -1;
-}
-
 canvas {
     position:absolute;
     top:0;

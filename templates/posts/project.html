@@ -7,22 +7,25 @@
     });
 </script>
 
-<script src="static/circles.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='lib/snap.svg-min.js')}}"></script>
+<script src="{{script_path}}"></script>
 
 {% endblock %}
 
 {% block body %}
 
-<div class="justify-content-center">
-    <svg id="drawing" height="100" width="300">
-<!--      <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="none" />-->
-<!--      <circle cx="150" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
-<!--      <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>-->
-    </svg>
-</div>
+{{project_html | safe}}
 
-<svg height="100" width="100">
-</svg>
+<!--<div class="justify-content-center">-->
+<!--    <svg id="drawing" height="100" width="300">-->
+<!--&lt;!&ndash;      <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="none" />&ndash;&gt;-->
+<!--&lt;!&ndash;      <circle cx="150" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>&ndash;&gt;-->
+<!--&lt;!&ndash;      <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="none"></circle>&ndash;&gt;-->
+<!--    </svg>-->
+<!--</div>-->
+
+<!--<svg height="100" width="100">-->
+<!--</svg>-->
 
 <!--{{text}}-->
 
