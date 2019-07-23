@@ -65,9 +65,9 @@ def blog():
 
     for post in sorted(Post.query.filter_by(category=Post.Category.blog),
                        key=lambda p: p.posted_at, reverse=True):
-        content = post.content
 
-        blog_text.append(content)
+        post_content = utils.add_link_to_title(post.content, url_for('blog_post', post_name=post.name))
+        blog_text.append(post_content)
 
     content = '\n'.join(blog_text)
 
@@ -83,9 +83,9 @@ def poetry():
 
     for post in sorted(Post.query.filter_by(category=Post.Category.poetry),
                        key=lambda p: p.posted_at, reverse=True):
-        content = post.content
 
-        blog_text.append(content)
+        post_content = utils.add_link_to_title(post.content, url_for('poem', post_name=post.name))
+        blog_text.append(post_content)
 
     content = '\n'.join(blog_text)
 
@@ -96,17 +96,26 @@ def poetry():
 def blog_post(post_name=None):
     name = get_name()
 
-    post_name = os.path.basename(post_name).split('.')[0]
-    print(post_name)
+    post = Post.query.filter_by(name=post_name).first()
 
-    all_posts = os.listdir('./posts/')
-    post_names = [os.path.basename(post).split('.')[0] for post in all_posts]
+    if post:
+        content = post.content
+        return render_template('post.html', **locals())
 
-    if post_name in post_names:
-        content = utils.read_md('./posts/', post_name + '.md')
-        return render_template('blog.html', **locals())
+    return redirect(url_for('blog'))
 
-    return redirect(url_for('index'))
+
+@app.route('/poetry/<post_name>')
+def poem(post_name=None):
+    name = get_name()
+
+    post = Post.query.filter_by(name=post_name).first()
+
+    if post:
+        content = post.content
+        return render_template('poem.html', **locals())
+
+    return redirect(url_for('poetry'))
 
 
 @app.route('/contact')
@@ -165,7 +174,6 @@ def projects():
 """
 TODO
 
-* Get pages set up
 * Make sure my old posts are indexed the same
 https://www.alexcalderwood.blog/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout
 """

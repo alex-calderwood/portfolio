@@ -36,3 +36,15 @@ def sometimes_pronounce(text, odds=(15, 1)):
         text_out.append(random.choices((word, phone), odds)[0])
 
     return ' '.join(text_out)
+
+
+def add_link_to_title(md_content, link):
+    lines = md_content.split('\n')
+    title = lines[0]
+
+    title = title.replace('#', '').strip()
+
+    title_with_link = "# [{}]({})".format(title, link)
+
+    lines[0] = title_with_link
+    return '\n'.join(lines)
