@@ -1,9 +1,6 @@
-
-I'm interested in creative technology, journalism, ethics, and applied natural language processing. 
+I'm interested in creative technology, applied natural language processing, and watchdog journalism.
 
 [Staff Writer - Columbia University - Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
-
-Technical Consultant - ProductionPro Technologies - Film / theatre script analysis and NLP. 
 
 # Reporting
 
@@ -19,7 +16,7 @@ Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound
 
 # Software Development
 
-May 2018 - Present, Technical Consultant - _[ProductionPro Technologies](https://production.pro/)_
+May 2018 - Aug 2019, Technical Consultant - _[ProductionPro Technologies](https://production.pro/) - Film / theatre script analysis and NLP. 
 
 2014 - 2015, Software Development Internship - _Oracle_
 
