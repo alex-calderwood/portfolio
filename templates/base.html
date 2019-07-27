@@ -25,6 +25,14 @@
 
 		  gtag('config', 'UA-123199663-2');
 		</script>
+
+		<script>
+			$.getJSON('https://json.geoiplookup.io/', function(data) {
+				console.log("I know your location. You are in " + data["city"] + ", " + data["postal_code"] + " at these coordinates: " + data["latitude"] + ", " + data["longitude"] );
+				console.log("Unless you're using a VPN.");
+			});
+		</script>
+
 	</head>
 
 	<div class="sidebar">
