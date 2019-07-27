@@ -16,7 +16,7 @@ Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound
 
 # Software Development
 
-May 2018 - Aug 2019, Technical Consultant - _[ProductionPro Technologies](https://production.pro/) - Film / theatre script analysis and NLP. 
+May 2018 - Aug 2019, Technical Consultant - [ProductionPro Technologies](https://production.pro/) - Film / theatre script analysis and NLP. 
 
 2014 - 2015, Software Development Internship - _Oracle_
 
