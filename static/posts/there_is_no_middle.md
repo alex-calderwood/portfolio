@@ -23,14 +23,14 @@ I found that between most pairs of two words in this space, there are no words i
 
 
 
-![alt_text](static/img/queen1d.png "The Interloping - Queen vector walk")
+![alt_text](IMG_PATH/static/img/queen1d.png "The Interloping - Queen vector walk")
 
 
 What does it mean to be a combination of ‘queen’, a leader, and someone who is ‘interloping’ or temporary? A temporary leader, a regent. When it works it works, it seems. But things become stranger when you add another dimension and make it a plane of transitions between 4 words.
 
 
 
-![alt_text](static/img/queen2d.png "The Stationary - React x Interloping - Queen vector walk")
+![alt_text](IMG_PATH/static/img/queen2d.png "The Stationary - React x Interloping - Queen vector walk")
 
 
 Google tells me that a ‘travois’ is a sort of sled pulled by a team of horses or dogs. My theory as to why ‘sample’ is dominating the space is that it’s more similar to the other three words, whereas _hotkey_ is not very similar to the other three.

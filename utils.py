@@ -48,3 +48,8 @@ def add_link_to_title(md_content, link):
 
     lines[0] = title_with_link
     return '\n'.join(lines)
+
+
+def replace_image_path(content, path):
+    im_path_token = 'IMG_PATH'
+    return content.replace(im_path_token, path)

@@ -67,6 +67,8 @@ def blog():
                        key=lambda p: p.posted_at, reverse=True):
 
         post_content = utils.add_link_to_title(post.content, url_for('blog_post', post_name=post.name))
+        post_content = utils.replace_image_path(post_content, '.')
+        print(post_content)
         blog_text.append(post_content)
 
     content = '\n'.join(blog_text)
@@ -126,7 +128,8 @@ def blog_post(post_name=None):
     post = Post.query.filter_by(name=post_name).first()
 
     if post:
-        content = post.content
+        content = utils.replace_image_path(post.content, '..')
+
         return render_template('post.html', **locals())
 
     return redirect(url_for('blog'))
