@@ -30,7 +30,7 @@ What does it mean to be a combination of ‘queen’, a leader, and someone who 
 
 
 
-![alt_text](IMG_PATH/static/img/queen2d.png "The Stationary - React x Interloping - Queen vector walk")
+![alt_text](IMG_PATH/static/img/travois.png "The Stationary - React x Interloping - Queen vector walk")
 
 
 Google tells me that a ‘travois’ is a sort of sled pulled by a team of horses or dogs. My theory as to why ‘sample’ is dominating the space is that it’s more similar to the other three words, whereas _hotkey_ is not very similar to the other three.
