@@ -35,6 +35,13 @@
 
 {% block body %}
 
-{{content | markdown}}
+{% for post in content %}
+
+<div>
+    {{post | markdown}}
+</div>
+
+{% endfor %}
+
 
 {% endblock %}

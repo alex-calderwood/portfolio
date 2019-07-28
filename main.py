@@ -71,7 +71,8 @@ def blog():
         print(post_content)
         blog_text.append(post_content)
 
-    content = '\n'.join(blog_text)
+    # content = '\n'.join(blog_text)
+    content = blog_text
 
     return render_template('blog.html', **locals())
 
@@ -89,7 +90,7 @@ def poetry():
         post_content = utils.add_link_to_title(post.content, url_for('poem', post_name=post.name))
         blog_text.append(post_content)
 
-    content = '\n'.join(blog_text)
+    content = blog_text
 
     return render_template('poetry.html', **locals())
 

@@ -24,7 +24,7 @@ May 2018 - Aug 2019, Technical Consultant - [ProductionPro Technologies](https:/
 
 _Columbia University (2017 - 2019)_
 
-M.S. Computer Science - Natural Language Processing - Transferred after spending a year in the Dual MS for Journalism & CS
+M.S. Computer Science - Natural Language Processing - I transferred to this program after spending a year in the Dual MS for Journalism & CS.
 
 _Montana State University (2013 - 2017)_
 

@@ -1,8 +1,6 @@
 # On Klein's Dilemma
 ## May 27, 2018
 
-_Alex Calderwood_
-
 Lit by a yellow lamp and white-blue screen, well past midnight, I was slouched over a dozen or so loose brown pages spread over the desk in front of me. I was fervently flipping pages as I hunted for this or that handwritten theorem, which when found, I would mark with a thick yellow fountain pen or copy a fragment of to another disordered page.
 
 I was at work on a problem for for a graduate class in computational topology. It was my junior year of college, and I’d long since checked out of the good-grade-game. A semester of drinking Guinness and reading Irish drama in Galway had reinforced my belief I was not the canonical computer science student I once hoped I could be. I would never be able to return with any passion to the land of circuits and 0’s, wires and 1’s that so many of my classmates seemed content to explore. I was a passenger in this world, with an expired visa and no inkling of where to go next.

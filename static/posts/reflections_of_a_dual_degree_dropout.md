@@ -1,8 +1,6 @@
 # Reflections of a Dual Degree Dropout
 ## July 27, 2018
 
-_Alex Calderwood_
-
 I’ve always wanted to drop out of something, and now that I have I’m kind of sad that it’s all over. In so many ways, last year was the most intense of my life, vacillating between a deep-seated imposter’s syndrome and moments of brand-new clarity, utter reward. I was a member of Columbia’s fifth or sixth cohort of the Dual Degree in Journalism and Computer Science, a program that costs an estimated $210,000 over the two years, factoring in the cost of living in NYC. I want this post to address some of my thoughts about the program: where it shines, and why I left.
 
 
