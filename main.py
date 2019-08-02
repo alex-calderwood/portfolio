@@ -94,6 +94,17 @@ def poetry():
 
     return render_template('poetry.html', **locals())
 
+@app.route('/shownotes')
+def quotes():
+    title = 'Shownotes'
+    name = get_name()
+
+    rand = random.randrange(0, Post.query.filter_by(category=Post.Category.quote).count())
+    post = Post.query.filter_by(category=Post.Category.quote)[rand]
+    content = utils.replace_image_path(post.content, '.')
+
+    return render_template('quotes.html', **locals())
+
 
 @app.route('/projects')
 def projects():

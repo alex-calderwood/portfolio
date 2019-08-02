@@ -24,6 +24,7 @@ def publish_all():
     publish('./static/posts', 'blog')
     publish('./static/poetry', 'poetry')
     publish('./static/projects/html', 'project', 'html', datetime.now())
+    publish('./static/quotes', 'quote', 'md', datetime.now())
 
 
 def delete(category):

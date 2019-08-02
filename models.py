@@ -64,6 +64,7 @@ class Post(db.Model):
         poetry = "poetry"
         blog = "blog"
         project = "project"
+        quote = "quote"
 
     def valid_type(self, type):
         return type in self.Type.__dict__.keys()

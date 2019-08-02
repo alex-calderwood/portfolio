@@ -7,7 +7,7 @@
         $("div.top-menu-bar div:nth-child(1)").addClass('active_title');
     });
     $( document ).ready(function() {
-        $("div.menu-bar div:nth-child(2)").addClass('active_title');
+        $("div.menu-bar div:nth-child(1)").addClass('active_title');
     });
 </script>
 {% endblock %}
@@ -37,13 +37,8 @@
 
 {% block body %}
 
-
-{% for post in content %}
-
-<div>
-    {{post | markdown}}
+<div class="container text-center">
+    {{content | markdown}}
 </div>
-
-{% endfor %}
 
 {% endblock %}
