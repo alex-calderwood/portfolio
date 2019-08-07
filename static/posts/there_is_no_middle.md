@@ -20,15 +20,14 @@ Turns out, there is no middle. These vectors were created based on co-occurrence
 I found that between most pairs of two words in this space, there are no words in between. So far, I’ve only found a few with ‘interesting’ transitions, but I haven’t made much of an effort to search for interesting points yet. Here is my first attempt to visualize in one dimension. In this image, moving left is to move closer to the _interloping_ vector, and moving right is to move closer to _queen._
 
 
-
-
-
 ![alt_text](IMG_PATH/static/img/queen1d.png "The Interloping - Queen vector walk")
 
 
-What does it mean to be a combination of ‘queen’, a leader, and someone who is ‘interloping’ or temporary? A temporary leader, a regent. When it works it works, it seems. But things become stranger when you add another dimension and make it a plane of transitions between 4 words.
+What does it mean to be a combination of ‘queen’, a leader, and someone who is ‘interloping’ or temporary? A temporary leader, a regent. When it works it works, it seems. 
 
+**Edit: ** As [Mark Dominous](https://www.recurse.com/directory/1179-mark-dominus) pointed out, the word between 'queen' and 'interloping' was regnant (<i>adj.</i> ruling) <i>not</i> regent. Oh well.
 
+Things become stranger when you add another dimension and make it a plane of transitions between 4 words.
 
 ![alt_text](IMG_PATH/static/img/travois.png "The Stationary - React x Interloping - Queen vector walk")
 
