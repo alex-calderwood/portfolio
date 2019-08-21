@@ -10,13 +10,13 @@ def publish(dir, category, type=None, date=None):
         post = Post(os.path.join(dir, file), category=category, content_type=type, date=date)
 
         if db.session.query(Post.id).filter(Post.name == post.name).count() > 0:
-            print('Post skipped, a post with this name already exists', post)
+            print('SKIPPING {} (already exists)'.format(post))
         else:
             print('Created', post)
             db.session.add(post)
 
     db.session.commit()
-    print("Created and published all posts in " + dir)
+    print("Done with " + dir)
 
 
 def publish_all():

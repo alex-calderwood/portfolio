@@ -1,0 +1,3 @@
+[submodule "projects/all_is_all_poetry"]
+	path = projects/all_is_all_poetry
+	url = https://github.com/alex-calderwood/all_is_all_poetry

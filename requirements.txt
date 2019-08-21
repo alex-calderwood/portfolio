@@ -6,3 +6,9 @@ psycopg2-binary
 Flask-SQLAlchemy
 dateparser
 flask-heroku
+
+# in_two_dimensions requirements
+dill
+numpy
+scikit-learn
+gensim

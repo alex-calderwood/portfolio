@@ -1,47 +1,45 @@
 # Built in libraries
-import os, random, sys
+import os, random
 import utils
 
-# Add libraries installed in the 'lib' folder
-# from google.appengine.ext import vendor
-# vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
-
-# Import installed libraries
-from flask import  Flask, render_template, redirect, url_for
+# Installed libraries
+from flask import render_template, redirect, url_for
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
 
-# https://gcpexp.com/posts/appengine-standard-and-sqlalchemy/
-
-# App engine tutorial
-# https://cloud.google.com/appengine/docs/standard/python/getting-started/python-standard-env
-
-# Create Flask app
+# Create app
+from flask import Flask
 app = Flask(__name__)
 
 # Libraries requiring Flask app
 from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
 Markdown(app)
 
-# This speeds things up. NOt sure what it does
+# This speeds things up. Not sure what it does
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Set the database, depending if on server or local
 if 'ON_LOCAL_MACHINE' not in os.environ:
     heroku = Heroku(app)  # Based on: http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/blog'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/blog'
 db = SQLAlchemy(app)
+
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
 def get_db():
     return db
 
-# End flask setup
 
-
+# Imports requiring database initialization
 from models import Post
+
+# Register Project Blueprints
+from projects.all_is_all_poetry.in_two_dimensions.main import two_dimensions
+app.register_blueprint(two_dimensions)
+
+# End flask setup
 
 
 def get_name():
@@ -124,12 +122,6 @@ def projects():
 
     content = '\n'.join(text)
 
-    # tools = 'tools'
-    # tools = pronouncing.rhymes(tools)
-    # tools = random.choice(tools)
-    # text = '{} are the art'.format(tools)
-    # text = text.replace('\'', '')
-
     return render_template('projects.html', **locals())
 
 
@@ -169,7 +161,6 @@ def project(post_name=None):
     if post:
         script_path = url_for('static', filename=os.path.join("projects/js/", post.name + '.js'))
         project_html = post.content
-        print(project_html)
         return render_template('posts/project.html', **locals())
 
     return redirect(url_for('projects'))
