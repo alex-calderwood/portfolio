@@ -95,7 +95,9 @@ class Post(db.Model):
 
         # Set name
         if name is None:
-            if self.content_type == self.Type.md:
+            if category == self.Category.quote:
+                self.name = basename[0]
+            elif self.content_type == self.Type.md:
                 # Name is contained in first line
                 self.name = content_lines[0].replace("#", '').strip()
             else:

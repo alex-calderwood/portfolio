@@ -36,8 +36,8 @@ def get_db():
 from models import Post
 
 # Register Project Blueprints
-from projects.all_is_all_poetry.in_two_dimensions.main import two_dimensions
-app.register_blueprint(two_dimensions)
+# from projects.all_is_all_poetry.in_two_dimensions.main import two_dimensions
+# app.register_blueprint(two_dimensions)
 
 # End flask setup
 
