@@ -4,7 +4,7 @@ I'm interested in creative technology, applied natural language processing, and 
 
 # Reporting
 
-Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound Up on Twitter's List of Russian Bots.” Wired, Conde Nast, 20 July 2018, [www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/](www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/)
+Calderwood, Alex; Riglin, Erin; and Vaidyanathan, Shreya. “How Americans Wound Up on Twitter's List of Russian Bots.” Wired, Conde Nast, 20 July 2018, [www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/](https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/)
 
 # Academic Research
 

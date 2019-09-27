@@ -15,11 +15,6 @@ Topology is the study of space without distance. In topology, to contort an obje
 
  
 
-
-An isomorphism between a coffee cup and a donut. In topology, both are considered the same shape, since they both have one 'hole'.
-
- 
-
  
 
 To add a layer of complexity, topology problems often exist in what mathematicians call ‘n-dimensional’ space, in which surfaces and objects you might be able to visualize as bodies in three dimensions with our normal axes of up-down, left-right, and inwards-outwards become bodies of many more dimensions. For example, a three dimensional bottle might be projected into and then twisted by a 4th dimension. You can conceive of this extra axis as a time dimension, with a spatial movement along the axis translated to an alteration in time, not space.
@@ -36,11 +31,6 @@ A visualization of a cube's motion in 4 dimensions, with the red line representi
  
 
 But it’s hard, for me at least, to increase my spatial imagination to terms of more than four dimensions: 5, 10, 10,000 or n dimensions don’t really make sense in minds that have evolved to reason in three. What do you even call a motion in the fourth dimension? The fifth? Are you moving into something? Alongside something? What is away, what is next-to? You can take a step into the 7th dimension without even getting far from where you started, since motion in any one dimension is the same as walking in a straight line in any of the three we are used to. But how do you get back? Can you step forward into the sixth and then fall down into the fifth and move leftwards along the fourth and retrace your steps? Can you even imagine what that means?
-
- 
-
-
-A theoretical four-dimensional shape called a 'Klein Bottle', down-projected into three dimensions and made of glass. 
 
  
 
@@ -84,19 +74,9 @@ I remember feeling, as I was mentally swimming in these n-dimensions, that I wou
 
 A few hours of work later, I submitted the assignment and began writing, not able to let this strange feeling go. I remembered encountering the subreddit /r/trypophobia a week earlier, and thinking it fit in oddly well with the feeling I was now attempting to describe. It is a mystifyingly horrific corner of the internet, where people post images of holes in places they didn’t expect to find holes. And it’s oddly creepy. One of the images that stands out in my mind is a real picture of the skull of a baby who died just before their new teeth came in. Their first set of teeth is there as it should be, but just above each tooth is a large cavity, filled with yet another tooth ready to bore out, insidiously lodged in this strange and unexpectedly toothy gap (click here for the image: for the masochistic).
 
- 
 
-
- Where does this hole go?
-
- 
 
 I also thought of a movie I had just seen, called My Night at Maud's, directed by a French film critic named Eric Rohmer in 1969, the tail end of the French New Wave. The movie waxes philosophical about whether or not it is meaningful to devote yourself to such abstract practices as physics, mathematics, or philosophy. A character in it argues that interpersonal relationships (in his case, read: sex), and human struggles are more important than any grand discovery you can make in these highly impersonal realms. Therefore he’d given up mathematics entirely. After my disillusion with the hard sciences and my growing desire to do something literary, human, this idea reverberated with me. For the longest time, I've had a lingering feeling that I give up some part of my humanity when I work in math, becoming something more ethereal, something intellectually alien: different from those who only think in terms of concrete shape, color, and mass. I also think that it's fair to look at engineers and mathematicians and realize that they've sacrificed a study of social norms for their study of what seems a different universe, a more basic universe, but one less primal to our nature. Nevertheless, I had solved the problem and turned it in sometime in the small hours of the morning, glad that I could solve a problem I'd been told was difficult, glad also that I was done with it forever.
-
- 
-
-
-A frame from My Night at Maud's
 
  
 
@@ -109,9 +89,3 @@ I referenced a few other films in the poem (2001, prominently), all of which gra
  
 
 A poetry professor in college, for instance, had one interpretation that stuck with me, one that shows just why poets themselves shouldn’t be trusted as the definitive source of a poem’s meaning. He said the references to film in this poem “open up” strangely and without explanation, just like those holes I’m afraid of. I hadn’t consciously planned this, but I think this functional parallel between the surface aspects of the poem and the ideas I’m really trying to grapple with is why I like this poem more than most I’ve written.
-
- 
-
- 
-
-For those interested, here is a link to the poem. Though I also think I did a better job of this essay than the poem itself. 
