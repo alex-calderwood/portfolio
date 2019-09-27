@@ -89,3 +89,11 @@ img {
   width: 100%;
   height: auto;
 }
+
+::selection {
+  background: #b4b4b4; /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: #b4b4b4; /* Gecko Browsers */
+}
