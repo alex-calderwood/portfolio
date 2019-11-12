@@ -1,6 +1,6 @@
 I'm interested in creative technology, applied natural language processing, and watchdog journalism.
 
-[Staff Writer - Columbia University - Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
+I am currently the [Staff Writer at Columbia University's Brown Institute for Media Innovation.](https://brown.columbia.edu/portfolio/alex-calderwood/)
 
 # Reporting
 

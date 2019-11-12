@@ -1,10 +1,13 @@
 let xstart, ystart;
 let canvas;
 let backAlpha = 2
+let height;
 
 function setup() {
+    height = windowHeight / 8;
+
     smooth();
-    canvas = createCanvas(windowWidth, windowHeight);
+    canvas = createCanvas(windowWidth, height);
     frameRate(24);
 
     xstart = random(10);
@@ -13,15 +16,15 @@ function setup() {
     strokeWeight(0.3);
 }
 
-function draw() {
 
-    alph = Math.log(backAlpha += 0.001)
+function draw() {
+    alph = Math.log(backAlpha += 0.002)
     background(color(0, 0, 0, alph));
 
-    var ynoise = ystart += 0.01;
+    var ynoise = ystart += 0.05;
     xstart += 0.01;
 
-    const space = 75
+    const space = 75;
     for (var y = 0; y < windowHeight + space; y += space) {
         ynoise += 0.05;
         var xnoise = xstart;
@@ -45,5 +48,5 @@ function drawPoint(x, y, noiseFactor, secondaryNoiseFactor) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, height);
 }

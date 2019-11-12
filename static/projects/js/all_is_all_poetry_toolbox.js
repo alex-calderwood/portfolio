@@ -1,0 +1,1 @@
+window.location.href = "https://github.com/alex-calderwood/all_is_all_poetry"

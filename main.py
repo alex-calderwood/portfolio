@@ -23,7 +23,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if 'ON_LOCAL_MACHINE' not in os.environ:
     heroku = Heroku(app)  # Based on: http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/blog'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:entering@localhost:5432/blog'
 db = SQLAlchemy(app)
 
 
@@ -115,10 +115,13 @@ def projects():
                        key=lambda p: p.posted_at, reverse=True):
 
         # Create the title in markdown
-        title = "# {}".format(post.name)
+        title = "{}".format(post.name)
 
         post_content = utils.add_link_to_title(title, url_for('project', post_name=post.name))
+
         text.append(post_content)
+
+        text.append(post.content)
 
     content = '\n'.join(text)
 

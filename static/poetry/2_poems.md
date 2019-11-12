@@ -13,17 +13,17 @@ goes when it drifts away from the where
 
 from the when 
 
-                            to the what
+&emsp;&emsp;&emsp;&emsp;                            to the what
 
 is not known
 
-                         but logical
+&emsp;&emsp;&emsp;&emsp;                         but logical
 
 and
 
-        intractable 
+&emsp;        intractable 
 
-                             and surreal.
+&emsp;&emsp;&emsp;                             and surreal.
 
 # Klein's Dilemma
 

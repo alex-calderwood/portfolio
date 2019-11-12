@@ -1,0 +1,1 @@
+window.location.href = "https://github.com/nilesc/Long-Structured-Debate-Generation-and-Evaluation";

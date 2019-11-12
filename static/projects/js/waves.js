@@ -1,10 +1,12 @@
 let xstart, ystart;
 let canvas;
 let backAlpha = 2
+let size;
 
 function setup() {
+    height = windowHeight / 10;
     smooth();
-    canvas = createCanvas(windowWidth, windowHeight);
+    canvas = createCanvas(windowWidth, height);
     console.log(canvas.elt)
     frameRate(24);
 
@@ -23,7 +25,7 @@ function draw() {
     xstart += 0.01;
 
     const space = 75
-    for (var y = 0; y < windowHeight + space; y += space) {
+    for (var y = 0; y < height + space; y += space) {
         ynoise += 0.05;
         var xnoise = xstart;
         for (var x = 0; x < windowWidth + space; x += space) {
@@ -46,5 +48,5 @@ function drawPoint(x, y, noiseFactor, secondaryNoiseFactor) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, height);
 }
