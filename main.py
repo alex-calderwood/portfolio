@@ -206,6 +206,13 @@ def bio():
     return render_template('bio.html', **locals())
 
 
+@app.route('/two_dimensions')
+def two_dimensions():
+    # URL for Google Cloud Run endpoint
+    url = "https://intwo-4bdu7fnfka-uc.a.run.app/"
+    return redirect(url, code=302)
+
+
 # app.run(debug=True)
 
 """

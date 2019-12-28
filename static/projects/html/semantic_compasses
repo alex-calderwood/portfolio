@@ -1,0 +1,5 @@
+Choose two 'opposites' for the North / South words, and another two opposites for East / West. Then let it compose a little poem with the magic of word vector interpolation!
+
+It was inspired by Allison Parish's <a href="http://sync.abue.io/issues/190705ap_sync2_27_compasses.pdf">Compasses</a>. It is a little different from Parish's project, using an off-the-shelf semantic word vector model rather than a pre-trained phonetic vector.
+
+<a href="/two_dimensions">Click here to try it out</a>!
