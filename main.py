@@ -66,7 +66,6 @@ def blog():
 
         post_content = utils.add_link_to_title(post.content, url_for('blog_post', post_name=post.name))
         post_content = utils.replace_image_path(post_content, '.')
-        print(post_content)
         blog_text.append(post_content)
 
     # content = '\n'.join(blog_text)
@@ -122,8 +121,6 @@ def projects():
         text.append(post_content)
 
         text.append(post.content)
-
-        print(title, post.posted_at)
 
     content = '\n'.join(text)
 
