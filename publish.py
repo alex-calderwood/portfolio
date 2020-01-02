@@ -23,7 +23,7 @@ def publish_all():
     db.create_all()
     publish('./static/posts', 'blog')
     publish('./static/poetry', 'poetry')
-    publish('./static/projects/html', 'project', 'html', datetime.now())
+    publish('./static/projects/html', 'project', 'html')
     publish('./static/quotes', 'quote', 'md', datetime.now())
 
 

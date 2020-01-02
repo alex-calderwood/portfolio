@@ -1,9 +1,6 @@
 # Modalities of a Whisper
 ## February 13, 2018
 
-_Alex Calderwood_
-
-
 _See me_
 
 An image. White sand.

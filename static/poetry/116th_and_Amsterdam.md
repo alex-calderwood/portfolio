@@ -1,14 +1,5 @@
 #116th & Amsterdam
-##March 18, 2018
-
-_Alex Calderwood_
-
-
-A poem written upon visiting my future school for the first time.
-
-116th and Amsterdam
-
- 
+##March 18, 2018 
 
 I wake into the stains of Manhattan,
 

@@ -123,6 +123,8 @@ def projects():
 
         text.append(post.content)
 
+        print(title, post.posted_at)
+
     content = '\n'.join(text)
 
     return render_template('projects.html', **locals())
@@ -205,10 +207,10 @@ def bio():
 
     return render_template('bio.html', **locals())
 
-
+@app.route('/semantic_compasses')
 @app.route('/two_dimensions')
 def two_dimensions():
-    # URL for Google Cloud Run endpoint
+    # Redirect to the Google Cloud Run endpoint for the in_two_dimensions project
     url = "https://intwo-4bdu7fnfka-uc.a.run.app/"
     return redirect(url, code=302)
 
