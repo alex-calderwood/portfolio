@@ -107,13 +107,16 @@ class Post(db.Model):
 
         # Set date
         if date is None:
+            print(category)
             # Use a library to convert from natural text to datetime
             if self.content_type == self.Type.md:
                 # Date should be stored in text on the second line
                 self.posted_at = dateparser.parse(content_lines[1].replace('#', '').strip())
-            elif self.category == self.Category.project:
+            elif category == self.Category.project:
                 # Date should be stored in text on the first line
-                self.posted_at = dateparser.parse(content_lines[0].replace('#', '').strip())
+                print('A ', content_lines, ' B')
+                self.posted_at = dateparser.parse(content_lines[0].strip())
+                print(content_lines[0], self.posted_at)
         else:
             self.posted_at = date
 

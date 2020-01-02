@@ -1,5 +1,5 @@
 # Built in libraries
-import os, random
+import os, random, math
 import utils
 
 # Installed libraries
@@ -13,7 +13,8 @@ from flask import Flask
 app = Flask(__name__)
 
 # Libraries requiring Flask app
-from flaskext.markdown import Markdown  # https://pythonhosted.org/Flask-Markdown/
+# From https://pythonhosted.org/Flask-Markdown/
+from flaskext.markdown import Markdown
 Markdown(app)
 
 # This speeds things up. Not sure what it does
@@ -122,7 +123,9 @@ def projects():
 
         text.append(post.content)
 
-    content = '\n'.join(text)
+    b = math.ceil(len(text) / 2)
+    content1 = '\n'.join(text[:b])
+    content2 = '\n'.join(text[b:])
 
     return render_template('projects.html', **locals())
 
