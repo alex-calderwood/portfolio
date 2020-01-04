@@ -22,14 +22,24 @@
 
 {% block body %}
 
+<!-- {% if request.MOBILE %}using mobile{% else %}not Mobile{% endif %} -->
+
 <div class="container">
-	<div class="row justify-content-md-center">
-		<div class="page-content col-6">
+	<div class="row justify-content-center">
+		<!-- {% if request.MOBILE %}
+
+		<div class="page-content col">
+			{{content1 + '\n\n' + content2 | markdown}}
+		</div>
+			
+		{% else %} -->
+		<div class="page-content col-sm-6">
 			{{content1 | markdown}}
 		</div>
-		<div class="page-content col-6">
+		<div class="page-content col-sm-6">
 			{{content2 | markdown}}
 		</div>
+		<!-- {% endif %} -->
 	</div>
 </div>
 

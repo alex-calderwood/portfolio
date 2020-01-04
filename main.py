@@ -3,7 +3,7 @@ import os, random, math
 import utils
 
 # Installed libraries
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
@@ -16,6 +16,9 @@ app = Flask(__name__)
 # From https://pythonhosted.org/Flask-Markdown/
 from flaskext.markdown import Markdown
 Markdown(app)
+
+# from flask_mobility import Mobility
+# Mobility(app)
 
 # This speeds things up. Not sure what it does
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
