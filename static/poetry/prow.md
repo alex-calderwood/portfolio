@@ -1,5 +1,5 @@
 # Thoughts on a skip
-# Jan 28, 2020
+## Jan 28, 2020
 
 Time turns out to be nothing but heat,
 
