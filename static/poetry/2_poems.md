@@ -1,7 +1,7 @@
 # 2 Poems
-# 2017
+## 2017
 
-# Abstract Algebra
+## Abstract Algebra
 
 In abstraction lies something unwholesome,
 
@@ -25,8 +25,8 @@ and
 
 &emsp;&emsp;&emsp;                             and surreal.
 
-# Klein's Dilemma
 
+## Klein's Dilemma
 
 Homology, sacred geometry--
 
