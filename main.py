@@ -217,12 +217,8 @@ def two_dimensions():
     url = "https://intwo-4bdu7fnfka-uc.a.run.app/"
     return redirect(url, code=302)
 
-
+@app.route('/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout')
+def old():
+    return redirect(url_for('blog_post', post_name="reflections_of_a_dual_degree_dropout")) # TODO check if this works
+ 
 # app.run(debug=True)
-
-"""
-TODO
-
-* Make sure my old posts are indexed the same
-https://www.alexcalderwood.blog/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout
-"""

@@ -1,0 +1,13 @@
+{
+	"Name": "Alex Calderwood",
+	"links": {},
+	"Education": {},
+	"Profesional": {
+			Organization: "Oracle"
+			Dates: "May '15 - Jan '16"
+			Role: "Software Engineer Intern"
+			Involvement: "Developed a tool to streamline code review and save engineers time. Automated QA app deployment with shell scripts."
+	},
+	"Teaching": {},
+	"Publications" {}, 
+}
