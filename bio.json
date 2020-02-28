@@ -1,47 +1,83 @@
 {
 	"Name": "Alex Calderwood",
-	"Links": {"Email": "alexander.d.calderwood@gmail.com", "Website": "http://www.alexcalderwood.blog/", "Twitter": "", "Github": ""},
+	"Links": {
+		"Email": "alexander.d.calderwood@gmail.com",
+		"Website": "http://www.alexcalderwood.blog/",
+		"Twitter": "https://twitter.com/alex_calderwoo",
+		"Github": "https://github.com/alex-calderwood"
+	},
+
 	"Education": [{
-				"Degree": "M.S. Computer Science, Natural Language Processing",
-				"Institution": "Columbia University",
-				"Graduated": "Feb 2019""
-			},
-			{
-				"Degree": "B.S. Computer Science",
-				"Institution": "Montana State University",
-				"Graduated": "May 2017",
-				"Minors": ["English Literature", "Mathematics"]
-			}
-			],
-	"Software Development": [
-		{
-			"Organization": "Oracle"
-			"Dates": "May '15 - Jan '16"
-			"Role": "Software Engineer Intern"
-			"Involvement": "Developed a tool to streamline code review and save engineers time. Automated QA app deployment with shell scripts."
+			"Degree": "M.S. Computer Science, Natural Language Processing",
+			"Institution": "Columbia University",
+			"Graduated": "Feb 2019"
 		},
 		{
-			"Organization": "ProductionPro Technologies", 
-			"Dates": "May ‘17 – Aug ‘19",
-			"Role": "Data Engineering Consultant",
-			"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", "Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", "Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling."]
+			"Degree": "B.S. Computer Science",
+			"Institution": "Montana State University",
+			"Graduated": "May 2017",
+			"Minors": ["English Literature", "Mathematics"]
+		},
+		{
+			"Institution": "Recurse Center(Formerly Hacker School)",
+			"Dates": "June – Aug 2019"
 		}
 	],
-	"Teaching": {"Teaching Assistant - AI"},
-	"Research": [
-		{
-                        "Organization": "Brown Institute for Media Innovation", 
-                        "Dates": "May '18 – Present",
-                        "Role": "Postgraduate Research Scholar",
-                        "Involvement": ["Wrote a series of blog posts about projects at the intersection of journalism & technology", "Assisted in a number of technical media projects, including an analysis of US Census Bureau differential privacy codebase."]
-                },
-		{
-                        "Organization": "Rochester Institute of Technology",
-                        "Dates": "May - Aug '16",
-                        "Role": "Student Researcher", 
-                        "Involvement": ["Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", "First author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."]
-                }
+	"Professional": {
+		"Software Development": [{
+				"Organization": "Oracle",
+				"Dates": "May '15 - Jan '16",
+				"Role": "Software Engineer Intern",
+				"Involvement": "Developed a tool to streamline code review and save engineers time. Automated QA app deployment with shell scripts."
+			},
+			{
+				"Organization": "ProductionPro Technologies",
+				"Dates": "May ‘17 – Aug ‘19",
+				"Role": "Data Engineering Consultant",
+				"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", "Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", "Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling."]
+			}
+		],
 
-	],
-	"Publications" {}, 
+		"Teaching": [{
+				"Organization": "Columbia University",
+				"Dates": "May ‘17 – Aug ‘19",
+				"Role": "Teaching Assistant",
+				"Courses": ["Artificial Intelligence", "UI Design / Responsible CS Curriculum Development"]
+			},
+			{
+				"Organization": "Montana State University",
+				"Dates": "Aug 2018– May 2019",
+				"Role": "Teaching Assistant",
+				"Courses": ["Introduction to Programming - Java", "Programming with C"]
+			}
+		],
+		"Research": [{
+				"Organization": "Brown Institute for Media Innovation",
+				"Dates": "May '18 – Present",
+				"Role": "Postgraduate Research Scholar",
+				"Involvement": ["Wrote a series of blog posts about projects at the intersection of journalism & technology", "Assisted in a number of technical media projects, including an analysis of US Census Bureau differential privacy codebase."]
+			},
+			{
+				"Organization": "Rochester Institute of Technology",
+				"Dates": "May - Aug '16",
+				"Role": "Student Researcher",
+				"Involvement": ["Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", "First author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."]
+			}
+
+		]
+	},
+
+	"Journalism": [{
+		"Publisher": "Wired Magazine",
+		"Title": "How Americans Wound Up on Twitter’ s List of Russian Bots",
+		"Link": "https: //www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
+		"Dates": "May – July 2018",
+		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
+	}],
+	"Academic Publications": [{
+		"Title": "",
+		"Date": "",
+		"Link": ""
+	}]
+
 }
