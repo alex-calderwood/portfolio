@@ -26,13 +26,13 @@
 	"Professional": {
 		"Software Development": [{
 				"Organization": "Oracle",
-				"Dates": "May '15 - Jan '16",
+				"Dates": "May 2015 - Jan 2016",
 				"Role": "Software Engineer Intern",
 				"Involvement": "Developed a tool to streamline code review and save engineers time. Automated QA app deployment with shell scripts."
 			},
 			{
 				"Organization": "ProductionPro Technologies",
-				"Dates": "May ‘17 – Aug ‘19",
+				"Dates": "May 2017 – Aug 2019",
 				"Role": "Data Engineering Consultant",
 				"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", "Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", "Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling."]
 			}
@@ -40,7 +40,7 @@
 
 		"Teaching": [{
 				"Organization": "Columbia University",
-				"Dates": "May ‘17 – Aug ‘19",
+				"Dates": "May 2017 – Aug 2019",
 				"Role": "Teaching Assistant",
 				"Courses": ["Artificial Intelligence", "UI Design / Responsible CS Curriculum Development"]
 			},
@@ -48,18 +48,23 @@
 				"Organization": "Montana State University",
 				"Dates": "Aug 2018– May 2019",
 				"Role": "Teaching Assistant",
-				"Courses": ["Introduction to Programming - Java", "Programming with C"]
+				"Courses": ["Introduction to Programming - Java", "Programming with C”, “Texts and Critics Honors Seminar”]
+			},
+			{
+				"Organization": "Montana State University",
+				"Dates": "Aug 2014– May 2016”,
+				"Role": “Calculus and Computer Science Tutor”
 			}
 		],
 		"Research": [{
 				"Organization": "Brown Institute for Media Innovation",
-				"Dates": "May '18 – Present",
+				"Dates": "May 2018 – Present",
 				"Role": "Postgraduate Research Scholar",
 				"Involvement": ["Wrote a series of blog posts about projects at the intersection of journalism & technology", "Assisted in a number of technical media projects, including an analysis of US Census Bureau differential privacy codebase."]
 			},
 			{
 				"Organization": "Rochester Institute of Technology",
-				"Dates": "May - Aug '16",
+				"Dates": "May - Aug 2016",
 				"Role": "Student Researcher",
 				"Involvement": ["Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", "First author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."]
 			}
@@ -74,10 +79,24 @@
 		"Dates": "May – July 2018",
 		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
 	}],
-	"Academic Publications": [{
-		"Title": "",
-		"Date": "",
-		"Link": ""
+	"Academic Publications": [
+{
+		"Title": "How Novelists Use Generative Language Models: An Exploratory User Study",
+		"Date": “March, 2020”
+},
+{
+		"Title": “High Quality Real-Time Structured Debate Generation“,
+		"Date": “March, 2020”
+},
+{
+		"Title": “Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions”,
+		"Date": “April 2017”,
+		"Link": “http://www.cse.unt.edu/sembear2017/book.pdf”
+},
+{
+		"Title": "Applying domain-specific natural language understanding techniques to film",
+		"Date": “May 2017”,
+		"Link": “https://scholarworks.montana.edu/xmlui/handle/1/12904”
 	}]
 
 }
