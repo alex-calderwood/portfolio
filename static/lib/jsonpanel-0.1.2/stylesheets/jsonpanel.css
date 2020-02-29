@@ -114,6 +114,11 @@
   color: #01728f;
   /* background-color: #eeeeee; */
 }
+
+.string > a {
+  color: #01728f;
+}
+
 /* line 129, ../sass/jsonpanel.scss */
 .jsonpanel .number {
   color: blue;
