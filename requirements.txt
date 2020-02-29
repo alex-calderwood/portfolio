@@ -1,12 +1,14 @@
 gunicorn
 Flask==1.0.2
 Flask-Markdown
-pronouncing
 psycopg2-binary
 Flask-SQLAlchemy
 dateparser
 flask-heroku
+pronouncing
 # Flask-Mobility
+
+
 
 # in_two_dimensions requirements
 # dill

@@ -1,5 +1,38 @@
 {% extends "base.html" %}
 
+{% block head %}
+
+<link rel="stylesheet" href="../static/bio.css">
+
+<script>
+    $( document ).ready(function() {
+        $("div.top-menu-bar div:nth-child(3)").addClass('active_title');
+    });
+</script>
+
+<!-- Stuff for json viewer -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/jsonpanel-0.1.2/stylesheets/jsonpanel.css') }}">
+<script src="{{ url_for('static', filename='lib/jsonpanel-0.1.2/bower_components/jquery/dist/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jsonpanel-0.1.2/bower_components/Autolinker.js/dist/Autolinker.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jsonpanel-0.1.2/jsonpanel.js') }}"></script>
+
+{% endblock %}
+
 {% block body %}
+
+<div class="jsonpanel"></div>
+
+<script>
+
+	// Get the JSON bio from Flask
+	var bio = {{ bio | safe }};
+
+
+	// Send to the json panel library
+	$(document).ready(function(){
+  		$('.jsonpanel').jsonpanel({data: bio});
+	});
+
+</script>
 
 {% endblock %}

@@ -96,3 +96,7 @@ img {
 ::-moz-selection {
   background: #b4b4b4; /* Gecko Browsers */
 }
+
+.panel {
+  width: 100%;
+}

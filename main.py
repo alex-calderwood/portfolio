@@ -54,6 +54,7 @@ def get_name():
 def index():
     title = "Alex Calderwood's Site"
     name = get_name()
+    bio = open('./bio.json', 'r').read()
 
     return render_template('index.html', **locals())
 
@@ -94,6 +95,7 @@ def poetry():
     content = blog_text
 
     return render_template('poetry.html', **locals())
+
 
 @app.route('/shownotes')
 def quotes():
@@ -195,20 +197,9 @@ def contact():
 
     return render_template('contact.html', **locals())
 
-
 @app.route('/bio')
 def bio():
-    title = 'Bio'
-    name = get_name()
-
-    text = open('./bio.md', 'r').read()
-
-    try:
-        text = text.decode('UTF-8')
-    except AttributeError:
-        pass
-
-    return render_template('bio.html', **locals())
+    return redirect(url_for('index'))
 
 @app.route('/semantic_compasses')
 @app.route('/two_dimensions')
