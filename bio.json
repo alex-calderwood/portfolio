@@ -9,8 +9,8 @@
 	},
 
 	"Education": {
-			"Montana State University": "B.S. Computer Science (2017)",
 			"Columbia University": "M.S. Computer Science, Natural Language Processing (2019)",
+			"Montana State University": "B.S. Computer Science (2017)",
 	},
 	"Professional": [
 			{
@@ -65,7 +65,7 @@
 },
 {
 		"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
-		"Authors": "Calderwood, Alexander; Pruett, Elizabeth; Ptucha, Raymond; Homan, Christopher; Cecilia Ovesdotter Alm.",
+		"Authors": "Alexander Calderwood, Elizabeth Pruett, Raymond Ptucha, Christopher Homan, Cecilia Ovesdotter Alm.",
 		"Date": "April 2017",
 		"Link": "http://www.cse.unt.edu/sembear2017/book.pdf"
 },
@@ -78,7 +78,7 @@
 		"Publisher": "Wired Magazine",
 		"Title": "How Americans Wound Up on Twitter’ s List of Russian Bots",
 		"Link": "https: //www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
-		"Dates": "May – July 2018",
+		"Dates": "May 2018 – July 2018",
 		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
 	}],
 }
