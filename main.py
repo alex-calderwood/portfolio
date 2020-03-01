@@ -176,26 +176,26 @@ def project(post_name=None):
     return redirect(url_for('projects'))
 
 
-@app.route('/contact')
-def contact():
-    title = 'Contact'
-    name = get_name()
+# @app.route('/contact')
+# def contact():
+#     title = 'Contact'
+#     name = get_name()
 
-    number_words = "four oh six three eight one nine six three six".split(' ')
-    phones = [pronouncing.phones_for_word(word) for word in number_words]
-    # flatten
-    phones = [phone for word in phones for phone in word]
-    # clean
-    phones = [phone.replace('1', '').replace('0', '').replace(' ', '-') for phone in phones]
-    numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
+#     number_words = "four oh six three eight one nine six three six".split(' ')
+#     phones = [pronouncing.phones_for_word(word) for word in number_words]
+#     # flatten
+#     phones = [phone for word in phones for phone in word]
+#     # clean
+#     phones = [phone.replace('1', '').replace('0', '').replace(' ', '-') for phone in phones]
+#     numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
 
-    number_text = []
-    for (letter, phone, number) in zip(number_words, phones, numbers):
-        number_text.append(random.choice((letter, phone, str(number))))
+#     number_text = []
+#     for (letter, phone, number) in zip(number_words, phones, numbers):
+#         number_text.append(random.choice((letter, phone, str(number))))
 
-    number_text = ' '.join(number_text)
+#     number_text = ' '.join(number_text)
 
-    return render_template('contact.html', **locals())
+#     return render_template('contact.html', **locals())
 
 @app.route('/bio')
 def bio():
