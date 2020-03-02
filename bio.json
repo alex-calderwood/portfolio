@@ -1,13 +1,5 @@
 {
 	"Name": "Alex Calderwood",
-	"Links": {
-		"Email": "alexander.d.calderwood@gmail.com",
-		"Website": "http://www.alexcalderwood.blog/",
-		"Twitter": "https://twitter.com/alex_calderwoo",
-		"Github": "https://github.com/alex-calderwood",
-		"Linkedin": "https://www.linkedin.com/in/alexcalderwood/"
-	},
-
 	"Education": {
 			"Columbia University": "M.S. Computer Science, Natural Language Processing (2019)",
 			"Montana State University": "B.S. Computer Science (2017)",
@@ -17,13 +9,18 @@
 				"Organization": "Brown Institute for Media Innovation",
 				"Role": "Postgraduate Research Scholar",
 				"Dates": "May 2018 – Present",
-				"Involvement": ["Wrote a series of blog posts about projects at the intersection of journalism and technology.", "Provided technical assistance for a number of innovative media projects, including an analysis of US Census Bureau differential privacy codebase."]
+				"Involvement": ["Wrote a series of blog posts about projects at the intersection of journalism and technology.", 
+								"Provided technical assistance for a number of innovative media projects, including an analysis of US Census Bureau differential privacy codebase."]
 			},
 			{
 				"Organization": "ProductionPro Technologies",
 				"Role": "Data Engineering Consultant",
 				"Dates": "May 2018 – Aug 2019",
-				"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", "Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", "Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling."]
+				"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
+								"Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", 
+								"Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling.",
+								"Developed a tool to track semantic changes or 'diff' film and theater scripts using the Zhang-Shasha tree edit-distance algorithm. Adapted the concept from academic literature, and incorporated string-edit (Levenshtein) distance into the zss library."
+				]
 			},
 			{
 				"Organization": "Columbia University",
@@ -41,7 +38,9 @@
 				"Organization": "Montana State University",
 				"Role": "Teaching Assistant",
 				"Dates": "Aug 2015 – May 2017",
-				"Courses": ["Introduction to Programming – Java", "Programming with C", "Texts and Critics Honors Seminar"]
+				"Courses": ["Introduction to Programming – Java", 
+							"Programming with C", 
+							"Texts and Critics Honors Seminar"]
 			},
 			{
 				"Organization": "Oracle",
@@ -66,12 +65,14 @@
 {
 		"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
 		"Authors": "Alexander Calderwood, Elizabeth Pruett, Raymond Ptucha, Christopher Homan, Cecilia Ovesdotter Alm.",
-		"Date": "April 2017",
+		"Date": "April, 4 2017",
 		"Link": "http://www.cse.unt.edu/sembear2017/book.pdf"
 },
 {
 		"Title": "Applying domain-specific natural language understanding techniques to film",
+		"Author": "Alex Calderwood",
 		"Date": "May 2017",
+		"About": "Undergrad Thesis",
 		"Link": "https://scholarworks.montana.edu/xmlui/handle/1/12904"
 	}],
 	"Journalism": [{
@@ -81,4 +82,11 @@
 		"Dates": "May 2018 – July 2018",
 		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
 	}],
+	"Links": {
+		"Email": "alexander.d.calderwood@gmail.com",
+		"Website": "http://www.alexcalderwood.blog/",
+		"Twitter": "https://twitter.com/alex_calderwoo",
+		"Github": "https://github.com/alex-calderwood",
+		"Linkedin": "https://www.linkedin.com/in/alexcalderwood/"
+	}
 }

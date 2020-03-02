@@ -44,9 +44,14 @@
 .jsonpanel .key {
   margin-left: 1em;
 }
+
+.jsonpanel .pair {
+  max-width: 100%;
+}
+
 /* line 55, ../sass/jsonpanel.scss */
 .jsonpanel .pair.simple {
-  /* max-width: 600px; */
+  max-width: 100%;
   padding-left: 30px;
   text-indent: -30px;
   white-space: normal;
@@ -62,7 +67,7 @@
 /* line 73, ../sass/jsonpanel.scss */
 .jsonpanel .val-inner {
   display: inline-block;
-  max-width: 75%;
+  max-width: 70%;
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;

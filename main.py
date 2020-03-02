@@ -52,7 +52,7 @@ def get_name():
 
 @app.route('/')
 def index():
-    title = "Alex Calderwood's Site"
+    title = "Alex Calderwood Dot Blog"
     name = get_name()
     bio = open('./bio.json', 'r').read()
 
@@ -73,7 +73,6 @@ def blog():
         post_content = utils.replace_image_path(post_content, '.')
         blog_text.append(post_content)
 
-    # content = '\n'.join(blog_text)
     content = blog_text
 
     return render_template('blog.html', **locals())
@@ -120,9 +119,9 @@ def projects():
                        key=lambda p: p.posted_at, reverse=True):
 
         # Create the title in markdown
-        title = "{}".format(post.name)
+        post_title = "{}".format(post.name)
 
-        post_content = utils.add_link_to_title(title, url_for('project', post_name=post.name))
+        post_content = utils.add_link_to_title(post_title, url_for('project', post_name=post.name))
 
         text.append(post_content)
 
