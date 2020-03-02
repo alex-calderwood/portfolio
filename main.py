@@ -198,7 +198,7 @@ def project(post_name=None):
 #     return render_template('contact.html', **locals())
 
 @app.route('/bio')
-@app('/contact')
+@app.route('/contact')
 def bio():
     return redirect(url_for('index'))
 
