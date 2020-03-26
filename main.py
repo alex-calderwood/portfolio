@@ -3,7 +3,7 @@ import os, random, math
 import utils
 
 # Installed libraries
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
@@ -106,6 +106,25 @@ def quotes():
     content = utils.replace_image_path(post.content, '.')
 
     return render_template('quotes.html', **locals())
+
+
+@app.route('/sometimes_pronounce/', methods=['POST'])
+def sometimes_pronounce():
+    """
+    Return either the text that was passed to the function or it's phonetic translation.
+    The translation will either be ARPA or IPA coded, according to a probability 
+    distriubtion determined in utils.sometimes_pronounce()
+
+    returns: json of the form {'text': 'pronunciation string'}
+    """
+
+    data = request.json
+    text = data['text']
+
+    print(data)
+    return jsonify({
+        'text': utils.sometimes_pronounce(text, odds=[14, 0, 1])
+    })
 
 
 @app.route('/projects')

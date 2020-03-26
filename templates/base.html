@@ -33,54 +33,91 @@
 			});
 		</script>
 
+		<script type="text/javascript">
+			function sometimes_pronounce(id, text) {
+				var url = "{{ url_for('sometimes_pronounce') }}"
+				var data = {'text': text}
+				console.log('on load')
+
+				fetch(url, {
+					method: 'POST', // *GET, POST, PUT, DELETE, etc.
+					mode: 'cors', // no-cors, *cors, same-origin
+					cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+					credentials: 'same-origin', // include, *same-origin, omit
+					headers: {
+						'Content-Type': 'application/json'
+						// 'Content-Type': 'application/x-www-form-urlencoded',
+					},
+					redirect: 'follow', // manual, *follow, error
+					referrerPolicy: 'no-referrer', // no-referrer, *client
+					body: JSON.stringify(data) // body data type must match "Content-Type" header
+				}).then((response) => {
+					return response.json();
+				}).then((json) => {
+					console.log(json);
+					console.log(json['text']);
+					document.getElementById(id).text = json['text'];
+				});
+			}
+
+			function modifyPage() {
+				sometimes_pronounce('words', 'Words');
+				sometimes_pronounce('projects', 'Projects');
+				sometimes_pronounce('about', 'About');
+			}
+			
+		</script>
+
 	</head>
-
-	<div class="sidebar">
-	</div>
-
-	<br class="page-top">
-
-	<!--Header-->
-	<div class="container">
-		<div class="row justify-content-md-center">
-			<div class="header col-auto">
-				{{name}}
-			</div>
+	<body onload="modifyPage()">
+		<div class="sidebar">
 		</div>
 
-		<div class="top-menu-bar row justify-content-md-center">
-			<div class="menu-item col-auto">
-				<a href="{{url_for('blog')}}">
-					Words
-				</a>
+		<br class="page-top">
+
+		<!--Header-->
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="header col-auto">
+					{{name}}
+				</div>
 			</div>
-			<div class="menu-item col-auto">
-				<a href="{{url_for('projects')}}">
-					Projects
-				</a>
+
+			<div class="top-menu-bar row justify-content-md-center">
+				<div class="menu-item col-auto" onmousehover="sometimes_pronounce('words', 'words')">
+					<a id="words" href="{{url_for('blog')}}">
+						Words
+					</a>
+				</div>
+				<div class="menu-item col-auto">
+					<a id="projects" href="{{url_for('projects')}}" >
+						Projects
+					</a>
+				</div>
+				<div class="check menu-item col-auto">
+					<a id="about" href="{{url_for('bio')}}">
+						About
+					</a>
+				</div>
 			</div>
-			<div class="check menu-item col-auto">
-				<a href="{{url_for('bio')}}">
-					About
-				</a>
-			</div>
+
+			{% block more_header %}
+			{% endblock %}
+
 		</div>
 
-		{% block more_header %}
-		{% endblock %}
+		<!--Body-->
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="page-content col-md">
 
-	</div>
+					{% block body %}
+					{% endblock %}
 
-	<!--Body-->
-	<div class="container">
-		<div class="row justify-content-md-center">
-			<div class="page-content col-md">
-
-				{% block body %}
-				{% endblock %}
-
+				</div>
 			</div>
 		</div>
-	</div>
+	</body>
+
 
 </html>

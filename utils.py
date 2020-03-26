@@ -29,7 +29,7 @@ def sometimes_pronounce(text, odds=(7, 1, 2)):
     arpa_phones = [arpa for word in arpa_phones for arpa in word]  # Flatten
 
     # Translate ARPAnet phonemes to IPA representation
-    print(arpa_phones)
+    # print(arpa_phones)
     ipa_words = []
     for word in arpa_phones:
         ipa_words.append('')
