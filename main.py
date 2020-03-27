@@ -188,7 +188,7 @@ def project(post_name=None):
 
     if post:
         script_path = url_for('static', filename=os.path.join("projects/js/", post.name + '.js'))
-        project_html = post.content
+        project_html = '#' + post.name  + '\n\n' + post.content
         return render_template('posts/project.html', **locals())
 
     return redirect(url_for('projects'))
