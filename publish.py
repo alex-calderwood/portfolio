@@ -5,21 +5,21 @@ from datetime import datetime
 
 
 def publish(dir, category, type=None, date=None):
+
+    skipped = 0
     for file in os.listdir(dir):
 
         post = Post(os.path.join(dir, file), category=category, content_type=type, date=date)
 
-        skipped = 0
         if db.session.query(Post.id).filter(Post.name == post.name).count() > 0:
             print('SKIPPING {} (already exists)'.format(post), end='\r')
             skipped += 1
         else:
-            if skipped > 0:
-                print('Skipped {} posts that already exist.'.format(skipped))
-                skipped = 0
-
-            print('Created', post)
+            print('Created', post, '\t\t\t\t\t\t')
             db.session.add(post)
+
+    if skipped > 0:
+        print('Skipped {} posts that already exist'.format(skipped))
 
     db.session.commit()
     print("Done with " + dir)
