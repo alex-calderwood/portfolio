@@ -10,9 +10,9 @@
 <body>
 	<div id="drawing"></div>
 
-	<div id="root">
-		I struggle with
-			<div>choosing a direction for my work.</div>
+	<div id="root" style="display: none;">
+		I struggle to
+			<div>choose a direction for my work.</div>
 			<div>deciding what to write each time I [pick up the pen / crack open my laptop]
 				<div>I have too many things to say!</div>            
 				<div>
@@ -32,21 +32,26 @@
 	</div>
 
 <script>
-	var t1 = "I started taking mental health seriously when I was diagnosed with generalized anxiety. I realized something must have been off before my diagnosis, but I chose to ignore it."
-	var t2 = "I started taking mental health seriously when someone I knew was diagnosed with depression. I hadn’t even really noticed anything was wrong, and that scared me."
+
+	let [xMod, yMod] = [1, 4];
 	var draw = SVG('drawing').size(window.innerWidth, window.innerHeight);
 	draw.viewbox(0, 0, 100, 100);
+	// var line = draw.line(0, 0, 100, 100).stroke({ width: 1 })
 
 	function drawBranch(string, start, angle) {
 		console.log('start', start)
-		var text = draw.text(function(add) { add.tspan(string) })
-		var length = 30;
+		var text = draw.text(function(add) { add.tspan(string); })
+		text.on('mouseover', function () {this.attr({fill: 'red'})}.bind(text) );
+		text.on('mouseout', function () {this.attr({fill: 'black'})}.bind(text) );
+		var length = text.length() / 5.3; // TODO get this un-hardcodeds
+		
+		console.log('length', length, string);
 		var end = [start[0] + length * Math.cos(angle), start[1] + length * Math.sin(angle)];
-		var path = 'M ' + start[0].toString() + ' ' + start[1].toString() + ' L ' + end[0].toString() + ' ' + end[1].toString(); //+ ' M ' + end[0].toString() + ' ' + end[1].toString();
-		console.log('path', path);
-		// 10 100 t 50 10 T 200 100 T 300 100';
+		var path = 'M ' + start[0].toString() + ' ' + start[1].toString() + ' T ' + end[0].toString() + ' ' + end[1].toString(); //+ ' M ' + end[0].toString() + ' ' + end[1].toString();
 		text.path(path).font({size: 3})
-		var textpath = text.textPath().attr('startOffset', '0')
+		
+		console.log('start', start, 'end', end)
+		console.log('path', path);
 		return end;
 	}
 
@@ -54,28 +59,32 @@
 		var end;
 
 		if (div.firstChild) {
-			let text = div.firstChild.data;
-			console.log(text.trim());
+			let text = div.firstChild.data.trim();
+			console.log(text);
 			end = drawBranch(text, start, angle);
 		} else {
 			end = start;
 		}
-		console.log('end', end)
 
 		// Recurse through children
 		let children = div.childNodes;
-		let newAngle = 0;
+		let directChildDivs = [];
 		for(let child of children) {
 			if (child.nodeName == 'DIV') {
-				drawForkingPaths(child, end, newAngle);
-				newAngle += Math.PI / 2 * 1 / (children.length);
+				directChildDivs.push(child);
 			}
+		}
+		const baseAngle = Math.PI / 16;
+		let newAngle = - baseAngle;
+		for(let child of directChildDivs) {
+			drawForkingPaths(child, end, newAngle);
+			newAngle += directChildDivs.length * baseAngle;
 		}
 	}
 
 	var root = document.getElementById('root');
 	var divs = root.getElementsByTagName('div');
-	drawForkingPaths(root, [0, 50], 0);
+	drawForkingPaths(root, [-38, 50], 0);
 
 </script>
 
