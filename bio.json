@@ -53,14 +53,12 @@
 {
 		"Title": "How Novelists Use Generative Language Models: An Exploratory User Study",
 		"Authors": "Alex Calderwood, Katy Gero, Vivian Qiu, Lydia Chilton",
-		"Date": "March 15, 2020",
-		"Link": "Upcoming"
+		"Date": "March 15, 2020"
 },
 {
 		"Title": "High Quality Real-Time Structured Debate Generation",
 		"Authors": "Niles Christensen, Eric Bolton, Alex Calderwood, Iddo Drori",
 		"Date": "March 13, 2020",
-		"Link": "Upcoming"
 },
 {
 		"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
@@ -78,9 +76,15 @@
 	"Journalism": [{
 		"Publisher": "Wired Magazine",
 		"Title": "How Americans Wound Up on Twitter’ s List of Russian Bots",
-		"Link": "https: //www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
+		"Link": "https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
 		"Dates": "May 2018 – July 2018",
 		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
+	}, {
+		"Publisher": "Brown Institue - Columbia University",
+		"Title": "Magic Grant Profile Series",
+		"Link": "https://brown.columbia.edu/tag/mg-profiles/",
+		"Dates": "February 2019 – April 2020",
+		"Description": "Interviewed dozens of researchers (journalists, artists, and technologists) for a series of profiles about projects at the intersection of technology and media."
 	}],
 	"Links": {
 		"Email": "alexander.d.calderwood@gmail.com",
