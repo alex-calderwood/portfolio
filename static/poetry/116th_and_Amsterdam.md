@@ -1,5 +1,5 @@
-#116th & Amsterdam
-##March 18, 2018 
+# 116th & Amsterdam
+## March 18, 2018 
 
 I wake into the stains of Manhattan,
 

@@ -56,7 +56,15 @@
 				}).then((response) => {
 					return response.json();
 				}).then((json) => {
-					document.getElementById(id).text = json['text'];
+					var obj = document.getElementById(id);
+					obj.text = json['text'];
+					return obj;
+				}).then((obj) => {
+					obj.animate({
+						'margin-left': '-=5px',
+						'margin-right': '+=5px'
+					}, 200);
+					console.log("obj", obj); // https://danielcwilson.com/blog/2016/03/animations-and-promises/
 				});
 			}
 
@@ -64,6 +72,10 @@
 				sometimes_pronounce('words', 'Words');
 				sometimes_pronounce('projects', 'Projects');
 				sometimes_pronounce('about', 'About');
+				sometimes_pronounce('header', 'Alex Calderwood');
+				
+				// Keep calling this
+				setTimeout(modifyPage, Math.random() * 3000);
 			}
 			
 		</script>
@@ -78,7 +90,7 @@
 		<!--Header-->
 		<div class="container">
 			<div class="row justify-content-md-center">
-				<div class="header col-auto">
+				<div id="header" class="header col-auto">
 					{{name}}
 				</div>
 			</div>

@@ -1,1 +1,1 @@
-window.location.href = "https://twitter.com/DocLab/status/1291328782578716672?s=20"
+window.location.href = "https://www.instagram.com/myfriendsylvia/"

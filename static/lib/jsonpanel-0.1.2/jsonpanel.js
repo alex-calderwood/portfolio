@@ -176,6 +176,12 @@
 
 
   $.fn.jsonpanel = function(options){
-    return Panel.renderToEl($(this), options);
+    var panel =  Panel.renderToEl($(this), options);
+
+    // TODO finish expanding this
+    // console.log("Panel chl", panel.$el.children())
+    // console.log("ne", panel.$el.children()[0].onKeyClick())
+
+    return panel
   };
 })(jQuery);

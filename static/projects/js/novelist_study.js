@@ -1,0 +1,1 @@
+window.location.href = "https://www.cs.columbia.edu/~chilton/web/my_publications/Calderwood_How_Novelists_Use_Generative_Language_Models.pdf";

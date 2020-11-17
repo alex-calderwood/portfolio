@@ -1,5 +1,5 @@
-#Yet
-##July 12, 2018
+# Yet
+## July 12, 2018
 
 A discordia,
 

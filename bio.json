@@ -2,23 +2,24 @@
 	"Name": "Alex Calderwood",
 	"Education": {
 			"Columbia University": "M.S. Computer Science, Natural Language Processing (2019)",
-			"Montana State University": "B.S. Computer Science (2017)",
+			"Montana State University": "B.S. Computer Science (2017), Minors: English Literature and Math",
 	},
 	"Professional": [
 			{
 				"Organization": "Brown Institute for Media Innovation",
 				"Role": "Postgraduate Research Scholar",
-				"Dates": "May 2018 – Present",
-				"Involvement": ["Interviewed dozens of researchers (journalists, artists, and technologists) for a series of profiles about projects at the intersection of technology and media.", 
-								"Provided technical assistance for a number of innovative media projects, including an analysis of US Census Bureau differential privacy codebase.",
-								"Taught web scraping to data journalists other novice programmers. Reviewed Python basics and introduced the BeautifulSoup and Selenium libraries."
-							]
+				"Dates": "May 2019 – March 2020",
+				"Involvement": [
+					"Provided technical/computational assistance for a number of technically innovative journalism projects, including an analysis of US Census Bureau differential privacy codebase.",
+					"Covered the Brown Institute 'Magic Grants': projects at the intersection of journalism and technology, working with reporters and technologists at the Brown Institute and publications such as The New York Times and ProPublica.",
+					"Designed and led a workshop on intermediate Web Scraping techniques including DOM manipulation with Selenium."
+				]
 			},
 			{
 				"Organization": "ProductionPro Technologies",
 				"Role": "Data Engineering Consultant",
 				"Dates": "May 2018 – Aug 2019",
-				"Involvement": ["Lead research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
+				"Involvement": ["Conducted research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
 								"Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", 
 								"Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling.",
 								"Developed a tool to track semantic changes or 'diff' film and theater scripts using the Zhang-Shasha tree edit-distance algorithm. Adapted the concept from academic literature, and incorporated string-edit (Levenshtein) distance into the zss library."
@@ -34,7 +35,10 @@
 				"Organization": "Rochester Institute of Technology",
 				"Role": "Student Researcher",
 				"Dates": "May 2016 – Aug 2016",
-				"Involvement": ["Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", "First author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."]
+				"Involvement": [
+					"Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", 
+					"Lead author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."
+				]
 			},
 			{
 				"Organization": "Montana State University",
@@ -55,12 +59,15 @@
 {
 		"Title": "How Novelists Use Generative Language Models: An Exploratory User Study",
 		"Authors": "Alex Calderwood, Katy Gero, Vivian Qiu, Lydia Chilton",
-		"Date": "March 15, 2020"
+		"Date": "March 15, 2020",
+		"In": "HAI-GEN Workshop Paper - IUI 2020",
+		"Link": "https://www.cs.columbia.edu/~chilton/web/my_publications/Calderwood_How_Novelists_Use_Generative_Language_Models.pdf"
 },
 {
 		"Title": "High Quality Real-Time Structured Debate Generation",
 		"Authors": "Niles Christensen, Eric Bolton, Alex Calderwood, Iddo Drori",
 		"Date": "March 13, 2020",
+		"In": "New York Academy of Sciences 2020 ML Symposioum"
 },
 {
 		"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
@@ -72,7 +79,6 @@
 		"Title": "Applying domain-specific natural language understanding techniques to film",
 		"Author": "Alex Calderwood",
 		"Date": "May 2017",
-		"About": "Undergrad Thesis",
 		"Link": "https://scholarworks.montana.edu/xmlui/handle/1/12904"
 	}],
 	"Journalism": [{
@@ -80,7 +86,7 @@
 		"Title": "How Americans Wound Up on Twitter’ s List of Russian Bots",
 		"Link": "https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
 		"Dates": "May 2018 – July 2018",
-		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and released by Congress."
+		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and identified by Congress as foreign agents."
 	}, {
 		"Publisher": "Brown Institue - Columbia University",
 		"Title": "Magic Grant Profile Series",
