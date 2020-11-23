@@ -139,14 +139,12 @@ def projects():
 
         # Create the title in markdown
         post_title = "{}".format(post.name)
-
-        post_content = utils.add_link_to_title(post_title, url_for('project', post_name=post.name))
-
-        text.append(post_content)
-
-        text.append(post.content)
+        post_title = utils.add_link_to_title(post_title, url_for('project', post_name=post.name))
+        text.append(post_title) # _
+        text.append(post.content) # .
 
     b = math.ceil(len(text) / 2)
+    b += 1 if not (len(text) % 2) else 0
     content1 = '\n'.join(text[:b])
     content2 = '\n'.join(text[b:])
 
