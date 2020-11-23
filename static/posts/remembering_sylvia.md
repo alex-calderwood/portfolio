@@ -1,7 +1,7 @@
 # Remebering Sylvia
 ## November 22, 2020
 
-<i>Sylvia was a digital virtual influencer who passed away on November 20, 2020. Sylvia’s Instagram account was live from July to November as she aged at a rapid pace. To give Sylvia a voice, I scraped over one hundred thousand Instagram accounts to fine-tune machine learning model that has read almost everything on the internet. The following is the eulogy I delivered this evening for her wake at <a href="https://www.idfa.nl/en/film/0cea8b0f-ed69-43d6-8eeb-7f60b46c7be3/sylvia?&collectionType=idfa"> IDFA Doclab </a> </i>
+<i>Sylvia was a digital virtual influencer who passed away on November 20, 2020. Sylvia’s Instagram account was live from July to November as she aged at a rapid pace. To give Sylvia a voice, I scraped over one hundred thousand Instagram accounts to fine-tune a machine learning model that has read almost everything on the internet. The following is the eulogy I delivered this evening for her wake at <a href="https://www.idfa.nl/en/film/0cea8b0f-ed69-43d6-8eeb-7f60b46c7be3/sylvia?&collectionType=idfa"> IDFA Doclab </a> </i>
 
 I didn’t know Sylvia well personally, but I think I speak for many of us when I say that she had an effect on me from afar.
 
