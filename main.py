@@ -3,7 +3,7 @@ import os, random, math
 import utils
 
 # Installed libraries
-from flask import render_template, redirect, url_for, request, jsonify
+from flask import send_file, render_template, redirect, url_for, request, jsonify
 import pronouncing
 from flask_sqlalchemy import SQLAlchemy
 from flask_heroku import Heroku
@@ -29,6 +29,8 @@ if 'ON_LOCAL_MACHINE' not in os.environ:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:entering@localhost:5432/blog'
 db = SQLAlchemy(app)
+
+open('./debate_generation.pdf', 'rb')
 
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
@@ -225,8 +227,13 @@ def two_dimensions():
     url = "https://intwo-4bdu7fnfka-uc.a.run.app/"
     return redirect(url, code=302)
 
+
+@app.route('/papers/High-Quality-Real-Time-Structured-Debate-Generation.pdf')
+def show_paper():
+    return send_file("./debate_generation.pdf")
+
 @app.route('/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout')
 def old():
-    return redirect(url_for('blog_post', post_name="reflections_of_a_dual_degree_dropout")) # TODO check if this works
- 
+    return redirect(url_for('blog_post', post_name="reflections_of_a_dual_degree_dropout"))
+
 # app.run(debug=True)
