@@ -10,11 +10,11 @@ def publish(dir, category, type=None, date=None):
     for file in os.listdir(dir):
         if "DS_Store" in file:
             continue
-        print('creating {}'.format(file))
+        
         post = Post(os.path.join(dir, file), category=category, content_type=type, date=date)
 
         if db.session.query(Post.id).filter(Post.name == post.name).count() > 0:
-            print('SKIPPING {} (already exists)'.format(post), end='\r')
+            # print('SKIPPING {} (already exists)'.format(post), end='\r')
             skipped += 1
         else:
             print('Created', post, '\t\t\t\t\t\t')
@@ -39,3 +39,7 @@ def delete(category):
     deleted = db.session.query(Post.id).filter(Post.category == category).delete()
     db.session.commit()
     print("Deleted {} rows from {}".format(deleted, category))
+
+def delete_all():
+    for obj in ["poetry", "blog", "project", "quote"]:
+        delete(obj)
