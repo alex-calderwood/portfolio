@@ -30,7 +30,8 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:entering@localhost:5432/blog'
 db = SQLAlchemy(app)
 
-open('./debate_generation.pdf', 'rb')
+debate_assist_file = "./debate_assist.pdf"
+open(debate_assist_file, 'rb')
 
 
 # Provide a way for models.py (and any other files that needs it) to get access to the database
@@ -230,7 +231,7 @@ def two_dimensions():
 
 @app.route('/papers/High-Quality-Real-Time-Structured-Debate-Generation.pdf')
 def show_paper():
-    return send_file("./debate_generation.pdf")
+    return send_file(debate_assist_file)
 
 @app.route('/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout')
 def old():
