@@ -40,6 +40,7 @@ def delete(category):
     db.session.commit()
     print("Deleted {} rows from {}".format(deleted, category))
 
+
 def delete_all():
     for obj in ["poetry", "blog", "project", "quote"]:
         delete(obj)
