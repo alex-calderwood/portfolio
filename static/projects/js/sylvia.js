@@ -1,1 +1,1 @@
-window.location.href = "https://www.instagram.com/myfriendsylvia/"
+window.location.href = "http://www.myfriendsylvia.com/"
