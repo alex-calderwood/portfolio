@@ -6,7 +6,9 @@ Flask-SQLAlchemy
 dateparser
 flask-heroku
 pronouncing
+flask_wtf
 # Flask-Mobility
+flask-pagedown
 
 
 

@@ -12,13 +12,19 @@ from flask_heroku import Heroku
 from flask import Flask
 app = Flask(__name__)
 
+# CMS STUFF 
+from flask_wtf import Form
+from flask_pagedown.fields import PageDownField
+from wtforms.fields import SubmitField
+from flask_pagedown import PageDown
+pagedown = PageDown(app)
+# END CMS STUFF
+
 # Libraries requiring Flask app
 # From https://pythonhosted.org/Flask-Markdown/
 from flaskext.markdown import Markdown
 Markdown(app)
 
-# from flask_mobility import Mobility
-# Mobility(app)
 
 # This speeds things up. Not sure what it does
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -29,6 +35,9 @@ if 'ON_LOCAL_MACHINE' not in os.environ:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:entering@localhost:5432/blog'
 db = SQLAlchemy(app)
+
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 debate_assist_file = "./debate_assist.pdf"
 open(debate_assist_file, 'rb')
@@ -47,6 +56,24 @@ from models import Post
 # app.register_blueprint(two_dimensions)
 
 # End flask setup
+
+################ CMS STUFF ##################
+# This endevour began with this https://github.com/miguelgrinberg/Flask-PageDown
+
+class PageDownFormExample(Form):
+    pagedown = PageDownField('Enter your markdown')
+    submit = SubmitField('Submit')
+
+@app.route('/alex', methods = ['GET', 'POST'])
+def alex():
+    form = PageDownFormExample()
+    if form.validate_on_submit():
+        text = form.pagedown.data
+        # do something interesting with the Markdown text
+        # I guess this is where I will save to a database
+    return render_template('cms.html', form = form)
+
+############### END CMS STUFF #################
 
 
 def get_name():
@@ -193,28 +220,6 @@ def project(post_name=None):
         return render_template('posts/project.html', **locals())
 
     return redirect(url_for('projects'))
-
-
-# @app.route('/contact')
-# def contact():
-#     title = 'Contact'
-#     name = get_name()
-
-#     number_words = "four oh six three eight one nine six three six".split(' ')
-#     phones = [pronouncing.phones_for_word(word) for word in number_words]
-#     # flatten
-#     phones = [phone for word in phones for phone in word]
-#     # clean
-#     phones = [phone.replace('1', '').replace('0', '').replace(' ', '-') for phone in phones]
-#     numbers = [4, 0, 6, 3, 8, 1, 9, 6, 3, 6]
-
-#     number_text = []
-#     for (letter, phone, number) in zip(number_words, phones, numbers):
-#         number_text.append(random.choice((letter, phone, str(number))))
-
-#     number_text = ' '.join(number_text)
-
-#     return render_template('contact.html', **locals())
 
 @app.route('/bio')
 @app.route('/contact')
