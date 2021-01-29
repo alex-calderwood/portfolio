@@ -1,7 +1,7 @@
 # A Morning Routine
 ## Jan 29, 2021
 
-You buy a coffee from your girlfriend, who folds a heart into the foamy cream. You mistake the   symmetry of the cup as if framed in opposing mirrors, but it sits with many others just like it. 
+You buy a coffee from your girlfriend, who folds a heart into the foamy cream. You mistake the   symmetry of the cups as though framed in opposing mirrors, but it sits with many others just like it. 
 
 You meet her on the subway, hold her hand. She takes a selfie for the two of you, which projects onto the billboard above the train, unseen. 
 
