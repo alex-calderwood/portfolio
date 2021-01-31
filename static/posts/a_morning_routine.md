@@ -11,7 +11,7 @@ She whispers something and gives you a kiss. She is excited about her new job. S
 
 You get off, she stays on the train, but it doesn't move. Someone has jumped onto the tracks and the train ahead. Seymour, you know it was Seymour who jumped. 
 
-In the pre-work hustle, you'd think the people in the station would find any reason to be annoyed when the train is runs slow. They aren't now. Everyone pulls together and is silent for a while. After you'd been gone for ten minutes, the train picks up again. As she gets off, she catches the gaze of Seymour, who gives her a little half smile, some pain in his eyes, a copy of the paper tucked in his arm and a coffee in the other. The number of Seymour suicides is up this year. 
+In the pre-work hustle, you'd think the people in the station would find any reason to be annoyed when the train runs slow. They aren't now. Everyone pulls together and is silent for a while. After you'd been gone for ten minutes, the train picks up again. As she gets off, she catches the gaze of Seymour, who gives her a little half smile, some pain in his eyes, a copy of the paper tucked in his arm and a coffee in the other. The number of Seymour suicides is up this year. 
 
 She enters her building. You are working at the desk in the lobby. She asks if anything arrived for her in the mail. It has. When you hand over the package, her hand lingers on your own. You exchange a quiet moment, a lingering look, a kiss. She smiles at you. 
 
