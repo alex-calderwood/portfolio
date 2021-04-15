@@ -29,7 +29,7 @@ and the conspiracy of cartographers gets obscured
 
 (measuring each coast more exactly,
 
-the lines now set and defined)&nbsp;&nbsp;&nbsp;&nbsp;    by falling sand
+the lines now set and defined)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    by falling sand
 
 but landform morphs, mangroves fill in
 
