@@ -5,23 +5,23 @@ The beach does not consist of all of it,
 
 in lapse or suspension, indeed saltation
 
-(latin saltus: "leap") transports particles by creep
+(latin <i>saltus</i>: "leap") transports particles by creep
 
-and delivers sediment over washing weeks,
+and delivers sediment over washing weeks
 
 many winds push these waves and pebbles
 
-like tides nudged gently by many moons
+as tides nudged gently by many moons
 
-as the dolphin swims and the seabird dives
+as the dolphin swims - as the seabird dives
 
-the tortoise counts the tides while the surfer nurses her limbs
+the tortoise counts the tides - the surfer nurses her limbs
 
 warring ocean crustaceans eye the next bigger dome
 
 <i>dust to dust and crab to carbinate</i>
 
-the counted tides do not atone
+<i>the counted tides do not atone</i>
 
 for wasted hours at borders, at lapping shores
 
@@ -29,7 +29,7 @@ and the conspiracy of cartographers gets obscured
 
 (measuring each coast more exactly,
 
-the lines now set and defined)    by falling sand
+the lines now set and defined)&nbsp;&nbsp;&nbsp;&nbsp;    by falling sand
 
 but landform morphs, mangroves fill in
 
