@@ -1,17 +1,25 @@
 {
 	"Name": "Alex Calderwood",
 	"Education": {
+			"UC Santa Cruz": "Ph.D. Computational Media (Exp: 2026)",
 			"Columbia University": "M.S. Computer Science, Natural Language Processing (2019)",
 			"Montana State University": "B.S. Computer Science (2017), Minors: English Literature and Math",
 	},
 	"Professional": [
 			{
+				"Organization": "Bloomberg LP",
+				"Role": "News Automation Engineer (Senior Software Engineer)",
+				"Dates": "June 2020 – May 2021",
+				"Involvement":
+					"Transformed data streams and market signals into human-readable news articles. Wrote code responsible for thousands of such stories, working closely with journalists."
+			},
+			{
 				"Organization": "Brown Institute for Media Innovation",
 				"Role": "Postgraduate Research Scholar",
 				"Dates": "May 2019 – March 2020",
 				"Involvement": [
-					"Provided technical/computational assistance for a number of technically innovative journalism projects, including an analysis of US Census Bureau differential privacy codebase.",
-					"Covered the Brown Institute 'Magic Grants': projects at the intersection of journalism and technology, working with reporters and technologists at the Brown Institute and publications such as The New York Times and ProPublica.",
+					"Provided technical assistance for a number of technically innovative journalism projects.",
+					"Wrote about the Brown Institute 'Magic Grants', working with reporters and technologists at the Brown Institute and publications such as The New York Times and ProPublica.",
 					"Designed and led a workshop on intermediate Web Scraping techniques including DOM manipulation with Selenium."
 				]
 			},
@@ -19,10 +27,11 @@
 				"Organization": "ProductionPro Technologies",
 				"Role": "Data Engineering Consultant",
 				"Dates": "May 2018 – Aug 2019",
-				"Involvement": ["Conducted research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
-								"Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", 
-								"Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling.",
-								"Developed a tool to track semantic changes or 'diff' film and theater scripts using the Zhang-Shasha tree edit-distance algorithm. Adapted the concept from academic literature, and incorporated string-edit (Levenshtein) distance into the zss library."
+				"Involvement": [
+					"Conducted research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
+					"Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", 
+					"Scraped 1000's of film/theater script archives by developing a Python codebase for concurrent web crawling.",
+					"Developed a tool to track semantic changes or 'diff' film and theater scripts using the Zhang-Shasha tree edit-distance algorithm. Adapted the concept from academic literature, and incorporated string-edit (Levenshtein) distance into the zss library."
 				]
 			},
 			{
@@ -61,7 +70,7 @@
 		"Authors": "Alex Calderwood, Katy Gero, Vivian Qiu, Lydia Chilton",
 		"Date": "March 15, 2020",
 		"In": "HAI-GEN Workshop Paper - IUI 2020",
-		"Link": "https://www.cs.columbia.edu/~chilton/web/my_publications/Calderwood_How_Novelists_Use_Generative_Language_Models.pdf"
+		"Link": "http://ceur-ws.org/Vol-2848/HAI-GEN-Paper-3.pdf"
 },
 {
 		"Title": "High Quality Real-Time Structured Debate Generation",
