@@ -1,13 +1,13 @@
 # A Morning Routine
 ## Jan 29, 2021
 
-You buy a coffee from your girlfriend, who folds a heart into the foamy cream. You mistake the   symmetry of the cups as though framed in opposing mirrors, but it sits with many others just like it. 
+You buy a coffee from your girlfriend, who folds a heart into the foamy cream. You mistake the   symmetry of the cups as though they were one framed by opposing mirrors, but it sits beside many others just like it.
 
 You meet her on the subway, hold her hand. She takes a selfie for the two of you, which projects onto the billboard above the train, unseen. 
 
 Outside the frame, your uncle Seymour is there, and your girlfriend is too. Many versions of her, usually but not always accompanied by various versions of you. You make a quick joke to her as you arrive at your stop, brakes squealing, sparking steel. 
 
-She whispers something and gives you a kiss. She is excited about her new job. She feels the world turning underneath with you. Today holds tomorrow's promise.
+She whispers something and gives you a kiss. She is excited about her new job. She feels the world turning underneath with you.
 
 You get off, she stays on the train, but it doesn't move. Someone has jumped onto the tracks and the train ahead. Seymour, you know it was Seymour who jumped. 
 
