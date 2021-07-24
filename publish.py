@@ -5,7 +5,6 @@ from datetime import datetime
 
 
 def publish(dir, category, type=None, date=None):
-
     skipped = 0
     for file in os.listdir(dir):
         if "DS_Store" in file:

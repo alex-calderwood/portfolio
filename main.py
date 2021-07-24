@@ -39,7 +39,11 @@ db = SQLAlchemy(app)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-debate_assist_file = "./debate_assist.pdf"
+debate_assist_file = "./pdfs/debate_assist.pdf"
+open(debate_assist_file, 'rb')
+
+
+cv_file = "./pdfs/cv.pdf"
 open(debate_assist_file, 'rb')
 
 
@@ -60,13 +64,13 @@ from models import Post
 ################ CMS STUFF ##################
 # This endevour began with this https://github.com/miguelgrinberg/Flask-PageDown
 
-class PageDownFormExample(Form):
+class Editor(Form):
     pagedown = PageDownField('Enter your markdown')
     submit = SubmitField('Submit')
 
 @app.route('/alex', methods = ['GET', 'POST'])
 def alex():
-    form = PageDownFormExample()
+    form = Editor()
     if form.validate_on_submit():
         text = form.pagedown.data
         # do something interesting with the Markdown text
@@ -233,13 +237,17 @@ def two_dimensions():
     url = "https://intwo-4bdu7fnfka-uc.a.run.app/"
     return redirect(url, code=302)
 
+@app.route('/cv.pdf')
+def show_cv():
+    return send_file(cv_file)
 
 @app.route('/papers/High-Quality-Real-Time-Structured-Debate-Generation.pdf')
 def show_paper():
     return send_file(debate_assist_file)
 
 @app.route('/single-post/2018/07/27/Reflections-of-a-Dual-Degree-Dropout')
-def old():
+def reflections_of_a_dual_degree_dropout():
     return redirect(url_for('blog_post', post_name="reflections_of_a_dual_degree_dropout"))
+
 
 # app.run(debug=True)
