@@ -1,0 +1,18 @@
+# Tomorrow's Literature
+## October 4, 2021
+
+The meaning in \[Art|Literature|Poetry] is often said to be partially attributable to the system of constraints that generates it \[1, 3]. Metered (Greek: counted) poetry, which has the feel of a literature left on the pot to simmer and reduce, is further taxonomized into four categories according to what is being counted: “the syllabic, the accentual, the accentual-syllabic, and the quantitative” \[1]. Japanese calligraphy places value on the precision and elegance of the individual stroke, or line, and has its effect through a manipulation of this mindful invariant \[3]. Other forms of art have similar but distinct implicit or formal constraints. The Oulipo, writes Jean Lescure, set out to prove that “these constraints are in fact literature itself” and to “discover new ones under the name of structures”. Noticing that the meaning of a work is multiple, based on the interpretation of the reader and other factors (a literary field known as phenomenology), Lescure points out that “all literature is potential”. Under this framework, authorship seems to be the search for new constraints. In the case of combinatorial writing, a ruleset leaves the actual generation of a single text to the reader, a mechanistic process, or a combination of both. Aesthetic substance or interesting semantic attributes are assumed to be properties of the generating constraint, but in practice a constraint rarely produces uniformly engaging texts across the constraint space. Berge notes that Roubaud, who published a combinatorial collection of 361 texts, decided that four well-determined orders were preferred, in essence a proclamation that the Oulipo “no longer expected any good to come from pure, unbridled chance” \[5]. 
+
+Computational techniques of textual analysis will soon become mainstream. Topological data analysis can study the branching and looping properties of diction. Computational semantic analysis will automatically parse a story for its topics, themes, characters, setting, and plot. Is this a feel-good story about a panda looking for its mother, or a bloody war narrative that appeals to a tribal identity? Human and machine designed filtering algorithms will use these analyses as datums for its authoring protocols. New computational techniques of structural plot analysis, such as topological data analysis, paired with content generation strategies like those of  recurrent neural networks (RNNS) or neural transformers will eventually leave much of the text, the fine-grained decisions of the writer, in the hands of the machine. The notion of “authoring” may seem to go out the window, as the meaning-creation moves from a search over the large space of possible fictions, to the selected, edited, and experienced narratives that are published by the readers. ‘Let’s Plays’ on YouTube have become the de-facto consumption regimen for a variety of games (and some games with less than a handful of players get experienced by millions of viewers, with the guidance and narration of the player-host). The experience of writing in the future may look more like playing a search over a pre-constructed word space, where the author-editor, or player, lends their insight with a steering wheel, rather than a pen. Even now, as I write, the computer is watchfully passing multiple grammar constraint algorithms over this text, and helpfully removing the burden of typing.
+
+## Reference
+
+[1] Paul Fussel, Poetic Meter & Poetic Form
+
+[2] Rudy Rucker, Surfing the Gnarl
+
+[3] The Meaning of Art, Herbert Read
+
+[4] Jean Lescure, Brief History of the Oulipo
+
+[5] Claude Berge, For a Potential Analysis of Combinatory Literature
