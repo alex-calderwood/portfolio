@@ -7,12 +7,12 @@ Computational techniques of textual analysis will soon become mainstream. Topolo
 
 ## Reference
 
-[1] Paul Fussel, Poetic Meter & Poetic Form
+\[1] Paul Fussel, Poetic Meter & Poetic Form
 
-[2] Rudy Rucker, Surfing the Gnarl
+\[2] Rudy Rucker, Surfing the Gnarl
 
-[3] The Meaning of Art, Herbert Read
+\[3] The Meaning of Art, Herbert Read
 
-[4] Jean Lescure, Brief History of the Oulipo
+\[4] Jean Lescure, Brief History of the Oulipo
 
-[5] Claude Berge, For a Potential Analysis of Combinatory Literature
+\[5] Claude Berge, For a Potential Analysis of Combinatory Literature
