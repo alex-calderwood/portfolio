@@ -1,0 +1,10 @@
+# Embracing the Panopticon (An Unwritten Essay)
+## Nov 8, 2021
+
+## Abstract
+
+Winner criticizes the common argument that with computer revolution “information will become the dominate form of wealth” and wealth will then automatically flow to those who do not currently have it. Instead, he argues that “those best situated to take advantage of the power of a new technology are often those previously well situated by dint of wealth, social standing, and institutional position.” It would appear that he was correct in his prediction that democratization through technological decentralization will not come to pass. Bitcoin has created the capacity for decentralized wealth and has resulted in the most centralized currency the world has ever known. MOOCs, Wikipedia, and other information sharing technology has caused knowledge to become more open, but people are becoming as he predicted, “even more susceptible to the influence of employers, new media, advertisers, and national political leaders.”  Social media has allowed for greater connectivity but siloed us into filter bubbles and increased our sense of loneliness. As we increase our dependence on surveillance companies, we are headed straight towards the panopticon he predicts in which “the populace may find passivity and compliance the safest route” to avoid the suspicion of the computer’s gaze. I argue that we need to accept defeat and rather than seek out greater liberty through the emancipatory effect of technology, seek to cede our individuality to the interconnectedness that may be brought by the machine, find feedback loops of cyborg-mutual-aid, and shatter our sense of individuality as we prepare for a neural synthesis in which spoken or typed language is forgone in favor of vectorized thought transmissions.
+
+## Reference
+
+\[1]  Winner, Langdon. "[Mythinformation in the high-tech era.](https://journals.sagepub.com/doi/pdf/10.1177/027046768400400609?casa_token=4LICHn7mmTgAAAAA:3A2eF1Stzn_xMAx_5veg7K5A0v6gIO94w_mvrqrcQzH_JMCRzOlGY--8lam4j-ic5Jx9r-TRnxY2TCU)" Bulletin of Science, Technology & Society 4.6 (1984): 582-596
