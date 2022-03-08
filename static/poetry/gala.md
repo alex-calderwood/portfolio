@@ -1,7 +1,7 @@
 # A sonnet for - from Gala
 ## January 21, 2022
 
-*Suspended*, suspension, that’s what the critic\[who?\] 
+*Suspended*, suspension, that’s what the critic\[[who?](https://en.wikipedia.org/wiki/Dream_Caused_by_the_Flight_of_a_Bee_Around_a_Pomegranate_a_Second_Before_Awakening)\] 
 
 describes, to say nothing of the pomegranate
 
