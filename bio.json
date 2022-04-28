@@ -5,20 +5,20 @@
 			"Columbia University": "M.S. Computer Science, Natural Language Processing (2019)",
 			"Montana State University": "B.S. Computer Science (2017), Minors: English Literature and Math",
 	},
-	"Professional": [
+	"Employment": [
 			{
 				"Organization": "Bloomberg LP",
 				"Role": "News Automation Engineer (Senior Software Engineer)",
-				"Dates": "June 2020 – May 2021",
+				"Dates": "June 2020 - May 2021",
 				"Involvement":
 					"Transformed data streams and market signals into human-readable news articles. Wrote code responsible for thousands of such stories, working closely with journalists."
 			},
 			{
 				"Organization": "Brown Institute for Media Innovation",
 				"Role": "Postgraduate Research Scholar",
-				"Dates": "May 2019 – March 2020",
+				"Dates": "May 2019 - March 2020",
 				"Involvement": [
-					"Provided technical assistance for a number of innovative journalism ane new media projects.",
+					"Provided technical assistance for a number of innovative journalism and new media projects.",
 					"Wrote about the Brown Institute 'Magic Grants', working with reporters and technologists at the Brown Institute and publications such as The New York Times and ProPublica.",
 					"Designed and led a workshop on intermediate Web Scraping techniques including DOM manipulation with Selenium."
 				]
@@ -26,7 +26,7 @@
 			{
 				"Organization": "ProductionPro Technologies",
 				"Role": "Data Engineering Consultant",
-				"Dates": "May 2018 – Aug 2019",
+				"Dates": "May 2018 - Aug 2019",
 				"Involvement": [
 					"Conducted research and development for an NLP system to parse unstructured film and theater scripts at Disney-backed startup.", 
 					"Extracted information such as characters, scenes, locations, and props with semantic role analysis and frame extraction.", 
@@ -37,13 +37,13 @@
 			{
 				"Organization": "Columbia University",
 				"Role": "Teaching Assistant",
-				"Dates": "May 2018 – May 2019",
+				"Dates": "May 2018 - May 2019",
 				"Courses": ["Artificial Intelligence", "UI Design / Responsible CS Curriculum Development"]
 			},
 			{
 				"Organization": "Rochester Institute of Technology",
 				"Role": "Student Researcher",
-				"Dates": "May 2016 – Aug 2016",
+				"Dates": "May 2016 - Aug 2016",
 				"Involvement": [
 					"Devised a method to apply machine learning-based computational linguistic analysis techniques to Reddit discussions of domestic violence. Presented the technique at the EACL conference in Valencia, Spain.", 
 					"Lead author on an NSF funded research study, working with an interdisciplinary team of linguists and sociologists."
@@ -52,15 +52,15 @@
 			{
 				"Organization": "Montana State University",
 				"Role": "Teaching Assistant",
-				"Dates": "Aug 2015 – May 2017",
-				"Courses": ["Introduction to Programming – Java", 
+				"Dates": "Aug 2015 - May 2017",
+				"Courses": ["Introduction to Programming - Java", 
 							"Programming with C", 
 							"Texts and Critics Honors Seminar"]
 			},
 			{
 				"Organization": "Oracle",
 				"Role": "Software Engineer Intern",
-				"Dates": "May 2015 – Jan 2016",
+				"Dates": "May 2015 - Jan 2016",
 				"Involvement": "Developed a tool to streamline code review and save engineers time. Automated QA app deployment with shell scripts."
 			}
 	],
@@ -94,15 +94,15 @@
 	}],
 	"Journalism": [{
 		"Publisher": "Wired Magazine",
-		"Title": "How Americans Wound Up on Twitter’ s List of Russian Bots",
+		"Title": "How Americans Wound Up on Twitter's List of Russian Bots",
 		"Link": "https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/",
-		"Dates": "May 2018 – July 2018",
+		"Dates": "May 2018 - July 2018",
 		"Description": "Employed computational analysis to discover errors committed by Twitter. Interviewed Twitter executives & Congressional aides, and published a story involving users whose accounts were incorrectly flagged by Twitter and identified by Congress as foreign agents."
 	}, {
 		"Publisher": "Brown Institue - Columbia University",
 		"Title": "Magic Grant Profile Series",
 		"Link": "https://brown.columbia.edu/tag/mg-profiles/",
-		"Dates": "February 2019 – April 2020",
+		"Dates": "February 2019 - April 2020",
 		"Description": "Interviewed dozens of researchers (journalists, artists, and technologists) for a series of profiles about projects at the intersection of technology and media."
 	}],
 	"Links": {

@@ -84,16 +84,16 @@ def get_name():
     return utils.sometimes_pronounce('Alex Calderwood')
 
 
-@app.route('/')
-def index():
+@app.route('/about')
+def about():
     title = "Alex Calderwood Dot Blog"
     name = get_name()
     bio = open('./bio.json', 'r').read()
 
-    return render_template('index.html', **locals())
+    return render_template('about.html', **locals())
 
 
-@app.route('/blog')
+@app.route('/')
 def blog():
     title = 'Blog'
     name = get_name()
@@ -228,7 +228,7 @@ def project(post_name=None):
 @app.route('/bio')
 @app.route('/contact')
 def bio():
-    return redirect(url_for('index'))
+    return redirect(url_for('about'))
 
 @app.route('/semantic_compasses')
 @app.route('/two_dimensions')
