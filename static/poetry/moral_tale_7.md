@@ -1,7 +1,7 @@
 # A Simple (The Seventh) Moral Tale
 ## April 22, 2022
 
-I met a genie in a Turkish Bazaar
+I met a genie in a Turkish bazaar
 
 who gave me wishes, said to arrange them far
 
