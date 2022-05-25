@@ -65,33 +65,52 @@
 			}
 	],
 	"Academic Publications": [
-{
-		"Title": "How Novelists Use Generative Language Models: An Exploratory User Study",
-		"Authors": "Alex Calderwood, Katy Gero, Vivian Qiu, Lydia Chilton",
-		"Date": "March 15, 2020",
-		"In": "HAI-GEN Workshop Paper - IUI 2020",
-		"Link": "http://ceur-ws.org/Vol-2848/HAI-GEN-Paper-3.pdf"
-},
-{
-		"Title": "High Quality Real-Time Structured Debate Generation",
-		"Authors": "Niles Christensen, Eric Bolton, Alex Calderwood, Iddo Drori",
-		"Date": "March 13, 2020",
-		"In": "New York Academy of Sciences 2020 ML Symposium",
-		"Link": "http://www.alexcalderwood.blog/papers/High-Quality-Real-Time-Structured-Debate-Generation.pdf"
-		
-},
-{
-		"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
-		"Authors": "Alexander Calderwood, Elizabeth Pruett, Raymond Ptucha, Christopher Homan, Cecilia Ovesdotter Alm.",
-		"Date": "April, 4 2017",
-		"Link": "http://www.cse.unt.edu/sembear2017/book.pdf"
-},
-{
-		"Title": "Applying domain-specific natural language understanding techniques to film",
-		"Author": "Alex Calderwood",
-		"Date": "May 2017",
-		"Link": "https://scholarworks.montana.edu/xmlui/handle/1/12904"
-	}],
+		{
+			"title": "Spinning Coherent Interactive Fiction through Foundation Model Prompts",
+			"url": "",
+			"authors": ["Alex Calderwood", "Noah Wardrip-Fruin", "Michael Mateas"],
+			"year": "2022",
+			"venue": "ICCC",
+			"venue_long": "International Conference on Computational Creativity",
+			"pubtype": "full"
+		},
+		{
+			"title": "A Review of Writing Support Tools Using a Cognitive Process Model of Writing",
+			"url": "https://aclanthology.org/2022.in2writing-1.2/",
+			"authors": ["Katy Ilonka Gero", "Alex Calderwood", "Charlotte Li", "Lydia Chilton"],
+			"year": "2022",
+			"venue": "In2Writing",
+			"venue_long": "ACL Workshop on Intelligent and Interactive Writing Assistants",
+			"pubtype": "workshop"
+		},
+		{
+			"Title": "How Novelists Use Generative Language Models: An Exploratory User Study",
+			"Authors": "Alex Calderwood, Katy Gero, Vivian Qiu, Lydia Chilton",
+			"Date": "March 15, 2020",
+			"In": "HAI-GEN Workshop Paper - IUI 2020",
+			"Link": "http://ceur-ws.org/Vol-2848/HAI-GEN-Paper-3.pdf"
+		},
+		{
+			"Title": "High Quality Real-Time Structured Debate Generation",
+			"Authors": "Niles Christensen, Eric Bolton, Alex Calderwood, Iddo Drori",
+			"Date": "March 13, 2020",
+			"In": "New York Academy of Sciences 2020 ML Symposium",
+			"Link": "http://www.alexcalderwood.blog/papers/High-Quality-Real-Time-Structured-Debate-Generation.pdf"
+				
+		},
+		{
+			"Title": "Understanding the Semantics of Narratives of Interpersonal Violence through Reader Annotations and Physiological Reactions",
+			"Authors": "Alexander Calderwood, Elizabeth Pruett, Raymond Ptucha, Christopher Homan, Cecilia Ovesdotter Alm.",
+			"Date": "April, 4 2017",
+			"Link": "http://www.cse.unt.edu/sembear2017/book.pdf"
+		},
+		{
+			"Title": "Applying domain-specific natural language understanding techniques to film",
+			"Author": "Alex Calderwood",
+			"Date": "May 2017",
+			"Link": "https://scholarworks.montana.edu/xmlui/handle/1/12904"
+		}
+	],
 	"Journalism": [{
 		"Publisher": "Wired Magazine",
 		"Title": "How Americans Wound Up on Twitter's List of Russian Bots",
