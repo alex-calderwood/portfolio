@@ -12,7 +12,7 @@ export FLASK_APP=main.py
 flask run
 
 # To publish to heroku
-git push heroku master
+git push heroku master; heroku run python -c "from publish import *; delete_all(); publish_all();"
 
 # Reset the heroku database if it's already created:
 heroku pg:reset DATABASE_URL
