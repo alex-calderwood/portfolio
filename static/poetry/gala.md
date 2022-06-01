@@ -11,7 +11,7 @@ the sky. The tigers orange on mid afternoon sunset
 
 blue on Catalan waterdrop (cry) to have cried
 
-and lifted the object to have \[\ \ \ \ \ \ \ \ \ \]
+and lifted the object to have \[         \]
 
 sexualized the perceiver and to have therefore
 
