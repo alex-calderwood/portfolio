@@ -1,4 +1,4 @@
-import os, random
+import os, random, re
 # from google.appengine.ext import vendor
 # vendor.add(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib'))
 import pronouncing
@@ -18,30 +18,37 @@ def read_md(path, filename):
     return content
 
 
-def sometimes_pronounce(text, odds=(7, 1, 2)):
+def sometimes_pronounce(text, odds=(7, 10, 20)):
     """
     Return the words in the text, their ARPAnet pronunciation, or their IPA pronunciation according to the specified odds
     """
+    
+    DOT = '~DOT~'
+    text = text.replace('.', f' {DOT} ')
+    words = text.split(' ')
 
     # Get pronunciation
-    words = text.split(' ')
-    arpa_phones = [pronouncing.phones_for_word(word) for word in words]
-    arpa_phones = [arpa for word in arpa_phones for arpa in word]  # Flatten
+    replacement = lambda word: word.replace(DOT, 'dot')
+    arpa_phones = [pronouncing.phones_for_word(replacement(word)) for word in words]
+    arpa_phones = [arpa[0] if arpa else '' for arpa in arpa_phones] # Only take the first pronunciaton
 
     # Translate ARPAnet phonemes to IPA representation
-    # print(arpa_phones)
     ipa_words = []
     for word in arpa_phones:
         ipa_words.append('')
         for arpa_phone in word.split(' '):
-            ipa_words[len(ipa_words) - 1] += (arpa_to_ipa.get_ipa(arpa_phone))
+            ipa = arpa_to_ipa.get_ipa(arpa_phone)
+            ipa_words[len(ipa_words) - 1] += ipa if ipa else ''
 
     text_out = []
 
     for (word, arpa, ipa) in zip(words, arpa_phones, ipa_words):
-        text_out.append(random.choices((word, arpa, ipa), odds)[0])
+        chosen = random.choices((word, arpa, ipa), odds)[0]
+        text_out.append(chosen if chosen else word)
 
-    return ' '.join(text_out)
+    pronounced = ' '.join(text_out)
+    pronounced = re.sub(f' ?{DOT} ?', '.', pronounced)
+    return pronounced
 
 
 def add_link_to_title(md_content, link):

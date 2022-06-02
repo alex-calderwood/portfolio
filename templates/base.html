@@ -27,10 +27,13 @@
 		</script>
 
 		<script>
+			// TODO: Do it this way instead https://stackoverflow.com/questions/1740218/error-handling-in-getjson-calls
 			$.getJSON('https://json.geoiplookup.io/', function(data) {
 				console.log("You are exposed! You are in " + data["city"] + ", " + data["postal_code"] + " at these coordinates: " + data["latitude"] + ", " + data["longitude"] );
 				console.log("Anyone can learn this about you. Unless you're using a VPN.");
-			});
+			})
+			.fail(function() { console.log("Your location is hidden. Nice!"); });
+
 		</script>
 
 		<script type="text/javascript">
@@ -64,14 +67,14 @@
 						'margin-left': '-=5px',
 						'margin-right': '+=5px'
 					}, 200);
-					console.log("obj", obj); // https://danielcwilson.com/blog/2016/03/animations-and-promises/
+					// console.log("obj", obj); // https://danielcwilson.com/blog/2016/03/animations-and-promises/
 				});
 			}
 
 			function modifyPage() {
 				sometimes_pronounce('words', 'Words');
 				sometimes_pronounce('projects', 'Projects');
-				sometimes_pronounce('about', 'About');
+				sometimes_pronounce('about', 'About.json');
 				sometimes_pronounce('header', 'Alex Calderwood');
 				
 				// Keep calling this
@@ -108,7 +111,7 @@
 				</div>
 				<div class="check menu-item col-auto">
 					<a id="about" href="{{url_for('bio')}}">
-						About
+						About.json
 					</a>
 				</div>
 			</div>
