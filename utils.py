@@ -18,7 +18,7 @@ def read_md(path, filename):
     return content
 
 
-def sometimes_pronounce(text, odds=(7, 10, 20)):
+def sometimes_pronounce(text, odds=(7, 1, 2)):
     """
     Return the words in the text, their ARPAnet pronunciation, or their IPA pronunciation according to the specified odds
     """
