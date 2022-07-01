@@ -126,3 +126,57 @@ img {
 .panel {
   width: 100%;
 }
+
+.shake {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake .17s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+p:hover {
+  /* color: transparent; */
+  
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake .16s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  /* 0% { transform: translate(1px,0px) }
+  10% { transform: translate(-1px, 0px)}
+  20% { transform: translate(-3px, 0px) }
+  30% { transform: translate(3px, 0px)}
+  40% { transform: translate(1px, -0px) }
+  50% { transform: translate(-1px, 0px)}
+  60% { transform: translate(-3px, 0px) }
+  70% { transform: translate(3px, 0px)  }
+  80% { transform: translate(-1px, 0px)  }
+  90% { transform: translate(1px, 0px)  }
+  100% { transform: translate(1px, 0px) } */
+  /* 0% { transform: translate(1px,0px) }
+  33% { transform: translate(-1px, 0px)}
+  66% { transform: translate(3px, 0px) }
+  100% { transform: translate(-3px, 0px)} */
+  0% { 
+    transform: translate(5px,0px);
+    color: transparent;
+    text-shadow: 0px 0px 10px black;
+  }
+  33% { 
+    transform: translate(-5px, 0px);
+    color: transparent;
+    text-shadow: 0px 0px 10px black;
+  }
+  66% { 
+    transform: translate(7px, 0px);
+    color: transparent;
+    text-shadow: 0px 0px 10px black;
+  }
+  100% { 
+    transform: translate(0px, 0px);
+    color: inherit;
+    /* text-shadow: none; */
+  }
+}

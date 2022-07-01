@@ -41,11 +41,15 @@
 			// in the Flask site, but I realized that usuing Jinja, as I am with my name, 
 			// is both simpler and quicker. I'm going to leave this as is for now, partly to
 			// experiment with what else I can do with the endpoint.
-			function sometimes_pronounce(id, text) {
+			async function sometimes_pronounce(id, text) {
 				var url = "{{ url_for('sometimes_pronounce') }}"
 				var data = {'text': text}
-
-				fetch(url, {
+				
+				// const controller = new AbortController()
+				// const timeoutId = setTimeout(() => controller.abort(), 5000)
+				// let pronounced = text;
+				
+				pronounced_response = await fetch(url, {
 					method: 'POST', // *GET, POST, PUT, DELETE, etc.
 					mode: 'cors', // no-cors, *cors, same-origin
 					cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -56,19 +60,23 @@
 					redirect: 'follow', // manual, *follow, error
 					referrerPolicy: 'no-referrer', // no-referrer, *client
 					body: JSON.stringify(data) // body data type must match "Content-Type" header
-				}).then((response) => {
-					return response.json();
-				}).then((json) => {
-					var obj = document.getElementById(id);
-					obj.text = json['text'];
-					return obj;
-				}).then((obj) => {
-					obj.animate({
-						'margin-left': '-=5px',
-						'margin-right': '+=5px'
-					}, 200);
-					// console.log("obj", obj); // https://danielcwilson.com/blog/2016/03/animations-and-promises/
-				});
+					// signal: controller.signal
+				}).then(response => response.json());
+				var obj = document.getElementById(id);
+
+				newText = pronounced_response['text'];
+
+				var oldText = obj.textContent;
+				obj.text = newText;
+				if (oldText.trim() != newText.trim()) {
+					// assign the new pronunciation to the object
+					obj.classList.add('shake');
+					setTimeout(
+						() => obj.classList.remove('shake'),
+						500,
+					)
+					console.log(obj);
+				}
 			}
 
 			function modifyPage() {
@@ -76,10 +84,19 @@
 				sometimes_pronounce('projects', 'Projects');
 				sometimes_pronounce('about', 'About.json');
 				sometimes_pronounce('header', 'Alex Calderwood');
-				
+				// // get a random p
+				// ps = Array.from(document.querySelectorAll('p'))
+				// 	.sort(() => Math.random() - .5)
+				// p = ps.length > 0 ? ps[0] : null;
+				// if (p) {
+				// 	p.textContent
+				// }
+
 				// Keep calling this
-				setTimeout(modifyPage, Math.random() * 3000);
+				setTimeout(modifyPage, Math.random() * 3000); // 3000
 			}
+
+			
 			
 		</script>
 

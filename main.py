@@ -158,11 +158,9 @@ def sometimes_pronounce():
     data = request.json
     text = data['text']
 
-    print(data)
     return jsonify({
         'text': utils.sometimes_pronounce(text, odds=[14, 0, 1])
     })
-
 
 @app.route('/projects')
 def projects():
