@@ -35,11 +35,15 @@ def publish_all():
 
 
 def delete(category):
+    print('deleting')
     deleted = db.session.query(Post.id).filter(Post.category == category).delete()
+    print('commiting')
     db.session.commit()
     print("Deleted {} rows from {}".format(deleted, category))
 
 
 def delete_all():
+    print('going to delete')
     for obj in ["poetry", "blog", "project", "quote"]:
+        print(obj)
         delete(obj)
