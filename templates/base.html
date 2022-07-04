@@ -37,6 +37,10 @@
 		</script>
 
 		<script type="text/javascript">
+
+			var minShakeWait = 1000;
+			var maxShakeWait = 3000;
+			var shakeDuration = 170;
 			// Mostly I am doing it this way because I wanted to experiment with a json endpoint
 			// in the Flask site, but I realized that usuing Jinja, as I am with my name, 
 			// is both simpler and quicker. I'm going to leave this as is for now, partly to
@@ -44,10 +48,6 @@
 			async function sometimes_pronounce(id, text) {
 				var url = "{{ url_for('sometimes_pronounce') }}"
 				var data = {'text': text}
-				
-				// const controller = new AbortController()
-				// const timeoutId = setTimeout(() => controller.abort(), 5000)
-				// let pronounced = text;
 				
 				pronounced_response = await fetch(url, {
 					method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -62,20 +62,21 @@
 					body: JSON.stringify(data) // body data type must match "Content-Type" header
 					// signal: controller.signal
 				}).then(response => response.json());
+
 				var obj = document.getElementById(id);
-
-				newText = pronounced_response['text'];
-
 				var oldText = obj.textContent;
-				obj.text = newText;
+				newText = pronounced_response['text'];
+				obj.innerHTML = newText; // set the new text
+
 				if (oldText.trim() != newText.trim()) {
+					var toShake = obj.nodeName == 'A' ? obj.parentElement : obj;
+
 					// assign the new pronunciation to the object
-					obj.classList.add('shake');
+					toShake.classList.add('shake');
 					setTimeout(
-						() => obj.classList.remove('shake'),
-						500,
+						() => toShake.classList.remove('shake'),
+						shakeDuration,
 					)
-					console.log(obj);
 				}
 			}
 
@@ -93,7 +94,7 @@
 				// }
 
 				// Keep calling this
-				setTimeout(modifyPage, Math.random() * 3000); // 3000
+				setTimeout(modifyPage, Math.max(minShakeWait, Math.random() * maxShakeWait)); // 3000
 			}
 
 			
