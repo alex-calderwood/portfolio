@@ -33,7 +33,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 if 'ON_LOCAL_MACHINE' not in os.environ:
     print("On Heroku machine.")
     # heroku = Heroku(app)  # Based on: http://blog.sahildiwan.com/posts/flask-and-postgresql-app-deployed-on-heroku/
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ckokboljwobdvk:ed156d1149804008aef4ad82ea2e1ba2a8a630eef549daff992ea1cbc9b141ec@ec2-52-73-143-158.compute-1.amazonaws.com:5432/ddhpb9udcpi03s'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_WHITE_URL']
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://alex1:postgrepass@localhost:5432/blog'
 db = SQLAlchemy(app)
