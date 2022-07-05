@@ -36,7 +36,9 @@ def publish_all():
 
 def delete(category):
     print('deleting')
-    deleted = db.session.query(Post.id).filter(Post.category == category).delete()
+    a = db.session.query(Post.id).filter(Post.category == category)
+    print('query', a)
+    deleted = a.delete()
     print('commiting')
     db.session.commit()
     print("Deleted {} rows from {}".format(deleted, category))
