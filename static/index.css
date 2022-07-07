@@ -1,5 +1,6 @@
 :root {
   --highight: #f0f0f0;
+  --fall-delay: 0.8s;
 }
 
 div {
@@ -40,8 +41,8 @@ a {
 
 
 :not(.menu-item) > a {
-  -webkit-animation: 1.5s highlight 0s 1 normal forwards;
-          animation: 1.5s highlight 0s 1 normal forwards;
+  -webkit-animation: 1.5s highlight var(--fall-delay) 1 normal forwards;
+          animation: 1.5s highlight var(--fall-delay) 1 normal forwards;
   background-color: none;
   background: linear-gradient(90deg, rgb(200, 200, 200) 50%, rgba(255, 255, 255, 0) 50%);
   background-size: 200% 100%;
@@ -152,18 +153,6 @@ img {
   animation-iteration-count: 1;
 }
 
-/* used for debugging .shake animation */
-/*
-p:hover {
-  /* color: transparent; 
-  
-  /* Start the shake animation and make the animation last for 0.5 seconds 
-  animation: shake .16s;
-  /* When the animation is finished, start again 
-  animation-iteration-count: 1;
-}
-*/
-
 @keyframes shake {
   0% { 
     transform: translate(5px,0px);
@@ -184,5 +173,23 @@ p:hover {
     transform: translate(0px, 0px);
     color: inherit;
     /* text-shadow: none; */
+  }
+}
+/* 
+.container {
+  margin-top: -1000px;
+  -webkit-animation: var(--fall-delay) fall 0s 1 cubic-bezier(0.33333, 0, 0.66667, 0.33333) forwards;
+          animation: var(--fall-delay) fall 0s 1 cubic-bezier(0.33333, 0, 0.66667, 0.33333) forwards;
+} */
+
+@-webkit-keyframes fall {
+  to {
+    margin-top: inherit;
+  }
+}
+
+@keyframes fall {
+  to {
+    margin-top: inherit;
   }
 }
