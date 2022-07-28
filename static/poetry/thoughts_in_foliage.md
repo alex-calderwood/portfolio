@@ -13,7 +13,7 @@ lines
 
 its hard to define
 
-the brittle clash between fauna
+the brittle clash between flora
 
 and vine
 
