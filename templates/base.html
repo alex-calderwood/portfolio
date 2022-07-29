@@ -92,7 +92,7 @@
 					sometimes_pronounce('blog', 'Blog');
 				} catch (error) {
 					// Don't need to do anything
-					console.log(error);
+					// console.log(error);
 				}
 
 				
@@ -106,7 +106,7 @@
 				// }
 
 				// Keep calling this
-				setTimeout(modifyPage, Math.max(minShakeWait, Math.random() * maxShakeWait)); // 3000
+				setTimeout(modifyPage, Math.max(minShakeWait, Math.random() * maxShakeWait));
 			}
 
 			
@@ -114,7 +114,7 @@
 		</script>
 
 	</head>
-	<body onload="modifyPage()">
+	<body onload="setTimeout(modifyPage, 1000)">
 		<div class="sidebar">
 		</div>
 
