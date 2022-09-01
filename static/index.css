@@ -7,6 +7,21 @@ div {
 	font-family: 'Montserrat', sans-serif;
 }
 
+.back {
+  /* direction: rtl;
+  unicode-bidi: bidi-override; */
+
+  display: inline-block;
+  -moz-transform:    scaleX(-1); /*Gecko */
+  -o-transform:      scaleX(-1); /* Opera */
+  -webkit-transform: scaleX(-1); /* Webkit */
+  transform:         scaleX(-1); /*Standard */
+
+  filter: FlipH;                 /* IE 6/7/8 */
+
+  color:#a8a6a6;
+}
+
 br {
 	display: block;
 	content: "";
@@ -23,6 +38,8 @@ br {
 
 .menu-item {
 	margin-bottom: 4%;
+  /* font-size: 200%;
+  font-family: 'Abhaya Libre', serif; */
 }
 
 .header {
@@ -38,8 +55,6 @@ a {
   color: rgb(85, 85, 85);
   margin: 10px;
 }
-
-
 
 a:hover {
   text-decoration: inherit;
@@ -67,6 +82,9 @@ h1 {
     font-size: 150%;
     font-weight: bold;
     margin-top: 10%;
+    /* 
+    font-family: 'Abhaya Libre', serif;
+    font-size: 200%; */
 }
 
 h2 {
