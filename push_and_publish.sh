@@ -1,1 +1,1 @@
-git push heroku master; heroku run python -c 'import publish; publish.delete_all(); publish.publish_all()'
+git push heroku master; heroku run python -c "from publish import *; delete_all(); publish_all();"; gp
