@@ -1,0 +1,10 @@
+<i>A COMMON EXPERIENCE, resulting in a common confusion. A. has to transact important business with B. in H. He goes to H. for a preliminary interview, accomplishes the journey there in ten minutes, and the journey back in the same time, and on returning boasts to his family of his expedition. Next day he goes again to H., this time to settle his business finally. As that by all appearances will require several hours, A. leaves very early in the morning. But although all the surrounding circumstances, at least in A.'s estimation, are exactly the same as the day before, this time it takes him ten hours to reach H. When he arrives there quite exhausted in the evening he is informed that B., annoyed at his absence, had left half an hour before to go to A.'s village, and that they must have passed each other on the road. A. is advised to wait. But in his anxiety about his business he sets off at once and hurries home.
+
+This time he covers the distance, without paying any particular attention to the fact, practically in an instant. At home he learns that B. had arrived quite early, immediately after A.'s departure, indeed that he had met A. on the threshold and reminded him of his business; but A. had replied that he had no time to spare, he must go at once.
+
+In spite of this incomprehensible behavior of A., however, B. had stayed on to wait for A.'s return. It is true, he had asked several times whether A. was not back yet, but he was still sitting up in A.'s room. Overjoyed at the opportunity of seeing B. at once and explaining everything to him, A. rushes upstairs. He is almost at the top, when he stumbles, twists a sinew, and almost fainting with the pain, incapable even of uttering a cry, only able to moan faintly in the darkness, he hears B.--impossible to tell whether at a great distance or quite near him--stamping down the stairs in a violent rage and vanishing for good.</i>
+ 
+<br>
+\- Franz Kafka
+
+[A Common Confusion](https://zork.net/~patty/pattyland/kafka/confusion.htm)
