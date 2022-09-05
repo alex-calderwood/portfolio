@@ -28,3 +28,6 @@ so I thanked him and banked it, and then I said
 I will take your gift and I’ll treat it as such
 
 you have granted me permission not to rush
+
+
+<i>Author's Note:</i> I recently watched [3000 Years of Longing](https://www.imdb.com/title/tt9198364/), which references the solution that I seem to be arguing for in this poem to the problem of interacting with a genie. The solution being, broadly: don't rush, don't make a wish at all. The movie seemed to grapple with the ramifications to the genie that this solution presents. Not to spoil it, I can't recommend it enough. 
