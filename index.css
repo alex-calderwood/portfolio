@@ -1,0 +1,24 @@
+/* Fun nautical format for coming soon h1 */
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 4em;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 0 10px #000;
+}
+/* make the background nautical too */
+body {
+    background: url("https://i.imgur.com/4ZQ3Z4u.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+}
