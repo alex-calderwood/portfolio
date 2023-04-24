@@ -8,6 +8,7 @@ function setup() {
 
     smooth();
     canvas = createCanvas(windowWidth, height);
+    canvas.position(0, 0, 'sticky');
     frameRate(24);
 
     xstart = random(10);
