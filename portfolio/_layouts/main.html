@@ -23,10 +23,13 @@
     
     <body>
         <span class="back" id="filler1"></span>
-        <span id="projects">projects</span>
-        <span id="filler2"></span>
+        <span id="projects"><a href="">projects</a></span>
+        <span class="back" id="filler2"></span>
         <span id="alex">alex calderwood</span>
-        <span id="filler3"></span>
+        <span class="back" id="filler3"></span>
+        <span id="bio">bio</span>
+        <span class="back" id="filler4"></span>
+        <span id="blog">blog</span>
     </body>
 
     <script> 
@@ -34,12 +37,20 @@
         let textWidth = window.innerWidth / 9.6; 
         let numChars = textDepth * textWidth;
 
-        // let span = document.createElement("span");
-        let span = document.getElementById("filler1");
-        for (let i = 0; i < (textDepth/3 * textWidth) + (textWidth / 2) ; i++) {
-            span.innerHTML += generateText();
+        mirrorText("filler1", 4, 2);
+        mirrorText("filler2", 4, 2);
+        mirrorText("filler3", 4, 2);
+        mirrorText("filler4", 4, 2);
+
+        function mirrorText(fillerID, depth, width) {
+            let span = document.getElementById(fillerID);
+            for (let i = 0; i < (textDepth/depth * textWidth) + (textWidth / width) ; i++) {
+                let innerSpan = document.createElement("span");
+                innerSpan.classList.add("mirror");
+                innerSpan.innerHTML = generateText();
+                span.appendChild(innerSpan);
+            }
         }
-        // document.body.appendChild(span);
 
         // create a text generator
         function generateText() {
