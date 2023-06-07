@@ -1,0 +1,23 @@
+body {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 16px;
+    line-height: 20px;
+    word-break: break-all;
+    // The CSS ch unit is defined as the width of the character 0 (zero, or U+0030) of the font. ≈
+}
+
+
+.back {
+    /* direction: rtl;
+    unicode-bidi: bidi-override; */
+
+    display: inline-block;
+    -moz-transform:    scaleX(-1); /*Gecko */
+    -o-transform:      scaleX(-1); /* Opera */
+    -webkit-transform: scaleX(-1); /* Webkit */
+    transform:         scaleX(-1); /*Standard */
+
+    filter: FlipH;                 /* IE 6/7/8 */
+
+    color:#a8a6a6;
+}
