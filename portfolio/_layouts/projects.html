@@ -59,19 +59,30 @@
 
             let numChars = textDepth * textWidth;
 
-            mirrorText("filler1a", 0.2, .3, offset('projects'));
-            mirrorText("filler1b", 0, 1, Math.floor(textWidth * 0.3) + offset('projects'));
+            // mirrorText("filler1a", 0.2, .3, offset('projects'));
+            // mirrorText("filler1b", 0, 1, Math.floor(textWidth * 0.3) + offset('projects'));
 
-            mirrorText("filler2a", 0.2, .5, offset('alex calderwood'));
-            mirrorText("filler2b", 0, 1, Math.floor(textWidth * 0.5) + offset('alex calderwood'));
+            // mirrorText("filler2a", 0.2, .5, offset('alex calderwood'));
+            // mirrorText("filler2b", 0, 1, Math.floor(textWidth * 0.5) + offset('alex calderwood'));
 
-            mirrorText("filler3a", 0.2, .7, offset('bio'));
-            mirrorText("filler3b", 0, 1, Math.floor(textWidth * 0.7) + offset('bio'));
+            // mirrorText("filler3a", 0.2, .7, offset('bio'));
+            // mirrorText("filler3b", 0, 1, Math.floor(textWidth * 0.7) + offset('bio'));
 
-            mirrorText("filler4a", 0.2, 0.3, offset('blog'));
-            mirrorText("filler4b", 0, 1, Math.floor(textWidth * 0.3) + offset('blog'));
-            mirrorText("filler5a", 1, 1, 0);
+            // mirrorText("filler4a", 0.2, 0.3, offset('blog'));
+            // mirrorText("filler4b", 0, 1, Math.floor(textWidth * 0.3) + offset('blog'));
             // mirrorText("filler5b", 0, 0, 0);
+
+            davinci_block("filler1", 0.2, .3);
+            davinci_block("filler2", 0.2, .5);
+            davinci_block("filler3", 0.2, .7);
+            davinci_block("filler4", 0.2, .3);
+            mirrorText("filler5a", 1, 1, 0);
+
+
+            function davinci_block(tag_id, vdepth, hdepth) {
+                mirrorText(tag_id + 'a', vdepth, hdepth, offset(tag_id));
+                mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(tag_id));
+            }
 
             function offset(s) {
                 var offset = Math.floor(s.length / 2);
