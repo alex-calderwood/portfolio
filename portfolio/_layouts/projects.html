@@ -18,107 +18,13 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"WebSite","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","headline":"Your awesome title","name":"Your awesome title","url":"http://localhost:4000/"}</script>
     <!-- End Jekyll SEO tag -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/projects.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="{{ page.description }}" /></head>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="{{ page.description }}" /></head>
     
-    <body><span class="back" id="filler1a"></span><span id="projects"><a href="">projects</a></span><span class="back" id="filler1b"></span><span class="back" id="filler2a"></span><span id="alex">alex calderwood</span><span class="back" id="filler2b"></span><span class="back" id="filler3a"></span><span id="bio">bio</span><span class="back" id="filler3b"></span><span class="back" id="filler4a"></span><span id="blog">blog</span><span class="back" id="filler4b"></span><span class="back" id="filler5a"></span>
-    </body>
-
+    <body><span class="back" id="filler1a"></span><span id="projects"><a href="{% link projects.markdown %}">projects</a></span><span class="back" id="filler1b"></span><span class="back" id="filler2a"></span><span id="alex"><a href="{% link index.markdown %}">alex calderwood</a></span><span class="back" id="filler2b"></span><span class="back" id="filler3a"></span><span id="bio"><a href="{% link bio.markdown %}">bio</a></span><span class="back" id="filler3b"></span><span class="back" id="filler4a"></span><span id="blog"><a href="{% link blog.markdown %}">blog</a></span><span class="back" id="filler4b"></span><span class="back" id="filler5a"></span></body><script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
+    <br>
     <script> 
-        function retype() {
-            var textI = 0;
-            const charRatio = 20 / 12.01;
-            const bigBreak = 2000;
-            const desktopBreak = 1200;
-            const tabletBreak = 915;
-            const mobileBreak = 440;
-
-            let textWidth = 200; 
-            if (window.innerWidth > bigBreak) {
-                textWidth = 130;
-            }
-            else if (window.innerWidth > desktopBreak) {
-                textWidth = 90;
-            }
-            else if (window.innerWidth > tabletBreak) {
-                textWidth = 80;
-            }
-            else if (window.innerWidth > mobileBreak) {
-                textWidth = 40;
-            }
-            else { // tiny
-                textWidth = 23;
-            }
-
-            let fontWidth = window.innerWidth / textWidth; // pixels
-            let fontHeight = fontWidth * charRatio; // pixels
-            const textDepth = Math.floor(window.innerHeight / fontHeight); // lines`
-
-            // // set the style of the body to match the font size
-            document.body.style.fontSize = fontHeight + "px";
-            document.body.style.lineHeight = fontHeight + "px";
-
-            let numChars = textDepth * textWidth;
-
-            // mirrorText("filler1a", 0.2, .3, offset('projects'));
-            // mirrorText("filler1b", 0, 1, Math.floor(textWidth * 0.3) + offset('projects'));
-
-            // mirrorText("filler2a", 0.2, .5, offset('alex calderwood'));
-            // mirrorText("filler2b", 0, 1, Math.floor(textWidth * 0.5) + offset('alex calderwood'));
-
-            // mirrorText("filler3a", 0.2, .7, offset('bio'));
-            // mirrorText("filler3b", 0, 1, Math.floor(textWidth * 0.7) + offset('bio'));
-
-            // mirrorText("filler4a", 0.2, 0.3, offset('blog'));
-            // mirrorText("filler4b", 0, 1, Math.floor(textWidth * 0.3) + offset('blog'));
-            // mirrorText("filler5b", 0, 0, 0);
-
-            davinci_block("filler1", 0.2, .3);
-            davinci_block("filler2", 0.2, .5);
-            davinci_block("filler3", 0.2, .7);
-            davinci_block("filler4", 0.2, .3);
-            mirrorText("filler5a", 1, 1, 0);
-
-
-            function davinci_block(tag_id, vdepth, hdepth) {
-                mirrorText(tag_id + 'a', vdepth, hdepth, offset(tag_id));
-                mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(tag_id));
-            }
-
-            function offset(s) {
-                var offset = Math.floor(s.length / 2);
-                console.log(offset);
-                return offset;
-            }
-
-            function mirrorText(fillerID, depth, width, offset=0) {
-                let span = document.getElementById(fillerID);
-                console.log({span, fillerID});
-                span.innerHTML = ""; // delete everything in the span gives an error
-
-                // console.log({textDepth, depth,d: textDepth * depth, w: textWidth * width, textWidth, width, offset});
-                
-                for (let i = 0; i <(Math.floor(textDepth * depth) * textWidth) + (textWidth * width) - offset ; i++) {
-                    let innerSpan = document.createElement("span");
-                    innerSpan.classList.add("mirror");
-                    innerSpan.innerHTML = generateText(textI++);
-                    span.appendChild(innerSpan);
-                }
-            }
-            
-            // create a text generator
-            function generateText(textI) {
-                // var text = "";
-                // var possible = "abcdefghijklmnopqrstuvwxyz ";
-                // text = possible.charAt(Math.floor(Math.random() * possible.length));
-                // return text;
-                const text = "Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a previous page deserves independent mention. It is a notched stick of a peculiar form, some two feet in length, which is perpendicularly inserted into the starboard gunwale near the bow, for the purpose of furnishing a rest for the wooden extremity of the harpoon, whose other naked, barbed end slopingly projects from the prow. Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall. It is customary to have two harpoons reposing in the crotch, respectively called the first and second irons.But these two harpoons, each by its own cord, are both connected with the line; the object being this: to dart them both, if possible, one instantly after the other into the same whale; so that if, in the coming drag, one should draw out, the other may still retain a hold. It is a doubling of the chances. But it very often happens that owing to the instantaneous, violent, convulsive running of the whale upon receiving the first iron, it becomes impossible for the harpooneer, however lightning-like in his movements, to pitch the second iron into him. Nevertheless, as the second iron is already connected with the line, and the line is running, hence that weapon must, at all events, be anticipatingly tossed out of the boat, somehow and somewhere; else the most terrible jeopardy would involve all hands. Tumbled into the water, it accordingly is in such cases; the spare coils of box line (mentioned in a preceding chapter) making this feat, in most instances, prudently practicable. But this critical act is not always unattended with the saddest and most fatal casualties.Furthermore: you must know that when the second iron is thrown overboard, it thenceforth becomes a dangling, sharp-edged terror, skittishly curvetting about both boat and whale, entangling the lines, or cutting them, and making a prodigious sensation in all directions. Nor, in general, is it possible to secure it again until the whale is fairly captured and a corpse.Consider, now, how it must be in the case of four boats all engaging one unusually strong, active, and knowing whale; when owing to these qualities in him, as well as to the thousand concurring accidents of such an audacious enterprise, eight or ten loose second irons may be simultaneously dangling about him. For, of course, each boat is supplied with several harpoons to bend on to the line should the first one be ineffectually darted without recovery. All these particulars are faithfully narrated here, as they will not fail to elucidate several most important, however intricate passages, in scenes hereafter to be painted";
-
-                return text[text.length - ((textI + 1) % text.length )];
-            }
-        }
-
-        retype();
-        addEventListener("resize", (event) => {retype()});
+        retype_projects();
+        addEventListener("resize", (event) => {retype_projects()});
     </script>
 
 </html>
