@@ -64,6 +64,20 @@ function davinci_block(tag_id, vdepth, hdepth, text) {
     let center = text.length;
     // console.log({textWidth, text},  {left, center, right}, left + right + center); 
 }
+
+function creative_davinci_block(parent, vdepth, hdepth, text) {
+    // create the left and right spans
+    let left_span = document.createElement("span");
+    left_span.classList.add("back");
+    let right_span = document.createElement("span");
+    right_span.classList.add("back");
+    parent.
+
+    // add the spans to the parent
+    parent.appendChild(left_span);
+    parent.appendChild(right_span);
+
+}
   
 function offset(s, floor=true) {
     if (floor) {
@@ -114,17 +128,12 @@ function generateText(textI) {
     return text[text.length - ((textI + 1) % text.length )];
 }
 
-function post(parent, title, body) {
+function post(parent, title, body, links) {
     davinci_line(parent, '');
     davinci_line(parent, title)
     davinci_line(parent, '');
     block_text(parent, body);
-    
-    let end = document.createElement("span");
-    end.classList.add("back");
-    parent.appendChild(end);
-    mirrorText(end, 1, 1, 0);
-    
+     
 }
 
 function block_text(parent, text) {
@@ -138,9 +147,19 @@ function block_text(parent, text) {
     }
 }
 
-function davinci_line(parent, text) {
-    const padding_left  = Math.floor((textWidth - text.length) / 2);
-    const padding_right = Math.ceil((textWidth - text.length) / 2);
+function davinci_line(parent, text, href=false, mode='center') {
+    let padding_left, padding_right;
+    if (mode == 'center') {
+        padding_left  = Math.floor((textWidth - text.length) / 2);
+        padding_right = Math.ceil((textWidth - text.length) / 2);
+    } else if (mode == 'random') {
+        padding_left  = Math.floor(Math.random() * (textWidth - text.length));
+        padding_right = textWidth - padding_left - text.length;
+        console.log({padding_left, padding_right})
+    } else { // mode == 'left'
+        padding_left  = textWidth * whitespaceRatio / 2 ;
+        padding_right = textWidth - padding_left - text.length;
+    }
     // console.log({textWidth, padding_left, padding_right, text}, text.length)
     
     let left_span = document.createElement("span");
@@ -152,9 +171,27 @@ function davinci_line(parent, text) {
     mirrorTextLiteral(left_span, padding_left);
     let middle_span = document.createElement("span");
     middle_span.innerHTML = text;
-    parent.appendChild(middle_span);
+
+    if (href) {// do this properly
+        console.log('href', href)
+        let link = document.createElement("a");
+        link.href = href;
+        link.appendChild(middle_span);
+        parent.appendChild(link);
+    } else {
+        parent.appendChild(middle_span);
+    }
     parent.appendChild(right_span);
     mirrorTextLiteral(right_span, padding_right);
+}
+
+
+function header() {
+    mirrorText("filler0a", 0, 1, 0);
+    davinci_block("filler1", 0, .25, 'projects');
+    davinci_block("filler2", 0, .5,  'alex calderwood');
+    davinci_block("filler3", 0, .75, 'bio');
+    davinci_block("filler4", 0, .325,'blog');
 }
 
 function retype_projects() {
@@ -166,11 +203,18 @@ function retype_projects() {
     post(body, 'ada', 'ada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada ada');
 }
 
+function type_links(parent, links) {
+    davinci_line(parent, '');
+    for (let link of links) {
+        let text = link.innerHTML;
+        let href = link.href;
+        davinci_line(parent, text, href=href, mode='center');
+        davinci_line(parent, '');
+    }
+}
+
 function retype_post() {
-    davinci_block("filler1", 0, .25, 'projects');
-    davinci_block("filler2", 0, .5,  'alex calderwood');
-    davinci_block("filler3", 0, .75, 'bio');
-    davinci_block("filler4", 0, .325,'blog');
+    header();
 
     let title = document.querySelector('#title_text');
     title.style.display = 'none'; // hide it
@@ -183,7 +227,21 @@ function retype_post() {
     content = content.innerHTML;
     let content_node = document.querySelector('#content');
     content_node.innerHTML = '';
-    post(content_node, title, content);
+
+    let links = document.querySelectorAll('.link');
+    let links_node = document.querySelector('#links');
+    links_node.innerHTML = '';
+    for (let link of links) {
+        link.style.display = 'none';
+    }
+
+    console.log(links);
+    post(content_node, title, content, links);
+    type_links(links_node, links);
+
+    let end = document.querySelector('#end');
+    end.innerHTML = '';
+    mirrorText(end, 1, 1, 0);
 }
 
 function retype_blog() {
