@@ -1,7 +1,9 @@
-let textWdith, textI, textDepth;
+let textWidth, textI, textDepth, whitespaceRatio;
 
 function caclulate_stuffs() {
     textI = 0;
+    whitespaceRatio = 0.2
+
     const charRatio = 20 / 12.01;
     const bigBreak = 2000;
     const desktopBreak = 1200;
@@ -37,14 +39,15 @@ function caclulate_stuffs() {
 }
 
 function davinci_block(tag_id, vdepth, hdepth, text) {
+    console.log({text, textWidth}, text.length)
     mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
-    mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(text));
+    mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(text) + 1);
 }
-
+  
 function offset(s) {
     var offset = Math.floor(s.length / 2);
     return offset;
-}
+} 
 
 function mirrorText(parent, depth, width, offset=0) {
     let span;
@@ -55,8 +58,12 @@ function mirrorText(parent, depth, width, offset=0) {
         span = document.getElementById(parent);
     }
     span.innerHTML = ""; // delete everything in the span gives an error
+    let charCount = (Math.floor(textDepth * depth) * textWidth) + (textWidth * width) - offset
+    console.log({offset, charCount});
 
-    for (let i = 0; i <(Math.floor(textDepth * depth) * textWidth) + (textWidth * width) - offset ; i++) {
+    for (let i = 0; i < charCount; i++) {
+    
+
         let innerSpan = document.createElement("span");
         innerSpan.classList.add("mirror");
         innerSpan.innerHTML = generateText(textI++);
@@ -86,6 +93,7 @@ function generateText(textI) {
 }
 
 function post(parent, title, body) {
+    davinci_line(parent, '');
     davinci_line(parent, title)
     davinci_line(parent, '');
     block_text(parent, body);
@@ -98,17 +106,23 @@ function post(parent, title, body) {
 }
 
 function block_text(parent, text) {
-    let lineLength = Math.floor(textWidth / 2);
-    while (text.length > 0) {
+    console.log({whitespaceRatio})
+    let lineLength = Math.floor(textWidth * (1 - whitespaceRatio));
+    let i = 0;
+    let max = 10000;
+    while (text.length > 0 && i++ < max) {
         let line = text.substring(0, lineLength);
         davinci_line(parent, line);
         text = text.substring(lineLength);
+        console.log(line.length, {line});
     }
 }
 
 function davinci_line(parent, text) {
     const padding_left  = Math.floor((textWidth - text.length) / 2);
     const padding_right = Math.ceil((textWidth - text.length) / 2);
+    // console.log({textWidth, padding_left, padding_right, text}, text.length)
+    
 
     let left_span = document.createElement("span");
     left_span.classList.add("back");
@@ -134,14 +148,20 @@ function retype_projects() {
     post(body, 'ada', 'ada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada ada');
 }
 
-function retype_post(title, body_text) {
+function retype_post() {
     caclulate_stuffs();
     davinci_block("filler1", 0, .25, 'projects');
     davinci_block("filler2", 0, .5,  'alex calderwood');
     davinci_block("filler3", 0, .75, 'bio');
     davinci_block("filler4", 0, .325,'blog');
     let body = document.querySelector('body');
-    post(body, title, body_text);
+    let title_node = document.querySelector('#title');
+    let title = title_node.innerHTML;
+    title_node.innerHTML = '';
+    let content_node = document.querySelector('#content');
+    let content = content_node.innerHTML;
+    content_node.innerHTML = '';
+    post(content_node, title, content);
 }
 
 function retype_blog() {
@@ -159,3 +179,4 @@ function retype_main() {
     mirrorText("filler5a", 1, 1, 0);
 }
 
+caclulate_stuffs();
