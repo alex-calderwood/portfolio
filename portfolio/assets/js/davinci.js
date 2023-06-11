@@ -35,20 +35,25 @@ function caclulate_stuffs() {
     document.body.style.fontSize = fontHeight + "px";
     document.body.style.lineHeight = fontHeight + "px";
 
-    // let numChars = textDepth * textWidth;
+    // let numChars = textDepth * textWidth; 
 }
 
 function davinci_block(tag_id, vdepth, hdepth, text) {
-    console.log({text, textWidth}, text.length)
-    mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
-    mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(text) + 1);
+    let left = mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
+    let right = mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(text, false));
+    let center = text.length;
+    console.log({textWidth, text},  {left, center, right}, left + right + center); 
 }
   
-function offset(s) {
-    var offset = Math.floor(s.length / 2);
-    return offset;
+function offset(s, floor=true) {
+    if (floor) {
+        return  Math.floor(s.length / 2);
+    } else {
+        return  Math.ceil(s.length / 2);
+    }
+    
 } 
-
+ 
 function mirrorText(parent, depth, width, offset=0) {
     let span;
     if (typeof parent === 'object') {
@@ -58,17 +63,15 @@ function mirrorText(parent, depth, width, offset=0) {
         span = document.getElementById(parent);
     }
     span.innerHTML = ""; // delete everything in the span gives an error
-    let charCount = (Math.floor(textDepth * depth) * textWidth) + (textWidth * width) - offset
+    let charCount = (Math.floor(textDepth * depth) * textWidth) + Math.floor(textWidth * width) - offset
     console.log({offset, charCount});
-
     for (let i = 0; i < charCount; i++) {
-    
-
         let innerSpan = document.createElement("span");
         innerSpan.classList.add("mirror");
         innerSpan.innerHTML = generateText(textI++);
         span.appendChild(innerSpan);
     }
+    return charCount
 }
 
 function mirrorTextLiteral(parent, chars) {
