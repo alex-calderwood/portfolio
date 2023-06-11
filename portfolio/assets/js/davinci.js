@@ -1,31 +1,38 @@
-let textWidth, textI, textDepth, whitespaceRatio;
+let textWidth;
+let textI, textDepth, whitespaceRatio, previousWidth;
 
-function caclulate_stuffs() {
-    textI = 0;
-    whitespaceRatio = 0.2
-
-    const charRatio = 20 / 12.01;
+function getCurrentBreakPoint() {
     const bigBreak = 2000;
     const desktopBreak = 1200;
     const tabletBreak = 915;
     const mobileBreak = 440;
 
-    textWidth = 200; 
+    let breakPointTextWidth = 200; 
     if (window.innerWidth > bigBreak) {
-        textWidth = 130;
+        breakPointTextWidth = 130;
     }
     else if (window.innerWidth > desktopBreak) {
-        textWidth = 90;
+        breakPointTextWidth = 90;
     }
     else if (window.innerWidth > tabletBreak) {
-        textWidth = 80;
+        breakPointTextWidth = 80;
     }
     else if (window.innerWidth > mobileBreak) {
-        textWidth = 40;
+        breakPointTextWidth = 40;
     }
     else { // tiny
-        textWidth = 23;
+        breakPointTextWidth = 23;
     }
+    return breakPointTextWidth;
+}
+ 
+function calculateFontSize() {
+    const charRatio = 20 / 12.01;
+
+    textI = 0;
+    whitespaceRatio = 0.2
+
+    textWidth = getCurrentBreakPoint();
 
     let fontWidth = window.innerWidth / textWidth; // pixels
     let fontHeight = fontWidth * charRatio; // pixels
@@ -34,15 +41,28 @@ function caclulate_stuffs() {
     // // set the style of the body to match the font size
     document.body.style.fontSize = fontHeight + "px";
     document.body.style.lineHeight = fontHeight + "px";
+}
 
-    // let numChars = textDepth * textWidth; 
+function needToUpdate() {
+    let currentWidth = getCurrentBreakPoint();
+    let update = previousWidth != currentWidth;
+    previousWidth = currentWidth;
+    return update;
+}
+
+function updateIfNeeded(update) {
+    calculateFontSize();
+    let shouldUpdate = needToUpdate();
+    if (shouldUpdate) {
+        update()
+    } 
 }
 
 function davinci_block(tag_id, vdepth, hdepth, text) {
     let left = mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
     let right = mirrorText(tag_id + 'b', 0, 1, Math.floor(textWidth * hdepth) + offset(text, false));
     let center = text.length;
-    console.log({textWidth, text},  {left, center, right}, left + right + center); 
+    // console.log({textWidth, text},  {left, center, right}, left + right + center); 
 }
   
 function offset(s, floor=true) {
@@ -64,7 +84,6 @@ function mirrorText(parent, depth, width, offset=0) {
     }
     span.innerHTML = ""; // delete everything in the span gives an error
     let charCount = (Math.floor(textDepth * depth) * textWidth) + Math.floor(textWidth * width) - offset
-    console.log({offset, charCount});
     for (let i = 0; i < charCount; i++) {
         let innerSpan = document.createElement("span");
         innerSpan.classList.add("mirror");
@@ -109,7 +128,6 @@ function post(parent, title, body) {
 }
 
 function block_text(parent, text) {
-    console.log({whitespaceRatio})
     let lineLength = Math.floor(textWidth * (1 - whitespaceRatio));
     let i = 0;
     let max = 10000;
@@ -117,7 +135,6 @@ function block_text(parent, text) {
         let line = text.substring(0, lineLength);
         davinci_line(parent, line);
         text = text.substring(lineLength);
-        console.log(line.length, {line});
     }
 }
 
@@ -126,7 +143,6 @@ function davinci_line(parent, text) {
     const padding_right = Math.ceil((textWidth - text.length) / 2);
     // console.log({textWidth, padding_left, padding_right, text}, text.length)
     
-
     let left_span = document.createElement("span");
     left_span.classList.add("back");
     let right_span = document.createElement("span");
@@ -142,7 +158,6 @@ function davinci_line(parent, text) {
 }
 
 function retype_projects() {
-    caclulate_stuffs();
     davinci_block("filler1", 0, .25, 'projects');
     davinci_block("filler2", 0, .5,  'alex calderwood');
     davinci_block("filler3", 0, .75, 'bio');
@@ -152,29 +167,31 @@ function retype_projects() {
 }
 
 function retype_post() {
-    caclulate_stuffs();
     davinci_block("filler1", 0, .25, 'projects');
     davinci_block("filler2", 0, .5,  'alex calderwood');
     davinci_block("filler3", 0, .75, 'bio');
     davinci_block("filler4", 0, .325,'blog');
-    let body = document.querySelector('body');
+
+    let title = document.querySelector('#title_text');
+    title.style.display = 'none'; // hide it
+    title = title.innerHTML;
     let title_node = document.querySelector('#title');
-    let title = title_node.innerHTML;
     title_node.innerHTML = '';
+
+    let content = document.querySelector('#content_text');
+    content.style.display = 'none'; // hide it
+    content = content.innerHTML;
     let content_node = document.querySelector('#content');
-    let content = content_node.innerHTML;
     content_node.innerHTML = '';
     post(content_node, title, content);
 }
 
 function retype_blog() {
-    caclulate_stuffs();
     davinci_block("filler1", 0.5, .5,  'coming soon');
     mirrorText("filler5a", 1, 1, 0);
 }
 
 function retype_main() {
-    caclulate_stuffs();
     davinci_block("filler1", 0.2, .3, 'projects');
     davinci_block("filler2", 0.2, .5, 'alex calderwood');
     davinci_block("filler3", 0.2, .7, 'bio');
@@ -182,4 +199,5 @@ function retype_main() {
     mirrorText("filler5a", 1, 1, 0);
 }
 
-caclulate_stuffs();
+calculateFontSize();
+previousWidth = getCurrentBreakPoint();

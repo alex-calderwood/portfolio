@@ -36,6 +36,21 @@ sass:
     sass_dir: _sass
     style: compressed
 
+# Separate out different types of posts
+# Ref: https://stackoverflow.com/a/40562548
+defaults:
+  - scope:
+      path: "_posts/blog"
+    values:
+      type: "blog"
+  - scope:
+      path: "_posts/projects"
+    values:
+      type: "projects"
+  - scope:
+      path: "_posts/poetry"
+    values:
+      type: "poetry"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
