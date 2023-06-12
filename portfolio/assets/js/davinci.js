@@ -1,5 +1,6 @@
 let textWidth;
 let textI, textDepth, whitespaceRatio, previousWidth;
+let defaultText = "Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a previous page deserves independent mention. It is a notched stick of a peculiar form, some two feet in length, which is perpendicularly inserted into the starboard gunwale near the bow, for the purpose of furnishing a rest for the wooden extremity of the harpoon, whose other naked, barbed end slopingly projects from the prow. Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall. It is customary to have two harpoons reposing in the crotch, respectively called the first and second irons.But these two harpoons, each by its own cord, are both connected with the line; the object being this: to dart them both, if possible, one instantly after the other into the same whale; so that if, in the coming drag, one should draw out, the other may still retain a hold. It is a doubling of the chances. But it very often happens that owing to the instantaneous, violent, convulsive running of the whale upon receiving the first iron, it becomes impossible for the harpooneer, however lightning-like in his movements, to pitch the second iron into him. Nevertheless, as the second iron is already connected with the line, and the line is running, hence that weapon must, at all events, be anticipatingly tossed out of the boat, somehow and somewhere; else the most terrible jeopardy would involve all hands. Tumbled into the water, it accordingly is in such cases; the spare coils of box line (mentioned in a preceding chapter) making this feat, in most instances, prudently practicable. But this critical act is not always unattended with the saddest and most fatal casualties.Furthermore: you must know that when the second iron is thrown overboard, it thenceforth becomes a dangling, sharp-edged terror, skittishly curvetting about both boat and whale, entangling the lines, or cutting them, and making a prodigious sensation in all directions. Nor, in general, is it possible to secure it again until the whale is fairly captured and a corpse.Consider, now, how it must be in the case of four boats all engaging one unusually strong, active, and knowing whale; when owing to these qualities in him, as well as to the thousand concurring accidents of such an audacious enterprise, eight or ten loose second irons may be simultaneously dangling about him. For, of course, each boat is supplied with several harpoons to bend on to the line should the first one be ineffectually darted without recovery. All these particulars are faithfully narrated here, as they will not fail to elucidate several most important, however intricate passages, in scenes hereafter to be painted";
 
 function getCurrentBreakPoint() {
     const bigBreak = 2000;
@@ -119,11 +120,19 @@ function mirrorTextLiteral(parent, chars) {
 
 // create a text generator
 function generateText(textI) {
-    // var text = "";
+    // var text = "";  
     // var possible = "abcdefghijklmnopqrstuvwxyz ";
     // text = possible.charAt(Math.floor(Math.random() * possible.length));
     // return text;
-    const text = "Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a previous page deserves independent mention. It is a notched stick of a peculiar form, some two feet in length, which is perpendicularly inserted into the starboard gunwale near the bow, for the purpose of furnishing a rest for the wooden extremity of the harpoon, whose other naked, barbed end slopingly projects from the prow. Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall. It is customary to have two harpoons reposing in the crotch, respectively called the first and second irons.But these two harpoons, each by its own cord, are both connected with the line; the object being this: to dart them both, if possible, one instantly after the other into the same whale; so that if, in the coming drag, one should draw out, the other may still retain a hold. It is a doubling of the chances. But it very often happens that owing to the instantaneous, violent, convulsive running of the whale upon receiving the first iron, it becomes impossible for the harpooneer, however lightning-like in his movements, to pitch the second iron into him. Nevertheless, as the second iron is already connected with the line, and the line is running, hence that weapon must, at all events, be anticipatingly tossed out of the boat, somehow and somewhere; else the most terrible jeopardy would involve all hands. Tumbled into the water, it accordingly is in such cases; the spare coils of box line (mentioned in a preceding chapter) making this feat, in most instances, prudently practicable. But this critical act is not always unattended with the saddest and most fatal casualties.Furthermore: you must know that when the second iron is thrown overboard, it thenceforth becomes a dangling, sharp-edged terror, skittishly curvetting about both boat and whale, entangling the lines, or cutting them, and making a prodigious sensation in all directions. Nor, in general, is it possible to secure it again until the whale is fairly captured and a corpse.Consider, now, how it must be in the case of four boats all engaging one unusually strong, active, and knowing whale; when owing to these qualities in him, as well as to the thousand concurring accidents of such an audacious enterprise, eight or ten loose second irons may be simultaneously dangling about him. For, of course, each boat is supplied with several harpoons to bend on to the line should the first one be ineffectually darted without recovery. All these particulars are faithfully narrated here, as they will not fail to elucidate several most important, however intricate passages, in scenes hereafter to be painted";
+    let backgroundText = document.querySelector('#background_text');
+    let text = defaultText
+    // console.log('b', backgroundText)
+    // if (backgroundText) {
+    //     let path = backgroundText.innerHTML;
+    //     console.log(path)
+    // } else {
+        // text = defaultText;
+    // }
 
     return text[text.length - ((textI + 1) % text.length )];
 }
@@ -195,20 +204,27 @@ function header() {
 }
 
 function retype_projects() {
-    davinci_block("filler1", 0, .25, 'projects');
-    davinci_block("filler2", 0, .5,  'alex calderwood');
-    davinci_block("filler3", 0, .75, 'bio');
-    davinci_block("filler4", 0, .325,'blog');
-    let body = document.querySelector('body');
-    post(body, 'ada', 'ada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada adaada ada ada ada');
+    header();
+
+    let links = document.querySelectorAll('.link');
+    let links_node = document.querySelector('#links');
+    links_node.innerHTML = '';
+    for (let link of links) {
+        link.style.display = 'none';
+    }
+    type_links(links_node, links, 'random');
+
+    let end = document.querySelector('#end');
+    end.innerHTML = '';
+    mirrorText(end, 1, 1, 0);
 }
 
-function type_links(parent, links) {
+function type_links(parent, links, mode) {
     davinci_line(parent, '');
     for (let link of links) {
         let text = link.innerHTML;
         let href = link.href;
-        davinci_line(parent, text, href=href, mode='center');
+        davinci_line(parent, text, href=href, mode=mode);
         davinci_line(parent, '');
     }
 }
