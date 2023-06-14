@@ -1,0 +1,12 @@
+---
+layout: post
+title: "wired trolls"
+date:   2018-06-07 17:41:39 -0700
+text: default
+links:
+  - text: WIRED
+    url: https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/
+---
+Collaborating with two Columbia Journalism School classmates, we built a graph database of tweets related to the Russian disinformation campaign for the 2016 U.S. presidential election. 
+
+We found that Twitter erroneously suspended hundreds of accounts that were owned by everyday Twitter users who had no actual connection to the Russian IRA. After publication, the accounts were reinstated, and  Congress was forced to release a revised list of IRA-affiliated handles. Twitter never apologized though.
