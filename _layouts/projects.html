@@ -31,7 +31,7 @@
     <span id="content"></span>
     <span id="links"></span>
     {% for post in site.posts %}
-        <a class="link" href="{{ post.url }}">{{ post.title }}</a>
+        <a class="link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
     {% endfor %}
     <span class="back" id="end"></span>
 
