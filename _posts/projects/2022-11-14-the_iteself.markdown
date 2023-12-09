@@ -4,7 +4,13 @@ title: "the itself"
 date:   2023-11-14 00:00:00 -0400
 text: default
 links:
+    - text: The Ground Itself
+    url: https://everestpipkin.itch.io/the-ground-itself
+    - text: Schaharazade
+    url: https://acalde24.gitlab.io/portfolio/2023/11/01/schaharazade.html
 ---
-The Itself is a (work in progress) game born of my failure to find a writing game which has moves that closely correspond to the creative decisions that poets and writers actually face. Problems of diciton, imagery, and form are all present in the game.
+The Itself is a (work in progress) game developed while searching for word production strategies for Schaharazade, my dadaist poetry insrument.
 
-I hope to release the game on itch.io as a pdf, taking inspiration from Everest Pipkin's [The Ground Itself](https://everestpipkin.itch.io/the-ground-itself).
+The project is borne of my failure to find a writing game that gives player actions that closely correspond to the creative decisions that poets and writers actually face. These are problems of diction, imagery, and form, which are all present in the game.
+
+I hope to release the game on itch.io as a pdf, taking inspiration from Everest Pipkin's remarkable storytelling game, The Ground Itself. 
