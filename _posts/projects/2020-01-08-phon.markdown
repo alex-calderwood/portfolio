@@ -9,6 +9,6 @@ links:
   - text: Lieberman Paper
     url: https://github.com/alex-calderwood/phonaesthesia/blob/master/papers/leiberman_paper.pdf
 ---
-What would it mean to generate images from the sound of speech, not from the semantics of the words themselves?
+Do speech sounds contain enough information to generate images?
 
 I built a visualizer for human speech with a generative model called a Variational Auto Encoder (VAE), for Fundamentals of Speech Recognition (E6998), a graduate level speech recognition class at Columbia. The project was inspired by an incredible paper by Zach Lieberman.
