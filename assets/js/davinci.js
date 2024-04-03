@@ -161,20 +161,36 @@ function post(parent, title, body, links) {
 }
 
 function block_text(parent, text) {
+
+    console.log(text)
+
     let maxLineLength = Math.floor(charsPerLine * (1 - whitespaceRatio));
     let i = 0;
     let max = 10000;
     while (text.length > 0 && i++ < max) {
         // find the last space before the maxLineLength
-        let lineLength = maxLineLength;
-        if (text.length > maxLineLength) {
-            let lastSpace = text.substring(0, maxLineLength).search(/ [^ ]*$/);
+        let lineLength = text.length;
+        let firstLineBreak = text.indexOf('\n');
+        if (firstLineBreak > 0) {
+            lineLength = firstLineBreak;
+        }
+        let line = text.substring(0, lineLength);
+        console.log({lineLength, firstLineBreak, maxLineLength, line})
+
+        if (line.length > maxLineLength) {
+            line = text.substring(0, maxLineLength);
+            let lastSpace = line.lastIndexOf(' ');
             if (lastSpace > 0) {
                 lineLength = lastSpace;
             }
         }
-        let line = text.substring(0, lineLength).trim();
+
+        line = text.substring(0, lineLength).trim();
         davinci_line(parent, line);
+        if (firstLineBreak == lineLength) {
+            davinci_line(parent, '');
+        }
+
         text = text.substring(lineLength);
     }
 }
