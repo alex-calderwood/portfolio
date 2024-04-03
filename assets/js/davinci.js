@@ -1,10 +1,10 @@
-let charsPerLine;
 let textI, textDepth, whitespaceRatio, previousWidth;
 let defaultText = "Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a previous page deserves independent mention. It is a notched stick of a peculiar form, some two feet in length, which is perpendicularly inserted into the starboard gunwale near the bow, for the purpose of furnishing a rest for the wooden extremity of the harpoon, whose other naked, barbed end slopingly projects from the prow. Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall. It is customary to have two harpoons reposing in the crotch, respectively called the first and second irons.But these two harpoons, each by its own cord, are both connected with the line; the object being this: to dart them both, if possible, one instantly after the other into the same whale; so that if, in the coming drag, one should draw out, the other may still retain a hold. It is a doubling of the chances. But it very often happens that owing to the instantaneous, violent, convulsive running of the whale upon receiving the first iron, it becomes impossible for the harpooneer, however lightning-like in his movements, to pitch the second iron into him. Nevertheless, as the second iron is already connected with the line, and the line is running, hence that weapon must, at all events, be anticipatingly tossed out of the boat, somehow and somewhere; else the most terrible jeopardy would involve all hands. Tumbled into the water, it accordingly is in such cases; the spare coils of box line (mentioned in a preceding chapter) making this feat, in most instances, prudently practicable. But this critical act is not always unattended with the saddest and most fatal casualties.Furthermore: you must know that when the second iron is thrown overboard, it thenceforth becomes a dangling, sharp-edged terror, skittishly curvetting about both boat and whale, entangling the lines, or cutting them, and making a prodigious sensation in all directions. Nor, in general, is it possible to secure it again until the whale is fairly captured and a corpse.Consider, now, how it must be in the case of four boats all engaging one unusually strong, active, and knowing whale; when owing to these qualities in him, as well as to the thousand concurring accidents of such an audacious enterprise, eight or ten loose second irons may be simultaneously dangling about him. For, of course, each boat is supplied with several harpoons to bend on to the line should the first one be ineffectually darted without recovery. All these particulars are faithfully narrated here, as they will not fail to elucidate several most important, however intricate passages, in scenes hereafter to be painted";
 let backgroundText;
+let charsPerLine;
+
 
 let backgroundSpan = document.querySelector('#filler_text');
-console.log({backgroundSpan});
 if (backgroundSpan) {
     backgroundText = backgroundSpan.innerHTML;
 } else {
@@ -31,7 +31,7 @@ function getCurrentBreakPoint() {
         breakPointTextWidth = 40;
     }
     else { // tiny
-        breakPointTextWidth = 23;
+        breakPointTextWidth = 35;
     }
     return breakPointTextWidth;
 }
@@ -51,8 +51,6 @@ function calculateFontSize() {
     // // set the style of the body to match the font size
     document.body.style.fontSize = fontHeight + "px";
     document.body.style.lineHeight = fontHeight + "px";
-
-    console.log("width calc", {window: window.innerWidth, charsPerLine, fontWidth, fontHeight, textDepth});
 }
 
 function needToUpdate() {
@@ -74,7 +72,6 @@ function davinci_block(tag_id, vdepth, hdepth, text) {
     let left = mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
     let right = mirrorText(tag_id + 'b', 0, 1, Math.floor(charsPerLine * hdepth) + offset(text, false));
     let center = text.length;
-    console.log({charsPerLine, text},  {left, center, right}, left + right + center); 
 }
 
 function creative_davinci_block(parent, vdepth, hdepth, text) {
@@ -163,8 +160,6 @@ function post(parent, title, body, links) {
 
 function block_text(parent, text) {
 
-    console.log(text)
-
     let maxLineLength = Math.floor(charsPerLine * (1 - whitespaceRatio));
     let i = 0;
     let max = 10000;
@@ -176,8 +171,6 @@ function block_text(parent, text) {
             lineLength = firstLineBreak;
         }
         let line = text.substring(0, lineLength);
-        console.log({lineLength, firstLineBreak, maxLineLength, line})
-
         if (line.length > maxLineLength) {
             line = text.substring(0, maxLineLength);
             let lastSpace = line.lastIndexOf(' ');
@@ -204,7 +197,6 @@ function davinci_line(parent, text, href=false, mode='center') {
     } else if (mode == 'random') {
         padding_left  = Math.floor(Math.random() * (charsPerLine - text.length));
         padding_right = charsPerLine - padding_left - text.length;
-        console.log({padding_left, padding_right})
     } else { // mode == 'left'
         padding_left  = charsPerLine * whitespaceRatio / 2 ;
         padding_right = charsPerLine - padding_left - text.length;
