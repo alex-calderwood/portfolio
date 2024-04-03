@@ -99,8 +99,8 @@ function offset(s, floor=true) {
     }
     
 } 
- 
-function mirrorText(parent, depth, width, offset=0) {
+
+function mirrorText(parent, depth, width, offset=0, doWait=false) {
     let span;
     if (typeof parent === 'object') {
         span = parent;
@@ -109,13 +109,32 @@ function mirrorText(parent, depth, width, offset=0) {
         span = document.getElementById(parent);
     }
     span.innerHTML = ""; // delete everything in the span gives an error
-    let charCount = (Math.floor(textDepth * depth) * charsPerLine) + Math.floor(charsPerLine * width) - offset
-    for (let i = 0; i < charCount; i++) {
+    let charCount = (Math.floor(textDepth * depth) * charsPerLine) + Math.floor(charsPerLine * width) - offset;
+    // for (let i = 0; i < charCount; i++) {
+    //     let innerSpan = document.createElement("span");
+    //     innerSpan.classList.add("mirror");
+    //     innerSpan.innerHTML = generateText(textI++);
+    //     span.appendChild(innerSpan);
+    // }
+    // do the same thing but with a 1 ms delay between each 10th character using a timeout
+    let i = 0;
+    let type = function() {
         let innerSpan = document.createElement("span");
         innerSpan.classList.add("mirror");
         innerSpan.innerHTML = generateText(textI++);
         span.appendChild(innerSpan);
+        let r = Math.floor(Math.random() * 150);
+        let wait = (i % 2 == 0) ? r : 0;
+        if (i++ < charCount - 1) { // I'm not sure why we have to do this -1 
+            if (doWait && wait > 0) {
+                setTimeout(type, wait);
+            } else {
+                type();
+            }
+        }
     }
+    type();
+
     return charCount
 }
 
@@ -143,11 +162,19 @@ function post(parent, title, body, links) {
 }
 
 function block_text(parent, text) {
-    let lineLength = Math.floor(charsPerLine * (1 - whitespaceRatio));
+    let maxLineLength = Math.floor(charsPerLine * (1 - whitespaceRatio));
     let i = 0;
     let max = 10000;
     while (text.length > 0 && i++ < max) {
-        let line = text.substring(0, lineLength);
+        // find the last space before the maxLineLength
+        let lineLength = maxLineLength;
+        if (text.length > maxLineLength) {
+            let lastSpace = text.substring(0, maxLineLength).lastIndexOf(' ');
+            if (lastSpace > 0) {
+                lineLength = lastSpace;
+            }
+        }
+        let line = text.substring(0, lineLength).trim();
         davinci_line(parent, line);
         text = text.substring(lineLength);
     }
@@ -212,7 +239,7 @@ function retype_projects() {
 
     let end = document.querySelector('#end');
     end.innerHTML = '';
-    mirrorText(end, 1, 1, 0);
+    mirrorText(end, 1, 1, 0, doWait=true);
 }
 
 function type_links(parent, links, mode) {
@@ -253,12 +280,12 @@ function retype_post() {
 
     let end = document.querySelector('#end');
     end.innerHTML = '';
-    mirrorText(end, 1, 1, 0);
+    mirrorText(end, 1, 1, 0, doWait=true);
 }
 
 function retype_blog() {
-    davinci_block("filler1", 0.5, .5,  'coming soon');
-    mirrorText("filler5a", 1, 1, 0);
+    davinci_block("filler1", 0.5, .5,  'coming soon?');
+    mirrorText("filler5a", 1, 1, 0, doWait=true);
 }
 
 function retype_main() {
@@ -266,7 +293,7 @@ function retype_main() {
     davinci_block("filler2", 0.2, .5, 'alex calderwood');
     davinci_block("filler3", 0.2, .7, 'bio');
     davinci_block("filler4", 0.2, .3, 'blog');
-    mirrorText("filler5a", 1, 1, 0);
+    mirrorText("filler5a", 1, 1, 0, doWait=true);
 }
 
 calculateFontSize();
