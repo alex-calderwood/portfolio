@@ -6,15 +6,21 @@ layout: post
 title: "about"
 text: default
 links:
-  - text: Github
+  - text: github
     url: https://github.com/alex-calderwood
-  - text: LinkedIn
+  - text: linkedin
     url: https://www.linkedin.com/in/alexcalderwood/
-  - text: Buy Me a Coffee
+  - text: buy me a coffee
     url: https://www.buymeacoffee.com/alexcalderwood
 
 ---
-Alex Calderwood is currently a Ph.D. student at the Expressive Intelligence Studio at UC Santa Cruz.
+I am currently a Ph.D. student at the Expressive Intelligence Studio at UC Santa Cruz.
 
-Previously, he completed a master's degree in Natural Language Processing at Columbia University, during which time he pursued journalism coursework at the Columbia Journalism School, where he went on to work as the staff writer at the school's Brown Institute for Media Innovation.
 
+Previously, I studied Natural Language Processing at Columbia University while also enrolled in a graduate journalism degree.
+
+
+I have worked as a writer at CU's Brown Instutue for Media Innovation, where I covered new approaches to journalism. 
+
+
+I am a creative writer! I am currently trying to get some poetry published. 

@@ -158,7 +158,6 @@ function post(parent, title, body, links) {
     davinci_line(parent, title)
     davinci_line(parent, '');
     block_text(parent, body);
-     
 }
 
 function block_text(parent, text) {
@@ -169,7 +168,7 @@ function block_text(parent, text) {
         // find the last space before the maxLineLength
         let lineLength = maxLineLength;
         if (text.length > maxLineLength) {
-            let lastSpace = text.substring(0, maxLineLength).lastIndexOf(' ');
+            let lastSpace = text.substring(0, maxLineLength).search(/ [^ ]*$/);
             if (lastSpace > 0) {
                 lineLength = lastSpace;
             }
@@ -244,6 +243,7 @@ function retype_projects() {
 
 function type_links(parent, links, mode) {
     davinci_line(parent, '');
+
     for (let link of links) {
         let text = link.innerHTML;
         let href = link.href;
@@ -274,8 +274,14 @@ function retype_post() {
         link.style.display = 'none';
     }
 
-    console.log(links);
     post(content_node, title, content, links);
+
+    if (links.length > 0) {
+        davinci_line(content_node, '');
+        davinci_line(content_node, '');
+        davinci_line(links_node, 'links');
+    }
+
     type_links(links_node, links);
 
     let end = document.querySelector('#end');
