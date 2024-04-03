@@ -155,6 +155,7 @@ function generateText(textI) {
 
 function post(parent, title, body, links) {
     davinci_line(parent, '');
+    davinci_line(parent, '');
     davinci_line(parent, title)
     davinci_line(parent, '');
     block_text(parent, body);
