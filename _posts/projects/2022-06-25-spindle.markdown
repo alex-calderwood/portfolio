@@ -8,3 +8,5 @@ links:
     url: https://computationalcreativity.net/iccc22/wp-content/uploads/2022/06/ICCC-2022_2L_Calderwood-et-al..pdf
 ---
 Spindle is an AI plot writing tool for interactive fiction games. The project was an attempt to see if interactive narrative passages could be generated using the Twine framework, and how new language modeling technology might be used to assist storytellers, while also furthering our formal understanding of storytelling. The project uses a large language model (GPT-3) that has read a large segment of the internet, in conjunction with a narrative interpretation pipeline we designed. The system forms an interpretation of the narrative context for the passage to be generated, and uses this understanding to condition what will come next.
+
+Coauthored with Noah Wardrip-Fruin, and Michael Mateas
