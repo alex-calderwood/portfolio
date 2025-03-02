@@ -3,6 +3,7 @@ layout: post
 title: "sylvia"
 date:   2020-06-01 17:41:39 -0700
 text: default
+tags: [art, technical]
 links:
   - text: Instagram
     url: https://www.instagram.com/myfriendsylvia/
@@ -13,4 +14,4 @@ links:
   - text: My Contribution
     url: http://www.myfriendsylvia.com/ai-language/
 ---
-Sylvia is a research project that explores the idea of building aging into the design process of virtual beings.Sylvia’s Instagram account was live from July to November 2020 as she aged rapidly. The project explores the co-writing paradigm in which an AI completes, or responds to, the writer-editor using the tool. Technically, it involved scraping hundreds of thousands of Instagram captions to fine-tune OpenAI's GPT-2 text generation model.
+Sylvia is a research project that explores the idea of building aging into the design process of virtual beings. Sylvia’s Instagram account was live from July 2020 as she aged rapidly, before her departure in November 2020. The project was an early exploration of the co-writing paradigm in which prompting an AI persona (trained on hundreds of thousands of Instagram influencer's posts) led to a coproduced longform text. The text is a jarring mashup of voices that represents a clash between young and old, permanent and impermanent, introspection and pure exterior.

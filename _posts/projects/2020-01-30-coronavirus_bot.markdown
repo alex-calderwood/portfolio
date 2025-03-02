@@ -2,8 +2,8 @@
 layout: post
 title: "coronavirus bot"
 date:   2020-01-30 17:41:39 -0700
-categories: jekyll update
 text: covid
+tags: [art, language, technical]
 links:
   - text: Twitter
     url: https://twitter.com/coronavirus_bot

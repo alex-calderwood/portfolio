@@ -2,8 +2,8 @@
 layout: post
 title: "disinformation"
 date:   2020-01-30 17:41:39 -0700
-date:   2021-01-19 17:41:39 -0700
 text: default
+tags: [papers, reporting, technical]
 links:
   - text: Computation + Journalism
     url: https://docs.google.com/presentation/d/1b5ZTp-nax6ckfZ8VWKw5-McUovpNEomVGpUcEhB59nY/edit?usp=sharing

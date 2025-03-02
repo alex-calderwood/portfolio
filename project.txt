@@ -1,0 +1,769 @@
+======== FILE: ./bio.markdown ========
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: post
+title: "about"
+text: default
+links:
+  - text: github
+    url: https://github.com/alex-calderwood
+  - text: linkedin
+    url: https://www.linkedin.com/in/alexcalderwood/
+  - text: buy me a coffee
+    url: https://www.buymeacoffee.com/alexcalderwood
+
+---
+I am currently a Ph.D. student at the Expressive Intelligence Studio at UC Santa Cruz.
+
+Previously, I studied Natural Language Processing at Columbia University while enrolled in a graduate journalism degree.
+
+I have worked as a writer at CU's Brown Instutue for Media Innovation, where I covered new approaches to journalism. I've also published investigative journalism, designed games, and worked in news automation (turning data feeds into words).
+
+I have too many hobbies! Surfing. Trailrunning. Photography. Installation art. Poetry. Creative Coding. Manufacturing. Carpentry. Woodturning... Jack of All Trades, Master of One.
+
+I am a writer! I am currently trying to get some poetry published. 
+
+======== FILE: ./CNAME ========
+alexcwd.space
+
+======== FILE: ./index.markdown ========
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+description: alex calderwood
+layout: main
+---
+
+======== FILE: ./404.html ========
+---
+permalink: /404.html
+layout: default
+---
+
+<style type="text/css" media="screen">
+  .container {
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  h1 {
+    margin: 30px 0;
+    font-size: 4em;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+</style>
+
+<div class="container">
+  <h1>404</h1>
+
+  <p><strong>Page not found :(</strong></p>
+  <p>The requested page could not be found.</p>
+</div>
+
+======== FILE: ./blog.markdown ========
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+description: alex calderwood writes
+layout: blog
+---
+
+======== FILE: ./.gitmodules ========
+[submodule "projects/all_is_all_poetry"]
+	path = projects/all_is_all_poetry
+	url = https://github.com/alex-calderwood/all_is_all_poetry
+
+======== FILE: ./README.md ========
+# My Portfolio
+
+## Usage
+
+    jekyll build
+    jekyll serve
+
+
+function getPoem() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // randomize the lines of the poem
+            poem = poem.split('\n').sort(() => Math.random() - 0.5).join('\n');
+            resolve(poem);
+            // Simulate fetching poem or a network error
+            // if (Math.random() > 0.999) { // 10% chance of error
+            //     reject('Failed to load poem.');
+            // } else {
+                // resolve(poem);
+            // }
+        }, 500);
+    });
+}
+
+function addPoemToPage(poem) {
+    // poem: text with line breaks
+
+    const container = document.getElementById('container');
+    const poemElement = document.createElement('div');
+    poemElement.classList.add('poem');
+    poem.split('\n').forEach(line => {
+        const lineElement = document.createElement('div');
+        // if line is empty add a br
+        if (line === '') {
+            lineElement.innerHTML = '<br>';
+        } else {
+            lineElement.textContent = line;
+        }
+        poemElement.appendChild(lineElement);
+    });
+    container.appendChild(poemElement);
+}
+
+async function loadMorePoems() {
+    try {
+        const loadingIndicator = document.getElementById('loading');
+        loadingIndicator.style.display = 'block';
+        const poem = await getPoem();
+        addPoemToPage(poem);
+    } catch (error) {
+        console.error(error);
+        const container = document.getElementById('container');
+        container.innerHTML += '';
+    } finally {
+        const loadingIndicator = document.getElementById('loading');
+        loadingIndicator.style.display = 'none';
+    }
+}
+
+function loadingOn() {
+    document.getElementById('loading').style.display = 'block';
+}
+
+function loadingOff() {
+    document.getElementById('loading').style.display = 'none';
+}
+
+
+function handleScroll() {
+    console.log(window.innerHeight + window.scrollY, document.body.offsetHeight - doomScrollDepth)
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - doomScrollDepth) {
+        loadingOn();
+        getPoem().then(poem => {
+            addPoemToPage(poem);
+            loadingOff();
+        }).then(
+            () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - doomScrollDepth) {
+                    handleScroll();
+                }
+            }
+        );
+    }
+}
+
+window.addEventListener('scroll', handleScroll);
+
+window.addEventListener('wheel', function(event) {
+    if (document.body.scrollHeight <= window.innerHeight) {
+        handleScroll();
+    }
+});
+
+
+getPoem().then(addPoemToPage); // Load initial poem
+</script>
+</body>
+</html>
+
+======== FILE: ./projects.markdown ========
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+description: alex calderwood projects
+layout: projects
+---
+
+======== FILE: ./about.markdown ========
+---
+layout: page
+title: About
+permalink: /about/
+---
+
+This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+
+You can find the source code for Minima at GitHub:
+[jekyll][jekyll-organization] /
+[minima](https://github.com/jekyll/minima)
+
+You can find the source code for Jekyll at GitHub:
+[jekyll][jekyll-organization] /
+[jekyll](https://github.com/jekyll/jekyll)
+
+
+[jekyll-organization]: https://github.com/jekyll
+
+======== FILE: ./_config.yml ========
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: alex calderwood portfolio
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  alex calderwood's blog
+baseurl: "/portfolio" # the subpath of your site, e.g. /blog
+url: ""
+# url: "http://alex-calderwood.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
+# github_username:  jekyll
+
+# Build settings
+plugins:
+  - jekyll-feed
+  # - jekyll-remote-theme
+# remote_theme: pages-themes/minimal@v0.2.0
+
+sass:
+    sass_dir: _sass
+    style: compressed
+
+# Separate out different types of posts
+# Ref: https://stackoverflow.com/a/40562548
+defaults:
+  - scope:
+      path: "_posts/blog"
+    values:
+      type: "blog"
+  - scope:
+      path: "_posts/projects"
+    values:
+      type: "projects"
+  - scope:
+      path: "_posts/poetry"
+    values:
+      type: "poetry"
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+======== FILE: ./Gemfile ========
+source "https://rubygems.org"
+# Hello! This is where you manage which Jekyll version is used to run.
+# When you want to use a different version, change it below, save the
+# file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
+#
+#     bundle exec jekyll serve
+#
+# This will help ensure the proper Jekyll version is running.
+# Happy Jekylling!
+gem "jekyll", "~> 4.3.2"
+# This is the default theme for new Jekyll sites. You may change this to anything you like.
+# gem "minima", "~> 2.5"
+# If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+# uncomment the line below. To upgrade, run `bundle update github-pages`.
+# gem "github-pages", "~> 228", group: :jekyll_plugins
+# gem "github-pages", group: :jekyll_plugins
+# If you have any plugins, put them here!
+group :jekyll_plugins do
+  gem "jekyll-feed", "~> 0.12"
+end
+
+# Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
+# and associated library.
+platforms :mingw, :x64_mingw, :mswin, :jruby do
+  gem "tzinfo", ">= 1", "< 3"
+  gem "tzinfo-data"
+end
+
+# Performance-booster for watching directories on Windows
+gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
+
+# Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
+# do not have a Java counterpart.
+gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+
+======== FILE: ./Gemfile.lock ========
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
+    colorator (1.1.0)
+    concurrent-ruby (1.2.3)
+    em-websocket (0.5.3)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0)
+    eventmachine (1.2.7)
+    ffi (1.16.3)
+    forwardable-extended (2.6.0)
+    google-protobuf (4.26.1-arm64-darwin)
+      rake (>= 13)
+    google-protobuf (4.26.1-x86_64-darwin)
+      rake (>= 13)
+    http_parser.rb (0.8.0)
+    i18n (1.14.4)
+      concurrent-ruby (~> 1.0)
+    jekyll (4.3.3)
+      addressable (~> 2.4)
+      colorator (~> 1.0)
+      em-websocket (~> 0.5)
+      i18n (~> 1.0)
+      jekyll-sass-converter (>= 2.0, < 4.0)
+      jekyll-watch (~> 2.0)
+      kramdown (~> 2.3, >= 2.3.1)
+      kramdown-parser-gfm (~> 1.0)
+      liquid (~> 4.0)
+      mercenary (>= 0.3.6, < 0.5)
+      pathutil (~> 0.9)
+      rouge (>= 3.0, < 5.0)
+      safe_yaml (~> 1.0)
+      terminal-table (>= 1.8, < 4.0)
+      webrick (~> 1.7)
+    jekyll-feed (0.17.0)
+      jekyll (>= 3.7, < 5.0)
+    jekyll-sass-converter (3.0.0)
+      sass-embedded (~> 1.54)
+    jekyll-watch (2.2.1)
+      listen (~> 3.0)
+    kramdown (2.4.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
+    liquid (4.0.4)
+    listen (3.9.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
+    mercenary (0.4.0)
+    pathutil (0.16.2)
+      forwardable-extended (~> 2.6)
+    public_suffix (5.0.5)
+    rake (13.2.0)
+    rb-fsevent (0.11.2)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
+    rexml (3.2.6)
+    rouge (4.2.1)
+    safe_yaml (1.0.5)
+    sass-embedded (1.72.0-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.72.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
+    unicode-display_width (2.5.0)
+    webrick (1.8.1)
+
+PLATFORMS
+  arm64-darwin-21
+  x86_64-darwin-21
+
+DEPENDENCIES
+  http_parser.rb (~> 0.6.0)
+  jekyll (~> 4.3.2)
+  jekyll-feed (~> 0.12)
+  tzinfo (>= 1, < 3)
+  tzinfo-data
+  wdm (~> 0.1.1)
+
+BUNDLED WITH
+   2.4.12
+
+======== FILE: ./.gitlab-ci.yml ========
+image: ruby:latest
+
+variables:
+  JEKYLL_ENV: production
+  LC_ALL: C.UTF-8
+
+before_script:
+  - gem install bundler
+  - bundle install
+
+test:
+  stage: test
+  script:
+  - bundle exec jekyll build -d test
+  artifacts:
+    paths:
+    - test
+  rules:
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+
+pages:
+  stage: deploy
+  script:
+  - bundle exec jekyll build -d public
+  artifacts:
+    paths:
+    - public
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+======== FILE: ./.vscode/settings.json ========
+{
+    "github.copilot.editor.enableAutoCompletions": true
+}
+======== FILE: ./assets/css/main.scss ========
+---
+# this ensures Jekyll reads the file to be transformed into CSS later
+# only Main files contain this front matter, not partials.
+---
+
+@import "styles";
+
+======== FILE: ./assets/js/davinci.js ========
+let textI, textDepth, whitespaceRatio, previousWidth;
+let defaultText = "Out of the trunk, the branches grow; out of them, the twigs. So, in productive subjects, grow the chapters. The crotch alluded to on a previous page deserves independent mention. It is a notched stick of a peculiar form, some two feet in length, which is perpendicularly inserted into the starboard gunwale near the bow, for the purpose of furnishing a rest for the wooden extremity of the harpoon, whose other naked, barbed end slopingly projects from the prow. Thereby the weapon is instantly at hand to its hurler, who snatches it up as readily from its rest as a backwoodsman swings his rifle from the wall. It is customary to have two harpoons reposing in the crotch, respectively called the first and second irons.But these two harpoons, each by its own cord, are both connected with the line; the object being this: to dart them both, if possible, one instantly after the other into the same whale; so that if, in the coming drag, one should draw out, the other may still retain a hold. It is a doubling of the chances. But it very often happens that owing to the instantaneous, violent, convulsive running of the whale upon receiving the first iron, it becomes impossible for the harpooneer, however lightning-like in his movements, to pitch the second iron into him. Nevertheless, as the second iron is already connected with the line, and the line is running, hence that weapon must, at all events, be anticipatingly tossed out of the boat, somehow and somewhere; else the most terrible jeopardy would involve all hands. Tumbled into the water, it accordingly is in such cases; the spare coils of box line (mentioned in a preceding chapter) making this feat, in most instances, prudently practicable. But this critical act is not always unattended with the saddest and most fatal casualties.Furthermore: you must know that when the second iron is thrown overboard, it thenceforth becomes a dangling, sharp-edged terror, skittishly curvetting about both boat and whale, entangling the lines, or cutting them, and making a prodigious sensation in all directions. Nor, in general, is it possible to secure it again until the whale is fairly captured and a corpse.Consider, now, how it must be in the case of four boats all engaging one unusually strong, active, and knowing whale; when owing to these qualities in him, as well as to the thousand concurring accidents of such an audacious enterprise, eight or ten loose second irons may be simultaneously dangling about him. For, of course, each boat is supplied with several harpoons to bend on to the line should the first one be ineffectually darted without recovery. All these particulars are faithfully narrated here, as they will not fail to elucidate several most important, however intricate passages, in scenes hereafter to be painted";
+let backgroundText;
+let charsPerLine;
+
+
+let backgroundSpan = document.querySelector('#filler_text');
+if (backgroundSpan) {
+    backgroundText = backgroundSpan.innerHTML;
+} else {
+    backgroundText = defaultText;
+}
+
+function getCurrentBreakPoint() {
+    const bigBreak = 2000;
+    const desktopBreak = 1200;
+    const tabletBreak = 915;
+    const mobileBreak = 440;
+
+    let breakPointTextWidth = 200; 
+    if (window.innerWidth > bigBreak) {
+        breakPointTextWidth = 130;
+    }
+    else if (window.innerWidth > desktopBreak) {
+        breakPointTextWidth = 90;
+    }
+    else if (window.innerWidth > tabletBreak) {
+        breakPointTextWidth = 80;
+    }
+    else if (window.innerWidth > mobileBreak) {
+        breakPointTextWidth = 40;
+    }
+    else { // tiny
+        breakPointTextWidth = 35;
+    }
+    return breakPointTextWidth;
+}
+ 
+function calculateFontSize() {
+    const charRatio = 28.8734 / 17.391; // I calculated this by measuring the width of a character and the height of a character abd its bad
+
+    textI = 0;
+    whitespaceRatio = 0.2
+
+    charsPerLine = getCurrentBreakPoint();
+
+    let fontWidth = window.innerWidth / charsPerLine; // pixels
+    let fontHeight = fontWidth * charRatio; // pixels
+    textDepth = Math.floor(window.innerHeight / fontHeight); // lines`
+
+    // // set the style of the body to match the font size
+    document.body.style.fontSize = fontHeight + "px";
+    document.body.style.lineHeight = fontHeight + "px";
+}
+
+function needToUpdate() {
+    let currentWidth = getCurrentBreakPoint();
+    let update = previousWidth != currentWidth;
+    previousWidth = currentWidth;
+    return update;
+}
+
+function updateIfNeeded(update) {
+    calculateFontSize();
+    let shouldUpdate = needToUpdate();
+    if (shouldUpdate) {
+        update()
+    } 
+}
+
+function davinci_block(tag_id, vdepth, hdepth, text) {
+    let left = mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
+    let right = mirrorText(tag_id + 'b', 0, 1, Math.floor(charsPerLine * hdepth) + offset(text, false));
+    let center = text.length;
+}
+
+function creative_davinci_block(parent, vdepth, hdepth, text) {
+    // create the left and right spans
+    let left_span = document.createElement("span");
+    left_span.classList.add("back");
+    let right_span = document.createElement("span");
+    right_span.classList.add("back");
+
+    // add the spans to the parent
+    parent.appendChild(left_span);
+    parent.appendChild(right_span);
+
+}
+  
+function offset(s, floor=true) {
+    if (floor) {
+        return  Math.floor(s.length / 2);
+    } else {
+        return  Math.ceil(s.length / 2);
+    }
+    
+} 
+
+function mirrorText(parent, depth, width, offset=0, doWait=false) {
+    let span;
+    if (typeof parent === 'object') {
+        span = parent;
+    }
+    else {
+        span = document.getElementById(parent);
+    }
+    span.innerHTML = ""; // delete everything in the span gives an error
+    let charCount = (Math.floor(textDepth * depth) * charsPerLine) + Math.floor(charsPerLine * width) - offset;
+    // for (let i = 0; i < charCount; i++) {
+    //     let innerSpan = document.createElement("span");
+    //     innerSpan.classList.add("mirror");
+    //     innerSpan.innerHTML = generateText(textI++);
+    //     span.appendChild(innerSpan);
+    // }
+    // do the same thing but with a 1 ms delay between each 10th character using a timeout
+    let i = 0;
+    let type = function() {
+        let innerSpan = document.createElement("span");
+        innerSpan.classList.add("mirror");
+        innerSpan.innerHTML = generateText(textI++);
+        span.appendChild(innerSpan);
+        let r = Math.floor(Math.random() * 150);
+        let wait = (i % 2 == 0) ? r : 0;
+        if (i++ < charCount - 1) { // I'm not sure why we have to do this -1 
+            if (doWait && wait > 0) {
+                setTimeout(type, wait);
+            } else {
+                type();
+            }
+        }
+    }
+    type();
+
+    return charCount
+}
+
+function mirrorTextLiteral(parent, chars) {
+    parent.innerHTML = ""; 
+    for (let i = 0; i < chars; i++) {
+        let innerSpan = document.createElement("span");
+        innerSpan.classList.add("mirror");
+        innerSpan.innerHTML = generateText(textI++);
+        parent.appendChild(innerSpan);
+    }
+}
+
+// create a text generator
+function generateText(textI) {
+    return backgroundText[backgroundText.length - ((textI + 1) % backgroundText.length )];
+}
+
+function post(parent, title, body, links) {
+    davinci_line(parent, '');
+    davinci_line(parent, '');
+    davinci_line(parent, title)
+    davinci_line(parent, '');
+    block_text(parent, body);
+}
+
+function block_text(parent, text) {
+
+    let maxLineLength = Math.floor(charsPerLine * (1 - whitespaceRatio));
+    let i = 0;
+    let max = 10000;
+    while (text.length > 0 && i++ < max) {
+        // find the last space before the maxLineLength
+        let lineLength = text.length;
+        let firstLineBreak = text.indexOf('\n');
+        if (firstLineBreak > 0) {
+            lineLength = firstLineBreak;
+        }
+        let line = text.substring(0, lineLength);
+        if (line.length > maxLineLength) {
+            line = text.substring(0, maxLineLength);
+            let lastSpace = line.lastIndexOf(' ');
+            if (lastSpace > 0) {
+                lineLength = lastSpace;
+            }
+        }
+
+        line = text.substring(0, lineLength).trim();
+        davinci_line(parent, line);
+        if (firstLineBreak == lineLength) {
+            davinci_line(parent, '');
+        }
+
+        text = text.substring(lineLength);
+    }
+}
+
+function davinci_line(parent, text, href=false, mode='center') {
+    let padding_left, padding_right;
+    if (mode == 'center') {
+        padding_left  = Math.floor((charsPerLine - text.length) / 2);
+        padding_right = Math.ceil((charsPerLine - text.length) / 2);
+    } else if (mode == 'random') {
+        padding_left  = Math.floor(Math.random() * (charsPerLine - text.length));
+        padding_right = charsPerLine - padding_left - text.length;
+    } else { // mode == 'left'
+        padding_left  = charsPerLine * whitespaceRatio / 2 ;
+        padding_right = charsPerLine - padding_left - text.length;
+    }
+    // console.log({charsPerLine, padding_left, padding_right, text}, text.length)
+    
+    let left_span = document.createElement("span");
+    left_span.classList.add("back");
+    let right_span = document.createElement("span");
+    right_span.classList.add("back");
+
+    parent.appendChild(left_span);
+    mirrorTextLiteral(left_span, padding_left);
+    let middle_span = document.createElement("span");
+    middle_span.classList.add("invert");
+    middle_span.innerHTML = text;
+
+    if (href) {
+        let link = document.createElement("a");
+        link.href = href;
+        link.classList.add("link");
+        link.appendChild(middle_span);
+        parent.appendChild(link);
+    } else {
+        parent.appendChild(middle_span);
+    }
+    parent.appendChild(right_span);
+    mirrorTextLiteral(right_span, padding_right);
+}
+
+
+function header() {
+    mirrorText("filler0a", 0, 1, 0);
+    davinci_block("filler1", 0, .25, 'projects');
+    davinci_block("filler2", 0, .5,  'alex calderwood');
+    davinci_block("filler3", 0, .75, 'bio');
+    davinci_block("filler4", 0, .325,'blog');
+}
+
+function retype_projects() {
+    header();
+
+    let links = document.querySelectorAll('.link');
+    let links_node = document.querySelector('#links');
+    links_node.innerHTML = '';
+    for (let link of links) {
+        link.style.display = 'none';
+    }
+    type_links(links_node, links, 'random');
+
+    let end = document.querySelector('#end');
+    end.innerHTML = '';
+    mirrorText(end, 1, 1, 0, doWait=true);
+}
+
+function type_links(parent, links, mode) {
+    davinci_line(parent, '');
+
+    for (let link of links) {
+        let text = link.innerHTML;
+        let href = link.href;
+        davinci_line(parent, text, href=href, mode=mode);
+        davinci_line(parent, '');
+    }
+}
+
+function retype_post() {
+    header();
+
+    let title = document.querySelector('#title_text');
+    title.style.display = 'none'; // hide it
+    title = title.innerHTML;
+    let title_node = document.querySelector('#title');
+    title_node.innerHTML = '';
+
+    let content = document.querySelector('#content_text');
+    content.style.display = 'none'; // hide it
+    content = content.innerHTML;
+    let content_node = document.querySelector('#content');
+    content_node.innerHTML = '';
+
+    let links = document.querySelectorAll('.link');
+    let links_node = document.querySelector('#links');
+    links_node.innerHTML = '';
+    for (let link of links) {
+        link.style.display = 'none';
+    }
+
+    post(content_node, title, content, links);
+
+    if (links.length > 0) {
+        davinci_line(content_node, '');
+        davinci_line(content_node, '');
+        davinci_line(links_node, 'links');
+    }
+
+    type_links(links_node, links);
+
+    let end = document.querySelector('#end');
+    end.innerHTML = '';
+    mirrorText(end, 1, 1, 0, doWait=true);
+}
+
+function retype_blog() {
+    davinci_block("filler1", 0.5, .5,  'coming soon?');
+    mirrorText("filler5a", 1, 1, 0, doWait=true);
+}
+
+function retype_main() {
+    davinci_block("filler1", 0.2, .3, 'projects');
+    davinci_block("filler2", 0.2, .5, 'alex calderwood');
+    davinci_block("filler3", 0.2, .7, 'bio');
+    davinci_block("filler4", 0.2, .3, 'blog');
+    mirrorText("filler5a", 1, 1, 0, doWait=true);
+}
+
+calculateFontSize();
+previousWidth = getCurrentBreakPoint();
+

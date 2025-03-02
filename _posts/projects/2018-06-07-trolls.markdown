@@ -3,6 +3,7 @@ layout: post
 title: "wired trolls"
 date:   2018-06-07 17:41:39 -0700
 text: default
+tags: [reporting]
 links:
   - text: WIRED
     url: https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/

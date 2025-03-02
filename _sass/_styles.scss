@@ -2,7 +2,7 @@ body {
     font-family: 'Cutive Mono', monospace;
     font-size: 20px;
     line-height: 20px;
-    word-break: break-all;
+    // word-break: break-all;
     // The CSS ch unit is defined as the width of the character 0 (zero, or U+0030) of the font. ≈
     width: 100svw;
     height: 100svh;
@@ -12,12 +12,56 @@ body {
     margin: 0;
 }
 
-
 .back {
     display: inline;
     color: #dadada;
     font-style: italic;
+    // mix-blend-mode: difference;
+
 }
+
+.background-layer {
+  word-break: break-all;
+}
+
+a:hover {
+    font-style: italic;
+    // color: grey;
+}
+
+.tag-link {
+  background-color: bisque;
+}
+
+
+.invert {
+  // color: rgb(51, 51, 51);
+  // add the two colors together
+  // mix-blend-mode: calc(50% + 50%);
+}
+
+
+.post-image {
+  position: absolute;
+  z-index: -1; /* Ensure it is behind other content */
+  filter: grayscale(100%) contrast(100%) brightness(200%); // blur(5px)
+  width: 50%;
+  opacity: 0.24;
+}
+
+#image1 {
+  top: 55%;
+  left: 0px;
+  width: 140%;
+  height: auto;
+}
+
+// #image2 {
+//   top: 600px;
+//   right: 50px;
+//   // width: 150px;
+//   height: auto;
+// }
 
 .mirror {
     display: inline-block;
@@ -88,17 +132,45 @@ a {
     transform: rotateY(180deg);
   }
 
-// .back {
-//     /* direction: rtl;
-//     unicode-bidi: bidi-override; */
+  // .link {
+  //   // text-decoration: underline;
+  //   // dark grey
+  //   color: rgb(103, 103, 103);
+  //   font-weight: bold;
+  // }
 
-//     display: inline-block;
-//     -moz-transform:    scaleX(-1); /*Gecko */
-//     -o-transform:      scaleX(-1); /* Opera */
-//     -webkit-transform: scaleX(-1); /* Webkit */
-//     transform:         scaleX(-1); /*Standard */
 
-//     filter: FlipH;                 /* IE 6/7/8 */
-
-//     color:#a8a6a6;
+//   #masked-image {
+//     font-family: Oswald, sans-serif;
+//     font-size: 100px;
+//     color: #fff;
+//     text-transform: uppercase;
+//     border: 14px solid #fff;
+//     border-radius: .2em;
+//     text-align: center;
+//     margin: 0;
+//     display: block;
+//     -webkit-mask-image: url(../images/rough-texture.png);
+//     -webkit-transform: rotate(-4deg);
+//     -moz-mask-image: url(../images/rough-texture.png);
+//     -moz-transform: rotate(-4deg);
+//     -o-mask-image: url(../images/rough-texture.png);
+//     -o-transform: rotate(-4deg);
+//     mask-image: url(../images/rough-texture.png);
+//     transform: rotate(-4deg);
 // }
+
+// // .back {
+// //     /* direction: rtl;
+// //     unicode-bidi: bidi-override; */
+
+// //     display: inline-block;
+// //     -moz-transform:    scaleX(-1); /*Gecko */
+// //     -o-transform:      scaleX(-1); /* Opera */
+// //     -webkit-transform: scaleX(-1); /* Webkit */
+// //     transform:         scaleX(-1); /*Standard */
+
+// //     filter: FlipH;                 /* IE 6/7/8 */
+
+// //     color:#a8a6a6;
+// // }

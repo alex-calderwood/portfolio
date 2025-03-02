@@ -3,7 +3,6 @@ let defaultText = "Out of the trunk, the branches grow; out of them, the twigs. 
 let backgroundText;
 let charsPerLine;
 
-
 let backgroundSpan = document.querySelector('#filler_text');
 if (backgroundSpan) {
     backgroundText = backgroundSpan.innerHTML;
@@ -47,6 +46,7 @@ function calculateFontSize() {
     let fontWidth = window.innerWidth / charsPerLine; // pixels
     let fontHeight = fontWidth * charRatio; // pixels
     textDepth = Math.floor(window.innerHeight / fontHeight); // lines`
+    document.documentElement.style.setProperty('--line-height', fontHeight + 'px');
 
     // // set the style of the body to match the font size
     document.body.style.fontSize = fontHeight + "px";
@@ -80,7 +80,6 @@ function creative_davinci_block(parent, vdepth, hdepth, text) {
     left_span.classList.add("back");
     let right_span = document.createElement("span");
     right_span.classList.add("back");
-    parent.
 
     // add the spans to the parent
     parent.appendChild(left_span);
@@ -211,11 +210,13 @@ function davinci_line(parent, text, href=false, mode='center') {
     parent.appendChild(left_span);
     mirrorTextLiteral(left_span, padding_left);
     let middle_span = document.createElement("span");
+    middle_span.classList.add("invert");
     middle_span.innerHTML = text;
 
-    if (href) {// do this properly
+    if (href) {
         let link = document.createElement("a");
         link.href = href;
+        link.classList.add("link");
         link.appendChild(middle_span);
         parent.appendChild(link);
     } else {
@@ -224,7 +225,48 @@ function davinci_line(parent, text, href=false, mode='center') {
     parent.appendChild(right_span);
     mirrorTextLiteral(right_span, padding_right);
 }
-
+function davinci_fill(element, mode='center') {
+    // Get the inner text length to calculate padding
+    const text = element.innerText.trim(); // Trim any existing whitespace
+    
+    // Calculate padding similar to davinci_line
+    let padding_left, padding_right;
+    if (mode === 'center') {
+        padding_left = Math.floor((charsPerLine - text.length) / 2);
+        padding_right = Math.ceil((charsPerLine - text.length) / 2);
+    } else if (mode === 'random') {
+        padding_left = Math.floor(Math.random() * (charsPerLine - text.length));
+        padding_right = charsPerLine - padding_left - text.length;
+    } else { // mode === 'left'
+        padding_left = charsPerLine * whitespaceRatio / 2;
+        padding_right = charsPerLine - padding_left - text.length;
+    }
+    
+    // Create a document fragment to avoid whitespace between elements
+    const fragment = document.createDocumentFragment();
+    
+    // Create and fill the padding spans
+    const left_span = document.createElement("span");
+    left_span.classList.add("back");
+    mirrorTextLiteral(left_span, padding_left);
+    fragment.appendChild(left_span);
+    
+    // Create the middle content span
+    const middle_span = document.createElement("span");
+    middle_span.classList.add("invert");
+    middle_span.innerHTML = element.innerHTML.trim();
+    fragment.appendChild(middle_span);
+    
+    // Create and fill the right padding span
+    const right_span = document.createElement("span");
+    right_span.classList.add("back");
+    mirrorTextLiteral(right_span, padding_right);
+    fragment.appendChild(right_span);
+    
+    // Clear and rebuild the element using the fragment
+    element.innerHTML = '';
+    element.appendChild(fragment);
+}
 
 function header() {
     mirrorText("filler0a", 0, 1, 0);
@@ -232,6 +274,24 @@ function header() {
     davinci_block("filler2", 0, .5,  'alex calderwood');
     davinci_block("filler3", 0, .75, 'bio');
     davinci_block("filler4", 0, .325,'blog');
+
+    let end = document.getElementById('end');
+    if (end) {
+        end.innerHTML = '';
+        mirrorText(end, 10, 10, 0, doWait=true);
+    }
+
+    let end2 = document.getElementById('end2');
+    if (end2) {
+        end2.innerHTML = '';
+        mirrorText(end2, 30, 30, 0, doWait=true);
+    }
+
+    let end3 = document.getElementById('end3');
+    if (end3) {
+        end3.innerHTML = '';
+        mirrorText(end3, 1, 1, 0, doWait=true);
+    }
 }
 
 function retype_projects() {
@@ -239,6 +299,16 @@ function retype_projects() {
 
     let links = document.querySelectorAll('.link');
     let links_node = document.querySelector('#links');
+
+    let body = document.querySelector('body');
+
+    // davinci_line(body, '');
+    // davinci_line(body, '');
+    // davinci_line(body, '');
+    // davinci_line(body, '');
+    // davinci_line(body, '');
+
+
     links_node.innerHTML = '';
     for (let link of links) {
         link.style.display = 'none';
@@ -263,7 +333,7 @@ function type_links(parent, links, mode) {
 
 function retype_post() {
     header();
-
+    // TODO HERE I THINK THE PAGE ISN"T LOADED
     let title = document.querySelector('#title_text');
     title.style.display = 'none'; // hide it
     title = title.innerHTML;
@@ -291,11 +361,12 @@ function retype_post() {
         davinci_line(links_node, 'links');
     }
 
-    type_links(links_node, links);
-
-    let end = document.querySelector('#end');
+    let end = document.querySelector('#actualEnd');
+    console.log('dav', {end});
     end.innerHTML = '';
-    mirrorText(end, 1, 1, 0, doWait=true);
+    mirrorText(end, 10, 10, 0, doWait=false);
+
+    type_links(end, links);
 }
 
 function retype_blog() {

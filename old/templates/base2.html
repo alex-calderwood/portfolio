@@ -1,0 +1,152 @@
+
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="../static/index.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Abhaya%20Libre" rel="stylesheet">
+
+		<link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico"/>
+
+		<title>{{title}}</title>
+
+		{% block head %}
+		{% endblock %}
+
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123199663-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-123199663-2');
+		</script>
+
+		<script>
+			// TODO: Do it this way instead https://stackoverflow.com/questions/1740218/error-handling-in-getjson-calls
+			$.getJSON('https://json.geoiplookup.io/', function(data) {
+				console.log("You are exposed! You are in " + data["city"] + ", " + data["postal_code"] + " at these coordinates: " + data["latitude"] + ", " + data["longitude"] );
+				console.log("Anyone can learn this about you. Unless you're using a VPN.");
+			})
+			.fail(function() { console.log("Your location is hidden. Nice!"); });
+
+		</script>
+
+		<script type="text/javascript">
+
+			var minShakeWait = 4500;
+			var maxShakeWait = 9000;
+			var shakeDuration = 170;
+			// Mostly I am doing it this way because I wanted to experiment with a json endpoint
+			// in the Flask site, but I realized that usuing Jinja, as I am with my name, 
+			// is both simpler and quicker. I'm going to leave this as is for now, partly to
+			// experiment with what else I can do with the endpoint.
+			async function sometimes_pronounce(id, text) {
+				var url = "{{ url_for('sometimes_pronounce') }}"
+				var data = {'text': text}
+				
+				pronounced_response = await fetch(url, {
+					method: 'POST', // *GET, POST, PUT, DELETE, etc.
+					mode: 'cors', // no-cors, *cors, same-origin
+					cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+					credentials: 'same-origin', // include, *same-origin, omit
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					redirect: 'follow', // manual, *follow, error
+					referrerPolicy: 'no-referrer', // no-referrer, *client
+					body: JSON.stringify(data) // body data type must match "Content-Type" header
+					// signal: controller.signal
+				}).then(response => response.json());
+
+				var obj = document.getElementById(id);
+				var oldText = obj.textContent;
+				newText = pronounced_response['text'];
+				obj.innerHTML = newText; // set the new text
+
+				if (oldText.trim() != newText.trim()) {
+					var toShake = obj.nodeName == 'A' ? obj.parentElement : obj;
+
+					// assign the new pronunciation to the object
+					toShake.classList.add('shake');
+					setTimeout(
+						() => toShake.classList.remove('shake'),
+						shakeDuration,
+					)
+				}
+			}
+
+			function modifyPage() {
+				sometimes_pronounce('words', 'Words');
+				sometimes_pronounce('projects', 'Projects');
+				sometimes_pronounce('about', 'About.json');
+				sometimes_pronounce('header', 'Alex Calderwood');
+
+				try {
+					sometimes_pronounce('shownotes', 'Shownotes');
+					sometimes_pronounce('poetry', 'Poetry');
+					sometimes_pronounce('blog', 'Blog');
+				} catch (error) {
+					// Don't need to do anything
+					// console.log(error);
+				}
+
+				
+				// testing
+				// // get a random p
+				// ps = Array.from(document.querySelectorAll('p'))
+				// 	.sort(() => Math.random() - .5)
+				// p = ps.length > 0 ? ps[0] : null;
+				// if (p) {
+				// 	p.textContent
+				// }
+
+				// Keep calling this
+				setTimeout(modifyPage, Math.max(minShakeWait, Math.random() * maxShakeWait));
+			}
+
+			
+			
+		</script>
+
+	</head>
+	<body onload="setTimeout(modifyPage, 1000)">
+		<div class="sidebar">
+		</div>
+
+		<br class="page-top">
+
+		<!--Header-->
+		<div class="container">
+			<div class="row justify-content-md-center .visible-sm-*">
+				<div id="header" class="header col-auto">
+					{{name}}
+				</div>
+			</div>
+
+
+			{% block more_header %}
+			{% endblock %}
+
+		</div>
+
+		<!--Body-->
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="page-content col-md">
+
+					{% block body %}
+					{% endblock %}
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+
+</html>

@@ -3,6 +3,7 @@ layout: post
 title: "semantic compasses"
 date:   2020-01-01 17:41:39 -0700
 text: default
+tags: [art, language]
 links:
   - text: live demo (coming soon)
     url: 

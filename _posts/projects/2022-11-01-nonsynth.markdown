@@ -3,6 +3,7 @@ layout: post
 title: "nonsynth"
 date:   2023-11-01 00:00:00 -0400
 text: default
+tags: [art, technical]
 links:
   - text: THE CUT UP METHOD
     url: https://www.writing.upenn.edu/~afilreis/88v/burroughs-cutup.html
