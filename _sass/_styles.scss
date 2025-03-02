@@ -30,8 +30,42 @@ a:hover {
 }
 
 .tag-link {
-  background-color: bisque;
+  position: relative;
+  /* brightness controls the threshold point */
+  filter: brightness(0.8) blur(3px) contrast(999);
 }
+
+.tag-link:hover {
+  // remove the filter
+  filter: none;
+}
+
+.tag-link.current-tag {
+  filter: none;
+}
+
+.project-link {
+  // make it positioned so that we can scatter it around
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+// .halftone {
+//   position: relative;
+//   filter: brightness(0.8) blur(3px) contrast(999);
+// }
+// .halftone::after {
+//   position: absolute;
+//   inset: 0;
+//   background:
+//     radial-gradient(10px at center, black, white),
+//     radial-gradient(10px at 5px 5px, cyan, white),
+//     radial-gradient(10px at 15px 5px, magenta, white),
+//     radial-gradient(10px at 10px 15px, yellow, white);
+//   background-size: 20px 20px;
+//   background-blend-mode: multiply;
+//   mix-blend-mode: screen;
+// }
 
 
 .invert {
@@ -131,46 +165,3 @@ a {
     color: white;
     transform: rotateY(180deg);
   }
-
-  // .link {
-  //   // text-decoration: underline;
-  //   // dark grey
-  //   color: rgb(103, 103, 103);
-  //   font-weight: bold;
-  // }
-
-
-//   #masked-image {
-//     font-family: Oswald, sans-serif;
-//     font-size: 100px;
-//     color: #fff;
-//     text-transform: uppercase;
-//     border: 14px solid #fff;
-//     border-radius: .2em;
-//     text-align: center;
-//     margin: 0;
-//     display: block;
-//     -webkit-mask-image: url(../images/rough-texture.png);
-//     -webkit-transform: rotate(-4deg);
-//     -moz-mask-image: url(../images/rough-texture.png);
-//     -moz-transform: rotate(-4deg);
-//     -o-mask-image: url(../images/rough-texture.png);
-//     -o-transform: rotate(-4deg);
-//     mask-image: url(../images/rough-texture.png);
-//     transform: rotate(-4deg);
-// }
-
-// // .back {
-// //     /* direction: rtl;
-// //     unicode-bidi: bidi-override; */
-
-// //     display: inline-block;
-// //     -moz-transform:    scaleX(-1); /*Gecko */
-// //     -o-transform:      scaleX(-1); /* Opera */
-// //     -webkit-transform: scaleX(-1); /* Webkit */
-// //     transform:         scaleX(-1); /*Standard */
-
-// //     filter: FlipH;                 /* IE 6/7/8 */
-
-// //     color:#a8a6a6;
-// // }

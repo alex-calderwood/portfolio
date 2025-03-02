@@ -36,19 +36,51 @@ function getCurrentBreakPoint() {
 }
  
 function calculateFontSize() {
-    const charRatio = 28.8734 / 17.391; // I calculated this by measuring the width of a character and the height of a character abd its bad
+    const measureSpan = document.createElement('span');
+    measureSpan.style.visibility = 'hidden';
+    measureSpan.style.position = 'absolute';
+    measureSpan.style.whiteSpace = 'nowrap';
+    measureSpan.innerHTML = 'X';
+    document.body.appendChild(measureSpan);
+
+    const initialHeight = measureSpan.offsetHeight;
+    const initialWidth = measureSpan.offsetWidth;
+    const charRatio = initialHeight / initialWidth;
+
+    document.body.removeChild(measureSpan);
 
     textI = 0;
-    whitespaceRatio = 0.2
+    whitespaceRatio = 0.2; // aesthetic choice for center column width
 
     charsPerLine = getCurrentBreakPoint();
+    
+    let fontWidth = window.innerWidth / charsPerLine;
+    let fontHeight = fontWidth * charRatio;
+    textDepth = Math.floor(window.innerHeight / fontHeight);
 
-    let fontWidth = window.innerWidth / charsPerLine; // pixels
-    let fontHeight = fontWidth * charRatio; // pixels
-    textDepth = Math.floor(window.innerHeight / fontHeight); // lines`
+    // Add debug logging
+    const testString = 'X'.repeat(charsPerLine);
+    const testSpan = document.createElement('span');
+    testSpan.style.visibility = 'hidden';
+    testSpan.style.position = 'absolute';
+    testSpan.style.fontSize = fontHeight + 'px';
+    testSpan.innerHTML = testString;
+    document.body.appendChild(testSpan);
+
+    console.log({
+        windowWidth: window.innerWidth,
+        charsPerLine,
+        fontWidth,
+        fontHeight,
+        charRatio,
+        calculatedTotalWidth: fontWidth * charsPerLine,
+        actualStringWidth: testSpan.offsetWidth,
+        difference: testSpan.offsetWidth - window.innerWidth
+    });
+
+    document.body.removeChild(testSpan);
+
     document.documentElement.style.setProperty('--line-height', fontHeight + 'px');
-
-    // // set the style of the body to match the font size
     document.body.style.fontSize = fontHeight + "px";
     document.body.style.lineHeight = fontHeight + "px";
 }
@@ -72,6 +104,14 @@ function davinci_block(tag_id, vdepth, hdepth, text) {
     let left = mirrorText(tag_id + 'a', vdepth, hdepth, offset(text));
     let right = mirrorText(tag_id + 'b', 0, 1, Math.floor(charsPerLine * hdepth) + offset(text, false));
     let center = text.length;
+    console.log({left, right, center, total: left + right + center});
+    console.log({
+        charsPerLine,
+        actualTextWidth: text.length,
+        offset: offset(text),
+        floorOffset: offset(text, true),
+        ceilOffset: offset(text, false)
+    });
 }
 
 function creative_davinci_block(parent, vdepth, hdepth, text) {
@@ -228,7 +268,7 @@ function davinci_line(parent, text, href=false, mode='center') {
 function davinci_fill(element, mode='center') {
     // Get the inner text length to calculate padding
     const text = element.innerText.trim(); // Trim any existing whitespace
-    
+    console.log({text});
     // Calculate padding similar to davinci_line
     let padding_left, padding_right;
     if (mode === 'center') {
@@ -273,7 +313,7 @@ function header() {
     davinci_block("filler1", 0, .25, 'projects');
     davinci_block("filler2", 0, .5,  'alex calderwood');
     davinci_block("filler3", 0, .75, 'bio');
-    davinci_block("filler4", 0, .325,'blog');
+    davinci_block("filler4", 0, .25,'blog');
 
     let end = document.getElementById('end');
     if (end) {
@@ -294,26 +334,25 @@ function header() {
     }
 }
 
-function retype_projects() {
+function retype_projects(tag = null) { // unused
     header();
 
     let links = document.querySelectorAll('.link');
     let links_node = document.querySelector('#links');
+    let filteredLinks = Array.from(links);
 
-    let body = document.querySelector('body');
-
-    // davinci_line(body, '');
-    // davinci_line(body, '');
-    // davinci_line(body, '');
-    // davinci_line(body, '');
-    // davinci_line(body, '');
-
+    if (tag) {
+        filteredLinks = filteredLinks.filter(link => {
+            const tags = link.getAttribute('data-tags')?.split(',') || [];
+            return tags.includes(tag);
+        });
+    }
 
     links_node.innerHTML = '';
     for (let link of links) {
         link.style.display = 'none';
     }
-    type_links(links_node, links, 'random');
+    type_links(links_node, filteredLinks, 'random');
 
     let end = document.querySelector('#end');
     end.innerHTML = '';
