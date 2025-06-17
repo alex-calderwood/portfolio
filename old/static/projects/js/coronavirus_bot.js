@@ -1,1 +1,0 @@
-window.location.href = "https://twitter.com/coronavirus_bot";

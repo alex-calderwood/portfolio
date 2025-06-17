@@ -1,9 +1,0 @@
-*.DS_Store
-log.txt
-venv/*
-lib/*
-.idea/
-__pycache__/
-*.pyc
-*.sqlite
-*.pickle

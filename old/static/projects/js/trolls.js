@@ -1,1 +1,0 @@
-window.location.href = "https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/";

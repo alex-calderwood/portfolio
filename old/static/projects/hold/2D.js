@@ -1,1 +1,0 @@
-window.location.href = "../two_dimensions"
