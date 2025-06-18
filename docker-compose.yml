@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  portfolio:
+    build: .
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      - "3009:3009"
+    # Add any volumes or environment variables needed
+    # volumes:
+    #   - ./data:/app/data
+    # environment:
+    #   - NODE_ENV=production

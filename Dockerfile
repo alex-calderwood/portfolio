@@ -1,15 +1,26 @@
-# FROM node:18-alpine
-FROM jekyll/jekyll
+FROM ruby:3.2-slim
 
 WORKDIR /app
 
-# Copy package files first for better caching
-COPY ./* ./
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-# Debug - list what's in the container
-RUN ls -la
+# Copy Gemfile and Gemfile.lock
+COPY Gemfile Gemfile.lock ./
 
+# Install Ruby dependencies
+RUN bundle install
+
+# Copy the rest of the application
+COPY . .
+
+# Build the Jekyll site
+RUN bundle exec jekyll build
+
+# Expose port 3009 (matching docker-compose.yml)
 EXPOSE 3009
 
-CMD ["jekyll", "build"]
-CMD ["jekyll", "serve"]
+# Start Jekyll server
+CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--port", "3009"] 
