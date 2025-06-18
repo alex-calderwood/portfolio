@@ -1,12 +1,16 @@
 $background-color: rgb(255, 255, 240);
-$text-color: rgb(59, 51, 42);
-$subtext-color: rgb(133, 118, 101);
+$bold-color: rgb(94, 82, 69);
+$heading-color: lighten($bold-color, 5%);
+$text-color: rgb(133, 118, 101);
+$subtext-color: lighten($text-color, 10%);
+$default-link-color: lighten($subtext-color, 10%);
+$muted-color: lighten($subtext-color, 20%);
 
 $mono-font: 'Cutive Mono', monospace;
 $serif-font: 'Cutive', serif;
 
 body {
-    font-family: $mono-font;
+    font-family: $serif-font;
     font-size: 14px;
     // width: 100vw;
     // height: 100vh;
@@ -23,20 +27,15 @@ body {
   color: $background-color;
 }
 
-
-#header {
-    font-family: $serif-font;
-    text-align: center;
-}
-
 .header {
   text-decoration: underline;
   margin-top: 4vh !important;
+  color: $bold-color;
 }
 
 // remove all of the special formatting for a tags
 a {
-  color: lighten($text-color, 40%);
+  color: $default-link-color;
   text-decoration: none;
   font-style: italic;
 }
@@ -46,20 +45,21 @@ a.description.subheader {
 }
 
 a.subheader {
-  color: lighten($text-color, 10%);
+  color: $heading-color;
+}
+
+p {
+  margin: 0;
 }
 
 .sub {
   font-size: 0.9em;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
   color: $subtext-color;
 }
 
 .sub a {
   font-style: normal;
 }
-
 
 #title {
   font-size: 24px;
@@ -98,11 +98,17 @@ a.subheader {
   font-style: normal;
 }
 
+// for a post
+#content-text {
+  color: $text-color;
+}
+
+// backwards davinci
 .back {
-    display: inline;
-    color: #dadada;
-    font-style: italic;
-    // mix-blend-mode: difference;
+  display: inline;
+  color: #dadada;
+  font-style: italic;
+  // mix-blend-mode: difference;
 }
 
 .background-layer {
@@ -112,6 +118,10 @@ a.subheader {
 a:hover {
   text-decoration: underline;
   text-decoration-color: $text-color;
+}
+
+.tag {
+  color: $muted-color;
 }
 
 .tag-link {
@@ -128,6 +138,23 @@ a:hover {
 .tag-link.current-tag {
   filter: none;
 }
+
+.publication-content p.description.sub {
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+}
+
+.marginalia {
+  position: absolute;
+  left: -80px;
+  top: 40px;
+  transform: rotate(-10deg);
+  opacity: 0.2;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+// Older Stuff
 
 .project-link {
   // make it positioned so that we can scatter it around
@@ -167,7 +194,6 @@ a:hover {
     filter: FlipH;
     white-space: pre;
 }
-
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -225,3 +251,4 @@ a:hover {
     padding: 40px 80px; /* More padding around content */
     max-width: 800px; /* Optional: limit content width */
 }
+

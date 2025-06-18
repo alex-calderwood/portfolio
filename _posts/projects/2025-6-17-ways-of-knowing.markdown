@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Way of Knowing (Digital Poem)"
+title: "Ways of Knowing (Digital Poem)"
 date: 2025-6-17
 text: default
 tags: [publication, poetry]

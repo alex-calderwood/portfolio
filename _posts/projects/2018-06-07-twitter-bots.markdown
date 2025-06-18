@@ -6,7 +6,7 @@ date:   2018-06-07 17:41:39 -0700
 text: default
 tags: [publication, journalism, code]
 links:
-  - text: WIRED
+  - text: Wired Magazine
     url: https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/
 ---
 

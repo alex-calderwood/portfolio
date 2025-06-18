@@ -354,7 +354,7 @@ function retype_basic() {
     // let title_node = document.querySelector('#title');
     // title_node.innerHTML = '';
 
-    // let content = document.querySelector('#content_text');
+    // let content = document.querySelector('#content-text');
     // content.style.display = 'none'; // hide it
     // content = content.innerHTML;
     // let content_node = document.querySelector('#content');
@@ -392,7 +392,7 @@ function retype_post() {
     let title_node = document.querySelector('#title');
     title_node.innerHTML = '';
 
-    let content = document.querySelector('#content_text');
+    let content = document.querySelector('#contenttext');
     content.style.display = 'none'; // hide it
     content = content.innerHTML;
     let content_node = document.querySelector('#content');
