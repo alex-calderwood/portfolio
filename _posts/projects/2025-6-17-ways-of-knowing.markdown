@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "ways of knowing"
+title: "Way of Knowing (Digital Poem)"
 date: 2025-6-17
 text: default
-tags: [publication, art, poetry]
+tags: [publication, poetry]
 links:
     - text: Ways of Knowing in Taper Poetry Journal
       url: https://taper.badquar.to/14/ways_of_knowing.html

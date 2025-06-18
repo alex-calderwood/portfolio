@@ -41,11 +41,11 @@ a {
   font-style: italic;
 }
 
-description.subheader {
-    margin-top: 3em;
+a.description.subheader {
+    margin-top: 10px !important;
 }
 
-a.subheader{
+a.subheader {
   color: lighten($text-color, 10%);
 }
 
@@ -66,7 +66,7 @@ a.subheader{
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 // #content > p, #content > a {
@@ -88,7 +88,8 @@ a.subheader{
   top: 5%;
   left: 50%;
   transform: translate(-50%);
-  width: clamp(70%, 95%, 500px);
+  // width: clamp(95%, 1000px);
+  width: 95%;
   text-align: center;
   font-family: $serif-font;
 }
@@ -134,22 +135,6 @@ a:hover {
   top: 0;
   left: 0;
 }
-// .halftone {
-//   position: relative;
-//   filter: brightness(0.8) blur(3px) contrast(999);
-// }
-// .halftone::after {
-//   position: absolute;
-//   inset: 0;
-//   background:
-//     radial-gradient(10px at center, black, white),
-//     radial-gradient(10px at 5px 5px, cyan, white),
-//     radial-gradient(10px at 15px 5px, magenta, white),
-//     radial-gradient(10px at 10px 15px, yellow, white);
-//   background-size: 20px 20px;
-//   background-blend-mode: multiply;
-//   mix-blend-mode: screen;
-// }
 
 
 .invert {
@@ -157,7 +142,6 @@ a:hover {
   // add the two colors together
   // mix-blend-mode: calc(50% + 50%);
 }
-
 
 .post-image {
   position: absolute;
@@ -174,13 +158,6 @@ a:hover {
   height: auto;
 }
 
-// #image2 {
-//   top: 600px;
-//   right: 50px;
-//   // width: 150px;
-//   height: auto;
-// }
-
 .mirror {
     display: inline-block;
     -moz-transform: scaleX(-1);
@@ -190,11 +167,6 @@ a:hover {
     filter: FlipH;
     white-space: pre;
 }
-
-// .back span:hover{ 
-//     transition: transform 1s;
-//     transform: rotateX(180deg);
-// }
 
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
@@ -244,7 +216,7 @@ a:hover {
     position: relative;
     z-index: 2;
     pointer-events: auto;
-    margin-top: 200px;
+    margin-top: 5%;
 }
 
 .content-container {

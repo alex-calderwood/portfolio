@@ -62,15 +62,12 @@
                 <!-- Tags -->
                 🏷️ {{ post.tags | join: ', 🏷️ ' }}
 
-            </p>
-            <p class="description sub">
-
                 {% for link in post.links %}
                     <a href="{{ link.url }}">{{ link.text }}</a>
                 {% endfor %}
             </p>
 
-            <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}"></div> 
+            <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
              
 
         {% endfor %}

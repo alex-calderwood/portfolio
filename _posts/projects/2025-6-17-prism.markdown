@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "A Prism"
+title: "A Prism (Digital Poem)"
 date: 2025-6-17
 text: default
-tags: [publication, art, poetry]
+tags: [publication, poetry]
 links:
     - text: A Prism in Taper Poetry Journal
       url: https://taper.badquar.to/14/prism.html

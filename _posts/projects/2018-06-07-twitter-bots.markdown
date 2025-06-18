@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "twitter bots investigation"
+title: "How Americans Wound Up on Twitter's List of Russian Bots"
 title-full: "How Americans Wound Up on Twitter's List of Russian Bots"
 date:   2018-06-07 17:41:39 -0700
 text: default
-tags: [journalism]
+tags: [publication, journalism, code]
 links:
   - text: WIRED
     url: https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/

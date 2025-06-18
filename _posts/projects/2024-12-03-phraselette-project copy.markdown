@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "phraselette"
+title: "Phraselette: A Poet's Procedural Palette"
 date:   2024-11-14 00:00:00 -0400
 text: default
 tags: [writing tools, code, publication, academic, language]

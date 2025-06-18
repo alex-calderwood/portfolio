@@ -1,9 +1,9 @@
 ---
 layout: post
-title: " Spinning Coherent Interactive Fiction"
+title: "spindle"
 date:   2022-06-25 17:41:39 -0700
 text: default
-tags: [publication, academic]
+tags: [code, games, academic]
 links:
   - text: Spinning Coherent Interactive Fiction through Foundation Model Prompts in ICCC '22
     url: https://computationalcreativity.net/iccc22/wp-content/uploads/2022/06/ICCC-2022_2L_Calderwood-et-al..pdf

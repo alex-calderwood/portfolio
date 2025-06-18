@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "report on computer generated disinformation"
+title: "Automated Disinformation Report"
 date:   2020-01-30 17:41:39 -0700
 text: default
 tags: [publication, journalism, code]
