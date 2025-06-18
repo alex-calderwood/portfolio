@@ -334,31 +334,6 @@ function header() {
     }
 }
 
-function retype_projects(tag = null) { // unused
-    header();
-
-    let links = document.querySelectorAll('.link');
-    let links_node = document.querySelector('#links');
-    let filteredLinks = Array.from(links);
-
-    if (tag) {
-        filteredLinks = filteredLinks.filter(link => {
-            const tags = link.getAttribute('data-tags')?.split(',') || [];
-            return tags.includes(tag);
-        });
-    }
-
-    links_node.innerHTML = '';
-    for (let link of links) {
-        link.style.display = 'none';
-    }
-    type_links(links_node, filteredLinks, 'random');
-
-    let end = document.querySelector('#end');
-    end.innerHTML = '';
-    mirrorText(end, 1, 1, 0, doWait=true);
-}
-
 function type_links(parent, links, mode) {
     davinci_line(parent, '');
 
@@ -368,6 +343,44 @@ function type_links(parent, links, mode) {
         davinci_line(parent, text, href=href, mode=mode);
         davinci_line(parent, '');
     }
+}
+
+function retype_basic() {
+    header();
+    // TODO HERE I THINK THE PAGE ISN"T LOADED
+    // let title = document.querySelector('#title_text');
+    // title.style.display = 'none'; // hide it
+    // title = title.innerHTML;
+    // let title_node = document.querySelector('#title');
+    // title_node.innerHTML = '';
+
+    // let content = document.querySelector('#content_text');
+    // content.style.display = 'none'; // hide it
+    // content = content.innerHTML;
+    // let content_node = document.querySelector('#content');
+    // content_node.innerHTML = '';
+
+    // let links = document.querySelectorAll('.link');
+    // let links_node = document.querySelector('#links');
+    // links_node.innerHTML = '';
+    // for (let link of links) {
+    //     link.style.display = 'none';
+    // }
+
+    // post(content_node, title, content, links);
+
+    // if (links.length > 0) {
+    //     davinci_line(content_node, '');
+    //     davinci_line(content_node, '');
+    //     davinci_line(links_node, 'links');
+    // }
+
+    // let end = document.querySelector('#actualEnd');
+    // console.log('dav', {end});
+    // end.innerHTML = '';
+    // mirrorText(end, 10, 10, 0, doWait=false);
+
+    // type_links(end, links);
 }
 
 function retype_post() {

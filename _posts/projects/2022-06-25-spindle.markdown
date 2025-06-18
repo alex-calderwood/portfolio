@@ -3,7 +3,7 @@ layout: post
 title: "spindle"
 date:   2022-06-25 17:41:39 -0700
 text: default
-tags: [papers, technical, games]
+tags: [publications, code, games, academic]
 links:
   - text: Proceedings of ICCC '22
     url: https://computationalcreativity.net/iccc22/wp-content/uploads/2022/06/ICCC-2022_2L_Calderwood-et-al..pdf

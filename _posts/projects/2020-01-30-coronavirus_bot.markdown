@@ -3,7 +3,7 @@ layout: post
 title: "coronavirus bot"
 date:   2020-01-30 17:41:39 -0700
 text: covid
-tags: [art, language, technical]
+tags: [art, language, code]
 links:
   - text: Twitter
     url: https://twitter.com/coronavirus_bot

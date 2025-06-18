@@ -86,7 +86,7 @@
             <span id="tags">
                 <a href="{{ site.baseurl }}/projects" class="tag-link">all</a>
                 {% for tag in all_tags %}
-                    <a href="{{ site.baseurl d}}/projects?tag={{ tag }}" class="tag-link">{{ tag }}</a>
+                    <a href="{{ site.baseurl}}/projects?tag={{ tag }}" class="tag-link">{{ tag }}</a>
                 {% endfor %}
             </span>
             <span class="back" id="end"></span>
@@ -100,7 +100,7 @@
             {% endfor %}
         </div>
 
-        <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
+        <!-- <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
         <script>
             const currentTag = new URLSearchParams(window.location.search).get('tag') || 'all';
             console.log('Current tag:', currentTag);
@@ -130,12 +130,9 @@
                 header();
                 davinci_fill(document.querySelector('#tags'), 'center');
             });
-        </script>
+        </script> -->
     
     </body>
     <br>
-   
-    
-
 </html>
 

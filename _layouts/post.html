@@ -20,37 +20,6 @@
         {"@context":"https://schema.org","@type":"WebSite","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","headline":"Your awesome title","name":"Your awesome title","url":"http://localhost:4000/"}</script>
         <!-- End Jekyll SEO tag -->
         <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="{{ page.description }}" />
-        <style>
-            html, body {
-                margin: 0;
-                padding: 0;
-                min-height: 100vh;
-            }
-            
-            .background-layer {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                z-index: 1;
-            }
-            
-            .content-layer {
-                position: relative;
-                z-index: 2;
-                pointer-events: auto;
-                margin-top: 200px;
-                /* min-height: 100vh; Make it at least full height */
-            }
-            
-            .content-container {
-                position: relative;
-                margin: 0 auto;
-                padding: 40px 80px; /* More padding around content */
-                max-width: 800px; /* Optional: limit content width */
-            }
-        </style>
 </head>
 
 <body>
@@ -74,7 +43,7 @@
         <span id="bio"><a href="{% link bio.markdown %}">bio</a></span>
         <span class="back" id="filler3b"></span>
         <span class="back" id="filler4a"></span>
-        <span id="blog"><a href="{% link blog.markdown %}">blog</a></span>
+        <!-- <span id="blog"><a href="{% link blog.markdown %}">blog</a></span> -->
         <span class="back" id="filler4b"></span>
         <span class="back" id="filler5a"></span>
         <span class="back" id="end"></span>
@@ -109,7 +78,7 @@
     
     <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
     <script>
-        retype_post();
+        retype_basic();
         addEventListener("resize", (event) => updateIfNeeded(retype_post));
     </script>
 </body>
