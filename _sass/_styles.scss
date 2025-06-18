@@ -52,6 +52,17 @@ p {
   margin: 0;
 }
 
+.post p {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: inherit;
+  margin-bottom: 0;
+}
+
 .sub {
   font-size: 0.9em;
   color: $subtext-color;
@@ -98,9 +109,14 @@ p {
   font-style: normal;
 }
 
-// for a post
-#content-text {
+.post {
   color: $text-color;
+}
+
+.post .tag {
+  margin-bottom: 1vh;
+  margin-top: 1vh;
+  font-size: 0.8em;
 }
 
 // backwards davinci
@@ -239,16 +255,16 @@ a:hover {
 }
 
 .content-layer {
-    position: relative;
+    position: absolute;
     z-index: 2;
     pointer-events: auto;
-    margin-top: 5%;
+    top: 10%;
+    width: 100%;
 }
 
-.content-container {
+.post-container {
     position: relative;
     margin: 0 auto;
-    padding: 40px 80px; /* More padding around content */
+    padding: 0 4%; /* More padding around content */
     max-width: 800px; /* Optional: limit content width */
 }
-

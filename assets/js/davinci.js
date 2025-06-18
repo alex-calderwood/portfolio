@@ -348,13 +348,13 @@ function type_links(parent, links, mode) {
 function retype_basic() {
     header();
     // TODO HERE I THINK THE PAGE ISN"T LOADED
-    // let title = document.querySelector('#title_text');
+    // let title = document.querySelector('#title-text');
     // title.style.display = 'none'; // hide it
     // title = title.innerHTML;
     // let title_node = document.querySelector('#title');
     // title_node.innerHTML = '';
 
-    // let content = document.querySelector('#content-text');
+    // let content = document.querySelector('#post-content');
     // content.style.display = 'none'; // hide it
     // content = content.innerHTML;
     // let content_node = document.querySelector('#content');
@@ -386,7 +386,7 @@ function retype_basic() {
 function retype_post() {
     header();
     // TODO HERE I THINK THE PAGE ISN"T LOADED
-    let title = document.querySelector('#title_text');
+    let title = document.querySelector('#title-text');
     title.style.display = 'none'; // hide it
     title = title.innerHTML;
     let title_node = document.querySelector('#title');

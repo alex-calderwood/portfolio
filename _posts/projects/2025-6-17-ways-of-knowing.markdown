@@ -5,11 +5,11 @@ date: 2025-6-17
 text: default
 tags: [publication, poetry]
 links:
-    - text: Ways of Knowing in Taper Poetry Journal
+    - text: "Taper #14: Sonnets, Spring 2025"
       url: https://taper.badquar.to/14/ways_of_knowing.html
 ---
 
-This is from Taper #14: Sonnets, Spring 2025:
+
 
 Inspired by Queneau’s line by line writing experience (A Hundred 
 Thousand Billion Poems), “Ways of Knowing” tasks the 
