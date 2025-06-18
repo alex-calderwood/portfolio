@@ -1,4 +1,5 @@
 function resizeText(element) {
+    // Resize children to match the parent width
 
     const parentWidth = element.offsetWidth;
     console.log('parentWidth:', parentWidth);

@@ -3,15 +3,13 @@ layout: post
 title: "report on computer generated disinformation"
 date:   2020-01-30 17:41:39 -0700
 text: default
-tags: [publications, journalism, code]
+tags: [publication, journalism, code]
 links:
   - text: Computation + Journalism
     url: https://docs.google.com/presentation/d/1b5ZTp-nax6ckfZ8VWKw5-McUovpNEomVGpUcEhB59nY/edit?usp=sharing
   - text: Twitter
     url: https://twitter.com/HumbleWrench
   - text: New York Academy of Sciences
-    url: .
-  - text: https://arxiv.org/abs/2012.00209
     url: https://arxiv.org/abs/2012.00209
 ---
 

@@ -1,0 +1,14 @@
+---
+layout: post
+title: "A Prism"
+date: 2025-6-17
+text: default
+tags: [publication, art, poetry]
+links:
+    - text: A Prism in Taper Poetry Journal
+      url: https://taper.badquar.to/14/prism.html
+---
+
+This is a strange little prism that seems to alter language... I 
+thought it would show only a distortion of the world, but I grow 
+dependent on it. Now only through it do I find my truth refracted...

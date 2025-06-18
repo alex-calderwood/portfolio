@@ -24,24 +24,21 @@
       <body>
     <div id="content">
         <p class="description">
-            Hi, I'm Alex,
-        </p>
+            Hi, I'm Alex. Welcome!</p>
+            <!-- <p class="description">(as you can tell, it's a bit of a work in progress, please excuse the mess).</p> -->
 
-        <p class="description">welcome to my website.</p>
 
         <p id="iam" class="description">
             I'm a programmer, writer, artist, and
         </p>
 
         <p id="ucsc" class="description">
-            PhD student at UC Santa Cruz.
+            PhD student at UC Santa Cruz. 
         </p>
-
-        <p id="about" class="description">I study writing technology,</p>
-        <p class="description">games, and critical AI literacy. </p>
+        <p class="description"> I study writing technology, games, and critical AI literacy. </p>
 
         <p id="contact" class="description">
-            Contact me at <a href="mailto:alexcalderw@gmail.com">alexcalderw@gmail.com</a>
+            <a href="mailto:alexcalderw@gmail.com">alexcalderw@gmail.com</a>
            <a href="https://bsky.app/profile/xenoscope.bsky.social">@xenoscope.bsky.social</a>
         </p>
 
@@ -49,19 +46,49 @@
             
         </div>
 
-        <div id="publications">
+        <p class="description header">Publications</p>
 
-        </div>
+        {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'publication'" %}
+        {% assign char_limit = 75 %}
+        {% assign shown_posts = '' | split: '' %}
+        {% for post in publication_posts %}
+            {% assign shown_posts = shown_posts | push: post.title %}
+            <a class="description subheader" href="{{ post.url | relative_url }}"
+                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}</a>
+            <p class="description sub">
+                {% if post.date %}
+                    {{ post.date | date: "%B %Y" }}
+                {% endif %}
+                <!-- Tags -->
+                🏷️ {{ post.tags | join: ', 🏷️ ' }}
 
+            </p>
+            <p class="description sub">
+
+                {% for link in post.links %}
+                    <a href="{{ link.url }}">{{ link.text }}</a>
+                {% endfor %}
+            </p>
+
+            <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}"></div> 
+             
+
+        {% endfor %}
+
+        <p class="description header">Other Projects</p>
+
+        {% assign other_posts = site.posts | where: "layout", "post" %}
+        {% for post in other_posts %}
+            {% unless shown_posts contains post.title %}
+                <a class="description" href="{{ post.url | relative_url }}"
+                    data-tags="{{ post.tags | join: ',' }}">{{ post.title }}</a>
+            {% endunless %}
+        {% endfor %}
 
         <div id="art">
 
         </div>
 
-        <!-- portfolio link -->
-        <div class="description">
-            <a href="{{ site.baseurl }}/portfolio">Portfolio</a>
-        </div>
 
         </div>
     </div>
@@ -94,4 +121,50 @@
         addEventListener("resize", (event) => {retype_main()});
     </script> -->
     <script src="{{ site.baseurl }}/assets/js/text-resize.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const charLimit = 75;
+        const maxLines = 3;
+        document.querySelectorAll('.publication-content').forEach(function(div) {
+            const raw = div.getAttribute('data-content');
+            if (!raw) return;
+            const words = raw.split(/\s+/);
+            let lines = [], current = '';
+            for (let word of words) {
+                if ((current + (current ? ' ' : '') + word).length > charLimit) {
+                    if (lines.length + 1 === maxLines) break;
+                    lines.push(current);
+                    current = word;
+                } else {
+                    current += (current ? ' ' : '') + word;
+                }
+            }
+            if (lines.length < maxLines && current) lines.push(current);
+            // If there are words left, add ellipsis to the last line
+            let truncated = lines.length < maxLines ? words.length === lines.join(' ').split(/\s+/).length : true;
+            if (lines.length === maxLines && current && words.join(' ').length > lines.join(' ').length) {
+                lines[maxLines - 1] = current;
+                truncated = true;
+            }
+            lines = lines.slice(0, maxLines);
+            // if (truncated && lines.length) {
+            //     lines[lines.length - 1] = lines[lines.length - 1].replace(/\s+$/, '') + '...';
+            // }
+            lines.forEach(line => {
+                const p = document.createElement('p');
+                p.className = 'description sub';
+                p.textContent = line;
+                div.appendChild(p);
+            });
+            // Add 'more' link to the last <p> if truncated
+            if (truncated && div.dataset.url && div.lastChild && div.lastChild.tagName === 'P') {
+                const more = document.createElement('a');
+                more.href = div.dataset.url;
+                more.textContent = '[...]';
+                more.className = 'more-link';
+                div.lastChild.appendChild(more);
+            }
+        });
+    });
+    </script>
 </html>
