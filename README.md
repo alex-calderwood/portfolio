@@ -5,8 +5,6 @@
     jekyll build
     jekyll serve
 
-#
-
 
 # Jekyll 
 
@@ -18,6 +16,10 @@ Documentation
 
     https://jekyllrb.com/docs/configuration/
 
+
+# Deploy
+   git checkout production
+   git push luigigigi production
 
 # Old site content
 

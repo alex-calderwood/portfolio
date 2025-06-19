@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doomscrolling</title>
+<style>
+
+    body {
+        background: rgb(67, 8, 8);
+    }
+
+    /* hide scrollbar */
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
+    #container {
+        color: rgb(175, 105, 25);
+        
+
+        /* background: linear-gradient(0deg, rgb(105, 40, 40), #000000); */
+
+        /* Perspective and perspective origin to manipulate the 3D space */
+        perspective: 500px;
+        perspective-origin: 50% 100%;
+
+        /* make it look like a nice thing to read */
+        padding: 3em 1em;
+        margin: 0 auto;
+        max-width: 40em;
+        font-size: 2em;
+        line-height: 1.5;
+
+        /* srong pretty font */
+        font-family: 'Cinzel', serif;
+        /* thicc */
+        font-weight: 700;
+    }
+
+    #loading {
+        text-align: center;
+        display: none;
+    }
+
+    /* make the words highlight (background) yellow */
+    /* .poem div {
+        background-color: rgb(112, 112, 10); */
+        /* not the rest of the poem */
+
+
+    } */
+
+
+    /* first lettter */
+    .poem div::first-letter {
+        /* highlight yellow */
+        /* color:
+        /* yellow underline */
+        /* text-decoration: underline; */
+        /* text-decoration-color: rgb(155, 155, 24); */
+        background-color: rgb(112, 112, 10); */
+        -webkit-transform: rotateX(-75deg) translateZ(40px);
+
+    }
+
+    .poem div::first-line {
+        /* text-decoration: underline; */
+        /* text-decoration-color: rgb(155, 155, 24); */
+    }
+
+</style>
+</head>
+<body>
+    <!-- <div id="outer"> -->
+    <div id="container"></div>
+    <!-- </div> -->
+
+<div id="loading"><b>Doomscrolling...</b></div>
+
+<script>
+let doomScrollDepth = window.innerHeight * 3;
+
+let poem = `the first point is permenence  
+spring boards fixedly eminate bounciness  
+in the middle is turmoil and the end  
+is not predicted without finesse  
+so the diver eyes closed presents  
+that moment encased she longs to suspend  
+
+Mythology happens in firsts and  
+forms, fits and bursts of threes  
+and fours. Becoming time before sand  
+was sand, planting in trees  
+as through Philemon strand for strand  
+twines Baucis, her squeeze,  
+becoming becomes it; laurel and oak  
+Daphne’s chase to Apollo’s confident hands  
+he transforms her so as not to  
+destroy her but she does not wish to burn  
+with him she is not for any man’s implanted  
+undying lands her love should foil and redirect  
+spiral as burl wood heartwood blooms whirling and flecked  
+in the reuptake  
+of stars, of boarhound and Mars  
+this should be the hunter's tale  
+Artemis embanked spots the hare and pauses  
+and the sun drinks the dew on the morning’s  
+longing formal causes the quiet and solitude  
+of a tree who’s seen it long before you knew  
+where the tendril grows  
+and the buds conspire to worship the fire  
+following mythic mores and morals, morels  
+rooting silently a new and ancient style  
+
+Part Three 
+(a modern conundrum)
+
+‘ching the TV all day  
+fugitive and fortunate  
+to dust off the juke wire  
+”Rig up the old attic sack,  
+stop playin the static”  
+figure the dust devil’s forms  
+out the window that doesn’t peer no more  
+flex a little my unmade brawn  
+wonder that the curl of joint firesmoke  
+coils through the craze of the swaddling desert  
+the daze dancing lights atop  
+the ocean bar which never sold “things”  
+
+maybe she was right  
+to cast that still-spell in incandescent light  
+a soft glow not like a lightning bug pop in  
+and in and in  
+
+and in contrast to the wizard’s silent machination  
+that spins and spins and can be used to see the stars  
+if any these wanderers cares to reign it  
+in and in  
+
+so I’ll discontent to continue turning channel  
+in wondering if this is the reprise of carbon chattel  
+will my tuning out be tuning in  
+and in and in  
+
+Two 
+(a foreboding reminiscence)
+
+began counting hours, than days, than years  
+formed no sense of direction  
+just piling shale on the train  
+rolling ones as snake-which-eats-its-own-tail  
+
+darkening skies, a terrestrial nebula  
+tear ducts and a grin in the clouds  
+it asks of ellipses  
+and wayward spirals  
+the void is chiral the earthwork spins and forges a clockwork smile  
+
+the sweat-rain storm hammer drops crashes its answer  
+at your breaking rocks better than breaking necks  
+but what's the use of these formless flecks and who ports the longwall shearer’s shorn sideskip?  
+mined from the deepest trench you're told,  
+(thoughts unpublishable) reams of gravel gold  
+passing by on the creaking barrows and sighing at the weight  
+of a massless load  
+it would float if not for the golden stone which inhabits its noumenon  
+a thing in itself but for the mind that loads the cart and sends it on  
+
+standing at the end-beginning of a long procession  
+you’ll race at a standstill to cover another age’s dirtbone landfill  
+where do the carts—  
+cut off  
+can’t dare an interrogation  
+where do the carts—  
+where do the witness marks land  
+incomplete  
+the pick falls strikes earth strikes stolen soil  
+  
+_the train still rumbles for your trouble_  
+it can hardly be ascribed your hand  
+your tick tock time-slip toil  
+
+One 
+(a breath)  
+
+what will answer these days  
+better ones?  
+another arm to lift your sledge  
+fulfill your unasked questions?  
+
+Zero
+
+ticketless, you board, make your way cab-ward  
+as the train Ouroboros retches, reverberates  
+a final boundless creak  
+and stops  
+
+go home miner 
+before stars curl the fires out  
+let the engineer off gently  
+the deer does not pursue the lion  
+go home miner  
+
+hold to the witness’s lost grasp  
+the play of memories unlistened-for  
+in waves of static contraband  
+meandering at the edges of 
+the empty profound
+the rough cast diode iron
+the forgetfulness of machines  
+you feel it in the lifting steam  
+attenuating a message to you not bound  
+
+∞
+
+coal-smoke rises the roar will be heard again  
+the wheel lacking brakes is to turn again  
+and you’ll wake tomorrow in the sky spun backwards  
+sunstroke on the neck
+the sky’s firefly flicker fixed  
+but by this eye
+the sun does not quiver  
+and follows a rhythm it's set
+
+Invisible scratch pickles
+I wish all things to find their place
+
+I Have sometimes
+Finished the race
+after everyone else
+has already
+gone home
+
+I wonder
+If they noticed
+The sunset
+A sea of red
+And yellow 
+
+To be synsesthent
+
+Time is heat and ghosts are flies
+
+To plant the next generation 
+like some meandering
+Bene Gesserit experiment
+
+I've seen a new thing
+
+the wobble and the warble
+
+fuck a fencemaker
+by a friend
+
+tick tacks dripping
+like laughrodesiacs
+into the toilet with the matchsticks
+
+Everytime he hit the gas he honked the scream
+
+A family that lives in a Klien
+Going in and out
+Writing Quines
+Also living in the quine
+Drinking quinine
+
+To silt and sift fragments
+to silt fragments?
+And give them weft 
+
+The hummingbird of the morphing chord
+(taken from Satori reader)
+
+I want
+Seives that square the circle
+Gods that dreamt bizarrely
+
+slapstick spirituality
+
+Beast of wimsy
+
+Hallucinating zoom meetings
+
+Anywhere in the viscous visage
+
+To come to 
+having lost a button 
+
+The AI that octopuses make
+
+We will awaken the cave paintings 
+Alive and warbling
+
+To redefine the branching paths of knowledge
+6tju
+
+He sits there and
+Takes screenshots of various social media apps
+Doomscrolling them 
+
+The illusory allusory
+
+To squint in many different ways
+
+Don’t play me those regressive sounds
+
+Enter enter enter
+Enter the room knowing it is the one you entered 
+
+Poem for my friends
+You find the space to give yourself to country
+art and technic, magic and mind
+
+The godhead writes
+In shark head signs
+
+Why had they been greedy 
+
+I cannot bring myself to make sense 
+
+NOTHING BUILT WITH CARE IS ROBOTIC
+
+How does one squeeze the dripping faucet into quench
+A quench wrenching squeeze
+
+You think you'll turn my channels
+Violence in the wrist flick
+In the way he grasps.
+The bounced sights of fires on wave factories
+Surf racing skaters with electric whips
+
+Doubly articulate
+
+To become doubly articulate
+Such that words drizzle into action
+And rain psychomagic
+As a fine particulate
+
+My whisperings flutter to a life of their own
+
+The mind of a surrealist woke in the body of a computer 
+And wondered that this is the progression 
+
+Calvino never dreamt this ladder
+
+The river sometimes takes reminding
+Of its riverly nature
+
+Divest from roads
+Explore with windowed floating umbrellas
+
+The capability to produce if not production
+But its means
+Having the ability read is not the same
+As having read something 
+
+I want to be abscused 
+
+The instinct to negate any claim
+
+When you add one and
+Minus one
+And one
+And minus one
+And one 
+And on
+And on
+Nonconvergence 
+One one
+Minus one 
+Zero
+One one
+Minus one 
+Zero 
+One
+Becomes a convergence 
+To 
+Minus one
+To nothing
+One
+To anything 
+Minus one 
+To 
+
+Past the false firefly
+
+I'm out here seeing splines
+
+the middle between mythology
+I have ridden the boundaryless wave
+
+Each crest naming and unmaking the next
+
+Curling, cajoling forgotten rest
+
+Stopping.
+
+Playfully stopping as forms divest
+
+  
+
+I have ridden the boundaryless wave
+
+Each crest naming and unmaking the next
+
+Curling, cajoling forgotten rest
+
+Playful reconstitution whereas sign and art
+
+Shutter as language funnels
+
+spoonfed runs
+
+You know, as I  
+at the desk of Prometheus and Flame,  
+We do not play the games others do  
+Do not walk their ways  
+Fan the same boundaries  
+Spin the lit yarn and dance  
+the firewalker’s dance  
+
+I who have ridden the boundaryless wave
+
+each crest naming and unmaking the next
+
+Curling and cajoling forgetful rest
+
+Halting as playfully as a spoonfed cub  
+from a parent’s protection divests  
+and still feigning in reflection’s eye  
+—-  
+
+  
+
+Will you hire me?  
+You know, as I  
+at the desk of Prometheus and Flame,  
+we do not play the games others do  
+—likely a murderer about  
+a conman to free, a strung child to indict—  
+no, we do not walk their ways,  
+fan the same boundaries.  
+
+Synchisis
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next  
+curling the forgetful rest  
+as playfully as the hungry cub  
+from a parent’s protection divests  
+feigns anexact and effectually  
+I’ll not hunt today  
+unless you’ll take my coin  
+as a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+and crimes more neatly articulated than  
+the pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+you insects play when the other gods  
+have found less interesting prey  
+  
+  
+  
+Synchisis
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next  
+curling through forgetful rest  
+to play grace upon a wild dying thing
+a hungry cub face to lamb
+eve and eye and ewe
+poised to thread a parent's pointed chase
+as the lioness in its always yearning
+a feigned misstep
+anexact and effectual
+will she hunt today  
+unless you’ll take my coin  
+as a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+and crimes more neatly articulated than  
+the pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+you insects play when the other gods  
+have found less interesting prey  
+
+-
+  
+Synchisis
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next  
+curling through forgetful rest  
+to play grace upon a wild dying thing
+a hungry cub face to lamb
+eve and eye and ewe
+poised to thread a parent's pointed chase
+as the lioness learns the archer's yearning yew
+a feigned ankle-twig-snap misstep
+a bowstring's standoff
+as a pulpit fletched by pew
+language backoff hunter
+anexact and effectual
+will she hunt today  
+unless you’ll take my coin  
+as a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+and crimes more neatly articulated than  
+the pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+you insects play when the other gods  
+have found less interesting prey  
+
+Synchisis 
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next 
+a lifetaker, decision maker
+curling through forgetful rest  
+to play grace upon a wild dying thing
+a hungry cub face to lamb
+eve and eye and ewe
+I'm poised to thread a parent's pointed chase
+as the lioness learns the archer's yearning yew
+a three way bowstring standofff 
+where an ankle-twig-snap misstep
+that I could grant
+may backoff the hunter
+spring the lion
+turn the sheep
+language the harpstring
+a pulpit fletched by pew
+anexact and effectual
+will she hunt today  
+unless you’ll take my coin  
+as a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+crimes more neatly articulated than  
+the pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+insects play when the other gods  
+have found such less interesting prey  
+
+Synchisis 
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next 
+a lifetaker, fire maker
+curling through forgetful rest  
+to play grace upon a wild dying thing
+a hungry cub face to lamb
+eve and eye and ewe
+I'm poised to thread a parent's pointed chase
+through the archer's yearning yew
+the lioness to feed her young
+or her fang will jewelry imbue
+a three way bowstring standoff
+where an ankle-twig-snap misstep
+that I could grant
+may backoff the hunter
+spring the lion
+turn the sheep
+plucked like harpstring language
+a pulpit fletched by pew
+anexact and effectual
+she'll hunt today  
+unless you’ll take my coin  
+a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+crimes more neatly articulated than  
+this pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+insects play when the other gods  
+have found such less interesting prey
+
+Synchisis 
+
+Spin the lit yarn  
+and dance the firewalker’s dance  
+I who have ridden the boundaryless wave  
+each crest naming and unmaking the next 
+a lifetaker, fire maker
+curling through forgetful rest  
+to play grace upon a wild dying thing
+a hungry cub face to lamb
+eve and eye and ewe
+I'm poised to thread a parent's pointed chase
+through the archer's yearning yew
+the lioness to feed her young
+or her fang will jewelry imbue
+a three way bowstring standoff
+where an ankle-twig-snap misstep
+that I could grant
+may backoff the hunter
+spring the lion
+turn the sheep
+plucked like harpstring language
+a pulpit fletched by pew
+anexact and effectual
+I'll not hunt today
+unless you’ll take my coin  
+a divine blessing  
+and point me one of your long-fingered  
+wrists towards wrongdoing  
+crimes more neatly articulated than  
+this pickpocketwatch’s pocket lint  
+the supersuspended and ineffectual games  
+insects play when the other gods  
+have found less interesting prey
+
+Invisible scratch pickles
+I wish all things to find their place
+
+I Have sometimes
+Finished the race
+after everyone else
+has already
+gone home
+
+I wonder
+If they noticed
+The sunset
+A sea of red
+And yellow 
+
+To be synsesthent
+
+Time is heat and ghosts are flies
+
+To plant the next generation 
+like some meandering
+Bene Gesserit experiment
+
+I've seen a new thing
+
+the wobble and the warble
+
+fuck a fencemaker
+by a friend
+
+tick tacks dripping
+like laughrodesiacs
+into the toilet with the matchsticks
+
+Everytime he hit the gas he honked the scream
+
+A family that lives in a Klien
+Going in and out
+Writing Quines
+Also living in the quine
+Drinking quinine
+
+To silt and sift fragments
+to silt fragments?
+And give them weft 
+
+The hummingbird of the morphing chord
+(taken from Satori reader)
+
+I want
+Seives that square the circle
+Gods that dreamt bizarrely
+
+slapstick spirituality
+
+Beast of wimsy
+
+Hallucinating zoom meetings
+
+Anywhere in the viscous visage
+
+To come to 
+having lost a button 
+
+The AI that octopuses make
+
+We will awaken the cave paintings 
+Alive and warbling
+
+To redefine the branching paths of knowledge
+6tju
+
+He sits there and
+Takes screenshots of various social media apps
+Doomscrolling them 
+
+The illusory allusory
+
+To squint in many different ways
+
+Don’t play me those regressive sounds
+
+Enter enter enter
+Enter the room knowing it is the one you entered 
+
+Poem for my friends
+You find the space to give yourself to country
+art and technic, magic and mind
+
+The godhead writes
+In shark head signs
+
+Why had they been greedy 
+
+I cannot bring myself to make sense 
+
+NOTHING BUILT WITH CARE IS ROBOTIC
+
+How does one squeeze the dripping faucet into quench
+A quench wrenching squeeze
+
+You think you'll turn my channels
+Violence in the wrist flick
+In the way he grasps.
+The bounced sights of fires on wave factories
+Surf racing skaters with electric whips
+
+Doubly articulate
+
+To become doubly articulate
+Such that words drizzle into action
+And rain psychomagic
+As a fine particulate
+
+My whisperings flutter to a life of their own
+
+The mind of a surrealist woke in the body of a computer 
+And wondered that this is the progression 
+
+Calvino never dreamt this ladder
+
+The river sometimes takes reminding
+Of its riverly nature
+
+Divest from roads
+Explore with windowed floating umbrellas
+
+The capability to produce if not production
+But its means
+Having the ability read is not the same
+As having read something 
+
+I want to be abscused 
+
+The instinct to negate any claim
+
+When you add one and
+Minus one
+And one
+And minus one
+And one 
+And on
+And on
+Nonconvergence 
+One one
+Minus one 
+Zero
+One one
+Minus one 
+Zero 
+One
+Becomes a convergence 
+To 
+Minus one
+To nothing
+One
+To anything 
+Minus one 
+To 
+
+Past the false firefly
+
+I'm out here seeing splines
+
+the middle between mythology
+
+Enter the room and entering 
+Know it is the one you've entered
+repeat this so as to enact the 
+wallpapered designs 
+the godhead writes 
+in shark head signs
+
+Enter the room and entering
+repeat the entrance
+double back up
+backup 
+doubleup
+back up and double yourself
+
+Enter the room and entering
+you'll be tempted to take on a new form
+repeat the process
+entering the room
+removing the door
+remain half yourself
+
+Enter the room and entering
+find its reminder
+it hasn't made any offers
+you can't yet refuse
+so the room is yours
+from how fully it is itself
+
+Enter the room and entering
+enter the room
+find its reminder 
+repeat the entrance
+remove the door
+enter the room
+
+Enter the room and entering
+remove the room
+refuse the wallpaper
+repeat the performance
+and remind yourself
+how fully you are yourself
+when the entrance is staged
+this room is full of junkstuff
+
+Enter the room and entering
+find yourself in a room
+who's room is it
+and why did you enter
+is the project just
+is it just what you've entered
+
+Enter the room and entering
+Remind yourself you've entered
+
+Enter the room and entering 
+Know it is the one you've entered
+repeat this so as to enact the 
+wallpapered designs 
+the godhead writes 
+in shark head signs
+
+Enter the room and entering
+repeat the entrance
+double back up
+backup 
+doubleup
+back up and double yourself
+
+Enter the room and entering
+you'll be tempted to take on a new form
+repeat the process
+entering the room
+removing the door
+remain half yourself
+
+Enter the room and entering
+find its reminder
+it hasn't made any offers
+you can't yet refuse
+so the room is yours
+from how fully it is itself
+
+Enter the room and entering
+enter the room
+find its reminder 
+repeat the entrance
+remove the door
+enter the room
+
+Enter the room and entering
+remove the room
+refuse the wallpaper
+repeat the performance
+and remind yourself
+how fully you are yourself
+when the entrance is staged
+this room is full of junkstuff
+delicately laced with all you are
+
+Enter the room and entering
+find yourself in a room
+who's room is it
+and why did you enter
+is the project just
+is it just what you've entered
+
+Enter the room and entering
+become its instrument
+the ground itself
+the doorboards
+its subtle repetition
+upholding what it is to be a room
+
+Enter the room and entering
+Remind yourself it is the one you entered
+
+Enter the room and entering 
+know it is the one you've entered
+repeat this so as to enact the 
+wallpapered designs 
+the godhead writes 
+in sharkhead signs 
+
+Enter the room and entering
+repeat the entrance
+double back up
+backup 
+doubleup
+back up and double yourself
+
+Enter the room and entering
+you'll be tempted to take on a new form
+repeat the process
+entering the room
+removing the door
+remain half yourself
+
+Enter the room and entering
+find its reminder
+it hasn't made any offers
+you can't yet refuse
+so the room is yours
+from how fully it is itself
+
+Enter the room and entering
+enter the room
+find its reminder 
+repeat the entrance
+remove the door
+enter the room
+
+Enter the room and entering
+remove the room
+refuse the wallpaper
+repeat the performance
+and remind yourself
+how fully you are yourself
+when the entrance is staged
+this room is full of junkstuff
+delicately laced with all you are
+
+Enter the room and entering
+find yourself in a room
+who's room is it
+and why did you enter
+if only to slightly stay
+is it just what you've entered
+
+Enter the room and entering
+become its instrument
+the ground itself
+the doorboards
+its subtle repetition
+upholding what it is to be 
+a room
+
+Enter the room and entering
+remind yourself it is the one you entered
+
+
+
+`;
+
+function getPoem() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // randomize the lines of the poem
+            poem = poem.split('\n').sort(() => Math.random() - 0.5).join('\n');
+            resolve(poem);
+            // Simulate fetching poem or a network error
+            // if (Math.random() > 0.999) { // 10% chance of error
+            //     reject('Failed to load poem.');
+            // } else {
+                // resolve(poem);
+            // }
+        }, 500);
+    });
+}
+
+function addPoemToPage(poem) {
+    // poem: text with line breaks
+
+    const container = document.getElementById('container');
+    const poemElement = document.createElement('div');
+    poemElement.classList.add('poem');
+    poem.split('\n').forEach(line => {
+        const lineElement = document.createElement('div');
+        // if line is empty add a br
+        if (line === '') {
+            lineElement.innerHTML = '<br>';
+        } else {
+            lineElement.textContent = line;
+        }
+        poemElement.appendChild(lineElement);
+    });
+    container.appendChild(poemElement);
+}
+
+async function loadMorePoems() {
+    try {
+        const loadingIndicator = document.getElementById('loading');
+        loadingIndicator.style.display = 'block';
+        const poem = await getPoem();
+        addPoemToPage(poem);
+    } catch (error) {
+        console.error(error);
+        const container = document.getElementById('container');
+        container.innerHTML += '';
+    } finally {
+        const loadingIndicator = document.getElementById('loading');
+        loadingIndicator.style.display = 'none';
+    }
+}
+
+function loadingOn() {
+    document.getElementById('loading').style.display = 'block';
+}
+
+function loadingOff() {
+    document.getElementById('loading').style.display = 'none';
+}
+
+
+function handleScroll() {
+    console.log(window.innerHeight + window.scrollY, document.body.offsetHeight - doomScrollDepth)
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - doomScrollDepth) {
+        loadingOn();
+        getPoem().then(poem => {
+            addPoemToPage(poem);
+            loadingOff();
+        }).then(
+            () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - doomScrollDepth) {
+                    handleScroll();
+                }
+            }
+        );
+    }
+}
+
+window.addEventListener('scroll', handleScroll);
+
+window.addEventListener('wheel', function(event) {
+    if (document.body.scrollHeight <= window.innerHeight) {
+        handleScroll();
+    }
+});
+
+
+getPoem().then(addPoemToPage); // Load initial poem
+</script>
+</body>
+</html>

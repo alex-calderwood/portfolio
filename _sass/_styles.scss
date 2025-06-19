@@ -29,7 +29,7 @@ body {
 
 .header {
   text-decoration: underline;
-  margin-top: 4vh !important;
+  // margin-top: 4vh !important;
   color: $bold-color;
 }
 
@@ -40,13 +40,15 @@ a {
   font-style: italic;
 }
 
-a.description.subheader {
-    margin-top: 10px !important;
+a.fullwidth {
+  
+    // margin-top: 10px !important;
 }
 
-a.subheader {
-  color: $heading-color;
-}
+// a.subheader {
+//   color:red;
+  
+// }
 
 p {
   margin: 0;
@@ -81,7 +83,7 @@ h2 {
 }
 
 // #content > p, #content > a {
-#content > * {
+#heading-content > * {
   font-size: 16px;
   width: 100%;
   margin: 0;
@@ -94,19 +96,70 @@ h2 {
   position: relative;
 }
 
-#content {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%);
+
+#heading-content {
   // width: clamp(95%, 1000px);
   width: 95%;
+  margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
 }
 
-#content > a {
+// #content {
+//   // position: absolute;
+//   top: 5%;
+//   left: 50%;
+//   transform: translate(-50%);
+//   // width: clamp(95%, 1000px);
+//   width: 95%;
+//   text-align: center;
+//   font-family: $serif-font;
+// }
+
+#heading-content > a {
   font-style: normal;
+}
+
+.content-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+
+  width: 95%;
+  margin: 0 auto;
+  text-align: center;
+  font-family: $serif-font;
+  
+  // Set fixed height to prevent page extension
+  // height: calc(100vh); // Adjust this value based on heading content height
+  height: 80vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.column {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  // Enable scrolling instead of hiding overflow
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  
+  // Hide scrollbars
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Prevent fullwidth elements from expanding their containers
+.fullwidth {
+  overflow: hidden;
+  font-size: 0.9em;
 }
 
 .post {
@@ -155,7 +208,7 @@ a:hover {
   filter: none;
 }
 
-.publication-content p.description.sub {
+.publication-content p.fullwidth.sub {
   margin-bottom: 1vh;
   margin-top: 1vh;
 }
