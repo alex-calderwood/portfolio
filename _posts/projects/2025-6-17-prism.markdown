@@ -4,6 +4,10 @@ title: "A Prism (Digital Poem)"
 date: 2025-6-17
 text: default
 tags: [publication, poetry]
+images:
+  - src: "selfie.png"
+    alt: "A selfie"
+    caption: "hi"
 links:
     - text: A Prism in Taper Poetry Journal
       url: https://taper.badquar.to/14/prism.html

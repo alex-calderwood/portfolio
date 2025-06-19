@@ -78,6 +78,18 @@
 
                 <br><br>
 
+                <!-- Images -->
+                {% if page.images %}
+                    {% for image in page.images %}
+                        image
+                        hi
+                        <img src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                             alt="{{ image.alt }}" 
+                             class="monochrome" 
+                             style="width: 1em;">
+                    {% endfor %}
+                {% endif %}
+
                 <span id="post-content">{{ page.content }}</span>
                 <div id="links">
                     {% for link in page.links %}

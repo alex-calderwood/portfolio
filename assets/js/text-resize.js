@@ -3,9 +3,6 @@ function resizeInnerHTML(element) {
     const parent = element.parentElement;
     const goalWidth = parent.clientWidth;
     
-    // Debug: log which parent we're measuring
-    console.log(`Element: "${element.textContent?.slice(0, 20)}..." | Parent: ${parent.tagName}${parent.className ? '.' + parent.className.split(' ').join('.') : ''} | Width: ${goalWidth}`);
-    
     // Get current font size from element
     const originalFontSize = parseFloat(window.getComputedStyle(element).fontSize);
     
@@ -30,7 +27,7 @@ function resizeInnerHTML(element) {
     
     // Calculate new font size
     const newFontSize = originalFontSize * ratio * 0.98;
-    console.log(`${textContent?.slice(0, 10)}... rescaling font from ${originalFontSize} to ${newFontSize} to match computed width ${computedOriginalWidth} to goal width ${goalWidth}`);
+    // console.log(`${textContent?.slice(0, 20)}... rescaling font from ${originalFontSize} to ${newFontSize} to match computed width ${computedOriginalWidth} to goal width ${goalWidth}`);
 
     if (Math.abs(computedOriginalWidth - goalWidth) < 1) {
         console.log('no rescaling needed');
@@ -55,6 +52,13 @@ function resizeElements() {
     Array.from(elements).forEach(element => {
         resizeInnerHTML(element);
     });
+
+    // After resizing, set padding-top on #heading-content to height of #hi
+    const hi = document.getElementById('hi');
+    const headingContent = document.getElementById('heading-content');
+    if (hi && headingContent) {
+        headingContent.style.paddingTop = hi.offsetHeight + 'px';
+    }
 }
 
 // Function to handle window resize

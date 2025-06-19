@@ -38,7 +38,32 @@ body {
 .header {
   text-decoration: underline;
   // margin-top: 4vh !important;
-  color: $bold-color;
+  color: $heading-color;
+}
+
+#hi {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  // make things hide behind it
+  z-index: 100;
+  background-color: $background-color;
+//   // position: absolute;
+//   top: 5%;
+//   transform: translate(-50%);
+}
+
+#welcome {
+  // initialize it at the bottom of #hi
+  // position: absolute;
+  // top: 0%;
+  // left: 50%;
+  // transform: translate(-50%);
+  z-index: 100;
+  background-color: $background-color;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 // remove all of the special formatting for a tags
@@ -242,12 +267,9 @@ a:hover {
 
 .marginalia {
   position: absolute;
-  left: -80px;
-  top: 40px;
-  transform: rotate(-10deg);
-  opacity: 0.2;
-  font-size: 0.9em;
-  font-style: italic;
+  left: var(--marginalia-left, -80px);
+  top: var(--marginalia-top, 0);
+  width: 1em;
 }
 
 // Older Stuff
@@ -347,4 +369,11 @@ a:hover {
     margin: 0 auto;
     padding: 0 4%; /* More padding around content */
     max-width: 800px; /* Optional: limit content width */
+}
+
+/* Make selfie image monochrome using current color */
+.monochrome {
+    filter: grayscale(100%);
+    opacity: 0.8;
+    mix-blend-mode: multiply;
 }
