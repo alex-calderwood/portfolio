@@ -267,9 +267,12 @@ a:hover {
 
 .marginalia {
   position: absolute;
-  left: var(--marginalia-left, -80px);
-  top: var(--marginalia-top, 0);
-  width: 1em;
+  left: -80px;
+  top: 40px;
+  transform: rotate(-10deg);
+  opacity: 0.2;
+  font-size: 0.9em;
+  font-style: italic;
 }
 
 // Older Stuff
