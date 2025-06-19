@@ -29,13 +29,23 @@
             />
         </symbol>
     </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="tag3" viewBox="0 0 256 256" fill="none">
+            <path fill="currentColor" d="M246.66 123.56L201 55.13A15.94 15.94 0 0 0 187.72 48H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h147.72a16 16 0 0 0 13.28-7.12l45.63-68.44a8 8 0 0 0 .03-8.88Z"/>
+        </symbol>
+    </svg>
+
+
     </div>
 
     </head>
       <body>
     <div id="heading-content">
-        <p class="fullwidth">
-            Hi, I'm Alex. Welcome!</p>
+        <p id="hi" class="fullwidth">
+            Hi, I'm Alex. Welcome</p>
+
+        <p id="welcome" class="fullwidth">to my portfolio!</p>
             <!-- <p class="fullwidth">(as you can tell, it's a bit of a work in progress, please excuse the mess).</p> -->
 
         <p id="iam" class="fullwidth">
@@ -63,9 +73,13 @@
             {% assign shown_posts = '' | split: '' %}
             {% for post in publication_posts %}
                 {% assign shown_posts = shown_posts | push: post.title %}
-                <p class="fullwidth subheader" href="{{ post.url | relative_url }}"
-                    data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                
+                <p class="fullwidth subheader">
+                    <a href="{{ post.url | relative_url }}"
+                        data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                    </a>
                 </p>
+
                 <p class="fullwidth sub">
 
                     <!-- Date -->
@@ -80,15 +94,18 @@
                         {% if tag == "publication" %}
                         {% else %}
                             <svg class="tag" width="1em" height="1em" viewBox="0 0 64 64" fill="none" style="padding: 0; margin: 0; display: inline-block;">
-                                <use href="#tag2" width="100%" height="100%" style="display: inline-block;"></use>
+                                <use href="#tag3" width="100%" height="100%" style="display: inline-block;"></use>
                             </svg>
                             <span class="tag">{{ tag }}</span>
                         {% endif %}
                     {% endfor %}
+                </p>
+
+                <p class="fullwidth sub">
                 
                     <!-- Links -->
                     {% for link in post.links %}
-                        <a class="post-link"href="{{ link.url }}">{{ link.text }}</a>
+                        <a class="post-link" href="{{ link.url }}">{{ link.text }}</a>
                     {% endfor %}
                 </p>
 
@@ -96,14 +113,14 @@
                 
 
             {% endfor %}
-<!-- 
+
             <div class="marginalia">Editor's note</div>
 
-            </div> -->
+            
         </div>
 
         <div class="column">
-            <p class="fullwidth header">Other Projects</p>
+            <p class="fullwidth header">Miscelaneous and Unsorted Projects</p>
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
@@ -116,25 +133,6 @@
 
     </div>
 
-
-
-<!-- 
-
-    <div id="bio">
-        <div id="education_header">Education</div>
-        <div id="education_content">
-            <div id="education_item">
-                <div id="education_item_header">Ph.D. Computer Science</div>
-                <div id="education_item_content">UC Santa Cruz</div>
-                <div id="education_item_header">M.S. Natural Language Processing</div>
-                <div id="education_item_content">Columbia Unviersity</div>
-                <div id="education_item_header">Game Designer</div>
-                <div id="education_item_content">UC Santa Cruz</div>
-                <div id="education_item_header">Poet</div>
-                <div id="education_item_content">UC Santa Cruz</div>
-            </div>
-        </div>
-    </div> -->
 
 
 

@@ -21,6 +21,14 @@ body {
     color: $text-color;
 }
 
+
+@media (max-width: 1000px) {
+  body {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+}
+
 // change the highlight color
 ::selection {
   background-color: $text-color;
@@ -44,11 +52,6 @@ a.fullwidth {
   
     // margin-top: 10px !important;
 }
-
-// a.subheader {
-//   color:red;
-  
-// }
 
 p {
   margin: 0;
@@ -100,6 +103,9 @@ h2 {
 #heading-content {
   // width: clamp(95%, 1000px);
   width: 95%;
+  // width: 100%;
+  width: 100vh;
+
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
@@ -124,7 +130,9 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
 
-  width: 95%;
+  // width: 70%;;
+  width: 100vh;
+  // width: 100%;
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
@@ -153,6 +161,25 @@ h2 {
   /* Webkit browsers (Chrome, Safari, Edge) */
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .content-columns {
+    grid-template-columns: 1fr; /* Single column on small screens */
+    height: 100vh;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .column {
+    // expand to the necessary height rather than scrolling
+    // make the height whatever is necessary
+    overflow-y: visible;
+    height: auto;
+
+
   }
 }
 
@@ -209,8 +236,8 @@ a:hover {
 }
 
 .publication-content p.fullwidth.sub {
-  margin-bottom: 1vh;
-  margin-top: 1vh;
+  margin-bottom: 0.05vh;
+  margin-top: 0.05vh;
 }
 
 .marginalia {
