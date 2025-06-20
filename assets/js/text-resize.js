@@ -33,7 +33,7 @@ function resizeInnerHTML(element) {
         console.log('no rescaling needed');
         return;
     }
-    
+
     // Apply the new font size
     element.style.fontSize = `${newFontSize}px`;
 }
