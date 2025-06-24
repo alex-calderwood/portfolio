@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "spindle"
+title: "Spindle"
 date:   2022-06-25 17:41:39 -0700
 text: default
 tags: [code, games, academic]

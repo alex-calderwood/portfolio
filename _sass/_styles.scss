@@ -7,7 +7,138 @@ $default-link-color: lighten($subtext-color, 10%);
 $muted-color: lighten($subtext-color, 20%);
 
 $mono-font: 'Cutive Mono', monospace;
-$serif-font: 'Cutive', serif;
+$serif-font:  'Spectral', 'Cutive', serif;
+$san-serif-font: 'Raleway';
+
+
+.rosarivo-regular {
+  font-family: "Rosarivo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rosarivo-regular-italic {
+  font-family: "Rosarivo", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.spectral-extralight {
+  font-family: "Spectral", serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.spectral-light {
+  font-family: "Spectral", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.spectral-regular {
+  font-family: "Spectral", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.spectral-medium {
+  font-family: "Spectral", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.spectral-semibold {
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.spectral-bold {
+  font-family: "Spectral", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.spectral-extrabold {
+  font-family: "Spectral", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.spectral-extralight-italic {
+  font-family: "Spectral", serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.spectral-light-italic {
+  font-family: "Spectral", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.spectral-regular-italic {
+  font-family: "Spectral", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.spectral-medium-italic {
+  font-family: "Spectral", serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.spectral-semibold-italic {
+  font-family: "Spectral", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.spectral-bold-italic {
+  font-family: "Spectral", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.spectral-extrabold-italic {
+  font-family: "Spectral", serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.shippori-mincho-b1-regular {
+  font-family: "Shippori Mincho B1", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bona-nova-regular {
+  font-family: "Bona Nova", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bona-nova-bold {
+  font-family: "Bona Nova", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bona-nova-regular-italic {
+  font-family: "Bona Nova", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+// <weight>: Use a value from 100 to 900
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 
 body {
     font-family: $serif-font;
@@ -21,8 +152,20 @@ body {
     color: $text-color;
 }
 
+body { // main. date
+  // color: $background-color;
+  background: 
+    linear-gradient(90deg, lighten($text-color, 45%), transparent), 
+    url(https://grainy-gradients.vercel.app/noise.svg);
 
-@media (max-width: 1000px) {
+  filter: grayscale(100%);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+    // contrast(170%) brightness(1000%);
+}
+
+
+@media (max-width: 600px) {
   body {
     height: 100vh;
     overflow-y: hidden;
@@ -94,12 +237,11 @@ h2 {
 }
 
 .sub {
-  font-size: 0.9em;
   color: $subtext-color;
 }
 
 .sub a {
-  font-style: normal;
+  // font-style: normal;
 }
 
 #title {
@@ -124,13 +266,23 @@ h2 {
   position: relative;
 }
 
+.heading-link {
+  // font-weight: 600;
+  // set highlighted
+  background-color: $text-color;
+  color: $background-color;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  font-style: normal;
+}
+
+.heading-link:hover {
+  font-style: italic;
+}
 
 #heading-content {
-  // width: clamp(95%, 1000px);
-  width: 95%;
-  // width: 100%;
-  width: 100vh;
-
+  // width: clamp(95%, 500px);
+  width: min(100vw, 100vh);
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
@@ -154,10 +306,7 @@ h2 {
 .content-columns {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
-
-  // width: 70%;;
-  width: 100vh;
-  // width: 100%;
+  width: min(100vw, 100vh);
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
@@ -189,22 +338,19 @@ h2 {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   .content-columns {
     grid-template-columns: 1fr; /* Single column on small screens */
     height: 100vh;
   }
 }
 
-
-@media (max-width: 1000px) {
+@media (max-width: 600px) {
   .column {
     // expand to the necessary height rather than scrolling
     // make the height whatever is necessary
     overflow-y: visible;
     height: auto;
-
-
   }
 }
 
@@ -212,6 +358,7 @@ h2 {
 .fullwidth {
   overflow: hidden;
   font-size: 0.9em;
+  width: 100%;
 }
 
 .post {
@@ -228,8 +375,8 @@ h2 {
 .back {
   display: inline;
   color: #dadada;
-  font-style: italic;
-  // mix-blend-mode: difference;
+  // font-style: italic;
+  mix-blend-mode: difference;
 }
 
 .background-layer {
@@ -250,6 +397,24 @@ a:hover {
   /* brightness controls the threshold point */
   filter: brightness(0.8) blur(3px) contrast(999);
 }
+
+.post-date {
+  font-style: italic;
+  color: $subtext-color;
+}
+
+.inverted-text {
+  color:$background-color;
+  background-color: $text-color;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  // background: 
+  //   linear-gradient(20deg, lighten($text-color, 40%), transparent), 
+  //   url(https://grainy-gradients.vercel.app/noise.svg),
+  //   contrast(170%) brightness(1000%);
+  // transition: linear 
+}
+
 
 .tag-link:hover {
   // remove the filter
@@ -284,11 +449,10 @@ a:hover {
   left: 0;
 }
 
-
 .invert {
-  // color: rgb(51, 51, 51);
+  color: rgb(51, 51, 51);
   // add the two colors together
-  // mix-blend-mode: calc(50% + 50%);
+  mix-blend-mode: calc(50% + 50%);
 }
 
 .post-image {
@@ -314,40 +478,6 @@ a:hover {
     transform: scaleX(-1);
     filter: FlipH;
     white-space: pre;
-}
-
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-.flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: 200px;
-    border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  }
-  
-
-  /* This container is needed to position the front and back side */
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
-  
-  /* Do an horizontal flip when you move the mouse over the flip box container */
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  /* Position the front and back side */
-  .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
 }
 
 .background-layer {

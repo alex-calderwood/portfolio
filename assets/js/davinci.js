@@ -159,11 +159,12 @@ function mirrorText(parent, depth, width, offset=0, doWait=false) {
         innerSpan.classList.add("mirror");
         innerSpan.innerHTML = generateText(textI++);
         span.appendChild(innerSpan);
-        let r = Math.floor(Math.random() * 150);
+        let r = Math.floor(Math.random() * Math.random() * 100);
+
         let wait = (i % 2 == 0) ? r : 0;
         if (i++ < charCount - 1) { // I'm not sure why we have to do this -1 
-            if (doWait && wait > 0) {
-                setTimeout(type, wait);
+            if (doWait) {
+                setTimeout(type, r);
             } else {
                 type();
             }

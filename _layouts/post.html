@@ -46,7 +46,7 @@
         <!-- <span id="projects"><a href="{% link projects.markdown %}">projects</a></span> -->
         <span class="back" id="filler1b"></span>
         <span class="back" id="filler2a"></span>
-        <span id="alex"><a href="{% link index.markdown %}">alex calderwood</a></span>
+        <span id="alex"><a class="heading-link" href="{% link index.markdown %}">alex calderwood</a></span>
         <span class="back" id="filler2b"></span>
         <span class="back" id="filler3a"></span>
         <!-- <span id="bio"><a href="{% link bio.markdown %}">bio</a></span> -->
@@ -67,6 +67,12 @@
             <div class="post">
                 <!-- Title -->
                 <h2 id="title-text">{{ page.title }}</h1>
+
+                <span class="post-date">
+                {% if page.date %}
+                    {{ page.date | date: "%B %d, %Y" }}
+                {% endif %}
+                </span>
                 
                 <!-- Tags -->
                 {% for tag in page.tags %}
@@ -81,8 +87,6 @@
                 <!-- Images -->
                 {% if page.images %}
                     {% for image in page.images %}
-                        image
-                        hi
                         <img src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
                              alt="{{ image.alt }}" 
                              class="monochrome" 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "coronavirus bot"
+title: "Coronovirus Bot"
 date:   2020-01-30 17:41:39 -0700
 text: covid
 tags: [art, language, code]

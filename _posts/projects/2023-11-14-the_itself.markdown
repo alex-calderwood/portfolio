@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "the itself"
+title: "The Itself"
 date: 2023-11-14 00:00:00 -0400
 text: default
 tags: [art, games, academic]
@@ -8,7 +8,7 @@ links:
   - text: Everest Pipkin's The Ground Itself
     url: https://everestpipkin.itch.io/the-ground-itself
   - text: Nonsynth
-    url: https://acalde24.gitlab.io/portfolio/2023/11/01/nonsynth.html
+    url: https://nonsens.ing/2022/11/01/nonsynth.html
 ---
 The Itself is a (work in progress) game developed while searching for word production strategies for my 'narrative instrument' Nonsynth.
 

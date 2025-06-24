@@ -4,6 +4,9 @@ title: "Ways of Knowing (Digital Poem)"
 date: 2025-6-17
 text: default
 tags: [publication, poetry]
+images:
+   -src: ""
+   -alt:
 links:
     - text: "Taper #14: Sonnets, Spring 2025"
       url: https://taper.badquar.to/14/ways_of_knowing.html
@@ -11,8 +14,8 @@ links:
 
 
 
-Inspired by Queneau’s line by line writing experience (A Hundred 
-Thousand Billion Poems), “Ways of Knowing” tasks the 
+Inspired by Queneau’s <i>A Hundred 
+Thousand Billion Poems</i>, “Ways of Knowing” tasks the 
 player-writer-reader with producing single-word sonnets 
 on a character-by character basis. Every reload maps a random 
 14-character word to each arrow key. The player is tasked with 

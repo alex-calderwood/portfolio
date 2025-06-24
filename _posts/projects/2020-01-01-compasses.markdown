@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "semantic compasses"
+title: "Semantic Compasses"
 date:   2020-01-01 17:41:39 -0700
 text: default
 tags: [art, language]

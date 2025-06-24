@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "coronavirus bot"
+title: "Coronavirus Bot"
 date:   2020-01-30 17:41:39 -0700
 tags: [art]
 ---
