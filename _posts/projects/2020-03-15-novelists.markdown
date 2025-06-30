@@ -3,7 +3,7 @@ layout: post
 title: "How Novelists Use Generative Language Models"
 date:   2020-03-15 17:41:39 -0700
 text: default
-tags: [publication, academic]
+tags: [publication, paper]
 links:
   - text: How Novelists Use Generative Language Models in HAI-GEN
     url: http://ceur-ws.org/Vol-2848/HAI-GEN-Paper-3.pdf

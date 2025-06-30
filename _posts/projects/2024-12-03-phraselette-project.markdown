@@ -3,7 +3,7 @@ layout: post
 title: "Phraselette"
 date:   2024-11-14 00:00:00 -0400
 text: default
-tags: [writing tools, code, academic, system]
+tags: [writing tools, code, paper, system]
 links:
   - text: Arxiv Preprint
     url: https://arxiv.org/abs/2503.06335

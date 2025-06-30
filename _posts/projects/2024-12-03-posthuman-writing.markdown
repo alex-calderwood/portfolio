@@ -3,7 +3,7 @@ layout: post
 title: "Designing for Posthuman Critical Literacy"
 date:   2023-11-14 00:00:00 -0400
 text: default
-tags: [publication, writing tools, academic]
+tags: [publication, writing tools, paper]
 links:
     - text: In2Writing '24 (CHI Workshop)
       url: https://dl.acm.org/doi/fullHtml/10.1145/3690712.3690729

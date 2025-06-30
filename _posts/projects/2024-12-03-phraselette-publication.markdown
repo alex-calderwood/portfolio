@@ -3,7 +3,7 @@ layout: post
 title: "Phraselette: A Poet's Procedural Palette"
 date:   2024-11-14 00:00:00 -0400
 text: default
-tags: [writing tools, code, publication, academic, language]
+tags: [writing tools, code, publication, paper, language]
 links:
   - text: Arxiv Preprint
     url: https://arxiv.org/abs/2503.06335

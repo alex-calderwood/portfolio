@@ -3,7 +3,7 @@ layout: post
 title: "Phonaesthesia"
 date:   2018-12-22 17:41:39 -0700
 text: default
-tags: [art, academic, language, code]
+tags: [art, paper, language, code]
 links:
   # - text: Github
   #   url: https://github.com/alex-calderwood/phonaesthesia/blob/master/papers/leiberman_paper.pdf

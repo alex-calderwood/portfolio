@@ -3,7 +3,7 @@ layout: post
 title: "There and Back Again"
 date:   2023-06-10 17:41:39 -0700
 text: default
-tags: [publication, code, games, academic]
+tags: [publication, code, games, paper]
 links:
   - text: "Best Paper Award: AAAI '23"
     url: https://ojs.aaai.org/index.php/AIIDE/article/view/27502

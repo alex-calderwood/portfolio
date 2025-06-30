@@ -3,7 +3,7 @@ layout: post
 title: "A Review of Writing Support Tools"
 date:   2022-03-15 17:41:39 -0700
 text: default
-tags: [publication, academic, writing tools]
+tags: [publication, paper, writing tools]
 links:
   - text: A Review of Writing Support Tools Using a Cognitive Process Model of Writing
     url: https://aclanthology.org/2022.in2writing-1.2/

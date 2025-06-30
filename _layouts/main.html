@@ -72,7 +72,7 @@
 
             <p class="fullwidth header">Publications</p>
 
-            {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'publication'" %}
+            {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'paper'" %}
             {% assign char_limit = 75 %}
             {% assign shown_posts = '' | split: '' %}
             {% for post in publication_posts %}
@@ -137,23 +137,59 @@
         </div>
 
         <div class="column">
-            <p class="fullwidth header">Miscelaneous</p>
+
+            <p class="fullwidth header">Published Poetry</p>
+
+            {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
+            {% for post in poetry_posts %}
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+                        <span class="date">
+                            {% if post.date %}
+                                {{ post.date | date: "%B %Y" }}
+                            {% endif %}
+                        </span>
+                    </p>
+
+                
+                <!-- Images -->
+                {% if post.images %}
+                    {% for image in post.images %}
+                        <img 
+                            id="main-page-image-{{ image.src }}"
+                             src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                             alt="{{ image.alt }}" 
+                             class="marginalia marginalia-right"
+                             data-parent-post="{{ post.title | slugify }}"> 
+                             <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+
+            <p class="fullwidth header">Miscellaneous</p>
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
                 {% unless shown_posts contains post.title %}
-                    <a class="fullwidth" href="{{ post.url | relative_url }}"
-                        data-tags="{{ post.tags | join: ',' }}">{{ post.title }}</a>
+                    <div class="publication-item" data-post-id="{{ post.title | slugify }}">
+                        <p class="fullwidth subheader">
+                            <a href="{{ post.url | relative_url }}"
+                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                            </a>
+                        </p>
+                    </div>
                 {% endunless %}
             {% endfor %}
         </div>
-
 
         <!-- Margin overlay for marginalia images -->
         <div class="margin-overlay">
             <!-- Images will be moved here by JavaScript -->
         </div>
-
 
     </div>
 
@@ -207,10 +243,48 @@
             });
         }
 
+        function respaceImages() {
+            const leftImages = Array.from(document.querySelectorAll('.marginalia:not(.marginalia-right)'));
+            const rightImages = Array.from(document.querySelectorAll('.marginalia-right'));
+            
+            // Helper function to respace a group of images
+            function respaceImageGroup(images) {
+                if (images.length === 0) return;
+                
+                // Sort by preferred position (current top position)
+                images.sort((a, b) => {
+                    const aTop = parseFloat(a.style.top) || a.getBoundingClientRect().top;
+                    const bTop = parseFloat(b.style.top) || b.getBoundingClientRect().top;
+                    return aTop - bTop;
+                });
+                
+                const minSpacing = 5; // minimum pixels between images
+                let lastBottom = -Infinity;
+                
+                images.forEach(image => {
+                    const rect = image.getBoundingClientRect();
+                    const preferredTop = parseFloat(image.style.top) || rect.top;
+                    const imageHeight = rect.height;
+                    
+                    // Place at preferred position or just below the last image
+                    const newTop = Math.max(preferredTop, lastBottom + minSpacing);
+                    image.style.top = newTop + 'px';
+                    
+                    lastBottom = newTop + imageHeight;
+                });
+            }
+            
+            // Respace left and right images separately
+            respaceImageGroup(leftImages);
+            respaceImageGroup(rightImages);
+        }
+
+
+        const [leftColumn, rightColumn] = document.querySelectorAll('.column');
+        const images = document.querySelectorAll('.marginalia, .marginalia-right');
+        const contentColumns = document.querySelector('.content-columns');
+
         function setupScrollingMarginalia() {
-            const column = document.querySelector('.column');
-            const images = document.querySelectorAll('.marginalia');
-            const contentColumns = document.querySelector('.content-columns');
             // get the margin-left of the content columns
             const marginLeft = window.getComputedStyle(contentColumns).marginLeft;
             const marginLeftPx = parseFloat(marginLeft.replace('px', ''));
@@ -224,19 +298,26 @@
                         const rect = parentPost.getBoundingClientRect();
                         image.style.top = rect.top + 'px';
                         image.style.width = marginLeftPx * .8 + 'px';
-                        image.style.left = marginLeftPx * .1 + 'px';
+                        
+                        // Check if this is a right-side marginalia
+                        if (image.classList.contains('marginalia-right')) {
+                            image.style.right = marginLeftPx * .1 + 'px';
+                            image.style.left = 'auto';
+                        } else {
+                            image.style.left = marginLeftPx * .1 + 'px';
+                            image.style.right = 'auto';
+                        }
                     } else {
                         console.log('no parent post found for image', image);
                     }
                 });
             }
             
-            // Update positions on scroll
-            column.addEventListener('scroll', updateImagePositions);
-            document.addEventListener('scroll', updateImagePositions);
-            
             // Initial positioning
             updateImagePositions();
+
+            // move the images
+            respaceImages();
     }
 
     function resizeContentColumns() {
@@ -275,6 +356,12 @@
 
     // Call on window resize (load is handled by main.html initializePage function)
     window.addEventListener('resize', handleResize); 
+
+    // Update positions on scroll
+    leftColumn.addEventListener('scroll', setupScrollingMarginalia);
+    rightColumn.addEventListener('scroll', setupScrollingMarginalia);
+    document.addEventListener('scroll', setupScrollingMarginalia);
+
 
     </script>
 </html>

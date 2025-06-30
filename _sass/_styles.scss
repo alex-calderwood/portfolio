@@ -320,6 +320,11 @@ h2 {
   left: 0px;
 }
 
+.marginalia-right {
+  left: auto;
+  right: 0px;
+}
+
 .column {
   width: 100%;
   padding: 0px;
@@ -359,6 +364,7 @@ h2 {
 // Prevent fullwidth elements from expanding their containers
 .fullwidth {
   overflow: hidden;
+  overflow-x: hidden !important;
   font-size: 0.9em;
   width: 100%;
 }
