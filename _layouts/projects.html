@@ -84,38 +84,6 @@
                     data-tags="{{ post.tags | join: ',' }}">{{ post.title }}</a>
             {% endfor %}
         </div>
-
-        <!-- <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
-        <script>
-            const currentTag = new URLSearchParams(window.location.search).get('tag') || 'all';
-            console.log('Current tag:', currentTag);
-
-            // make the current tag-link a different color
-            const tagLinks = document.querySelectorAll('.tag-link');
-            tagLinks.forEach(link => {
-                if (link.textContent === currentTag) {
-                    link.classList.add('current-tag');
-                }
-            });
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                const links = document.querySelectorAll('.link');
-                links.forEach(link => {
-                    const tags = link.dataset.tags.split(',');
-                    if (currentTag && !tags.includes(currentTag)) {
-                        link.style.display = 'none';
-                    } else {
-                        // positioni it randomly on the screen
-                        const x = Math.random() * window.innerWidth;
-                        const y = Math.random() * window.innerHeight;
-                        link.style.left = `${x}px`;
-                        link.style.top = `${y}px`;
-                    }
-                });
-                header();
-                davinci_fill(document.querySelector('#tags'), 'center');
-            });
-        </script> -->
     
     </body>
     <br>

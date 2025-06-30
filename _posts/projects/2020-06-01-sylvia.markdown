@@ -4,6 +4,9 @@ title: "Sylvia"
 date:   2020-06-01 17:41:39 -0700
 text: default
 tags: [art, code]
+images: 
+  - src: sylvia.jpg
+    alt: "An image of a virtual influencer, Sylvia."
 links:
   - text: Instagram
     url: https://www.instagram.com/myfriendsylvia/

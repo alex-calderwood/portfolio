@@ -5,6 +5,8 @@ title-full: "How Americans Wound Up on Twitter's List of Russian Bots"
 date:   2018-06-07 17:41:39 -0700
 text: default
 tags: [publication, journalism, code]
+images:
+  - src: americans.webp
 links:
   - text: Wired Magazine
     url: https://www.wired.com/story/how-americans-wound-up-on-twitters-list-of-russian-bots/

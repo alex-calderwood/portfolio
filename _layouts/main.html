@@ -47,7 +47,7 @@
       <body>
     <div id="heading-content">
         <p id="hi" class="fullwidth">
-            Hi, I'm Alex. <img class="monochrome" src="{{ site.baseurl }}/assets/images/selfie.png" alt="A selfie of me" style="width: 1em;"> Welcome!</p>
+            Hi, I'm Alex. <img class="monochrome" src="{{ site.baseurl }}/assets/images/me2.png" alt="A picture of me looking out over the beach." style="width: 1em;"> Welcome!</p>
         
         <!-- <p id="welcome" class="fullwidth">to my website!</p> -->
             <!-- <p class="fullwidth">(as you can tell, it's a bit of a work in progress, please excuse the mess).</p> -->
@@ -79,59 +79,97 @@
                 {% assign shown_posts = shown_posts | push: post.title %}
                 
                 <div class="publication-item" data-post-id="{{ post.title | slugify }}">
-                <p class="fullwidth subheader">
-                    <a href="{{ post.url | relative_url }}"
-                        data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
-                    </a>
-                <!-- </p> -->
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+                    <!-- </p> -->
 
-                <!-- <p class="fullwidth sub"> -->
+                    <!-- <p class="fullwidth sub"> -->
 
-                    <!-- Date -->
-                    <span class="date">
-                    {% if post.date %}
-                        {{ post.date | date: "%B %Y" }}
-                    {% endif %}
-                    </span>
-                    <p class="fullwidth sub">
-
-                    <!-- Tags -->
-                    {% for tag in post.tags %}
-                        {% if tag == "publication" %}
-                        {% else %}
-                            <svg class="tag" width="0.7em" height="0.7em" viewBox="0 0 64 64" fill="none" style="padding: 0; margin: 0; display: inline-block;">
-                                <use href="#tag3" width="100%" height="100%" style="display: inline-block;"></use>
-                            </svg>
-                            <span class="tag">{{ tag }}</span>
+                        <!-- Date -->
+                        <span class="date">
+                        {% if post.date %}
+                            {{ post.date | date: "%B %Y" }}
                         {% endif %}
-                    {% endfor %}
-                <!-- </p> -->
+                        </span>
+                        <p class="fullwidth sub">
 
-                <!-- <p class="fullwidth sub">RR -->
-                
-                    <!-- Links -->
-                    {% for link in post.links %}
-                        <a class="post-link" href="{{ link.url }}">{{ link.text }}</a>
-                    {% endfor %}
-                </p>
+                        <!-- Tags -->
+                        {% for tag in post.tags %}
+                            {% if tag == "publication" %}
+                            {% else %}
+                                <svg class="tag" width="0.7em" height="0.7em" viewBox="0 0 64 64" fill="none" style="padding: 0; margin: 0; display: inline-block;">
+                                    <use href="#tag3" width="100%" height="100%" style="display: inline-block;"></use>
+                                </svg>
+                                <span class="tag">{{ tag }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    <!-- </p> -->
 
-                <!-- Images -->
-                {% if post.images %}
-                    {% for image in post.images %}
-                        <img 
-                            id="main-page-image-{{ image.src }}"
-                             src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                             alt="{{ image.alt }}" 
-                             class="marginalia"
-                             data-parent-post="{{ post.title | slugify }}"> 
-                             <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                    {% endfor %}
-                {% endif %}
+                    <!-- <p class="fullwidth sub">RR -->
+                    
+                        <!-- Links -->
+                        {% for link in post.links %}
+                            <a class="post-link" href="{{ link.url }}">{{ link.text }}</a>
+                        {% endfor %}
+                    </p>
 
-                <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
+                    <!-- Images -->
+                    {% if post.images %}
+                        {% for image in post.images %}
+                            <img 
+                                id="main-page-image-{{ image.src }}"
+                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                alt="{{ image.alt }}" 
+                                class="marginalia"
+                                data-parent-post="{{ post.title | slugify }}"> 
+                                <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
                 </div>
             
             {% endfor %}
+
+            <p class="fullwidth header">Journalism</p>
+
+            {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
+            {% for post in journalism_posts %}
+                {% assign shown_posts = shown_posts | push: post.title %}
+
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+                        <span class="date">
+                            {% if post.date %}
+                                {{ post.date | date: "%B %Y" }}
+                            {% endif %}
+                        </span>
+                    </p>
+
+                    {% if post.images %}
+                        {% for image in post.images %}
+                            <img 
+                                id="main-page-image-{{ image.src }}"
+                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                alt="{{ image.alt }}" 
+                                class="marginalia"
+                                data-parent-post="{{ post.title | slugify }}"> 
+                        {% endfor %}
+                    {% endif %}
+
+
+                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
+                </div>
+
+            {% endfor %}
+
+
+
 
             
         </div>
@@ -303,10 +341,12 @@
                 images.forEach(image => {
                     const parentPostId = image.getAttribute('data-parent-post');
                     const parentPost = document.querySelector(`[data-post-id="${parentPostId}"]`);
+
+                    const imageHeight = image.offsetHeight;
                     
                     if (parentPost) {
                         const rect = parentPost.getBoundingClientRect();
-                        image.style.top = rect.top + 'px';
+                        image.style.top = rect.top + rect.height/2 - imageHeight/2 + 'px';
                         image.style.width = marginLeftPx * .8 + 'px';
                         
                         // Check if this is a right-side marginalia
