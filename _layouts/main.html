@@ -184,6 +184,19 @@
                                 data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
                             </a>
                         </p>
+
+                        {% if post.images %}
+                            {% for image in post.images %}
+                                <img 
+                                    id="main-page-image-{{ image.src }}"
+                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                    alt="{{ image.alt }}" 
+                                    class="marginalia marginalia-right"
+                                    data-parent-post="{{ post.title | slugify }}"> 
+                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                            {% endfor %}
+                        {% endif %}
+
                     </div>
                 {% endunless %}
             {% endfor %}

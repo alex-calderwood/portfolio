@@ -3,7 +3,7 @@ layout: post
 title: "The Itself"
 date: 2023-11-14 00:00:00 -0400
 text: default
-tags: [art, games, paper]
+tags: [art, games, ongoing, project]
 links:
   - text: Everest Pipkin's The Ground Itself
     url: https://everestpipkin.itch.io/the-ground-itself

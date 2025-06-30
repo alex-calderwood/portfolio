@@ -5,6 +5,9 @@ title-full: "The Writer's Project"
 date:   2025-06-07 17:41:39 -0700
 text: default
 tags: [art, research, project, in-progress]
+images: 
+  - src: the-writers-project.png
+    alt: "screenshot of the writer's project"
 links:
   - text: "The Writer's Project: Interactive Concrete Poetry Games"
     url: https://nonsens.ing/editors
