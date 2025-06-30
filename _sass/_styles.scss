@@ -174,15 +174,17 @@ body {
 
 #hi {
   position: fixed;
+  width: min(100vw, 100vh);
+  margin: 0 auto;
+  text-align: center;
+  // position: fixed;
   top: 0;
   left: 50%;
   transform: translate(-50%);
-  // make things hide behind it
-  z-index: 100;
+  // width: 100%;
+  // // make things hide behind it
+  // z-index: 100;
   background-color: $background-color;
-//   // position: absolute;
-//   top: 5%;
-//   transform: translate(-50%);
 }
 
 #welcome {
@@ -316,7 +318,6 @@ h2 {
   position: fixed;
   z-index: 2;
   width: 100px;
-  pointer-events: none; 
   left: 0px;
 }
 
@@ -343,6 +344,10 @@ h2 {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.column-right {
+  z-index: 1000 !important;
 }
 
 @media (max-width: 600px) {
@@ -510,6 +515,27 @@ a:hover {
     mix-blend-mode: multiply;
 }
 
+/* Apply monochrome to all marginalia images by default */
+.marginalia, .marginalia-right {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    // transition: all 0.3s ease;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Colorized state for images */
+.marginalia.colorized, .marginalia-right.colorized {
+    filter: none;
+    opacity: 1;
+}
+
+/* Hover effects for publication items */
 .publication-item {
-  position: relative;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.publication-item.highlighted {
+    background-color: rgba(115, 84, 48, 0.1);
 }

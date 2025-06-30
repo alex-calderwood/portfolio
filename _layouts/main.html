@@ -136,12 +136,14 @@
             
         </div>
 
-        <div class="column">
+        <div class="column column-right">
 
-            <p class="fullwidth header">Published Poetry</p>
+            <p class="fullwidth header">Selected Art</p>
 
             {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
             {% for post in poetry_posts %}
+                {% assign shown_posts = shown_posts | push: post.title %}
+
                 <div class="publication-item" data-post-id="{{ post.title | slugify }}">
                     <p class="fullwidth subheader">
                         <a href="{{ post.url | relative_url }}"
@@ -167,6 +169,7 @@
                              <!-- https://jekyllrb.com/docs/liquid/filters/ -->
                     {% endfor %}
                 {% endif %}
+                </div>
             {% endfor %}
 
 
@@ -184,11 +187,6 @@
                     </div>
                 {% endunless %}
             {% endfor %}
-        </div>
-
-        <!-- Margin overlay for marginalia images -->
-        <div class="margin-overlay">
-            <!-- Images will be moved here by JavaScript -->
         </div>
 
     </div>
@@ -285,7 +283,6 @@
         const contentColumns = document.querySelector('.content-columns');
 
         function setupScrollingMarginalia() {
-            // get the margin-left of the content columns
             const marginLeft = window.getComputedStyle(contentColumns).marginLeft;
             const marginLeftPx = parseFloat(marginLeft.replace('px', ''));
 
@@ -347,14 +344,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', initializePage);
-    // Also call on window load to ensure fonts are loaded for accurate text resizing
-    window.addEventListener('load', () => {
-        if (typeof handleResize === 'function') {
-            handleResize();
-        }
-    });
-
-    // Call on window resize (load is handled by main.html initializePage function)
+    window.addEventListener('load',  handleResize);
     window.addEventListener('resize', handleResize); 
 
     // Update positions on scroll
@@ -362,6 +352,51 @@
     rightColumn.addEventListener('scroll', setupScrollingMarginalia);
     document.addEventListener('scroll', setupScrollingMarginalia);
 
+    // Add hover effects for posts and images
+    function setupHoverEffects() {
+        // Get all publication items and marginalia images
+        const publicationItems = document.querySelectorAll('.publication-item');
+        const marginaliaImages = document.querySelectorAll('.marginalia, .marginalia-right');
+        
+        // Add hover effects to publication items
+        publicationItems.forEach(item => {
+            const postId = item.getAttribute('data-post-id');
+            const relatedImages = document.querySelectorAll(`.marginalia[data-parent-post="${postId}"], .marginalia-right[data-parent-post="${postId}"]`);
+            
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('highlighted');
+                relatedImages.forEach(img => img.classList.add('colorized'));
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('highlighted');
+                relatedImages.forEach(img => img.classList.remove('colorized'));
+            });
+        });
+        
+        // Add hover effects to marginalia images
+        marginaliaImages.forEach(image => {
+            const parentPostId = image.getAttribute('data-parent-post');
+            const parentPost = document.querySelector(`.publication-item[data-post-id="${parentPostId}"]`);
+            
+            image.addEventListener('mouseenter', () => {
+                image.classList.add('colorized');
+                if (parentPost) {
+                    parentPost.classList.add('highlighted');
+                }
+            });
+            
+            image.addEventListener('mouseleave', () => {
+                image.classList.remove('colorized');
+                if (parentPost) {
+                    parentPost.classList.remove('highlighted');
+                }
+            });
+        });
+    }
+
+    // Initialize hover effects after page load
+    setupHoverEffects();
 
     </script>
 </html>
