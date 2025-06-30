@@ -5,8 +5,8 @@ date: 2025-6-17
 text: default
 tags: [publication, poetry]
 images:
-   -src: ""
-   -alt:
+   - src: ways-of-knowing.png
+     alt: "A screenshot of 'Ways of Knowing' digital poem depicting green letters suspended on a grid of partial words going in different directions: sys-ue-matically and sys-ues-atical-y"
 links:
     - text: "Taper #14: Sonnets, Spring 2025"
       url: https://taper.badquar.to/14/ways_of_knowing.html

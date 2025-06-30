@@ -61,11 +61,3 @@ function resizeElements() {
     }
 }
 
-// Function to handle window resize
-function handleResize() {
-    resizeElements();
-}
-
-// Call on load and window resize
-window.addEventListener('load', handleResize);
-window.addEventListener('resize', handleResize); 

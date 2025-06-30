@@ -150,20 +150,8 @@ body {
     margin: 0;
     background-color: $background-color;
     color: $text-color;
+    // position: relative;
 }
-
-body { // main. date
-  // color: $background-color;
-  background: 
-    linear-gradient(90deg, lighten($text-color, 45%), transparent), 
-    url(https://grainy-gradients.vercel.app/noise.svg);
-
-  filter: grayscale(100%);
-  opacity: 0.8;
-  mix-blend-mode: multiply;
-    // contrast(170%) brightness(1000%);
-}
-
 
 @media (max-width: 600px) {
   body {
@@ -310,13 +298,26 @@ h2 {
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
+  /* Remove position: relative to prevent clipping context */
   
-  // Set fixed height to prevent page extension
-  // height: calc(100vh); // Adjust this value based on heading content height
-  height: 80vh;
-  overflow: hidden;
+  overflow: visible;
+  
   box-sizing: border-box;
   padding: 0;
+}
+
+.margin-overlay {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none; 
+}
+
+.marginalia {
+  position: fixed;
+  z-index: 2;
+  width: 100px;
+  pointer-events: none; 
+  left: 0px;
 }
 
 .column {
@@ -325,7 +326,8 @@ h2 {
   margin: 0px;
   // Enable scrolling instead of hiding overflow
   overflow-y: auto;
-  overflow-x: hidden;
+  // overflow-x: hidden;
+  overflow-x: visible;
   box-sizing: border-box;
   
   // Hide scrollbars
@@ -377,6 +379,7 @@ h2 {
   color: #dadada;
   // font-style: italic;
   mix-blend-mode: difference;
+  user-select: none;
 }
 
 .background-layer {
@@ -399,13 +402,14 @@ a:hover {
 }
 
 .post-date {
+  font-family: $san-serif-font;
   font-style: italic;
-  color: $subtext-color;
+  color: $muted-color
 }
 
 .inverted-text {
-  color:$background-color;
-  background-color: $text-color;
+  color: $background-color !important;
+  background-color: lighten($text-color, 20%) !important;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 
   // background: 
@@ -430,16 +434,6 @@ a:hover {
   margin-top: 0.05vh;
 }
 
-.marginalia {
-  position: absolute;
-  left: -80px;
-  top: 40px;
-  transform: rotate(-10deg);
-  opacity: 0.2;
-  font-size: 0.9em;
-  font-style: italic;
-}
-
 // Older Stuff
 
 .project-link {
@@ -456,11 +450,9 @@ a:hover {
 }
 
 .post-image {
-  position: absolute;
-  z-index: -1; /* Ensure it is behind other content */
-  filter: grayscale(100%) contrast(100%) brightness(200%); // blur(5px)
   width: 50%;
-  opacity: 0.24;
+  transform: translate(50%);
+
 }
 
 #image1 {
@@ -493,8 +485,9 @@ a:hover {
     position: absolute;
     z-index: 2;
     pointer-events: auto;
-    top: 10%;
     width: 100%;
+    top: 10%;
+
 }
 
 .post-container {
@@ -509,4 +502,8 @@ a:hover {
     filter: grayscale(100%);
     opacity: 0.8;
     mix-blend-mode: multiply;
+}
+
+.publication-item {
+  position: relative;
 }

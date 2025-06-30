@@ -5,14 +5,13 @@ date: 2025-6-17
 text: default
 tags: [publication, poetry]
 images:
-  - src: "selfie.png"
-    alt: "A selfie"
-    caption: "hi"
+  - src: a-prism.png
+    alt: "An image of a purple 1.5D prism on an orange background with some text obscured by its boundaries."
 links:
     - text: A Prism in Taper Poetry Journal
       url: https://taper.badquar.to/14/prism.html
 ---
 
-This is a strange little prism that seems to alter language... I 
+This asdfis a strange little prism that seems to alter language... I 
 thought it would show only a distortion of the world, but I grow 
 dependent on it. Now only through it do I find my truth refracted...
