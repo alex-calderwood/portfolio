@@ -84,7 +84,7 @@
                         </p>
 
                         {% if post.images %}
-                            {% for image in post.images %}
+                            {% assign image = post.images[0] %}
                                 <img 
                                     id="main-page-image-{{ image.src }}"
                                     src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
@@ -92,7 +92,6 @@
                                     class="marginalia"
                                     data-parent-post="ongoing-{{ post.title | slugify }}"> 
                                     <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                            {% endfor %}
                         {% endif %}
 
                     </div>
@@ -146,7 +145,7 @@
 
                     <!-- Images -->
                     {% if post.images %}
-                        {% for image in post.images %}
+                        {% assign image = post.images[0] %}
                             <img 
                                 id="main-page-image-{{ image.src }}"
                                 src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
@@ -154,7 +153,6 @@
                                 class="marginalia"
                                 data-parent-post="{{ post.title | slugify }}"> 
                                 <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                        {% endfor %}
                     {% endif %}
 
                     <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
@@ -186,15 +184,13 @@
                 
                 <!-- Images -->
                 {% if post.images %}
-                    {% for image in post.images %}
+                    {% assign image = post.images[0] %}
                         <img 
                             id="main-page-image-{{ image.src }}"
                              src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
                              alt="{{ image.alt }}" 
                              class="marginalia marginalia-right"
                              data-parent-post="{{ post.title | slugify }}"> 
-                             <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                    {% endfor %}
                 {% endif %}
                 </div>
             {% endfor %}
@@ -219,14 +215,13 @@
                     </p>
 
                     {% if post.images %}
-                        {% for image in post.images %}
+                        {% assign image = post.images[0] %}
                             <img 
                                 id="main-page-image-{{ image.src }}"
                                 src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
                                 alt="{{ image.alt }}" 
                                 class="marginalia marginalia-right"
                                 data-parent-post="{{ post.title | slugify }}"> 
-                        {% endfor %}
                     {% endif %}
 
 
@@ -249,15 +244,13 @@
                         </p>
 
                         {% if post.images %}
-                            {% for image in post.images %}
+                            {% assign image = post.images[0] %}
                                 <img 
                                     id="main-page-image-{{ image.src }}"
                                     src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
                                     alt="{{ image.alt }}" 
                                     class="marginalia marginalia-right"
                                     data-parent-post="{{ post.title | slugify }}"> 
-                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                            {% endfor %}
                         {% endif %}
 
                     </div>
@@ -373,18 +366,20 @@
                     const parentPost = document.querySelector(`[data-post-id="${parentPostId}"]`);
 
                     const imageHeight = image.offsetHeight;
-                    
+                    const imagePercent = 0.95;
+                    const imageMargin = (1 - imagePercent) / 2;
+
                     if (parentPost) {
                         const rect = parentPost.getBoundingClientRect();
                         image.style.top = rect.top + rect.height/2 - imageHeight/2 + 'px';
-                        image.style.width = marginLeftPx * .8 + 'px';
+                        image.style.width = marginLeftPx * imagePercent + 'px';
                         
                         // Check if this is a right-side marginalia
                         if (image.classList.contains('marginalia-right')) {
-                            image.style.right = marginLeftPx * .1 + 'px';
+                            image.style.right = marginLeftPx * imageMargin + 'px';
                             image.style.left = 'auto';
                         } else {
-                            image.style.left = marginLeftPx * .1 + 'px';
+                            image.style.left = marginLeftPx * imageMargin + 'px';
                             image.style.right = 'auto';
                         }
                     } else {

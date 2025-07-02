@@ -6,6 +6,8 @@ date:   2025-06-07 17:41:39 -0700
 text: default
 tags: [art, research, project, ongoing]
 images: 
+  - src: the-writers-project-2.png
+    alt: "screenshot of a text editor that reads 'what does it mean to make a mistake?'"
   - src: the-writers-project.png
     alt: "screenshot of the writer's project"
 links:
