@@ -12,8 +12,6 @@ links:
       url: https://taper.badquar.to/14/ways_of_knowing.html
 ---
 
-
-
 Inspired by Queneau’s <i>A Hundred 
 Thousand Billion Poems</i>, “Ways of Knowing” tasks the 
 player-writer-reader with producing single-word sonnets 

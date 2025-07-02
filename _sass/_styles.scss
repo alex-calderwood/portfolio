@@ -519,6 +519,7 @@ a:hover {
 .publication-item {
     position: relative;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .publication-item.highlighted {

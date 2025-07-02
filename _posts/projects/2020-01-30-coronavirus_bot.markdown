@@ -11,3 +11,5 @@ links:
     url: https://harvardtechnologyreview.com/2020/05/17/covid-19-art/
 ---
 The morning after researchers released the Coronavirus genome, I whipped together this bot to tweet it out, base-pair by base-pair. The genome is really short (like 24,000 base-pairs!) so I figured it would take about 17 days to tweet the whole thing out, and why not do just that?
+
+It was covered by The Harvard Technology Review as one of three projects from code-based artists that approached the COVID outbreak.
