@@ -70,6 +70,35 @@
     <div class="content-columns">
         <div class="column">
 
+            <p class="fullwidth header">Projects that are upgoing or oncoming</p>
+
+            <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
+            {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
+            {% for post in ongoing_posts %}
+                {% unless shown_posts contains post.title %}
+                    <div class="publication-item" data-post-id="ongoing-{{ post.title | slugify }}">
+                        <p class="fullwidth subheader">
+                            <a href="{{ post.url | relative_url }}"
+                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                            </a>
+                        </p>
+
+                        {% if post.images %}
+                            {% for image in post.images %}
+                                <img 
+                                    id="main-page-image-{{ image.src }}"
+                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                    alt="{{ image.alt }}" 
+                                    class="marginalia"
+                                    data-parent-post="ongoing-{{ post.title | slugify }}"> 
+                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                {% endunless %}
+            {% endfor %}
+
             <p class="fullwidth header">Publications</p>
 
             {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'paper'" %}
@@ -132,51 +161,12 @@
                 </div>
             
             {% endfor %}
-
-            <p class="fullwidth header">Journalism</p>
-
-            {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
-            {% for post in journalism_posts %}
-                {% assign shown_posts = shown_posts | push: post.title %}
-
-                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
-                    <p class="fullwidth subheader">
-                        <a href="{{ post.url | relative_url }}"
-                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
-                        </a>
-                        <span class="date">
-                            {% if post.date %}
-                                {{ post.date | date: "%B %Y" }}
-                            {% endif %}
-                        </span>
-                    </p>
-
-                    {% if post.images %}
-                        {% for image in post.images %}
-                            <img 
-                                id="main-page-image-{{ image.src }}"
-                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                alt="{{ image.alt }}" 
-                                class="marginalia"
-                                data-parent-post="{{ post.title | slugify }}"> 
-                        {% endfor %}
-                    {% endif %}
-
-
-                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
-                </div>
-
-            {% endfor %}
-
-
-
-
             
         </div>
 
         <div class="column column-right">
 
-            <p class="fullwidth header">Selected Art</p>
+            <p class="fullwidth header">Digital Art and Writing</p>
 
             {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
             {% for post in poetry_posts %}
@@ -211,7 +201,43 @@
             {% endfor %}
 
 
-            <p class="fullwidth header">Miscellaneous</p>
+            <p class="fullwidth header">Journalism</p>
+
+            {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
+            {% for post in journalism_posts %}
+                {% assign shown_posts = shown_posts | push: post.title %}
+
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+                        <span class="date">
+                            {% if post.date %}
+                                {{ post.date | date: "%B %Y" }}
+                            {% endif %}
+                        </span>
+                    </p>
+
+                    {% if post.images %}
+                        {% for image in post.images %}
+                            <img 
+                                id="main-page-image-{{ image.src }}"
+                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                alt="{{ image.alt }}" 
+                                class="marginalia marginalia-right"
+                                data-parent-post="{{ post.title | slugify }}"> 
+                        {% endfor %}
+                    {% endif %}
+
+
+                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
+                </div>
+
+            {% endfor %}
+
+
+            <p class="fullwidth header">Miscellanea</p>
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
@@ -238,6 +264,7 @@
                     </div>
                 {% endunless %}
             {% endfor %}
+    
         </div>
 
     </div>
@@ -247,7 +274,7 @@
     <script src="{{ site.baseurl }}/assets/js/text-resize.js"></script>
     <script>
         async function createPublicationContent(params) {
-            const charLimit = 75;
+            const charLimit = 50;
             const maxLines = 3;
             document.querySelectorAll('.publication-content').forEach(function(div) {
                 const raw = div.getAttribute('data-content');

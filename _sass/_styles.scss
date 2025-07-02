@@ -5,11 +5,11 @@ $text-color: rgb(133, 118, 101);
 $subtext-color: lighten($text-color, 10%);
 $default-link-color: lighten($subtext-color, 10%);
 $muted-color: lighten($subtext-color, 20%);
+$small-screen-width: 600px;
 
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
 $san-serif-font: 'Raleway';
-
 
 .rosarivo-regular {
   font-family: "Rosarivo", cursive;
@@ -143,20 +143,16 @@ $san-serif-font: 'Raleway';
 body {
     font-family: $serif-font;
     font-size: 14px;
-    // width: 100vw;
-    // height: 100vh;
-    // overflow-x: hidden;
     padding: 0;
     margin: 0;
     background-color: $background-color;
     color: $text-color;
-    // position: relative;
+    overscroll-behavior: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: $small-screen-width) {
   body {
     height: 100vh;
-    overflow-y: hidden;
   }
 }
 
@@ -208,7 +204,6 @@ a {
 
 a.fullwidth {
   
-    // margin-top: 10px !important;
 }
 
 p {
@@ -231,7 +226,8 @@ h2 {
 }
 
 .sub a {
-  // font-style: normal;
+
+  line-height: 1;
 }
 
 #title {
@@ -257,8 +253,6 @@ h2 {
 }
 
 .heading-link {
-  // font-weight: 600;
-  // set highlighted
   background-color: $text-color;
   color: $background-color;
   padding-left: 0.2em;
@@ -271,23 +265,11 @@ h2 {
 }
 
 #heading-content {
-  // width: clamp(95%, 500px);
   width: min(100vw, 100vh);
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
 }
-
-// #content {
-//   // position: absolute;
-//   top: 5%;
-//   left: 50%;
-//   transform: translate(-50%);
-//   // width: clamp(95%, 1000px);
-//   width: 95%;
-//   text-align: center;
-//   font-family: $serif-font;
-// }
 
 #heading-content > a {
   font-style: normal;
@@ -300,13 +282,18 @@ h2 {
   margin: 0 auto;
   text-align: center;
   font-family: $serif-font;
-  /* Remove position: relative to prevent clipping context */
-  
   overflow: visible;
-  
   box-sizing: border-box;
   padding: 0;
+  overscroll-behavior: none;
 }
+
+@media (max-width: $small-screen-width) {
+  .content-columns {
+    grid-template-columns: 1fr; /* Single column on small screens */
+  }
+}
+
 
 .margin-overlay {
   position: absolute;
@@ -350,19 +337,10 @@ h2 {
   z-index: 1000 !important;
 }
 
-@media (max-width: 600px) {
-  .content-columns {
-    grid-template-columns: 1fr; /* Single column on small screens */
-    height: 100vh;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: $small-screen-width) {
   .column {
-    // expand to the necessary height rather than scrolling
-    // make the height whatever is necessary
-    overflow-y: visible;
-    height: auto;
+    overflow-y: auto;
+    height: 100vh;
   }
 }
 
@@ -372,6 +350,13 @@ h2 {
   overflow-x: hidden !important;
   font-size: 0.9em;
   width: 100%;
+  margin-bottom: 0;
+  margin-top: 0;
+  line-height: 1;
+}
+
+.fullwidth.subheader {
+  margin-top: 1vh;
 }
 
 .post {
@@ -441,8 +426,8 @@ a:hover {
 }
 
 .publication-content p.fullwidth.sub {
-  margin-bottom: 0.05vh;
-  margin-top: 0.05vh;
+  // margin-bottom: 0.05vh;
+  // margin-top: 0.05vh;
 }
 
 // Older Stuff

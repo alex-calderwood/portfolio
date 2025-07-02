@@ -4,7 +4,7 @@ title: "The Writer's Project"
 title-full: "The Writer's Project"
 date:   2025-06-07 17:41:39 -0700
 text: default
-tags: [art, research, project, in-progress]
+tags: [art, research, project, ongoing]
 images: 
   - src: the-writers-project.png
     alt: "screenshot of the writer's project"
