@@ -1,10 +1,16 @@
-$background-color: rgb(255, 255, 240);
-$bold-color: rgb(94, 82, 69);
-$heading-color: lighten($bold-color, 5%);
-$text-color: rgb(133, 118, 101);
-$subtext-color: lighten($text-color, 10%);
-$default-link-color: lighten($subtext-color, 10%);
-$muted-color: lighten($subtext-color, 20%);
+// $background-color: rgb(250, 210, 67);
+$background-color: rgb(254, 139, 39);
+$bold-color: rgb(255, 246, 68);
+// $heading-color: lighten($bold-color, 5%);
+$heading-color: rgb(21, 92, 185);
+$text-color:  rgb(255, 255, 0);
+$subtext-color: lighten($text-color, 5%);
+$default-link-color: lighten($subtext-color, 5%);
+$link-color-2: $subtext-color;
+
+// $muted-color: lighten($subtext-color, 12%);
+$back-text-color: lighten($background-color, 8%);
+$muted-color: rgb(23, 85, 166);
 $small-screen-width: 600px;
 
 $mono-font: 'Cutive Mono', monospace;
@@ -163,9 +169,12 @@ body {
 }
 
 .header {
-  text-decoration: underline;
+  // text-decoration: underline;
   // margin-top: 4vh !important;
   color: $heading-color;
+  // text-decoration-color: $subtext-color;
+  border-bottom: 2px solid $heading-color;
+
 }
 
 #hi {
@@ -195,11 +204,47 @@ body {
   border-radius: 10px;
 }
 
+// .frieze {
+//   div {
+//     position: relative;
+//     width: 98%;
+//     border-bottom: 1px solid $text-color;
+//   }
+
+//   .top {
+//     margin: 0px auto 1px auto;
+//   }
+
+//   .bot {
+//     margin: 0px auto 20px auto;
+//   }
+// }
+
+.frieze {
+  // div {
+  //   position: relative;
+  //   width: 98%;
+  //   border-bottom: 1px solid $text-color;
+  // }
+
+  .top {
+    margin: 0px auto 20px auto;
+  }
+
+  .bot {
+    margin: 0px auto 20px auto;
+  }
+}
+
 // remove all of the special formatting for a tags
 a {
   color: $default-link-color;
   text-decoration: none;
   font-style: italic;
+}
+
+#contact a {
+  color: $link-color-2;
 }
 
 a.fullwidth {
@@ -372,7 +417,7 @@ h2 {
 // backwards davinci
 .back {
   display: inline;
-  color: #dadada;
+  color: $back-text-color;
   // font-style: italic;
   mix-blend-mode: difference;
   user-select: none;
