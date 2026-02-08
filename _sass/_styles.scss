@@ -357,7 +357,11 @@ h2 {
 
 @media (max-width: $small-screen-width) {
   .content-columns {
+    display: block;
     grid-template-columns: 1fr; /* Single column on small screens */
+    height: fit-content;
+    overflow:auto;
+    overscroll-behavior: auto;
   }
 }
 
@@ -400,16 +404,17 @@ h2 {
   }
 }
 
+@media (max-width: $small-screen-width) {
+  .column {
+    // overflow-y: auto;
+    height: fit-content;
+  }
+}
+
 .column-right {
   z-index: 1000 !important;
 }
 
-@media (max-width: $small-screen-width) {
-  .column {
-    overflow-y: auto;
-    height: 100vh;
-  }
-}
 
 // Prevent fullwidth elements from expanding their containers
 .fullwidth {
