@@ -1,12 +1,20 @@
+// sass documentation https://sass-lang.com/documentation/modules/color/
+// color.scale  // percentage of current value (scaling based on a space)
+// color.adjust // fixed amount
+// opacify
+
+@use 'sass:color';
+
 // $background-color: rgb(250, 210, 67);
 $background-color: rgb(254, 139, 39);
 $bold-color: rgb(255, 246, 68);
-// $heading-color: lighten($bold-color, 5%);
+// $heading-color: lighten(o$bold-color, 5%);
 $heading-color: rgb(21, 92, 185);
 $text-color:  rgb(255, 255, 0);
 $subtext-color: lighten($text-color, 5%);
+
 $default-link-color: lighten($subtext-color, 5%);
-$link-color-2: $subtext-color;
+$link-color-2: mix($text-color, $background-color, $weight: 60%);
 
 // $muted-color: lighten($subtext-color, 12%);
 $back-text-color: lighten($background-color, 8%);
@@ -15,7 +23,8 @@ $small-screen-width: 600px;
 
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
-$san-serif-font: 'Raleway';
+$san-serif-font: 'Raleway'; // unused
+$secondary-font: $serif-font; // todo find a good secondary serif?
 
 .rosarivo-regular {
   font-family: "Rosarivo", cursive;
@@ -172,25 +181,26 @@ body {
   // text-decoration: underline;
   // margin-top: 4vh !important;
   color: $heading-color;
+  font-family: $serif-font;
   // text-decoration-color: $subtext-color;
   border-bottom: 2px solid $heading-color;
 
 }
 
-#hi {
-  position: fixed;
-  width: min(100vw, 100vh);
-  margin: 0 auto;
-  text-align: center;
-  // position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%);
-  // width: 100%;
-  // // make things hide behind it
-  // z-index: 100;
-  background-color: $background-color;
-}
+// #hi {
+//   position: fixed;
+//   width: min(100vw, 100vh);
+//   margin: 0 auto;
+//   text-align: center;
+//   // position: fixed;
+//   top: 0;
+//   left: 50%;
+//   transform: translate(-50%);
+//   // width: 100%;
+//   // // make things hide behind it
+//   // z-index: 100;
+//   background-color: $background-color;
+// }
 
 #welcome {
   // initialize it at the bottom of #hi
@@ -228,11 +238,11 @@ body {
   // }
 
   .top {
-    margin: 0px auto 20px auto;
+    margin: 0px auto 30px auto;
   }
 
   .bot {
-    margin: 0px auto 20px auto;
+    margin: 0px auto 30px auto;
   }
 }
 
@@ -243,17 +253,25 @@ a {
   font-style: italic;
 }
 
-#contact a {
-  color: $link-color-2;
+#contact {
+
+    a {
+    color: $link-color-2;
+    text-decoration-color: $link-color-2;
+  }
 }
 
-a.fullwidth {
-  
+.breaker {
+  // margin-top: 10px !important;
+  // margin-bottom: 10px !important;
+  height: 3vh;
 }
 
 p {
   margin: 0;
 }
+
+// raleway
 
 .post p {
   margin-top: 1vh;
@@ -268,6 +286,7 @@ h2 {
 
 .sub {
   color: $subtext-color;
+  font-family: $secondary-font;
 }
 
 .sub a {
@@ -280,16 +299,6 @@ h2 {
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
-  line-height: 1;
-}
-
-// #content > p, #content > a {
-#heading-content > * {
-  font-size: 16px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  display: block;
   line-height: 1;
 }
 
@@ -316,18 +325,31 @@ h2 {
   font-family: $serif-font;
 }
 
+// #content > p, #content > a {
+// important to make
+#heading-content > * {
+  font-size: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  line-height: 1;
+  white-space: nowrap; /* Needs to be here or scaling won't work */
+}
+
 #heading-content > a {
   font-style: normal;
 }
 
+// Height gets set in text-resizeContentColumns
 .content-columns {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
   width: min(100vw, 100vh);
   margin: 0 auto;
   text-align: center;
-  font-family: $serif-font;
-  overflow: visible;
+  font-family: $secondary-font;
+  overflow: hidden;
   box-sizing: border-box;
   padding: 0;
   overscroll-behavior: none;
@@ -548,7 +570,7 @@ a:hover {
 /* Apply monochrome to all marginalia images by default */
 .marginalia, .marginalia-right {
     filter: grayscale(100%);
-    opacity: 0.7;
+    opacity: 0.6;
     // transition: all 0.3s ease;
     pointer-events: auto;
     cursor: pointer;
