@@ -21,6 +21,12 @@ Documentation
    git checkout production
    git push luigigigi production
 
+# Deploy Remotely
+
+open wiregaurd then
+
+  git push luigigigi-remote production
+
 # Old site content
 
 Can be found in the old/ directory around commit f83b5c796b512baf2e63aa7dc6b6a04ba1f2bd1a
