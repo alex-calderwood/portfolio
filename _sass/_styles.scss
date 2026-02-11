@@ -13,8 +13,10 @@ $heading-color: rgb(21, 92, 185);
 $text-color:  rgb(255, 255, 0);
 $subtext-color: lighten($text-color, 5%);
 
-$default-link-color: lighten($subtext-color, 5%);
+$default-link-color: mix($text-color, $background-color, $weight: 60%);
 $link-color-2: mix($text-color, $background-color, $weight: 60%);
+$subheading-link-color: mix($text-color, $heading-color, $weight: 10%);
+
 
 // $muted-color: lighten($subtext-color, 12%);
 $back-text-color: lighten($background-color, 8%);
@@ -24,6 +26,7 @@ $small-screen-width: 600px;
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
 $san-serif-font: 'Raleway'; // unused
+$header-font: $serif-font;
 $secondary-font: $serif-font; // todo find a good secondary serif?
 
 .rosarivo-regular {
@@ -178,13 +181,15 @@ body {
 }
 
 .header {
-  // text-decoration: underline;
+  text-decoration: underline;
   // margin-top: 4vh !important;
   color: $heading-color;
-  font-family: $serif-font;
+  font-family: $header-font;
   // text-decoration-color: $subtext-color;
-  border-bottom: 2px solid $heading-color;
-
+  // border-bottom: 2px solid $heading-color;
+  // border-bottom: 3px solid $heading-color;
+  text-decoration-thickness: from-font;
+  // text-decoration-skip-ink: none;
 }
 
 // #hi {
@@ -429,6 +434,10 @@ h2 {
 
 .fullwidth.subheader {
   margin-top: 1vh;
+}
+
+.subheader a {
+  color: $subheading-link-color;
 }
 
 .post {
