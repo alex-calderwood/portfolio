@@ -276,18 +276,6 @@ p {
   margin: 0;
 }
 
-// raleway
-
-.post p {
-  margin-top: 1vh;
-  margin-bottom: 2vh;
-}
-
-h2 {
-  font-weight: normal;
-  font-size: inherit;
-  margin-bottom: 0;
-}
 
 .sub {
   color: $subtext-color;
@@ -444,6 +432,18 @@ h2 {
   color: $text-color;
 }
 
+.post p {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+
+.post h2 {
+  font-weight: normal;
+  font-size: inherit;
+  margin-bottom: 0;
+  font-size:larger;
+}
+
 .post .tag {
   margin-bottom: 1vh;
   margin-top: 1vh;
@@ -527,9 +527,7 @@ a:hover {
 }
 
 .post-image {
-  width: 50%;
-  transform: translate(50%);
-
+  width: 100%;
 }
 
 #image1 {
