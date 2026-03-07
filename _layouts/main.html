@@ -154,7 +154,7 @@
 
         <div class="column column-right">
 
-            <p class="fullwidth header">Ongoing Projects</p>
+            <p class="fullwidth header">Ongoing</p>
 
             <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
             {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
@@ -213,7 +213,8 @@
             {% endfor %}
 
 
-            <p class="fullwidth header">Journalism Journalism</p>
+            <!-- <p class="fullwidth header">Journalism Journalism</p> -->
+            <p class="fullwidth header">Journalism</p>
 
             {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
             {% for post in journalism_posts %}
@@ -248,7 +249,7 @@
             {% endfor %}
 
 
-            <p class="fullwidth header">Misc Miscellanea Misc</p>
+            <p class="fullwidth header">Miscellanea</p>
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
@@ -287,10 +288,11 @@
         }
 
         async function createPublicationContent(params) {
-            const firstLineCharLimit = 40;
-            const normalCharLimit = 60;
-            const lastLineCharLimit = 75;
-            const maxLines = 4;
+            const firstLineCharLimit = 44;
+            const a = 10, b = 0.8;
+            const charLimitFn = (limit, i) => limit + a * Math.pow(i, b);
+            const maxLines = 32;
+            const minLineLength = 20;
             document.querySelectorAll('.publication-content').forEach(function(div) {
                 const raw = div.getAttribute('data-content');
                 if (!raw) return;
@@ -300,13 +302,7 @@
                 for (let word of words) {
                     let curLen = (current + (current ? ' ' : '') + word).length;
                     let lastLine = lines.length + 1 === maxLines;
-                    let charLimit = normalCharLimit;
-                    if (lines.length == 0) {
-                        charLimit = firstLineCharLimit;
-                    }
-                    if (lastLine) {
-                        charLimit = lastLineCharLimit;
-                    }
+                    let charLimit = charLimitFn(firstLineCharLimit, lines.length);
 
                     if (curLen > charLimit) {
                         if (lastLine) break;
@@ -316,7 +312,14 @@
                         current += (current ? ' ' : '') + word;
                     }
                 }
-                if (lines.length < maxLines && current) lines.push(current);
+                if (lines.length && lines[lines.length - 1].length < minLineLength) {
+                    lines[lines.length - 1] = lines[lines.length - 1] + ' ' + word;
+                }
+                // if the last line is too short, get rid of it
+                if (lines.length && lines[lines.length - 1].length < minLineLength) {
+                    lines.pop();
+                }
+
                 // If there are words left, add ellipsis to the last line
                 let truncated = lines.length < maxLines ? words.length === lines.join(' ').split(/\s+/).length : true;
                 if (lines.length === maxLines && current && words.join(' ').length > lines.join(' ').length) {
@@ -324,9 +327,6 @@
                     truncated = true;
                 }
                 lines = lines.slice(0, maxLines);
-                // if (truncated && lines.length) {
-                //     lines[lines.length - 1] = lines[lines.length - 1].replace(/\s+$/, '') + '...';
-                // }
                 lines.forEach(line => {
                     const p = document.createElement('p');
                     p.className = 'fullwidth sub';

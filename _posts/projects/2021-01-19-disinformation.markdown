@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Automated Disinformation Report"
+title: "Report on Fully Automated Disinformation"
 date:   2020-01-30 17:41:39 -0700
 text: default
 tags: [publication, journalism, code]
