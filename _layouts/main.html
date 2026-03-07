@@ -79,7 +79,7 @@
 
         </p>
 
-            <div class="breaker"></div>
+        <!-- <div class="breaker"></div> -->
 
         <!-- <div class="frieze">
             <div class="bot"></div>
@@ -91,33 +91,6 @@
 
     <div class="content-columns">
         <div class="column">
-            <p class="fullwidth header">Projects that are upgoing or oncoming</p>
-
-            <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
-            {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
-            {% for post in ongoing_posts %}
-                {% unless shown_posts contains post.title %}
-                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="ongoing-{{ post.title | slugify }}">
-                        <p class="fullwidth subheader">
-                            <a href="{{ post.url | relative_url }}"
-                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
-                            </a>
-                        </p>
-
-                        {% if post.images %}
-                            {% assign image = post.images[0] %}
-                                <img 
-                                    id="main-page-image-{{ image.src }}"
-                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                    alt="{{ image.alt }}" 
-                                    class="marginalia"
-                                    data-parent-post="ongoing-{{ post.title | slugify }}"> 
-                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                        {% endif %}
-
-                    </div>
-                {% endunless %}
-            {% endfor %}
 
             <p class="fullwidth header">Publications</p>
 
@@ -177,10 +150,38 @@
             {% endfor %}
             
         </div>
+        
 
         <div class="column column-right">
 
-            <p class="fullwidth header">Writing and Digital Poetry</p>
+            <p class="fullwidth header">Ongoing Projects</p>
+
+            <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
+            {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
+            {% for post in ongoing_posts %}
+                {% unless shown_posts contains post.title %}
+                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="ongoing-{{ post.title | slugify }}">
+                        <p class="fullwidth subheader">
+                            <a href="{{ post.url | relative_url }}"
+                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                            </a>
+                        </p>
+
+                        {% if post.images %}
+                            {% assign image = post.images[0] %}
+                                <img 
+                                    id="main-page-image-{{ image.src }}"
+                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                    alt="{{ image.alt }}" 
+                                    class="marginalia"
+                                    data-parent-post="ongoing-{{ post.title | slugify }}"> 
+                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                        {% endif %}
+
+                    </div>
+                {% endunless %}
+            {% endfor %}
+            <p class="fullwidth header">Writing, Digital Poetry</p>
 
             {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
             {% for post in poetry_posts %}
@@ -212,7 +213,7 @@
             {% endfor %}
 
 
-            <p class="fullwidth header">Journalism</p>
+            <p class="fullwidth header">Journalism Journalism</p>
 
             {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
             {% for post in journalism_posts %}
@@ -247,7 +248,7 @@
             {% endfor %}
 
 
-            <p class="fullwidth header">Miscellanea</p>
+            <p class="fullwidth header">Misc Miscellanea Misc</p>
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}

@@ -9,14 +9,13 @@
 $background-color: rgb(254, 139, 39);
 $bold-color: rgb(255, 246, 68);
 // $heading-color: lighten(o$bold-color, 5%);
-$heading-color: rgb(21, 92, 185);
-$text-color:  rgb(255, 255, 0);
+$heading-color: rgb(255, 255, 0);
+$text-color:  rgb(15, 63, 125);
 $subtext-color: lighten($text-color, 5%);
 
 $default-link-color: mix($text-color, $background-color, $weight: 60%);
 $link-color-2: mix($text-color, $background-color, $weight: 60%);
-$subheading-link-color: mix($text-color, $heading-color, $weight: 10%);
-
+$subheading-link-color: mix($heading-color, $background-color, $weight: 87%);
 
 // $muted-color: lighten($subtext-color, 12%);
 $back-text-color: lighten($background-color, 8%);
@@ -181,7 +180,7 @@ body {
 }
 
 .header {
-  text-decoration: underline;
+  // text-decoration: underline;
   // margin-top: 4vh !important;
   color: $heading-color;
   font-family: $header-font;
@@ -189,6 +188,7 @@ body {
   // border-bottom: 2px solid $heading-color;
   // border-bottom: 3px solid $heading-color;
   text-decoration-thickness: from-font;
+  padding: 2vh 0px;
   // text-decoration-skip-ink: none;
 }
 
@@ -255,11 +255,10 @@ body {
 a {
   color: $default-link-color;
   text-decoration: none;
-  font-style: italic;
+  font-style: normal;
 }
 
 #contact {
-
     a {
     color: $link-color-2;
     text-decoration-color: $link-color-2;
@@ -269,11 +268,22 @@ a {
 .breaker {
   // margin-top: 10px !important;
   // margin-bottom: 10px !important;
-  height: 3vh;
+  height: 4vh;
 }
 
 p {
   margin: 0;
+}
+
+* {
+  // Hide scrollbars
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  
+  /* Webkit browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 
@@ -314,8 +324,10 @@ p {
 #heading-content {
   width: min(100vw, 100vh);
   margin: 0 auto;
+  padding: 4vh 0vh 2vh; // 2vh to take into account of the extra padding added by the subheader in the next section
   text-align: center;
   font-family: $serif-font;
+  color:  $heading-color;
 }
 
 // #content > p, #content > a {
@@ -386,15 +398,6 @@ p {
   // overflow-x: hidden;
   overflow-x: visible;
   box-sizing: border-box;
-  
-  // Hide scrollbars
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  
-  /* Webkit browsers (Chrome, Safari, Edge) */
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 @media (max-width: $small-screen-width) {
@@ -426,6 +429,11 @@ p {
 
 .subheader a {
   color: $subheading-link-color;
+  font-style: normal;
+}
+
+.subheader a:hover {
+   text-decoration-color:$subheading-link-color;
 }
 
 .post {
@@ -448,6 +456,10 @@ p {
   margin-bottom: 1vh;
   margin-top: 1vh;
   font-size: 0.8em;
+}
+
+.post a {
+  font-style: italic;
 }
 
 // backwards davinci

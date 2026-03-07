@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Phraselette"
-date:   2025-7-1 00:00:00 -0400
+date:   2025-7-1 00:00:01 -0400
 text: default
 tags: [writing tools, code, paper, system]
 links:

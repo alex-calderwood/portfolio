@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Poetry Writing Game"
+title: "A Poetry Writing Game"
 date: 2023-11-14 00:00:00 -0400
 text: default
 tags: [art, games, ongoing, project]
