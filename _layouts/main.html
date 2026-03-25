@@ -61,7 +61,7 @@
         </p>
         <p class="fullwidth">digital poetics, words-in-the-world, the intersection of critical design and practice based research, 
         </p>
-        <p class="fullwidth">justice, critical literacy, digital literature, the avant garde, critical readings of constraint, contemporary reading+writing, AI literacy, more than human design, bread, surrealism, pickling, publishing...
+        <p class="fullwidth">critical literacy, digital literature, the avant garde, critical readings of constraint, contemporary reading+writing, AI literacy, more than human design, justice, bread, surrealism, pickling, publishing...
         </p>
 
 
@@ -90,71 +90,10 @@
 
 
     <div class="content-columns">
+
         <div class="column">
 
-            <p class="fullwidth header">Publications</p>
-
-            {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'paper'" %}
-            {% assign char_limit = 75 %}
-            {% assign shown_posts = '' | split: '' %}
-            {% for post in publication_posts %}
-                {% assign shown_posts = shown_posts | push: post.title %}
-                
-                <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
-                    <p class="fullwidth subheader">
-                        <a href="{{ post.url | relative_url }}"
-                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
-                        </a>
-
-                        <!-- Date -->
-                        <span class="date">
-                        {% if post.date %}
-                            {{ post.date | date: "%B %Y" }}
-                        {% endif %}
-                        </span>
-                        <p class="fullwidth sub">
-
-                        <!-- Links -->
-                        {% for link in post.links %}
-                            <a class="post-link" href="{{ link.url }}">{{ link.text }}</a>
-                        {% endfor %}
-
-                        <!-- Tags -->
-                        {% for tag in post.tags %}
-                            {% if tag == "publication" %}
-                            {% else %}
-                                <svg class="tag" width="0.7em" height="0.7em" viewBox="0 0 64 64" fill="none" style="padding: 0; margin: 0; display: inline-block;">
-                                    <use href="#tag3" width="100%" height="100%" style="display: inline-block;"></use>
-                                </svg>
-                                <span class="tag">{{ tag }}</span>
-                            {% endif %}
-                        {% endfor %}
-                    
-                    </p>
-
-                    <!-- Images -->
-                    {% if post.images %}
-                        {% assign image = post.images[0] %}
-                            <img 
-                                id="main-page-image-{{ image.src }}"
-                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                alt="{{ image.alt }}" 
-                                class="marginalia"
-                                data-parent-post="{{ post.title | slugify }}"> 
-                                <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                    {% endif %}
-
-                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
-                </div>
-            
-            {% endfor %}
-            
-        </div>
-        
-
-        <div class="column column-right">
-
-            <p class="fullwidth header">Ongoing</p>
+            <p class="fullwidth header">Ongoing Projects</p>
 
             <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
             {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
@@ -206,14 +145,106 @@
                             id="main-page-image-{{ image.src }}"
                              src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
                              alt="{{ image.alt }}" 
-                             class="marginalia marginalia-right"
+                             class="marginalia"
                              data-parent-post="{{ post.title | slugify }}"> 
                 {% endif %}
                 </div>
             {% endfor %}
 
 
-            <!-- <p class="fullwidth header">Journalism Journalism</p> -->
+            <p class="fullwidth header">Miscellanea</p>
+
+            {% assign other_posts = site.posts | where: "layout", "post" %}
+            {% for post in other_posts %}
+                {% unless shown_posts contains post.title %}
+                 
+                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+                        <p class="fullwidth subheader">
+                            <a href="{{ post.url | relative_url }}"
+                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                            </a>
+                            <span class="date">
+                                {% if post.date %}
+                                    {{ post.date | date: "%B %Y" }}
+                                {% endif %}
+                            </span>
+                        </p>
+
+                        <!-- {% if post.images %}
+                            {% assign image = post.images[0] %}
+                                <img 
+                                    id="main-page-image-{{ image.src }}"
+                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                    alt="{{ image.alt }}" 
+                                    class="marginalia"
+                                    data-parent-post="{{ post.title | slugify }}"> 
+                        {% endif %} -->
+
+                    </div>
+                {% endunless %}
+            {% endfor %}
+    
+        </div>
+
+        <div class="column column-right">
+
+            <p class="fullwidth header">Publications</p>
+
+            {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'paper'" %}
+            {% assign char_limit = 75 %}
+            {% assign shown_posts = '' | split: '' %}
+            {% for post in publication_posts %}
+                {% assign shown_posts = shown_posts | push: post.title %}
+                
+                <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+
+                        <!-- Date -->
+                        <span class="date">
+                        {% if post.date %}
+                            {{ post.date | date: "%B %Y" }}
+                        {% endif %}
+                        </span>
+                        <p class="fullwidth sub">
+
+                        <!-- Links -->
+                        {% for link in post.links %}
+                            <a class="post-link" href="{{ link.url }}">{{ link.text }}</a>
+                        {% endfor %}
+
+                        <!-- Tags -->
+                        {% for tag in post.tags %}
+                            {% if tag == "publication" %}
+                            {% else %}
+                                <svg class="tag" width="0.7em" height="0.7em" viewBox="0 0 64 64" fill="none" style="padding: 0; margin: 0; display: inline-block;">
+                                    <use href="#tag3" width="100%" height="100%" style="display: inline-block;"></use>
+                                </svg>
+                                <span class="tag">{{ tag }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    
+                    </p>
+
+                    <!-- Images -->
+                    {% if post.images %}
+                        {% assign image = post.images[0] %}
+                            <img 
+                                id="main-page-image-{{ image.src }}"
+                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
+                                alt="{{ image.alt }}" 
+                                class="marginalia marginalia-right"
+                                data-parent-post="{{ post.title | slugify }}"> 
+                                <!-- https://jekyllrb.com/docs/liquid/filters/ -->
+                    {% endif %}
+
+                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
+                </div>
+            
+            {% endfor %}
+
             <p class="fullwidth header">Journalism</p>
 
             {% assign journalism_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'journalism'" %}
@@ -247,36 +278,9 @@
                 </div>
 
             {% endfor %}
-
-
-            <p class="fullwidth header">Miscellanea</p>
-
-            {% assign other_posts = site.posts | where: "layout", "post" %}
-            {% for post in other_posts %}
-                {% unless shown_posts contains post.title %}
-                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
-                        <p class="fullwidth subheader">
-                            <a href="{{ post.url | relative_url }}"
-                                data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
-                            </a>
-                        </p>
-
-                        {% if post.images %}
-                            {% assign image = post.images[0] %}
-                                <img 
-                                    id="main-page-image-{{ image.src }}"
-                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                    alt="{{ image.alt }}" 
-                                    class="marginalia marginalia-right"
-                                    data-parent-post="{{ post.title | slugify }}"> 
-                        {% endif %}
-
-                    </div>
-                {% endunless %}
-            {% endfor %}
-    
+            
         </div>
-
+        
     </div>
 
 
@@ -334,13 +338,11 @@
                     div.appendChild(p);
                 });
                 // Add 'more' link to the last <p> if truncated
-                if (truncated && div.dataset.url && div.lastChild && div.lastChild.tagName === 'P') {
-                    const more = document.createElement('a');
-                    more.href = div.dataset.url;
-                    more.textContent = (div.lastChild.textContent?.endsWith(' ') ? '' : ' ') + '[...]';
-                    more.className = 'more-link';
-                    div.lastChild.appendChild(more);
-                }
+                const more = document.createElement('a');
+                more.href = div.dataset.url;
+                more.textContent = (div.lastChild.textContent?.endsWith(' ') ? '' : ' ') + '[...]';
+                more.className = 'more-link';
+                div.lastChild.appendChild(more);
             });
         }
 
