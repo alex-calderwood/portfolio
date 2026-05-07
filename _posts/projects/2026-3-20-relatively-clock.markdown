@@ -4,7 +4,7 @@ title: "Relatively, Clock"
 date: 2026-3-20
 text: default
 tags: [creative, art]
-images:
+videos:
    - src: "Relatively, Clock.mp4"
      alt: "video of moire effect on the timepiece"
 links:

@@ -93,6 +93,26 @@
                     {% endfor %}
                 {% endif %}
 
+                <!-- Videos -->
+                {% if page.videos %}
+                    {% for video in page.videos %}
+                        <video src="{{ site.baseurl }}/assets/images/{{ video.src }}" 
+                             alt="{{ image.alt }}"
+                             controls="controls autoplay" 
+                             class="post-video">
+                              <source src="video.mp4" type="video/mp4">
+                              Your browser does not support video.
+                        </video>
+                    {% endfor %}
+                {% endif %}
+
+                
+
+                <!-- <video width="640" height="360" controls>
+  <source src="video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video> -->
+
                 <span id="post-content">{{ page.content }}</span>
                 <div id="links">
                     {% for link in page.links %}
