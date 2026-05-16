@@ -49,19 +49,26 @@
         <p class="fullwidth">
             Hi, I'm Alex. <img class="monochrome" src="{{ site.baseurl }}/assets/images/me2.png" alt="A picture of me looking out over the beach." style="width: 1em;"> Welcome!
             
-            I am a researcher, text artist, programmer, and PhD student at UC Santa Cruz. 
+            I am a  text artist, programmer, and PhD student at UC Santa Cruz. 
         </p>
         
         <p class="fullwidth"> 
         I play with language
         </p>
-        <p class="fullwidth">(partly) to find new and reparative relationships with it.
+        <p class="fullwidth"> to find new ways of seeing, ways of expressing, and to understand the current moment.
         </p>
-        <p class="fullwidth"> I am interested in sculptural text, pataphysics, orality, games aimed at joy rather than fun, 
+        <p class="fullwidth">I am publishing poetry and making a slew of odd things - physical and digital (and usually textual).
         </p>
-        <p class="fullwidth">digital poetics, words-in-the-world, the intersection of critical design and practice based research, 
+        <p class="fullwidth">My past lives include: Me as an art and media reporter. Me as part of a strange Columbia dual-master's degree. 
         </p>
-        <p class="fullwidth">critical literacy, digital literature, the avant garde, critical readings of constraint, contemporary reading+writing, AI literacy, more than human design, justice, bread, surrealism, pickling, publishing...
+        <p class="fullwidth">Me as a computational linguistics student. Me as a confused engineer. Me as a confused writer. Me as a less confused maker of undefined things.
+        </p>
+        <p class="fullwidth">Me as an English major. Me as a CS major. Me as a backpacker. Me as a surfer. Me as a Montanan. Me as a New Yorker. Me as an Irish citizen (thank you grandma). Me as a Santa Cruzan. Me as a wanderer. Me as an ADHDer. Me as an &lt;OTHER&gt;.</p>
+  
+        </p>
+        <p class="fullwidth"> I am interested in sculptural text, digital poetics, pataphysics, orality, games aimed at joy rather than fun, words-in-the-world, the intersection of critical design and practice based research, 
+        </p>
+        <p class="fullwidth">critical literacy, digital literature, the avant garde, Borges, Cortázar, Leyner, critical readings of constraint, contemporary reading+writing, AI literacy, more than human design, design+social justice, baking bread, surrealism, pickling, publishing...
         </p>
 
 
@@ -285,6 +292,11 @@
 
 
     </body>
+    <script>
+        // randomize tessellation start offset on each page load
+        document.documentElement.style.setProperty('--circle-offset-x', (Math.random() * 10000) + 'px');
+        document.documentElement.style.setProperty('--circle-offset-y', (Math.random() * 10000) + 'px');
+    </script>
     <script src="{{ site.baseurl }}/assets/js/text-resize.js"></script>
     <script>
         function link(to) {

@@ -10,17 +10,29 @@ $background-color: rgb(254, 139, 39);
 $bold-color: rgb(255, 246, 68);
 // $heading-color: lighten(o$bold-color, 5%);
 $heading-color: rgb(255, 255, 0);
-$text-color:  rgb(15, 63, 125);
+$text-color:  rgb(15, 45, 142);
 $subtext-color: lighten($text-color, 5%);
 
 $default-link-color: mix($text-color, $background-color, $weight: 60%);
 $link-color-2: mix($text-color, $background-color, $weight: 60%);
 $subheading-link-color: mix($heading-color, $background-color, $weight: 87%);
 
+
+$actual-heading-color: mix($heading-color, $background-color, $weight: 87%);
+
 // $muted-color: lighten($subtext-color, 12%);
 $back-text-color: lighten($background-color, 8%);
-$muted-color: rgb(23, 85, 166);
+$muted-color: rgb(61, 91, 186);
 $small-screen-width: 600px;
+
+// Background circle tessellation (main page)
+$circle-radius: 0.8;          // circle size
+$circle-stroke: 0.25;        // stroke width (sub-pixel = hairline)
+$circle-tile-w: $circle-radius * 2;
+$circle-tile-mid: $circle-radius * 1.7320508;   // r * sqrt(3)
+$circle-tile-h: $circle-tile-mid * 2;
+
+$background-blur: 0.5px;
 
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
@@ -167,6 +179,19 @@ body {
     overscroll-behavior: none;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(#{$background-blur});
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$circle-tile-w}' height='#{$circle-tile-h}' viewBox='0 0 #{$circle-tile-w} #{$circle-tile-h}'><g fill='none' stroke='%230F2D8E' stroke-width='#{$circle-stroke}'><circle cx='0' cy='0' r='#{$circle-radius}'/><circle cx='#{$circle-tile-w}' cy='0' r='#{$circle-radius}'/><circle cx='#{$circle-radius}' cy='#{$circle-tile-mid}' r='#{$circle-radius}'/><circle cx='0' cy='#{$circle-tile-h}' r='#{$circle-radius}'/><circle cx='#{$circle-tile-w}' cy='#{$circle-tile-h}' r='#{$circle-radius}'/></g></svg>");
+    background-repeat: repeat;
+    background-size: #{$circle-tile-w}px #{$circle-tile-h}px;
+    background-position: var(--circle-offset-x, 0px) var(--circle-offset-y, 0px);
+}
+
 @media (max-width: $small-screen-width) {
   body {
     height: 100vh;
@@ -180,14 +205,8 @@ body {
 }
 
 .header {
-  // text-decoration: underline;
-  // margin-top: 4vh !important;
-  // color: $heading-color;
   color: $text-color;
   font-family: $header-font;
-  // text-decoration-color: $subtext-color;
-  // border-bottom: 2px solid $heading-color;
-  // border-bottom: 3px solid $heading-color;
   text-decoration-thickness: from-font;
   padding: 2vh 0px;
   // text-decoration-skip-ink: none;
@@ -323,12 +342,14 @@ p {
 }
 
 #heading-content {
+  position: relative;
+  z-index: 1;
   width: min(100vw, 100vh);
   margin: 0 auto;
-  padding: 4vh 0vh 2vh; // 2vh to take into account of the extra padding added by the subheader in the next section
+  padding: 2.5vh 0 1vh;
   text-align: center;
   font-family: $serif-font;
-  color:  $heading-color;
+  color:  $actual-heading-color;
 }
 
 // #content > p, #content > a {
@@ -424,6 +445,10 @@ p {
   line-height: 1;
 }
 
+#heading-content .fullwidth {
+  padding-bottom: 0.25em;
+}
+
 .fullwidth.subheader {
   margin-top: 1vh;
 }
@@ -438,29 +463,64 @@ p {
 }
 
 .post {
-  color: $text-color;
-}
-
-.post p {
-  margin-top: 1vh;
-  margin-bottom: 2vh;
+    color: $text-color;
 }
 
 .post h2 {
-  font-weight: normal;
-  font-size: inherit;
-  margin-bottom: 0;
-  font-size:larger;
+    font-family: $serif-font;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 5.5em;
+    line-height: 1.0;
+    color: $text-color;
+    margin: 0.4em 0 0.3em 0;
+    padding: 0 1.5rem;
+    letter-spacing: 0.01em;
+}
+
+.post-meta {
+    padding: 0.6em 1.5rem 0;
+    font-family: $mono-font;
+    font-size: 0.72em;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba($text-color, 0.75);
+    border-top: 1px solid rgba($text-color, 0.25);
+}
+
+.post p {
+    font-family: $serif-font;
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 1.72;
+    color: $text-color;
+    margin-top: 1.2em;
+    margin-bottom: 0;
 }
 
 .post .tag {
-  margin-bottom: 1vh;
-  margin-top: 1vh;
-  font-size: 0.8em;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 400;
+    color: inherit;
+    margin: 0;
+    letter-spacing: inherit;
+}
+
+.post-date ~ .tag::before {
+    content: " / ";
+    margin: 0 0.45em;
+    opacity: 0.45;
+    color: $text-color;
 }
 
 .post a {
-  font-style: italic;
+    font-style: normal;
+    font-weight: 500;
+    color: $text-color;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
 }
 
 // backwards davinci
@@ -492,9 +552,12 @@ a:hover {
 }
 
 .post-date {
-  font-family: $san-serif-font;
-  font-style: italic;
-  color: $muted-color
+    font-family: inherit;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1em;
+    color: inherit;
+    letter-spacing: inherit;
 }
 
 .inverted-text {
@@ -539,12 +602,94 @@ a:hover {
   mix-blend-mode: calc(50% + 50%);
 }
 
-.post-image {
-  width: 100%;
+.post-image,
+.post-video {
+    display: block;
+    width: 100%;
+    max-height: 55vh;
+    object-fit: contain;
+    object-position: center;
+    mix-blend-mode: multiply;
 }
 
-.post-video {
-  width: 100%;
+// Gallery view: image left, text right, no scrolling on desktop
+@media (min-width: 800px) {
+    .post-container:has(.post-image, .post-video) {
+        max-width: 1400px;
+    }
+
+    .post:has(.post-image, .post-video) {
+        display: grid;
+        grid-template-columns: 2.4fr 1fr;
+        grid-template-rows: auto auto 1fr auto;
+        column-gap: 3rem;
+        height: 85vh;
+
+        .post-image,
+        .post-video {
+            grid-column: 1;
+            grid-row: 1 / 5;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            align-self: stretch;
+        }
+
+        h2 {
+            grid-column: 2;
+            grid-row: 1;
+            font-size: 2.6em;
+            padding: 0;
+            margin: 0 0 0.4em 0;
+        }
+
+        .post-meta {
+            grid-column: 2;
+            grid-row: 2;
+            padding: 0;
+        }
+
+        #post-content {
+            grid-column: 2;
+            grid-row: 3;
+            padding: 0;
+            margin-top: 1.5em;
+            max-width: none;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        #links {
+            grid-column: 2;
+            grid-row: 4;
+            padding: 0.75em 0 0 0;
+            max-width: none;
+        }
+    }
+}
+
+#post-content {
+    display: block;
+    margin-top: 2em;
+    padding: 0 1.5rem;
+    max-width: 620px;
+    font-family: $serif-font;
+    font-weight: 300;
+    line-height: 1.72;
+}
+
+
+#links {
+    margin-top: 2.5em;
+    padding: 1.25em 1.5rem 0;
+    max-width: 620px;
+    border-top: 1px solid rgba($text-color, 0.25);
+
+    .link {
+        display: block;
+        margin-bottom: 0.75em;
+    }
 }
 
 #image1 {
@@ -578,15 +723,26 @@ a:hover {
     z-index: 2;
     pointer-events: auto;
     width: 100%;
-    top: 10%;
-
+    top: 12%;
+    padding-bottom: 6rem;
 }
 
 .post-container {
     position: relative;
     margin: 0 auto;
-    padding: 0 4%; /* More padding around content */
-    max-width: 800px; /* Optional: limit content width */
+    padding: 0 0 4rem;
+    max-width: 900px;
+    background-color: transparent;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+@media (max-width: $small-screen-width) {
+    .post-container {
+        padding: 0 0 2rem;
+    }
 }
 
 /* Make selfie image monochrome using current color */
