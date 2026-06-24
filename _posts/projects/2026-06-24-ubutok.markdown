@@ -1,0 +1,19 @@
+---
+layout: post
+title: "UbuTok"
+date: 2026-06-24
+text: default
+tags: [creative, art]
+links:
+    - text: "UbuTok"
+      url: https://nonsens.ing/ubutok/
+images: 
+  - src: ubutok-main.png
+    alt: "screenshot of UbuTok"
+---
+
+UbuWeb is a vast, independent archive of avant-garde art, film, sound, and text maintained since 1996 by Kenneth Goldsmith. UbuWeb hosts thousands of works: films, sound poetry, concrete poetry, outsider music, early net art, and more. UbuTok surfaces that material at random, one piece at a time.
+
+UbuTok is a dislocacated scroll through that material, started as something between some kind of joke about attention and the avant garde, and a desire to have some means of randomly pulling up the kind of avant garde content that UbuWeb hosts.
+
+All content is served directly from UbuWeb. This is an unofficial interface created by Alex.
