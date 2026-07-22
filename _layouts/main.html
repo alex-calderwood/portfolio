@@ -96,13 +96,20 @@
 
 
 
+    {% comment %}
+      Single source of truth: tags owned by a dedicated section below/right
+      (Ongoing, Writing/Poetry, Publications, Journalism). The Miscellanea
+      section excludes these so posts aren't listed twice. Add a section →
+      add its tag here.
+    {% endcomment %}
+    {% assign section_tags = "ongoing,poetry,paper,journalism" | split: "," %}
+
     <div class="content-columns">
 
         <div class="column">
 
             <p class="fullwidth header">Ongoing Projects</p>
 
-            <!-- {% assign other_posts = site.posts | where: "layout", "post" %} -->
             {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
             {% for post in ongoing_posts %}
                 {% unless shown_posts contains post.title %}
@@ -163,8 +170,19 @@
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
-                {% unless shown_posts contains post.title %}
-                 
+                {% comment %}
+                  Miscellanea = everything not already shown in one of the
+                  categorized sections. Derived from `section_tags` (defined
+                  once at the top) rather than restating those tags here — the
+                  old `shown_posts` guard couldn't work because it's reset in
+                  the right column, which Liquid renders after this loop.
+                {% endcomment %}
+                {% assign categorized = false %}
+                {% for tag in section_tags %}
+                    {% if post.tags contains tag %}{% assign categorized = true %}{% endif %}
+                {% endfor %}
+                {% unless categorized %}
+
                     <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
                         <p class="fullwidth subheader">
                             <a href="{{ post.url | relative_url }}"
@@ -177,15 +195,15 @@
                             </span>
                         </p>
 
-                        <!-- {% if post.images %}
+                        {% if post.images %}
                             {% assign image = post.images[0] %}
-                                <img 
+                                <img
                                     id="main-page-image-{{ image.src }}"
-                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                    alt="{{ image.alt }}" 
+                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}"
+                                    alt="{{ image.alt }}"
                                     class="marginalia"
-                                    data-parent-post="{{ post.title | slugify }}"> 
-                        {% endif %} -->
+                                    data-parent-post="{{ post.title | slugify }}">
+                        {% endif %}
 
                     </div>
                 {% endunless %}
@@ -292,11 +310,6 @@
 
 
     </body>
-    <script>
-        // randomize tessellation start offset on each page load
-        document.documentElement.style.setProperty('--circle-offset-x', (Math.random() * 10000) + 'px');
-        document.documentElement.style.setProperty('--circle-offset-y', (Math.random() * 10000) + 'px');
-    </script>
     <script src="{{ site.baseurl }}/assets/js/text-resize.js"></script>
     <script>
         function link(to) {
@@ -358,43 +371,6 @@
             });
         }
 
-        function respaceImages() {
-            const leftImages = Array.from(document.querySelectorAll('.marginalia:not(.marginalia-right)'));
-            const rightImages = Array.from(document.querySelectorAll('.marginalia-right'));
-            
-            // Helper function to respace a group of images
-            function respaceImageGroup(images) {
-                if (images.length === 0) return;
-                
-                // Sort by preferred position (current top position)
-                images.sort((a, b) => {
-                    const aTop = parseFloat(a.style.top) || a.getBoundingClientRect().top;
-                    const bTop = parseFloat(b.style.top) || b.getBoundingClientRect().top;
-                    return aTop - bTop;
-                });
-                
-                const minSpacing = 5; // minimum pixels between images
-                let lastBottom = -Infinity;
-                
-                images.forEach(image => {
-                    const rect = image.getBoundingClientRect();
-                    const preferredTop = parseFloat(image.style.top) || rect.top;
-                    const imageHeight = rect.height;
-                    
-                    // Place at preferred position or just below the last image
-                    const newTop = Math.max(preferredTop, lastBottom + minSpacing);
-                    image.style.top = newTop + 'px';
-                    
-                    lastBottom = newTop + imageHeight;
-                });
-            }
-            
-            // Respace left and right images separately
-            respaceImageGroup(leftImages);
-            respaceImageGroup(rightImages);
-        }
-
-
         const [leftColumn, rightColumn] = document.querySelectorAll('.column');
         const images = document.querySelectorAll('.marginalia, .marginalia-right');
         const contentColumns = document.querySelector('.content-columns');
@@ -403,39 +379,86 @@
             const marginLeft = window.getComputedStyle(contentColumns).marginLeft;
             const marginLeftPx = parseFloat(marginLeft.replace('px', ''));
 
+            // Scroll-driven distribution. Each image has a *preferred* spot
+            // (centered on its post), but we clamp that into the visible
+            // sidebar and then relax the stack so nothing overlaps. The upshot,
+            // all falling out of one scroll position:
+            //   - posts scrolled above the fold  -> images pile at the TOP edge
+            //   - posts below the fold            -> images pile at the BOTTOM
+            //   - posts currently in view         -> images spread across the
+            //     sidebar near them, using its full height instead of
+            //     cascading the overflow off-screen.
             function updateImagePositions() {
+                const imagePercent = 0.95;
+                const imageMargin = (1 - imagePercent) / 2;
+                const gap = 6;                              // min px between images
+                const minTop = 8;                           // keep off the edges
+                const maxBottom = window.innerHeight - 8;
+
+                // Group images by the sidebar they live in (left/right).
+                const groups = { left: [], right: [] };
                 images.forEach(image => {
                     const parentPostId = image.getAttribute('data-parent-post');
                     const parentPost = document.querySelector(`[data-post-id="${parentPostId}"]`);
-
-                    const imageHeight = image.offsetHeight;
-                    const imagePercent = 0.95;
-                    const imageMargin = (1 - imagePercent) / 2;
-
-                    if (parentPost) {
-                        const rect = parentPost.getBoundingClientRect();
-                        image.style.top = rect.top + rect.height/2 - imageHeight/2 + 'px';
-                        image.style.width = marginLeftPx * imagePercent + 'px';
-                        
-                        // Check if this is a right-side marginalia
-                        if (image.classList.contains('marginalia-right')) {
-                            image.style.right = marginLeftPx * imageMargin + 'px';
-                            image.style.left = 'auto';
-                        } else {
-                            image.style.left = marginLeftPx * imageMargin + 'px';
-                            image.style.right = 'auto';
-                        }
-                    } else {
+                    if (!parentPost) {
                         console.log('no parent post found for image', image);
+                        return;
                     }
+                    const side = image.classList.contains('marginalia-right') ? 'right' : 'left';
+                    groups[side].push({ image, parentPost, side });
+                });
+
+                Object.keys(groups).forEach(side => {
+                    const items = groups[side];
+                    if (!items.length) return;
+
+                    // Reading order, so the stack never reshuffles.
+                    items.sort((a, b) =>
+                        a.parentPost.getBoundingClientRect().top - b.parentPost.getBoundingClientRect().top);
+
+                    // Size each image and compute its clamped preferred top.
+                    // Set width/side first so offsetHeight is the rendered size.
+                    items.forEach(it => {
+                        it.image.style.width = marginLeftPx * imagePercent + 'px';
+                        if (side === 'right') {
+                            it.image.style.right = marginLeftPx * imageMargin + 'px';
+                            it.image.style.left = 'auto';
+                        } else {
+                            it.image.style.left = marginLeftPx * imageMargin + 'px';
+                            it.image.style.right = 'auto';
+                        }
+                        const rect = it.parentPost.getBoundingClientRect();
+                        it.h = it.image.offsetHeight;
+                        const centered = rect.top + rect.height / 2 - it.h / 2;
+                        // Clamp into the sidebar: this is what makes off-screen
+                        // posts collect at the near edge instead of vanishing.
+                        it.top = Math.min(Math.max(centered, minTop), maxBottom - it.h);
+                    });
+
+                    // Relax the stack in place. Forward pass removes downward
+                    // overlaps; backward pass pulls the tail up if it overran
+                    // the bottom. Together they distribute the images to fill
+                    // the sidebar while staying as close to preferred as room
+                    // allows.
+                    for (let i = 1; i < items.length; i++) {
+                        const floor = items[i - 1].top + items[i - 1].h + gap;
+                        if (items[i].top < floor) items[i].top = floor;
+                    }
+                    const last = items[items.length - 1];
+                    last.top = Math.min(last.top, maxBottom - last.h);
+                    for (let i = items.length - 2; i >= 0; i--) {
+                        const ceil = items[i + 1].top - items[i].h - gap;
+                        if (items[i].top > ceil) items[i].top = ceil;
+                    }
+                    // If the whole set can't fit, keep the top one on-screen and
+                    // let the middle overlap slightly rather than cascade away.
+                    if (items[0].top < minTop) items[0].top = minTop;
+
+                    items.forEach(it => { it.image.style.top = it.top + 'px'; });
                 });
             }
-            
-            // Initial positioning
-            updateImagePositions();
 
-            // move the images
-            respaceImages();
+            updateImagePositions();
     }
 
     // function resizeContentColumns() {
@@ -497,7 +520,12 @@
 
     document.addEventListener('DOMContentLoaded', initializePage);
     window.addEventListener('load',  handleResize);
-    window.addEventListener('resize', handleResize); 
+    window.addEventListener('resize', handleResize);
+    // Web fonts change text metrics; re-fit once they're ready so the initial
+    // (fallback-font) measurement doesn't stick.
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(handleResize);
+    }
 
     // Update positions on scroll
     leftColumn.addEventListener('scroll', setupScrollingMarginalia);

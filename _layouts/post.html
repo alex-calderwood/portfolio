@@ -62,53 +62,60 @@
 
     <!-- Content Layer -->
     <div class="content-layer">
-        <div class="post-container">
+        <article class="post-container">
             <div class="post">
 
-                <!-- Hero: images first -->
+                <!-- Masthead: title + meta -->
+                <header class="post-head">
+                    <h1 id="title-text" class="post-title">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        {% if page.date %}
+                            <span class="post-date">{{ page.date | date: "%B %d, %Y" }}</span>
+                        {% endif %}
+                        {% for tag in page.tags %}
+                            <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </header>
+
+                <!-- Hero media, presented as a plate -->
                 {% if page.images %}
                     {% for image in page.images %}
-                        <img src="{{ site.baseurl }}/assets/images/{{ image.src }}"
-                             alt="{{ image.alt }}"
-                             class="post-image">
+                        <figure class="post-figure">
+                            <img src="{{ site.baseurl }}/assets/images/{{ image.src }}"
+                                 alt="{{ image.alt }}"
+                                 class="post-image">
+                            {% if image.alt %}<figcaption>{{ image.alt }}</figcaption>{% endif %}
+                        </figure>
                     {% endfor %}
                 {% endif %}
 
                 {% if page.videos %}
                     {% for video in page.videos %}
-                        <video autoplay muted loop playsinline
-                               class="post-video">
-                            <source src="{{ site.baseurl }}/assets/images/{{ video.src }}" type="video/mp4">
-                        </video>
+                        <figure class="post-figure">
+                            <video autoplay muted loop playsinline class="post-video">
+                                <source src="{{ site.baseurl }}/assets/images/{{ video.src }}" type="video/mp4">
+                            </video>
+                            {% if video.alt %}<figcaption>{{ video.alt }}</figcaption>{% endif %}
+                        </figure>
                     {% endfor %}
                 {% endif %}
 
-                <!-- Title -->
-                <h2 id="title-text">{{ page.title }}</h2>
+                <!-- Body -->
+                <div id="post-content" class="post-body">{{ page.content }}</div>
 
-                <!-- Meta row -->
-                <div class="post-meta">
-                    <span class="post-date">
-                    {% if page.date %}
-                        {{ page.date | date: "%B %d, %Y" }}
-                    {% endif %}
-                    </span>
-                    {% for tag in page.tags %}
-                        <span class="tag">{{ tag }}</span>
-                    {% endfor %}
-                </div>
+                <!-- Links -->
+                {% if page.links and page.links.size > 0 %}
+                    <footer id="links" class="post-links">
+                        <p class="post-links-label">Elsewhere</p>
+                        {% for link in page.links %}
+                            <a class="link" href="{{ link.url }}">{{ link.text }}</a>
+                        {% endfor %}
+                    </footer>
+                {% endif %}
 
-                <span id="post-content">{{ page.content }}</span>
-
-                <div id="links">
-                    {% for link in page.links %}
-                        <a class="link" href="{{ link.url }}">{{ link.text }}</a>
-                    {% endfor %}
-                </div>
-
-                <div class="publication-content" data-content="{{ page.content | strip_html | escape }}" data-url="{{ page.url | relative_url }}" data-tags="{{ page.tags | join: ', ' }}"></div>
             </div>
-        </div>
+        </article>
     </div>
 
     {% if page.text %}
@@ -119,15 +126,14 @@
     {% endif %}
 
     
-    <script>
-        // randomize tessellation start offset on each page load
-        document.documentElement.style.setProperty('--circle-offset-x', (Math.random() * 10000) + 'px');
-        document.documentElement.style.setProperty('--circle-offset-y', (Math.random() * 10000) + 'px');
-    </script>
     <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
     <script>
         retype_basic();
-        addEventListener("resize", (event) => updateIfNeeded(retype_post));
+        // retype_basic (not retype_post): retype_post is leftover from an older
+        // davinci-typed layout — it hid the <h2> title and referenced elements
+        // (#title, #contenttext) that no longer exist, so a resize across a
+        // breakpoint used to blank the title and throw.
+        addEventListener("resize", (event) => updateIfNeeded(retype_basic));
     </script>
 </body>
 </html>

@@ -11,6 +11,8 @@ images:
 links:
   - text: "The Writer's Project: Interactive Concrete Poetry Games"
     url: https://nonsens.ing/editors
+  - text: "Drifts, in the Electronic Literature Organization 2026 exhibition"
+    url: https://projects.cah.ucf.edu/mediaartsexhibits/elo2026/work/40
 ---
 
 This is a work in progress series of text editors that function as media objects in and of themselves. Each editor is unique, in turns playful, critical, and provocative. The project attempts to think through the materiality of writing in and beyond today's digital infrastructure, through engagement with concrete, kinetic, and interactive poetry.

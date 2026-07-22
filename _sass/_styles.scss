@@ -5,34 +5,38 @@
 
 @use 'sass:color';
 
-// $background-color: rgb(250, 210, 67);
-$background-color: rgb(254, 139, 39);
-$bold-color: rgb(255, 246, 68);
-// $heading-color: lighten(o$bold-color, 5%);
-$heading-color: rgb(255, 255, 0);
-$text-color:  rgb(15, 45, 142);
-$subtext-color: lighten($text-color, 5%);
+// ---- Palette — "Printed Matter" -------------------------------------------
+// Grounded in the brief's own lineage: concrete poetry and lettrism treat the
+// page as a printed surface and the letter as material. So — a warm NEWSPRINT
+// ground, near-black INK for all primary text, and a small kit of loud RISO
+// accents (blue, orange, yellow) that appear only as labels, links, blocks and
+// highlights, never as competing full fields. Ink-on-paper has a huge value
+// gap, so nothing vibrates the way saturated orange-against-blue did.
 
-$default-link-color: mix($text-color, $background-color, $weight: 60%);
-$link-color-2: mix($text-color, $background-color, $weight: 60%);
-$subheading-link-color: mix($heading-color, $background-color, $weight: 87%);
+$paper:  rgb(233, 222, 201);   // warm newsprint ground
+$ink:    rgb(28, 23, 16);      // warm near-black
 
+$blue:   rgb(27, 52, 196);     // links (the brutalist hyperlink idiom) + inversions
+$orange: rgb(224, 72, 26);     // section labels / emphasis
+$yellow: rgb(245, 197, 24);    // marker highlight + text selection
 
-$actual-heading-color: mix($heading-color, $background-color, $weight: 87%);
+// Map onto the variable names the rest of the stylesheet already uses
+$background-color: $paper;
+$text-color:       $ink;
 
-// $muted-color: lighten($subtext-color, 12%);
-$back-text-color: lighten($background-color, 8%);
-$muted-color: rgb(61, 91, 186);
+$heading-color:        $ink;   // big display intro
+$actual-heading-color: $ink;
+
+$default-link-color:    $blue;
+$link-color-2:          $blue;
+// Work titles read as ink headings; their link affordance is a yellow
+// highlight revealed on hover (see `.subheader a`).
+$subheading-link-color: $ink;
+
+$subtext-color:   $ink;
+$back-text-color: mix($ink, $paper, 16%);   // davinci texture — faint tan on paper
+$muted-color:     $orange;                  // tags
 $small-screen-width: 600px;
-
-// Background circle tessellation (main page)
-$circle-radius: 0.8;          // circle size
-$circle-stroke: 0.25;        // stroke width (sub-pixel = hairline)
-$circle-tile-w: $circle-radius * 2;
-$circle-tile-mid: $circle-radius * 1.7320508;   // r * sqrt(3)
-$circle-tile-h: $circle-tile-mid * 2;
-
-$background-blur: 0.5px;
 
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
@@ -179,33 +183,21 @@ body {
     overscroll-behavior: none;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    filter: blur(#{$background-blur});
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$circle-tile-w}' height='#{$circle-tile-h}' viewBox='0 0 #{$circle-tile-w} #{$circle-tile-h}'><g fill='none' stroke='%230F2D8E' stroke-width='#{$circle-stroke}'><circle cx='0' cy='0' r='#{$circle-radius}'/><circle cx='#{$circle-tile-w}' cy='0' r='#{$circle-radius}'/><circle cx='#{$circle-radius}' cy='#{$circle-tile-mid}' r='#{$circle-radius}'/><circle cx='0' cy='#{$circle-tile-h}' r='#{$circle-radius}'/><circle cx='#{$circle-tile-w}' cy='#{$circle-tile-h}' r='#{$circle-radius}'/></g></svg>");
-    background-repeat: repeat;
-    background-size: #{$circle-tile-w}px #{$circle-tile-h}px;
-    background-position: var(--circle-offset-x, 0px) var(--circle-offset-y, 0px);
-}
-
 @media (max-width: $small-screen-width) {
   body {
     height: 100vh;
   }
 }
 
-// change the highlight color
+// Text selection is the yellow marker — apt for a text artist's page
 ::selection {
-  background-color: $text-color;
-  color: $background-color;
+  background-color: $yellow;
+  color: $ink;
 }
 
+// Section labels are the loud orange accent
 .header {
-  color: $text-color;
+  color: $orange;
   font-family: $header-font;
   text-decoration-thickness: from-font;
   padding: 2vh 0px;
@@ -271,18 +263,39 @@ body::before {
   }
 }
 
-// remove all of the special formatting for a tags
+// Links read as links: blue ink, a clear underline, and a hover that flips
+// into the site's chip motif (blue field / orange text — same inversion as
+// ::selection and .heading-link). This is the site's one consistent link idiom.
 a {
   color: $default-link-color;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba($blue, 0.5);
+  text-underline-offset: 0.16em;
   font-style: normal;
+  transition: color 0.12s ease, background-color 0.12s ease, text-decoration-color 0.12s ease;
 }
 
-#contact {
-    a {
-    color: $link-color-2;
-    text-decoration-color: $link-color-2;
-  }
+// Hover flips a link into a solid blue block (paper text) — the site's
+// one link idiom, echoing the .heading-link stamp and the yellow selection.
+a:hover {
+  color: $paper;
+  background-color: $blue;
+  text-decoration-color: transparent;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+#contact a {
+  color: $link-color-2;
+  text-decoration-color: rgba($blue, 0.5);
+}
+
+// #contact a is id-scoped, so it out-specifies the generic a:hover — restate
+// the hover here or the text stays blue on the blue block (invisible).
+#contact a:hover {
+  color: $paper;
+  text-decoration-color: transparent;
 }
 
 .breaker {
@@ -335,10 +348,12 @@ p {
   padding-left: 0.2em;
   padding-right: 0.2em;
   font-style: normal;
+  text-decoration: none;
 }
 
 .heading-link:hover {
   font-style: italic;
+  text-decoration: none;
 }
 
 #heading-content {
@@ -453,49 +468,61 @@ p {
   margin-top: 1vh;
 }
 
+// Work titles are ink headings; hovering drops a yellow marker highlight
+// behind them — the "clickable" cue, and where yellow lives on the page.
 .subheader a {
   color: $subheading-link-color;
   font-style: normal;
+  font-weight: 500;
+  text-decoration: none;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .subheader a:hover {
-   text-decoration-color:$subheading-link-color;
+  color: $ink;
+  background-color: $yellow;
+  text-decoration: none;
+}
+
+// Dates share the title's stretched line, so their size/weight is locked by
+// the davinci fill-width calc (which measures innerHTML on a bare span — any
+// metric change here desyncs it). Colour is metric-neutral, so mute them with
+// colour alone to read as secondary without disturbing the sizing.
+.subheader .date {
+  color: rgba($ink, 0.5);
 }
 
 .post {
-    color: $text-color;
+    color: $ink;
 }
 
-.post h2 {
+// ---- Post masthead --------------------------------------------------------
+.post-head {
+    padding-top: 2.6rem;   // clear the fixed "alex calderwood" nav chip
+    margin-bottom: 2.4rem;
+}
+
+.post-title {
     font-family: $serif-font;
     font-weight: 300;
     font-style: normal;
-    font-size: 5.5em;
-    line-height: 1.0;
-    color: $text-color;
-    margin: 0.4em 0 0.3em 0;
-    padding: 0 1.5rem;
-    letter-spacing: 0.01em;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.02;
+    color: $ink;
+    letter-spacing: 0.005em;
+    margin: 0 0 0.7rem 0;
 }
 
+// Mono meta strip under a strong ink rule — the "printed" masthead
 .post-meta {
-    padding: 0.6em 1.5rem 0;
+    padding: 0.8rem 0 0;
     font-family: $mono-font;
-    font-size: 0.72em;
-    letter-spacing: 0.18em;
+    font-size: 0.9rem;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: rgba($text-color, 0.75);
-    border-top: 1px solid rgba($text-color, 0.25);
-}
-
-.post p {
-    font-family: $serif-font;
-    font-weight: 300;
-    font-size: 1em;
-    line-height: 1.72;
-    color: $text-color;
-    margin-top: 1.2em;
-    margin-bottom: 0;
+    color: $ink;
+    border-top: 1.5px solid $ink;
 }
 
 .post .tag {
@@ -509,18 +536,25 @@ p {
 
 .post-date ~ .tag::before {
     content: " / ";
-    margin: 0 0.45em;
-    opacity: 0.45;
-    color: $text-color;
+    margin: 0 0.4em;
+    opacity: 0.5;
+    color: $ink;
 }
 
 .post a {
     font-style: normal;
     font-weight: 500;
-    color: $text-color;
+    color: $blue;
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.15em;
+}
+
+// .post a comes after a:hover with equal specificity, so it would win on hover
+// and leave blue text on the blue block — restate the hover here.
+.post a:hover {
+    color: $paper;
+    text-decoration-color: transparent;
 }
 
 // backwards davinci
@@ -536,19 +570,21 @@ p {
   word-break: break-all;
 }
 
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: $text-color;
-}
-
 .tag {
   color: $muted-color;
 }
 
 .tag-link {
   position: relative;
+  text-decoration: none;
   /* brightness controls the threshold point */
   filter: brightness(0.8) blur(3px) contrast(999);
+}
+
+// tag links reveal on hover via their own filter; skip the chip-invert idiom
+.tag-link:hover {
+  color: $text-color;
+  background-color: transparent;
 }
 
 .post-date {
@@ -602,93 +638,70 @@ a:hover {
   mix-blend-mode: calc(50% + 50%);
 }
 
+// ---- Post media — presented as a plate ------------------------------------
+.post-figure {
+    margin: 2.6rem 0 3rem;
+}
+
 .post-image,
 .post-video {
     display: block;
     width: 100%;
-    max-height: 55vh;
+    height: auto;
+    max-height: 78vh;
     object-fit: contain;
     object-position: center;
-    mix-blend-mode: multiply;
+    mix-blend-mode: multiply;   // melds into the paper ground — riso/print feel
 }
 
-// Gallery view: image left, text right, no scrolling on desktop
-@media (min-width: 800px) {
-    .post-container:has(.post-image, .post-video) {
-        max-width: 1400px;
-    }
-
-    .post:has(.post-image, .post-video) {
-        display: grid;
-        grid-template-columns: 2.4fr 1fr;
-        grid-template-rows: auto auto 1fr auto;
-        column-gap: 3rem;
-        height: 85vh;
-
-        .post-image,
-        .post-video {
-            grid-column: 1;
-            grid-row: 1 / 5;
-            width: 100%;
-            height: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            align-self: stretch;
-        }
-
-        h2 {
-            grid-column: 2;
-            grid-row: 1;
-            font-size: 2.6em;
-            padding: 0;
-            margin: 0 0 0.4em 0;
-        }
-
-        .post-meta {
-            grid-column: 2;
-            grid-row: 2;
-            padding: 0;
-        }
-
-        #post-content {
-            grid-column: 2;
-            grid-row: 3;
-            padding: 0;
-            margin-top: 1.5em;
-            max-width: none;
-            overflow-y: auto;
-            min-height: 0;
-        }
-
-        #links {
-            grid-column: 2;
-            grid-row: 4;
-            padding: 0.75em 0 0 0;
-            max-width: none;
-        }
-    }
+.post-figure figcaption {
+    font-family: $mono-font;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba($ink, 0.7);
+    margin-top: 0.8rem;
 }
 
-#post-content {
+// ---- Post body — the black text, given a proper reading measure -----------
+.post-body {
     display: block;
-    margin-top: 2em;
-    padding: 0 1.5rem;
-    max-width: 620px;
+    margin-top: 2.4rem;
+    max-width: 64ch;
     font-family: $serif-font;
     font-weight: 300;
+    font-size: 1.15rem;
     line-height: 1.72;
+    color: $ink;
 }
 
+.post-body p {
+    margin: 1.35em 0 0;
+}
+.post-body p:first-child {
+    margin-top: 0;
+}
 
-#links {
-    margin-top: 2.5em;
-    padding: 1.25em 1.5rem 0;
-    max-width: 620px;
-    border-top: 1px solid rgba($text-color, 0.25);
+// ---- Post links footer ----------------------------------------------------
+.post-links {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    max-width: 64ch;
+    border-top: 1.5px solid $ink;
+
+    .post-links-label {
+        font-family: $mono-font;
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: $orange;
+        margin: 0 0 0.8rem 0;
+    }
 
     .link {
         display: block;
-        margin-bottom: 0.75em;
+        margin-bottom: 0.6em;
+        font-size: 1.05rem;
     }
 }
 
@@ -727,21 +740,24 @@ a:hover {
     padding-bottom: 6rem;
 }
 
+// The article is a paper sheet floating on the davinci "sea": a translucent
+// paper wash lifts the text off the background letters, and the margins let
+// the reversed text show through — content on a page, on a page.
 .post-container {
     position: relative;
     margin: 0 auto;
-    padding: 0 0 4rem;
-    max-width: 900px;
-    background-color: transparent;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+    padding: 0 1.75rem 4rem;
+    max-width: 820px;
+    background-color: rgba($paper, 0.74);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     font-size: 16px;
     box-sizing: border-box;
 }
 
 @media (max-width: $small-screen-width) {
     .post-container {
-        padding: 0 0 2rem;
+        padding: 0 1.25rem 2rem;
     }
 }
 
@@ -776,4 +792,12 @@ a:hover {
 
 .publication-item.highlighted {
     background-color: rgba(115, 84, 48, 0.1);
+}
+
+// Hovering anywhere on an item (or its image) also drops the yellow marker
+// on that item's title — so the whole row lights up together.
+.publication-item:hover .subheader a,
+.publication-item.highlighted .subheader a {
+    background-color: $yellow;
+    color: $ink;
 }
