@@ -126,6 +126,24 @@
     {% endif %}
 
     
+    <script>
+        // A portrait (phone-shaped) hero image reads better beside the text
+        // than stacked on top of it. Flag the post so the layout can go
+        // two-column for portrait media (see .has-portrait-hero in the CSS).
+        (function () {
+            var post = document.querySelector('.post');
+            var media = document.querySelector('.post-figure .post-image, .post-figure .post-video');
+            if (!post || !media) return;
+            function flag(w, h) { if (w && h && h > w * 1.2) post.classList.add('has-portrait-hero'); }
+            if (media.tagName === 'IMG') {
+                if (media.complete && media.naturalWidth) flag(media.naturalWidth, media.naturalHeight);
+                else media.addEventListener('load', function () { flag(media.naturalWidth, media.naturalHeight); });
+            } else {
+                if (media.videoWidth) flag(media.videoWidth, media.videoHeight);
+                else media.addEventListener('loadedmetadata', function () { flag(media.videoWidth, media.videoHeight); });
+            }
+        })();
+    </script>
     <script src="{{ site.baseurl }}/assets/js/davinci.js"></script>
     <script>
         retype_basic();

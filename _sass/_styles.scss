@@ -705,6 +705,53 @@ p {
     }
 }
 
+// ---- Portrait hero: image beside the text, not stacked on top -------------
+// A tall (phone-shaped) image stacked full-width buries the writing. When JS
+// flags the hero as portrait (.has-portrait-hero), go two-column at desktop:
+// masthead spans the top, then a phone-sized image sits left of the body.
+@media (min-width: 800px) {
+    .post-container:has(.has-portrait-hero) {
+        max-width: 1080px;
+    }
+
+    .post.has-portrait-hero {
+        display: grid;
+        grid-template-columns: minmax(300px, 360px) 1fr;
+        column-gap: 3.5rem;
+        align-items: start;
+    }
+
+    .post.has-portrait-hero .post-head {
+        grid-column: 1 / -1;
+    }
+
+    .post.has-portrait-hero .post-figure {
+        grid-column: 1;
+        grid-row: 2 / span 2;
+        margin: 0;
+        position: sticky;
+        top: 4vh;
+    }
+
+    .post.has-portrait-hero .post-image,
+    .post.has-portrait-hero .post-video {
+        max-height: 82vh;
+    }
+
+    .post.has-portrait-hero .post-body {
+        grid-column: 2;
+        grid-row: 2;
+        margin-top: 0;
+        max-width: none;
+    }
+
+    .post.has-portrait-hero .post-links {
+        grid-column: 2;
+        grid-row: 3;
+        max-width: none;
+    }
+}
+
 #image1 {
   top: 55%;
   left: 0px;
