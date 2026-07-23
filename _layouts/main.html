@@ -379,20 +379,17 @@
             const marginLeft = window.getComputedStyle(contentColumns).marginLeft;
             const marginLeftPx = parseFloat(marginLeft.replace('px', ''));
 
-            // Parallax distribution. Each image sits at a fraction `k` of its
-            // post's distance from the middle of the visible column:
-            //
-            //     imageCenter = M + k * (postCenter - M)
-            //
-            // where M is the middle of the visible column. So when a post is at
-            // the middle, its image is right beside it (offset 0); as the post
-            // moves away, the image follows at rate `k` < 1. That means the
-            // images scroll slower than the posts and stay compressed into the
-            // sidebar instead of cascading off-screen — and posts that can
-            // never reach the middle (the first/last few) still land sensibly,
-            // no special-casing needed. `k` is picked per column so the spread
-            // of images roughly fills the sidebar height.
+            // Non-overlapping stack. The images in a sidebar are laid out as one
+            // rigid vertical stack with a fixed gap between them, so two images
+            // can NEVER touch. Because the images are full-size, the stack is
+            // usually taller than the sidebar — so we slide it as you scroll
+            // (slower than the column, since the stack is longer than the
+            // scrollable range): scrolling to the top shows the first images,
+            // scrolling to the bottom shows the last, and everything in between
+            // is reachable. When the stack does fit, it just tracks its posts.
             const CAP = 0.95;                 // image may fill up to 95% of the margin
+            const GAP = 10;                   // guaranteed px between images
+            const PAD = 8;                    // keep the stack off the very edges
             const maxImgHeight = Math.min(window.innerHeight * 0.4, 260);
 
             function updateImagePositions() {
@@ -415,12 +412,14 @@
 
                     const column = side === 'right' ? rightColumn : leftColumn;
                     const colRect = column.getBoundingClientRect();
-                    const M = colRect.top + colRect.height / 2;   // middle of visible column
+
+                    // Reading order — the stack order matches the post order.
+                    items.sort((a, b) =>
+                        a.parentPost.getBoundingClientRect().top - b.parentPost.getBoundingClientRect().top);
 
                     // Size each image (cap width to the margin AND height so a
-                    // portrait image like ubutok can't tower over the layout),
-                    // center it horizontally in its margin, and record where its
-                    // post currently sits.
+                    // portrait image like ubutok can't tower), center it in its
+                    // margin, and note where its post currently sits.
                     items.forEach(it => {
                         it.image.style.width = 'auto';
                         it.image.style.height = 'auto';
@@ -442,20 +441,36 @@
                         it.postCenter = rect.top + rect.height / 2;
                     });
 
-                    // Pick the parallax rate so the images fan out to ~fill the
-                    // column height. `span` is the distance between the first and
-                    // last post — scroll-independent, so `k` stays stable while
-                    // scrolling.
-                    const centers = items.map(it => it.postCenter);
-                    const span = Math.max(...centers) - Math.min(...centers) || 1;
-                    const k = Math.max(0.15, Math.min(0.55, (colRect.height * 0.8) / span));
+                    // Total height of the rigid stack (heights + fixed gaps).
+                    const stackH = items.reduce((s, it) => s + it.h, 0) + GAP * (items.length - 1);
+                    const visTop = colRect.top + PAD;
+                    const visH = colRect.height - PAD * 2;
 
+                    // Where does the top of the stack go?
+                    let originTop;
+                    if (stackH <= visH) {
+                        // Everything fits: center the stack on its posts' centroid
+                        // and clamp so it stays fully in view. Still can't overlap.
+                        const centroid = items.reduce((s, it) => s + it.postCenter, 0) / items.length;
+                        originTop = Math.max(visTop, Math.min(centroid - stackH / 2, visTop + visH - stackH));
+                    } else {
+                        // Too tall to fit: slide the stack across the sidebar as
+                        // the column scrolls, so the whole set is reachable. This
+                        // is the "different rate" — the stack moves by
+                        // (stackH - visH) while the column moves its full range.
+                        const scrollRange = column.scrollHeight - column.clientHeight;
+                        const progress = scrollRange > 0
+                            ? Math.min(1, Math.max(0, column.scrollTop / scrollRange))
+                            : 0;
+                        originTop = visTop - progress * (stackH - visH);
+                    }
+
+                    // Lay the stack out from originTop. The +GAP between every
+                    // pair is what guarantees they never overlap.
+                    let y = originTop;
                     items.forEach(it => {
-                        const center = M + k * (it.postCenter - M);
-                        let top = center - it.h / 2;
-                        // Soft clamp so nothing drifts fully off the viewport.
-                        top = Math.max(6, Math.min(top, window.innerHeight - it.h - 6));
-                        it.image.style.top = top + 'px';
+                        it.image.style.top = y + 'px';
+                        y += it.h + GAP;
                     });
                 });
             }
