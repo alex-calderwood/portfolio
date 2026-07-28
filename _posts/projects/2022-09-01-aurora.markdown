@@ -6,11 +6,9 @@ text: default
 tags: [art, creative]
 videos:
    - src: "borealis.mp4"
-     alt: "recording of the Borealfish ambient projection: a green aurora through which deep sea creatures emerge"
+     alt: "recording of the Borealfish ambient projection"
 ---
 
-*Borealfish* is an ambient projector piece I made with the Santa Cruz–based Liminal Space Collective, exhibited in the Santa Cruz Circle Church during the collective's Northern Lights / Impermanence events in early 2023, shortly before the building's demolition.
+*Borealfish* is an ambient projector piece I made as part of the Santa Cruz–based Liminal Space Collective, exhibited in the Santa Cruz Circle Church during the collective's Northern Lights / Impermanence events in early 2023, shortly before the building's demolition.
 
-Built in TouchDesigner, the piece takes public-domain timelapse footage of the aurora borealis and warps it temporally in response to live audio — it shared the room with a didgeridoo sound-therapist's performance. I isolated the green channel of the aurora and used that 0–1 luminance signal as a multiplicative filter over deep-sea footage, so that sea creatures emerge mysteriously into shapes that still read as a dancing skyscape. Letting the deep-sea layer "peek" through the darkness above a luminance threshold gave the emergence more dynamism — a nod to the photophores by which those creatures make their own light. It's best viewed on an OLED projector, where the blacks aren't projected at all, producing a "painting with light" effect.
-
-The room was themed around notions of impermanence and quiet contemplation — an ocean-blue nautical counterpoint to the more frenetic immersive works woven through the church's labyrinth of stairwells and installations.
+Built in TouchDesigner, the piece takes timelapse footage of the aurora borealis, sharing the room with a didgeridoo sound-therapist's performance. I isolated the green channel of the aurora and used that 0–1 luminance signal as a multiplicative filter over deep-sea footage, so that sea creatures emerge within magnetospheric shadows.
