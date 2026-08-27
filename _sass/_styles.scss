@@ -982,3 +982,34 @@ p {
 
 .laurel-left  { margin-right: 0.3em; }
 .laurel-right { margin-left: 0.3em; transform: scaleX(-1); }
+
+// ---- Split header ----------------------------------------------------------
+// The intro text is rendered once at the top of EACH column, laid out at the
+// full two-column width and clipped to that column's half. Both columns at
+// scrollTop 0 → the halves align and read as one full-width header; scroll
+// one column and the header shears apart mid-letter.
+.split-header {
+    overflow: hidden;
+    text-align: center;
+}
+
+.split-header-inner {
+    // Full width of both columns (no grid gap — they're exactly 50/50).
+    width: 200%;
+}
+
+.split-header-right .split-header-inner {
+    margin-left: -100%;
+}
+
+// The contact line keeps its old #contact styling (it's a class now, since
+// the block renders twice and ids must be unique).
+.contact a {
+    color: $link-color-2;
+    text-decoration-color: rgba($blue, 0.5);
+}
+
+.contact a:hover {
+    color: $paper;
+    text-decoration-color: transparent;
+}
