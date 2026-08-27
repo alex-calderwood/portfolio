@@ -983,11 +983,55 @@ p {
 .laurel-left  { margin-right: 0.3em; }
 .laurel-right { margin-left: 0.3em; transform: scaleX(-1); }
 
-// ---- Split header ----------------------------------------------------------
-// The intro text is rendered once at the top of EACH column, laid out at the
-// full two-column width and clipped to that column's half. Both columns at
-// scrollTop 0 → the halves align and read as one full-width header; scroll
-// one column and the header shears apart mid-letter.
+// ---- Split header (the column-shear trick) ---------------------------------
+// CANONICAL EXPLANATION — the markup and JS parts point back here.
+//
+// INTENT: The intro text (everything below the "Hi, I'm Alex … UC Santa Cruz"
+// line) looks like one normal full-width header, but it is secretly part of
+// BOTH scrolling columns. With both columns at scrollTop 0 it reads as a
+// single seamless block; scroll either column alone and the header shears
+// apart mid-letter — half the sentence rides away with its column. That
+// tearing is the point: it's a deliberate piece of the site's text-as-
+// material aesthetic, not a rendering bug.
+//
+// MECHANISM: The intro (_includes/intro_split.html) is rendered TWICE, once
+// at the top of each .column, inside a .split-header wrapper:
+//
+//   .column (left)                     .column-right
+//   ┌──────────────────┐               ┌──────────────────┐
+//   │ .split-header    │ overflow:     │ .split-header    │
+//   │ ┌────────────────┼─────┐ hidden  │┌─────────────────┤ inner shifted
+//   │ │ I play with lan│guage│ clips   ││with language.   │ left by -100%,
+//   │ │ (inner, 200%)  │     │ at the  ││(same inner)     │ so the clip
+//   │ └────────────────┼─────┘ column  │└─────────────────┤ shows the
+//   │  …left column…   │ edge          │  …right column…  │ RIGHT half
+//   └──────────────────┘               └──────────────────┘
+//
+// Each copy's .split-header-inner is 200% of its column — i.e. exactly the
+// full .content-columns width, because the grid is two equal columns with NO
+// gap (grid-template-columns: 1fr 1fr). Both copies therefore lay out (and
+// text-resize stretches) IDENTICALLY; the wrapper's overflow:hidden shows the
+// left half in the left column, and margin-left:-100% slides the right copy
+// so its column shows the right half. Same pixels, complementary windows.
+//
+// INVARIANTS this depends on — check these before changing anything nearby:
+//  * The columns are EXACTLY 50/50 with no grid gap. Introducing a gap breaks
+//    the 200% / -100% math (it becomes calc(200% + gap) / calc(-100% - gap)).
+//  * Both copies contain identical content of identical height, so the tops
+//    align at equal scroll positions. Anything that renders in only one copy
+//    (or sizes differently per column) desyncs the halves.
+//  * text-resize.js sizes each .fullwidth line from its PARENT's clientWidth;
+//    the parent here is .split-header-inner (full double width), which is why
+//    the stretched text matches the old single-header rendering exactly.
+//  * The contact line uses class .contact, not id #contact — the block
+//    renders twice and ids must be unique.
+//
+// MOBILE: below $small-screen-width the layout is single-column, so there is
+// nothing to shear — both split copies are hidden and a third copy
+// (.intro-mobile in #heading-content) renders as the plain full-width intro.
+// See the media block at the end of this section, and the matching
+// early-return in resizeContentColumns() (main.html), which stops the inline
+// column height that would otherwise trap mobile scrolling.
 .split-header {
     overflow: hidden;
     text-align: center;
@@ -1012,4 +1056,17 @@ p {
 .contact a:hover {
     color: $paper;
     text-decoration-color: transparent;
+}
+
+// Desktop: intro renders via the split-header halves; mobile (single-column)
+// can't shear, so swap to the plain full-width copy in #heading-content.
+// Id-scoped because `#heading-content > *` sets display:block at ID
+// specificity, which a bare class can't override.
+#heading-content .intro-mobile {
+    display: none;
+}
+
+@media (max-width: $small-screen-width) {
+    #heading-content .intro-mobile { display: block; }
+    .split-header { display: none; }
 }

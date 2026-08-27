@@ -1,9 +1,17 @@
 {% comment %}
-  The intro text below the "Hi, I'm Alex" line. Rendered TWICE — once at the
-  top of each column, inside a .split-header wrapper that clips it to that
-  column's half (left column shows the left half, right column the right
-  half). With both columns scrolled to the top the halves line up and read
-  as one full-width header; scrolling one column shears it apart.
+  The intro text below the "Hi, I'm Alex" line — the content of the
+  "split header" column-shear trick. Full explanation and diagram:
+  see "Split header" in _sass/_styles.scss.
+
+  This file renders THREE times:
+    1. top of the left column   (.split-header-left — clipped to left half)
+    2. top of the right column  (.split-header-right — clipped to right half)
+    3. inside #heading-content  (.intro-mobile — the plain single-column
+       fallback, shown only below the small-screen breakpoint)
+
+  Because of that, everything in here must be id-free (it would duplicate)
+  and identical across copies — the seamless alignment of the two halves
+  depends on both copies laying out exactly the same.
 {% endcomment %}
 <p class="fullwidth">
 I play with language.

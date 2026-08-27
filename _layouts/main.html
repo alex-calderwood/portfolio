@@ -58,9 +58,20 @@
         <p class="fullwidth">
             Hi, I'm Alex. <img class="monochrome" src="{{ site.baseurl }}/assets/images/me2.png" alt="A picture of me looking out over the beach." style="width: 1em;"> Welcome!
             
-            I am a  text artist, programmer, and PhD student at UC Santa Cruz. 
+            I am a  text artist, programmer, and PhD student at UC Santa Cruz.
         </p>
-        
+
+        {% comment %}
+          Mobile fallback for the split header: the shear trick needs two
+          side-by-side columns, so on small screens (single-column layout)
+          this third copy renders here as the old full-width intro and the
+          split copies are hidden. See the .intro-mobile media rules and the
+          "Split header" explanation in _sass/_styles.scss.
+        {% endcomment %}
+        <div class="intro-mobile">
+            {% include intro_split.html %}
+        </div>
+
     </div>
 
 
@@ -78,10 +89,10 @@
         <div class="column">
 
             {% comment %}
-              Split header: the intro text is rendered once per column at
-              double width; this wrapper clips it to the LEFT half. With both
-              columns at scrollTop 0 the halves align seamlessly — scrolling
-              one column shears the header apart.
+              Split header, LEFT half: the intro is secretly part of both
+              scrolling columns — aligned it reads as one full-width header,
+              scrolled it shears apart (deliberately). Full explanation and
+              diagram: "Split header" in _sass/_styles.scss.
             {% endcomment %}
             <div class="split-header split-header-left">
                 <div class="split-header-inner">
@@ -246,7 +257,11 @@
 
         <div class="column column-right">
 
-            {% comment %} Split header, RIGHT half (see the left column). {% endcomment %}
+            {% comment %}
+              Split header, RIGHT half (inner shifted -100% so this column's
+              clip shows the right side). See "Split header" in
+              _sass/_styles.scss for the full explanation.
+            {% endcomment %}
             <div class="split-header split-header-right">
                 <div class="split-header-inner">
                     {% include intro_split.html %}
@@ -518,8 +533,19 @@
     function resizeContentColumns() {
         const headingContent = document.querySelector('#heading-content');
         const contentColumns = document.querySelector('.content-columns');
+
+        // Mobile (single-column) scrolls the document itself — an inline
+        // height here would override the stylesheet's fit-content and trap
+        // scrolling inside .content-columns (swipes starting on the header
+        // would scroll nothing). Desktop keeps the fixed height because the
+        // split-header shear needs independently scrolling columns — see
+        // "Split header" in _sass/_styles.scss.
+        if (window.matchMedia('(max-width: 600px)').matches) {
+            contentColumns.style.height = '';
+            return;
+        }
+
         const headingContentHeight = headingContent.offsetHeight;
-        const contentColumnsHeight = contentColumns.offsetHeight;
         contentColumns.style.height = `calc(100vh - ${headingContentHeight}px)`;
     }
 
