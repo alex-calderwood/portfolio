@@ -1,9 +1,12 @@
 ---
 layout: post
 title: "CMPM 180: Moving Text"
-date: 2026-05-16
+date: 2026-07-29
 text: default
-tags: [ongoing, teaching, code]
+tags: [teaching]
+images:
+  - src: cmpm-180-ad.png
+    alt: "ad for CMPM 180: Moving Text"
 ---
 
 I'm teaching a class at UC Santa Cruz this summer — CMPM 180: Moving Text — and **I'm looking for students.** If you're at UCSC and you like the idea of making words do strange things on screens, come take it.

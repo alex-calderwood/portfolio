@@ -466,6 +466,10 @@ p {
 
 .fullwidth.subheader {
   margin-top: 1vh;
+  // .fullwidth's line-height:1 + overflow:hidden clips descenders (the tail
+  // of "g"); pad the box downward instead of touching line-height, which the
+  // davinci fill-width calc depends on.
+  padding-bottom: 0.14em;
 }
 
 // Work titles are ink headings; hovering drops a yellow marker highlight
