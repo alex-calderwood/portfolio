@@ -3,7 +3,7 @@ layout: post
 title: "A Prism (Digital Poem)"
 date: 2025-6-17
 text: default
-tags: [publication, poetry]
+tags: [publication, interactive]
 images:
   - src: a-prism.png
     alt: "An image of a purple 1.5D prism on an orange background with some text obscured by its boundaries."

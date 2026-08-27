@@ -173,6 +173,13 @@ $secondary-font: $serif-font; // todo find a good secondary serif?
   font-style: normal;
 }
 
+// overscroll-behavior on BOTH html and body kills the rubber-band jump when
+// a wheel/swipe lands somewhere unscrollable on the main page (the document
+// itself doesn't scroll on desktop — only the columns do).
+html {
+    overscroll-behavior: none;
+}
+
 body {
     font-family: $serif-font;
     font-size: 14px;
@@ -1050,7 +1057,7 @@ p {
 // the block renders twice and ids must be unique).
 .contact a {
     color: $link-color-2;
-    text-decoration-color: rgba($blue, 0.5);
+    text-decoration: none;
 }
 
 .contact a:hover {
@@ -1069,4 +1076,22 @@ p {
 @media (max-width: $small-screen-width) {
     #heading-content .intro-mobile { display: block; }
     .split-header { display: none; }
+}
+
+// A note line in any section list: subheader spacing/stretch, but softened
+// ink and italic so it reads as an aside, not a clickable project title.
+// Usage: <p class="fullwidth subheader note">…</p>
+.subheader.note {
+    color: rgba($ink, 0.75);
+    font-style: italic;
+}
+
+// Ink rules flanking the contact line. Being inside the fullwidth line they
+// count toward its measured width, so they also shrink the stretched text —
+// widen them (em, so they scale with the line) to shrink the links further.
+.contact-rule {
+    display: inline-block;
+    width: 5em;
+    border-top: 1.5px solid rgba($ink, 0.6);
+    vertical-align: middle;
 }

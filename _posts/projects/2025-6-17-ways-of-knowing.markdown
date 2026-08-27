@@ -3,7 +3,7 @@ layout: post
 title: "Ways of Knowing (Digital Poem)"
 date: 2025-6-17
 text: default
-tags: [publication, poetry]
+tags: [publication, interactive]
 images:
    - src: ways-of-knowing.png
      alt: "A screenshot of 'Ways of Knowing' digital poem depicting green letters suspended on a grid of partial words going in different directions: sys-ue-matically and sys-ues-atical-y"

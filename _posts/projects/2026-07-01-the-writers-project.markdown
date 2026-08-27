@@ -2,7 +2,7 @@
 layout: post
 title: "The Writer's Project"
 title-full: "The Writer's Project"
-date:   2025-06-07 17:41:39 -0700
+date:   2026-07-01 17:41:39 -0700
 text: default
 tags: [art, research, project, ongoing, interactive]
 images: 

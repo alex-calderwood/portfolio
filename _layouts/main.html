@@ -56,9 +56,11 @@
       <body>
     <div id="heading-content">
         <p class="fullwidth">
+            <span class="contact-rule"></span>
             Hi, I'm Alex. <img class="monochrome" src="{{ site.baseurl }}/assets/images/me2.png" alt="A picture of me looking out over the beach." style="width: 1em;"> Welcome!
-            
-            I am a  text artist, programmer, and PhD student at UC Santa Cruz.
+
+            I am a text artist, programmer, and UCSC PhD Student.
+            <span class="contact-rule"></span>
         </p>
 
         {% comment %}
@@ -162,6 +164,14 @@
                 {% include post_expand.html post=post %}
                 </div>
             {% endfor %}
+
+            {% comment %}
+              A section note — same stretched line and spacing as the titles
+              above it, but styled as an aside (see .subheader.note). Reusable
+              in any section list.
+            {% endcomment %}
+            <p class="fullwidth subheader note">Expect more soon! I am looking for publishers</p>
+            <p class="fullwidth subheader note">for an unreleased chapbook of concrete poetry.</p>
 
 
             <p class="fullwidth header">Miscellanea</p>
@@ -676,6 +686,20 @@
     }
 
     setupExpandableProjects();
+
+    // Scrolling in the page margins scrolls the column nearest the pointer,
+    // as though the mouse were inside it. Only the true margins — wheel
+    // events over the columns behave natively, and the header strip
+    // (#heading-content) is deliberately excluded.
+    window.addEventListener('wheel', (e) => {
+        if (e.target.closest('.column')) return;
+        if (e.target.closest('#heading-content')) return;
+        const columnsEl = document.querySelector('.content-columns');
+        const [left, right] = columnsEl.querySelectorAll('.column');
+        const rect = columnsEl.getBoundingClientRect();
+        const column = e.clientX < rect.left + rect.width / 2 ? left : right;
+        column.scrollTop += e.deltaY;
+    }, { passive: true });
 
     </script>
 </html>
