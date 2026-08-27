@@ -195,13 +195,30 @@ body {
   color: $ink;
 }
 
-// Section labels are the loud orange accent
+// Section labels are the loud orange accent, set as newspaper section slugs:
+// small caps with open tracking — the register papers use for SPORTS or
+// OPINION. The spacing is deliberately asymmetric: a wide gap above
+// (separating the label from the previous section) and a tight one below
+// (joining it to its own), since colour alone left them floating
+// ambiguously between sections.
 .header {
   color: $orange;
   font-family: $header-font;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.09em;
   text-decoration-thickness: from-font;
-  padding: 2vh 0px;
-  // text-decoration-skip-ink: none;
+  // The bottom padding clears descenders ("Ongoing Projects") that
+  // .fullwidth's line-height:1 + overflow:hidden would otherwise clip; the
+  // margin subtracts it again so it costs no visible space (see
+  // .fullwidth.subheader).
+  padding: 3.4vh 0 0.18em;
+  margin-bottom: calc(1.1vh - 0.18em);
+}
+
+// The first label in a column already sits under the masthead — no need for
+// the full separating gap above it.
+.column > .header:first-child {
+  padding-top: 1vh;
 }
 
 // #hi {
@@ -299,9 +316,7 @@ a:hover {
 }
 
 .breaker {
-  // margin-top: 10px !important;
-  // margin-bottom: 10px !important;
-  height: 4vh;
+  height: 1vh;
 }
 
 p {
@@ -361,7 +376,7 @@ p {
   z-index: 1;
   width: min(100vw, 100vh);
   margin: 0 auto;
-  padding: 2.5vh 0 1vh;
+  padding: 2.5vh 0 0.25vh;
   text-align: center;
   font-family: $serif-font;
   color:  $actual-heading-color;
@@ -414,18 +429,6 @@ p {
   pointer-events: none; 
 }
 
-.marginalia {
-  position: fixed;
-  z-index: 2;
-  width: 100px;
-  left: 0px;
-}
-
-.marginalia-right {
-  left: auto;
-  right: 0px;
-}
-
 .column {
   width: 100%;
   padding: 0px;
@@ -468,8 +471,12 @@ p {
   margin-top: 1vh;
   // .fullwidth's line-height:1 + overflow:hidden clips descenders (the tail
   // of "g"); pad the box downward instead of touching line-height, which the
-  // davinci fill-width calc depends on.
+  // davinci fill-width calc depends on. The matching negative margin gives
+  // the space back to the layout — the clipping region still extends, but
+  // the gap under the title doesn't (padding is in em of the *stretched*
+  // size, so left alone it opens a very visible hole).
   padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 // Work titles are ink headings; hovering drops a yellow marker highlight
@@ -518,13 +525,14 @@ p {
     margin: 0 0 0.7rem 0;
 }
 
-// Mono meta strip under a strong ink rule — the "printed" masthead
+// Meta strip under a strong ink rule — the "printed" masthead. Set in the
+// serif at normal case: the old mono/uppercase/wide-tracking combination
+// was hard to read.
 .post-meta {
     padding: 0.8rem 0 0;
-    font-family: $mono-font;
-    font-size: 0.9rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-family: $serif-font;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
     color: $ink;
     border-top: 1.5px solid $ink;
 }
@@ -656,13 +664,18 @@ p {
     object-fit: contain;
     object-position: center;
     mix-blend-mode: multiply;   // melds into the paper ground — riso/print feel
+    // A print "cut": hairline ink frame with a sliver of paper between it and
+    // the image, so the plate reads as set into the page, not pasted on.
+    border: 1px solid rgba($ink, 0.55);
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .post-figure figcaption {
-    font-family: $mono-font;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-family: $serif-font;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
     color: rgba($ink, 0.7);
     margin-top: 0.8rem;
 }
@@ -693,11 +706,12 @@ p {
     max-width: 64ch;
     border-top: 1.5px solid $ink;
 
+    // Same register as the main page's orange section headers.
     .post-links-label {
-        font-family: $mono-font;
-        font-size: 0.85rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
+        font-family: $header-font;
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
         color: $orange;
         margin: 0 0 0.8rem 0;
     }
@@ -819,21 +833,6 @@ p {
     mix-blend-mode: multiply;
 }
 
-/* Apply monochrome to all marginalia images by default */
-.marginalia, .marginalia-right {
-    filter: grayscale(100%);
-    opacity: 0.6;
-    // transition: all 0.3s ease;
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-/* Colorized state for images */
-.marginalia.colorized, .marginalia-right.colorized {
-    filter: none;
-    opacity: 1;
-}
-
 /* Hover effects for publication items */
 .publication-item {
     position: relative;
@@ -846,9 +845,140 @@ p {
 }
 
 // Hovering anywhere on an item (or its image) also drops the yellow marker
-// on that item's title — so the whole row lights up together.
-.publication-item:hover .subheader a,
-.publication-item.highlighted .subheader a {
+// on that item's title — so the whole row lights up together. An expanded
+// item keeps the marker whether or not the pointer is on it: it's the "you
+// are reading this one" cue while the unfolded text is open.
+.publication-item:hover > .subheader a,
+.publication-item.highlighted > .subheader a,
+.publication-item.expanded > .subheader a {
     background-color: $yellow;
     color: $ink;
 }
+// ---- Pry-style inline unfold ------------------------------------------------
+// Clicking a project on the main page unfolds its full post in place, the way
+// text unpacks in the game Pry: the container grows (grid-rows 0fr → 1fr, so
+// no hardcoded max-height), while each line of content swings down from a
+// folded-flat position, staggered top to bottom (--i set by the main-page JS).
+
+.post-expand {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.65s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+// Child-scoped (>) so expanding a meta-card (Student Work) doesn't also
+// unfold the nested cards inside it — each opens on its own click.
+.publication-item.expanded > .post-expand {
+    grid-template-rows: 1fr;
+}
+
+// The fold: the whole content block is one surface, hinged at its top edge,
+// that swings open as the container grows. One rotation, not one per line —
+// per-line rotations under a shared perspective distort unevenly and read
+// as a venetian-blind wobble instead of a fold.
+.post-expand {
+    perspective: 900px;
+}
+
+.post-expand-inner {
+    overflow: hidden;
+    min-height: 0;
+    transform: rotateX(-70deg);
+    transform-origin: top center;
+    transition: transform 0.65s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+.publication-item.expanded > .post-expand > .post-expand-inner {
+    transform: none;
+}
+
+
+// Body lines are p.fullwidth.sub built by JS, so their size comes from the
+// column-width stretch (like the teasers) — no fixed font-size here.
+.expand-body {
+    color: $ink;
+
+    > * {
+        margin: 0.35em 0;
+    }
+
+    // Paragraph breaks: a gap before the first line of each new paragraph.
+    > .para-start {
+        margin-top: 1.1em;
+    }
+}
+
+.expand-links {
+    margin: 0.5em 0 0;
+}
+
+// Media wants the full column width, but a portrait image at full width
+// (ubutok) towers over the viewport and divorces image from text — so cap
+// height at half the viewport and let the aspect ratio decide which bound
+// wins: landscape still fills the column, portrait stops while text is
+// visible alongside.
+// Same "plate" treatment as the standalone post pages: multiply-blended into
+// the newsprint ground (no pasted-on white rectangle) with a small caption.
+.expand-figure {
+    margin: 0.9em 0;
+}
+
+.expand-images img,
+.expand-images video {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 50vh;
+    mix-blend-mode: multiply;
+}
+
+.expand-figure figcaption {
+    font-family: $serif-font;
+    font-style: italic;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: rgba($ink, 0.7);
+    margin-top: 0.4rem;
+}
+
+// Opt-out of the height cap (frontmatter `full: true` on an image): the
+// image spans the full column width regardless of how tall that makes it.
+.expand-images img.full,
+.expand-images video.full {
+    width: 100%;
+    max-height: none;
+}
+
+// Small ink circles separating the links on a line.
+.link-separator {
+    color: rgba($ink, 0.55);
+    font-size: 0.5em;
+    vertical-align: middle;
+}
+
+// The permalink is an ordinary link in the links row — a chain icon instead
+// of text, but with the site's normal link color and hover.
+.expand-permalink svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+// The truncated teaser is redundant once the real text is unfolded.
+.publication-item.expanded > .publication-content {
+    display: none;
+}
+
+// ---- Award laurels ---------------------------------------------------------
+// A printer's ornament, not a badge: a small laurel branch either side of an
+// award link, at the link's own colour and low opacity so it whispers.
+// Full strength in currentColor, so the ornament reads as part of the link
+// text rather than a watermark behind it.
+.laurel {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    vertical-align: -0.15em;
+}
+
+.laurel-left  { margin-right: 0.3em; }
+.laurel-right { margin-left: 0.3em; transform: scaleX(-1); }

@@ -4,9 +4,14 @@ title: "Supporting Material Writing Practice with Phraselette, a Palette of Phra
 date:   2025-7-1 00:00:00 -0400
 text: default
 tags: [writing tools, code, publication, paper, language]
+images:
+  - src: phraselette-2.png
+    alt: "figure from the Phraselette DIS demo paper"
 links:
   - text: Design of Interactive Systems (Companion / Demo track)
     url: https://dl.acm.org/doi/10.1145/3715668.3735608
+  - text: "Phraselette DIS Presentation Slides"
+    url: "https://docs.google.com/presentation/d/1cotTNtvvcwxsUfcCyuRfmPUIRvjSzkY2JCQiGD3Xi6c/edit?usp=sharing"
 ---
 This is the shorter Phraselette paper for the DIS 2025 Demo track.
 

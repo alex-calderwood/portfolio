@@ -4,9 +4,9 @@ title: "The Funeral for the Internet"
 date: 2025-7-3
 text: default
 tags: [creative, code]
-# images:
-#    - src: dadakuku.png
-#      alt: "the dadakuku logo"
+images:
+   - src: funeral-for-the-internet.jpg
+     alt: "photograph from The Funeral for the Internet performance"
 # links:
 #     - text: "Read the micro-dadaist poem in dadakuku"
 #       url: https://dadakuku.com/2025/06/25/7591/

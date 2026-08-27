@@ -3,7 +3,7 @@ layout: post
 title: "All is All Poetry"
 date:   2018-01-08 17:41:39 -0700
 text: default
-tags: [art, language, code]
+tags: [student-work, art, language, code]
 links:
   - text: Github
     url: https://github.com/alex-calderwood/all_is_all_poetry

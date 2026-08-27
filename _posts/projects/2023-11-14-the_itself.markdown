@@ -1,10 +1,12 @@
 ---
 layout: post
-title: "A Poetry Writing Game"
+title: "Unnamed Poetry Writing Game"
 date: 2023-11-14 00:00:00 -0400
 text: default
-tags: [art, games, ongoing, project]
+tags: [art, games, project]
 links:
+  - text: Spring 2024 Catalog of Writing Games and Constrained Writing
+    url: "https://docs.google.com/spreadsheets/d/1m2sT5i_0DcLmMP6RDWykqSccaEZ3MWn3c6bExQIU5_A/edit?gid=0#gid=0"
   - text: Everest Pipkin's The Ground Itself
     url: https://everestpipkin.itch.io/the-ground-itself
   - text: Nonsynth

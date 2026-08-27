@@ -6,6 +6,7 @@ text: default
 tags: [creative, art]
 videos:
    - src: "Relatively, Clock.mp4"
+     full: true
      alt: "video of moire effect on the timepiece"
 links:
     - text: "time.place exhibition at tiat.place"

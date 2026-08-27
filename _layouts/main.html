@@ -36,6 +36,15 @@
     </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="permalink-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg">
         <symbol id="tag3" viewBox="0 0 256 256" fill="none">
             <path fill="currentColor" d="M246.66 123.56L201 55.13A15.94 15.94 0 0 0 187.72 48H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h147.72a16 16 0 0 0 13.28-7.12l45.63-68.44a8 8 0 0 0 .03-8.88Z"/>
         </symbol>
@@ -52,10 +61,8 @@
             I am a  text artist, programmer, and PhD student at UC Santa Cruz. 
         </p>
         
-        <p class="fullwidth"> 
-        I play with language
-        </p>
-        <p class="fullwidth"> to find new ways of seeing, ways of expressing, and to understand the current moment.
+        <p class="fullwidth">
+        I play with language.
         </p>
         <p class="fullwidth">I am publishing poetry and making a slew of odd things - physical and digital (and usually textual).
         </p>
@@ -102,45 +109,40 @@
       section excludes these so posts aren't listed twice. Add a section →
       add its tag here.
     {% endcomment %}
-    {% assign section_tags = "ongoing,poetry,paper,journalism" | split: "," %}
+    {% assign section_tags = "ongoing,poetry,paper,journalism,student-work,interactive" | split: "," %}
 
     <div class="content-columns">
 
         <div class="column">
 
+            {% comment %} Ongoing Projects section — disabled for now.
             <p class="fullwidth header">Ongoing Projects</p>
 
             {% assign ongoing_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'ongoing'" %}
             {% for post in ongoing_posts %}
                 {% unless shown_posts contains post.title %}
-                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="ongoing-{{ post.title | slugify }}">
+                    <div class="publication-item" data-post-id="ongoing-{{ post.title | slugify }}">
                         <p class="fullwidth subheader">
                             <a href="{{ post.url | relative_url }}"
                                 data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
                             </a>
+                            <span class="date">
+                                {% if post.date %}
+                                    {{ post.date | date: "%B %Y" }}
+                                {% endif %}
+                            </span>
                         </p>
-
-                        {% if post.images %}
-                            {% assign image = post.images[0] %}
-                                <img 
-                                    id="main-page-image-{{ image.src }}"
-                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                    alt="{{ image.alt }}" 
-                                    class="marginalia"
-                                    data-parent-post="ongoing-{{ post.title | slugify }}"> 
-                                    <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                        {% endif %}
-
+                        {% include post_expand.html post=post %}
                     </div>
                 {% endunless %}
             {% endfor %}
-            <p class="fullwidth header">Writing, Digital Poetry</p>
+            {% endcomment %}
 
-            {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
-            {% for post in poetry_posts %}
-                {% assign shown_posts = shown_posts | push: post.title %}
+            <p class="fullwidth header">Interactive</p>
 
-                <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+            {% assign interactive_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'interactive'" %}
+            {% for post in interactive_posts %}
+                <div class="publication-item" data-post-id="interactive-{{ post.title | slugify }}">
                     <p class="fullwidth subheader">
                         <a href="{{ post.url | relative_url }}"
                             data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
@@ -151,22 +153,81 @@
                             {% endif %}
                         </span>
                     </p>
-                
-                <!-- Images -->
-                {% if post.images %}
-                    {% assign image = post.images[0] %}
-                        <img 
-                            id="main-page-image-{{ image.src }}"
-                             src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                             alt="{{ image.alt }}" 
-                             class="marginalia"
-                             data-parent-post="{{ post.title | slugify }}"> 
-                {% endif %}
+                    {% include post_expand.html post=post %}
+                </div>
+            {% endfor %}
+
+            <p class="fullwidth header">Writing and Poetry</p>
+
+            {% assign poetry_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'poetry'" %}
+            {% for post in poetry_posts %}
+                {% assign shown_posts = shown_posts | push: post.title %}
+
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
+                    <p class="fullwidth subheader">
+                        <a href="{{ post.url | relative_url }}"
+                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                        </a>
+                        <span class="date">
+                            {% if post.date %}
+                                {{ post.date | date: "%B %Y" }}
+                            {% endif %}
+                        </span>
+                    </p>
+                {% include post_expand.html post=post %}
                 </div>
             {% endfor %}
 
 
             <p class="fullwidth header">Miscellanea</p>
+
+            {% comment %}
+              Student Work: a meta-card. Its unfolded content is three nested
+              publication-items, each of which unfolds in turn (the nesting is
+              handled by the child-scoped .expanded selectors in _styles.scss
+              and the closest-item guard in the click handler). The posts
+              themselves are tagged student-work, which is in section_tags, so
+              the Miscellanea loop below won't list them individually.
+            {% endcomment %}
+            {% assign student_titles = "Semantic Compasses|Phonaesthesia|All is All Poetry" | split: "|" %}
+            {% capture student_card %}
+            <div class="publication-item" data-post-id="student-work">
+                <p class="fullwidth subheader">
+                    <a href="#">Student Work</a>
+                    <span class="date">Spring 2019</span>
+                </p>
+                <div class="post-expand" aria-hidden="true">
+                    <div class="post-expand-inner">
+                        {% for student_title in student_titles %}
+                            {% assign student_post = site.posts | where: "title", student_title | first %}
+                            {% if student_post %}
+                                <div class="publication-item nested" data-post-id="{{ student_post.title | slugify }}">
+                                    <p class="fullwidth subheader">
+                                        <a href="{{ student_post.url | relative_url }}"
+                                            data-tags="{{ student_post.tags | join: ',' }}">{{ student_post.title }}
+                                        </a>
+                                        <span class="date">
+                                            {% if student_post.date %}
+                                                {{ student_post.date | date: "%B %Y" }}
+                                            {% endif %}
+                                        </span>
+                                    </p>
+                                    {% include post_expand.html post=student_post %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endcapture %}
+
+            {% comment %}
+              Slot the Student Work card into the reverse-chronological list
+              at its date (Spring 2019): it renders just before the first
+              post older than May 2019, or at the end if none is.
+            {% endcomment %}
+            {% assign student_ts = 1556668800 %}
+            {% assign student_card_inserted = false %}
 
             {% assign other_posts = site.posts | where: "layout", "post" %}
             {% for post in other_posts %}
@@ -182,8 +243,13 @@
                     {% if post.tags contains tag %}{% assign categorized = true %}{% endif %}
                 {% endfor %}
                 {% unless categorized %}
+                    {% assign post_ts = post.date | date: "%s" | plus: 0 %}
+                    {% if student_card_inserted == false and post_ts < student_ts %}
+                        {{ student_card }}
+                        {% assign student_card_inserted = true %}
+                    {% endif %}
 
-                    <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+                    <div class="publication-item" data-post-id="{{ post.title | slugify }}">
                         <p class="fullwidth subheader">
                             <a href="{{ post.url | relative_url }}"
                                 data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
@@ -194,26 +260,25 @@
                                 {% endif %}
                             </span>
                         </p>
-
-                        {% if post.images %}
-                            {% assign image = post.images[0] %}
-                                <img
-                                    id="main-page-image-{{ image.src }}"
-                                    src="{{ site.baseurl }}/assets/images/{{ image.src }}"
-                                    alt="{{ image.alt }}"
-                                    class="marginalia"
-                                    data-parent-post="{{ post.title | slugify }}">
-                        {% endif %}
-
+                        {% include post_expand.html post=post %}
                     </div>
                 {% endunless %}
             {% endfor %}
-    
+            {% unless student_card_inserted %}
+                {{ student_card }}
+            {% endunless %}
+
         </div>
 
         <div class="column column-right">
 
-            <p class="fullwidth header">Publications</p>
+            {% comment %}
+              The extra tracking is a height cheat: headers are stretched to
+              the column width, so a shorter word renders taller. Widening
+              "Academics" until its natural width matches "Interactive" makes
+              the two stretch to the same font size / line height.
+            {% endcomment %}
+            <p class="fullwidth header" style="letter-spacing: 0.1856em;">Academics</p>
 
             {% assign publication_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'paper'" %}
             {% assign char_limit = 75 %}
@@ -221,7 +286,7 @@
             {% for post in publication_posts %}
                 {% assign shown_posts = shown_posts | push: post.title %}
                 
-                <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
                     <p class="fullwidth subheader">
                         <a href="{{ post.url | relative_url }}"
                             data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
@@ -253,21 +318,10 @@
                     
                     </p>
 
-                    <!-- Images -->
-                    {% if post.images %}
-                        {% assign image = post.images[0] %}
-                            <img 
-                                id="main-page-image-{{ image.src }}"
-                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                alt="{{ image.alt }}" 
-                                class="marginalia marginalia-right"
-                                data-parent-post="{{ post.title | slugify }}"> 
-                                <!-- https://jekyllrb.com/docs/liquid/filters/ -->
-                    {% endif %}
-
-                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
+                    <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div>
+                    {% include post_expand.html post=post %}
                 </div>
-            
+
             {% endfor %}
 
             <p class="fullwidth header">Journalism</p>
@@ -276,7 +330,7 @@
             {% for post in journalism_posts %}
                 {% assign shown_posts = shown_posts | push: post.title %}
 
-                <div class="publication-item" onclick="link('{{ post.url }}')" data-post-id="{{ post.title | slugify }}">
+                <div class="publication-item" data-post-id="{{ post.title | slugify }}">
                     <p class="fullwidth subheader">
                         <a href="{{ post.url | relative_url }}"
                             data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
@@ -287,17 +341,7 @@
                             {% endif %}
                         </span>
                     </p>
-
-                    {% if post.images %}
-                        {% assign image = post.images[0] %}
-                            <img 
-                                id="main-page-image-{{ image.src }}"
-                                src="{{ site.baseurl }}/assets/images/{{ image.src }}" 
-                                alt="{{ image.alt }}" 
-                                class="marginalia marginalia-right"
-                                data-parent-post="{{ post.title | slugify }}"> 
-                    {% endif %}
-
+                    {% include post_expand.html post=post %}
 
                     <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
                 </div>
@@ -371,112 +415,115 @@
             });
         }
 
-        const [leftColumn, rightColumn] = document.querySelectorAll('.column');
-        const images = document.querySelectorAll('.marginalia, .marginalia-right');
-        const contentColumns = document.querySelector('.content-columns');
-
-        function setupScrollingMarginalia() {
-            const marginLeft = window.getComputedStyle(contentColumns).marginLeft;
-            const marginLeftPx = parseFloat(marginLeft.replace('px', ''));
-
-            // Non-overlapping stack. The images in a sidebar are laid out as one
-            // rigid vertical stack with a fixed gap between them, so two images
-            // can NEVER touch. Because the images are full-size, the stack is
-            // usually taller than the sidebar — so we slide it as you scroll
-            // (slower than the column, since the stack is longer than the
-            // scrollable range): scrolling to the top shows the first images,
-            // scrolling to the bottom shows the last, and everything in between
-            // is reachable. When the stack does fit, it just tracks its posts.
-            const CAP = 0.95;                 // image may fill up to 95% of the margin
-            const GAP = 10;                   // guaranteed px between images
-            const PAD = 8;                    // keep the stack off the very edges
-            const maxImgHeight = Math.min(window.innerHeight * 0.4, 260);
-
-            function updateImagePositions() {
-                // Group images by the sidebar they live in (left/right).
-                const groups = { left: [], right: [] };
-                images.forEach(image => {
-                    const parentPostId = image.getAttribute('data-parent-post');
-                    const parentPost = document.querySelector(`[data-post-id="${parentPostId}"]`);
-                    if (!parentPost) {
-                        console.log('no parent post found for image', image);
-                        return;
-                    }
-                    const side = image.classList.contains('marginalia-right') ? 'right' : 'left';
-                    groups[side].push({ image, parentPost, side });
-                });
-
-                Object.keys(groups).forEach(side => {
-                    const items = groups[side];
-                    if (!items.length) return;
-
-                    const column = side === 'right' ? rightColumn : leftColumn;
-                    const colRect = column.getBoundingClientRect();
-
-                    // Reading order — the stack order matches the post order.
-                    items.sort((a, b) =>
-                        a.parentPost.getBoundingClientRect().top - b.parentPost.getBoundingClientRect().top);
-
-                    // Size each image (cap width to the margin AND height so a
-                    // portrait image like ubutok can't tower), center it in its
-                    // margin, and note where its post currently sits.
-                    items.forEach(it => {
-                        it.image.style.width = 'auto';
-                        it.image.style.height = 'auto';
-                        it.image.style.maxWidth = (marginLeftPx * CAP) + 'px';
-                        it.image.style.maxHeight = maxImgHeight + 'px';
-
-                        const w = it.image.offsetWidth;
-                        const inset = (marginLeftPx - w) / 2;     // center within the margin
-                        if (side === 'right') {
-                            it.image.style.right = inset + 'px';
-                            it.image.style.left = 'auto';
-                        } else {
-                            it.image.style.left = inset + 'px';
-                            it.image.style.right = 'auto';
-                        }
-
-                        const rect = it.parentPost.getBoundingClientRect();
-                        it.h = it.image.offsetHeight;
-                        it.postCenter = rect.top + rect.height / 2;
-                    });
-
-                    // Total height of the rigid stack (heights + fixed gaps).
-                    const stackH = items.reduce((s, it) => s + it.h, 0) + GAP * (items.length - 1);
-                    const visTop = colRect.top + PAD;
-                    const visH = colRect.height - PAD * 2;
-
-                    // Where does the top of the stack go?
-                    let originTop;
-                    if (stackH <= visH) {
-                        // Everything fits: center the stack on its posts' centroid
-                        // and clamp so it stays fully in view. Still can't overlap.
-                        const centroid = items.reduce((s, it) => s + it.postCenter, 0) / items.length;
-                        originTop = Math.max(visTop, Math.min(centroid - stackH / 2, visTop + visH - stackH));
+        // Build the unfoldable full-text bodies: split the plain post text into
+        // lines of roughly constant length, each a p.fullwidth.sub so the
+        // text-resize pass stretches every line to the column width (same
+        // treatment as the teasers, but for the whole text).
+        function createExpandBodies() {
+            const lineCharLimit = 58;
+            const minLineChars = 20;
+            // Pack one paragraph's words into lines under the char limit,
+            // folding a short orphan last line back into the previous one.
+            function packLines(text) {
+                const words = text.split(/\s+/).filter(Boolean);
+                const lines = [];
+                let current = '';
+                for (const word of words) {
+                    const candidate = current ? current + ' ' + word : word;
+                    if (candidate.length > lineCharLimit && current) {
+                        lines.push(current);
+                        current = word;
                     } else {
-                        // Too tall to fit: slide the stack across the sidebar as
-                        // the column scrolls, so the whole set is reachable. This
-                        // is the "different rate" — the stack moves by
-                        // (stackH - visH) while the column moves its full range.
-                        const scrollRange = column.scrollHeight - column.clientHeight;
-                        const progress = scrollRange > 0
-                            ? Math.min(1, Math.max(0, column.scrollTop / scrollRange))
-                            : 0;
-                        originTop = visTop - progress * (stackH - visH);
+                        current = candidate;
                     }
-
-                    // Lay the stack out from originTop. The +GAP between every
-                    // pair is what guarantees they never overlap.
-                    let y = originTop;
-                    items.forEach(it => {
-                        it.image.style.top = y + 'px';
-                        y += it.h + GAP;
-                    });
-                });
+                }
+                if (current) {
+                    if (lines.length && current.length < minLineChars) {
+                        lines[lines.length - 1] += ' ' + current;
+                    } else {
+                        lines.push(current);
+                    }
+                }
+                return lines;
             }
 
-            updateImagePositions();
-    }
+            document.querySelectorAll('.expand-body[data-content]').forEach(div => {
+                if (div.childElementCount) return; // already built
+                const raw = div.getAttribute('data-content');
+                if (!raw || !raw.trim()) return;
+                // Paragraph breaks survive strip_html as blank lines; pack
+                // each paragraph separately so breaks land between lines,
+                // and mark the first line of every paragraph after the first
+                // so CSS can open a gap.
+                const paragraphs = raw.split(/\n\s*\n+/).map(s => s.trim()).filter(Boolean);
+                paragraphs.forEach((para, pi) => {
+                    packLines(para).forEach((line, li) => {
+                        const p = document.createElement('p');
+                        p.className = 'fullwidth sub';
+                        if (pi && !li) p.classList.add('para-start');
+                        // Short lines (e.g. a one-line body) left-justify at
+                        // the previous line's size instead of stretching —
+                        // see the gate in text-resize.js.
+                        p.dataset.minStretchChars = minLineChars;
+                        p.textContent = line;
+                        div.appendChild(p);
+                    });
+                });
+            });
+
+            // Regroup each item's links into fullwidth lines gated by the same
+            // min/max character counts: pack links onto a line while it stays
+            // under the max, start a new line when it wouldn't, and fold a
+            // too-short final line back into the previous one.
+            document.querySelectorAll('.expand-links').forEach(container => {
+                if (container.dataset.grouped) return;
+                container.dataset.grouped = 'true';
+                const anchors = Array.from(container.querySelectorAll('a'));
+                if (!anchors.length) return;
+                container.textContent = '';
+
+                const lineGroups = [];
+                let group = [], groupLen = 0;
+                anchors.forEach(a => {
+                    const len = a.textContent.trim().length;
+                    if (group.length && groupLen + 1 + len > lineCharLimit) {
+                        lineGroups.push(group);
+                        group = [a];
+                        groupLen = len;
+                    } else {
+                        group.push(a);
+                        groupLen += (group.length > 1 ? 1 : 0) + len;
+                    }
+                });
+                if (group.length) {
+                    const last = lineGroups[lineGroups.length - 1];
+                    if (lineGroups.length && groupLen < minLineChars &&
+                        group.length === 1 && last.length > 1) {
+                        // A lone short link stranded on its own line: give it
+                        // back a neighbor from the previous line.
+                        group.unshift(last.pop());
+                    }
+                    lineGroups.push(group);
+                }
+
+                lineGroups.forEach(g => {
+                    const p = document.createElement('p');
+                    p.className = 'fullwidth sub';
+                    p.dataset.minStretchChars = minLineChars;
+                    g.forEach((a, i) => {
+                        if (i) {
+                            const dot = document.createElement('span');
+                            dot.className = 'link-separator';
+                            dot.textContent = ' ● ';
+                            p.appendChild(dot);
+                        }
+                        p.appendChild(a);
+                    });
+                    container.appendChild(p);
+                });
+            });
+
+        }
 
     // function resizeContentColumns() {
     //     const headingContent = document.querySelector('#heading-content');
@@ -520,6 +567,7 @@
 
     async function initializePage() {
         await createPublicationContent();
+        createExpandBodies();
         handleResize();
     }
 
@@ -530,8 +578,6 @@
         } else {
             console.warn('Could not resize elements, did you forget to include text-resize.js?');
         }
-        
-        setupScrollingMarginalia();
         resizeContentColumns();
     }
 
@@ -544,56 +590,85 @@
         document.fonts.ready.then(handleResize);
     }
 
-    // Update positions on scroll
-    leftColumn.addEventListener('scroll', setupScrollingMarginalia);
-    rightColumn.addEventListener('scroll', setupScrollingMarginalia);
-    document.addEventListener('scroll', setupScrollingMarginalia);
-
-    // Add hover effects for posts and images
+    // Hovering a project drops the yellow marker highlight on it.
     function setupHoverEffects() {
-        // Get all publication items and marginalia images
-        const publicationItems = document.querySelectorAll('.publication-item');
-        const marginaliaImages = document.querySelectorAll('.marginalia, .marginalia-right');
-        
-        // Add hover effects to publication items
-        publicationItems.forEach(item => {
-            const postId = item.getAttribute('data-post-id');
-            const relatedImages = document.querySelectorAll(`.marginalia[data-parent-post="${postId}"], .marginalia-right[data-parent-post="${postId}"]`);
-            
-            item.addEventListener('mouseenter', () => {
-                item.classList.add('highlighted');
-                relatedImages.forEach(img => img.classList.add('colorized'));
-            });
-            
-            item.addEventListener('mouseleave', () => {
-                item.classList.remove('highlighted');
-                relatedImages.forEach(img => img.classList.remove('colorized'));
-            });
-        });
-        
-        // Add hover effects to marginalia images
-        marginaliaImages.forEach(image => {
-            const parentPostId = image.getAttribute('data-parent-post');
-            const parentPost = document.querySelector(`.publication-item[data-post-id="${parentPostId}"]`);
-            
-            image.addEventListener('mouseenter', () => {
-                image.classList.add('colorized');
-                if (parentPost) {
-                    parentPost.classList.add('highlighted');
-                }
-            });
-            
-            image.addEventListener('mouseleave', () => {
-                image.classList.remove('colorized');
-                if (parentPost) {
-                    parentPost.classList.remove('highlighted');
-                }
-            });
+        document.querySelectorAll('.publication-item').forEach(item => {
+            item.addEventListener('mouseenter', () => item.classList.add('highlighted'));
+            item.addEventListener('mouseleave', () => item.classList.remove('highlighted'));
         });
     }
 
     // Initialize hover effects after page load
     setupHoverEffects();
+
+    // ---- Pry-style inline unfold -------------------------------------------
+    // Clicking a project unfolds the full post in place instead of navigating.
+    // The container animates open via CSS (grid-rows); each content block gets
+    // a sequential --i so the lines fan open top-to-bottom.
+    function setupExpandableProjects() {
+        document.querySelectorAll('.publication-item').forEach(item => {
+            const expand = item.querySelector('.post-expand');
+            if (!expand) return;
+
+            // The title link is the only anchor that toggles the unfold —
+            // everything else (the Publications teaser's links, the links
+            // inside the unfolded block, the [...] more-link) is a real link
+            // and must navigate.
+            const titleLink = item.querySelector('.subheader > a');
+
+            item.addEventListener('click', (e) => {
+                // Nested cards (Student Work): a click belongs to the
+                // innermost publication-item around it — if that isn't us,
+                // let the nested card's own handler deal with it.
+                if (e.target.closest('.publication-item') !== item) return;
+
+                const anchor = e.target.closest('a');
+                if (anchor) {
+                    if (anchor !== titleLink) return;              // a real link
+                    if (e.metaKey || e.ctrlKey || e.shiftKey) return; // open the post page
+                    e.preventDefault();
+                }
+
+                const open = item.classList.toggle('expanded');
+                expand.setAttribute('aria-hidden', String(!open));
+
+                // Bring the unfolded project's title to the top of its
+                // column, so the text opens downward into view. Driven by
+                // hand rather than scrollTo({smooth}) because the column is
+                // still growing while the unfold animates — for items near
+                // the bottom the target isn't reachable yet at click time, so
+                // each frame we re-derive the target and clamp to whatever
+                // scroll range currently exists ("as much as we can").
+                if (open) {
+                    const column = item.closest('.column');
+                    if (column) scrollItemToTop(column, item);
+                }
+            });
+        });
+    }
+
+    // Ease the column's scrollTop toward the item's top over the unfold
+    // duration, re-clamping every frame as the expanding content extends the
+    // scrollable range.
+    function scrollItemToTop(column, item) {
+        const DURATION = 700; // a touch longer than the 650ms unfold
+        const start = performance.now();
+        const startTop = column.scrollTop;
+        const ease = t => 1 - Math.pow(1 - t, 3);
+
+        requestAnimationFrame(function tick(now) {
+            const t = Math.min(1, (now - start) / DURATION);
+            const target = item.getBoundingClientRect().top
+                - column.getBoundingClientRect().top
+                + column.scrollTop;
+            const maxScroll = column.scrollHeight - column.clientHeight;
+            const goal = Math.min(target, maxScroll);
+            column.scrollTop = startTop + (goal - startTop) * ease(t);
+            if (t < 1) requestAnimationFrame(tick);
+        });
+    }
+
+    setupExpandableProjects();
 
     </script>
 </html>

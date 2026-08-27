@@ -3,7 +3,7 @@ layout: post
 title: "UbuTok"
 date: 2026-06-24
 text: default
-tags: [creative, art, system]
+tags: [ongoing, interactive, creative, art, system]
 links:
     - text: "UbuTok"
       url: https://nonsens.ing/ubutok/

@@ -4,6 +4,9 @@ title: "Phraselette"
 date:   2025-7-1 00:00:01 -0400
 text: default
 tags: [writing tools, code, paper, system]
+images:
+  - src: phraselette.png
+    alt: "screenshot of the Phraselette interface"
 links:
   - text: Design of Interactive Systems
     url: https://dl.acm.org/doi/full/10.1145/3715336.3735832

@@ -12,8 +12,9 @@ links:
     url: https://www.instagram.com/myfriendsylvia/
   - text: Variety
     url: https://variety.com/2020/digital/news/ziv-schneider-idfa-doclab-sylvia-1234841619/
-  - text: Breakthroughs in Storytelling Awards - Special Jury Prize
+  - text: "Breakthroughs in Storytelling Awards: Special Jury Prize"
     url: http://digitaldozen.io/projects/sylvia/
+    award: true
   - text: My Contribution
     url: http://www.myfriendsylvia.com/ai-language/
 ---

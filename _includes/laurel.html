@@ -1,0 +1,20 @@
+{% comment %}
+  A small laurel branch, flanking award links. Drawn in currentColor at low
+  opacity so it reads as a printer's ornament rather than a badge. The right
+  branch is the same drawing mirrored (see .laurel-right in _styles.scss).
+{% endcomment %}
+<svg class="laurel laurel-{{ include.side | default: 'left' }}" viewBox="0 0 20 40"
+     aria-hidden="true" focusable="false">
+    <path d="M14 38 C 7 31, 4.5 17, 8.5 3" fill="none"
+          stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+    <g fill="currentColor">
+        <ellipse cx="11.4" cy="31.6" rx="3.4" ry="1.5" transform="rotate(-52 11.4 31.6)"/>
+        <ellipse cx="8.2"  cy="24.6" rx="3.2" ry="1.45" transform="rotate(-62 8.2 24.6)"/>
+        <ellipse cx="6.4"  cy="17.4" rx="3.0" ry="1.4"  transform="rotate(-72 6.4 17.4)"/>
+        <ellipse cx="6.4"  cy="10.6" rx="2.8" ry="1.3"  transform="rotate(-80 6.4 10.6)"/>
+        <ellipse cx="13.6" cy="28.2" rx="2.9" ry="1.3"  transform="rotate(28 13.6 28.2)"/>
+        <ellipse cx="11.4" cy="20.8" rx="2.7" ry="1.25" transform="rotate(18 11.4 20.8)"/>
+        <ellipse cx="10.6" cy="13.6" rx="2.5" ry="1.2"  transform="rotate(8 10.6 13.6)"/>
+        <ellipse cx="9.4"  cy="6.4"  rx="2.2" ry="1.1"  transform="rotate(-2 9.4 6.4)"/>
+    </g>
+</svg>

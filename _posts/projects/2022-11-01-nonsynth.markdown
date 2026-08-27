@@ -4,8 +4,13 @@ title: "Nonsynth"
 date:   2023-11-01 00:00:00 -0400
 text: default
 tags: [art, code, language]
+images:
+  - src: nonsynth.png
+    alt: "screenshot of Nonsynth"
 links:
-  - text: THE CUT UP METHOD
+  - text: "Watch: An Early Demo of Nonsynth"
+    url: "https://drive.google.com/file/d/1iyBtbz2jwyZsaBWpOAf5gCVqtH5DQ8L_/view?resourcekey"
+  - text: The Cut Up Method
     url: https://www.writing.upenn.edu/~afilreis/88v/burroughs-cutup.html
   - text: Designing for Posthuman Critical Literacy
     url: "{{ site.baseurl }}/2023/11/13/posthuman-writing.html"

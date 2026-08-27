@@ -4,6 +4,9 @@ title: "Text Editors that Move"
 date: 2026-07-15
 text: default
 tags: [writing tools, publication, paper, language]
+images:
+  - src: text-editors-that-move.png
+    alt: "figure from Text Editors that Move"
 links:
   - text: ELO 2026 (Algorithms & Imaginaries)
     url: https://stars.library.ucf.edu/elo2026/algorithmsandimaginaries/schedule/8/

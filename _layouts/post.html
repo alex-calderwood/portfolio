@@ -109,7 +109,11 @@
                     <footer id="links" class="post-links">
                         <p class="post-links-label">Links</p>
                         {% for link in page.links %}
-                            <a class="link" href="{{ link.url }}">{{ link.text }}</a>
+                            <a class="link{% if link.award %} award{% endif %}" href="{{ link.url }}">
+                                {%- if link.award %}{% include laurel.html side="left" %}{% endif -%}
+                                {{ link.text }}
+                                {%- if link.award %}{% include laurel.html side="right" %}{% endif -%}
+                            </a>
                         {% endfor %}
                     </footer>
                 {% endif %}

@@ -4,6 +4,9 @@ title: "Report on Fully Automated Disinformation"
 date:   2020-01-30 17:41:39 -0700
 text: default
 tags: [publication, journalism, code]
+images:
+  - src: disinformation.png
+    alt: "title slide: Barriers to Fully Automated Disinformation"
 links:
   - text: Computation + Journalism
     url: https://docs.google.com/presentation/d/1b5ZTp-nax6ckfZ8VWKw5-McUovpNEomVGpUcEhB59nY/edit?usp=sharing

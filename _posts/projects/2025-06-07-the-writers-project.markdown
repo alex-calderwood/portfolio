@@ -4,14 +4,14 @@ title: "The Writer's Project"
 title-full: "The Writer's Project"
 date:   2025-06-07 17:41:39 -0700
 text: default
-tags: [art, research, project, ongoing]
+tags: [art, research, project, ongoing, interactive]
 images: 
   - src: the-writers-project-2.png
     alt: "screenshot of a text editor that reads 'what does it mean to make a mistake?'"
 links:
   - text: "The Writer's Project: Interactive Concrete Poetry Games"
     url: https://nonsens.ing/editors
-  - text: "Drifts, in the Electronic Literature Organization 2026 exhibition"
+  - text: "Drifts, in the Electronic Literature Organization 2026 Exhibition"
     url: https://projects.cah.ucf.edu/mediaartsexhibits/elo2026/work/40
 ---
 
