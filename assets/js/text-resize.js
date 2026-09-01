@@ -79,7 +79,7 @@ function stretchFullWidthElements() {
     });
 
     shortLines.forEach(element => {
-        const scope = element.closest('.post-expand-inner') || document.body;
+        const scope = element.closest('.post-pry-inner') || document.body;
         const stretched = Array.from(scope.querySelectorAll('.fullwidth'))
             .filter(el => el !== element && el.style.fontSize);
 

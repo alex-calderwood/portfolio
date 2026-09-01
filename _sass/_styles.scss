@@ -38,6 +38,85 @@ $back-text-color: mix($ink, $paper, 16%);   // davinci texture — faint tan on 
 $muted-color:     $orange;                  // tags
 $small-screen-width: 600px;
 
+// Self-hosted faces (assets/fonts) rather than pulled from Google Fonts like
+// the others. Latin subsets only. Unused declarations cost nothing — the
+// browser only fetches a face when text actually uses it.
+
+// Exo: variable weight 100–900, normal + italic.
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/exo-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Exo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/exo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Exo';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/exo-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Exo';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/exo-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Space Grotesk: variable weight 300–700, no italics.
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// New Tegomin: the word "language" in the intro's opening line.
+@font-face {
+  font-family: 'New Tegomin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/new-tegomin-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'New Tegomin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/new-tegomin-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 $mono-font: 'Cutive Mono', monospace;
 $serif-font:  'Spectral', 'Cutive', serif;
 $san-serif-font: 'Raleway'; // unused
@@ -202,6 +281,13 @@ body {
   color: $ink;
 }
 
+// Emphasis in running text (the postdoc line in the intro): heavier ink,
+// not a highlight — Spectral's 700 against the 400 body reads as a darker
+// strike of the same type.
+strong {
+  font-weight: 700;
+}
+
 // Section labels are the loud orange accent, set as newspaper section slugs:
 // small caps with open tracking — the register papers use for SPORTS or
 // OPINION. The spacing is deliberately asymmetric: a wide gap above
@@ -302,7 +388,12 @@ a {
 
 // Hover flips a link into a solid blue block (paper text) — the site's
 // one link idiom, echoing the .heading-link stamp and the yellow selection.
-a:hover {
+// .split-hover is the JS-mirrored hover for the split header: each intro
+// link exists twice (once per column, clipped at the seam), so hovering one
+// half puts this class on the twin copy to light the other half too — see
+// setupSplitHeaderHoverSync() in main.html.
+a:hover,
+a.split-hover {
   color: $paper;
   background-color: $blue;
   text-decoration-color: transparent;
@@ -317,7 +408,8 @@ a:hover {
 
 // #contact a is id-scoped, so it out-specifies the generic a:hover — restate
 // the hover here or the text stays blue on the blue block (invisible).
-#contact a:hover {
+#contact a:hover,
+#contact a.split-hover {
   color: $paper;
   text-decoration-color: transparent;
 }
@@ -474,6 +566,18 @@ p {
   padding-bottom: 0.25em;
 }
 
+// The intro's stretched lines clip their descenders (the g's in
+// "language") the same way titles did: line-height:1 + overflow:hidden
+// cuts below the em box. Same rescue as .fullwidth.subheader below —
+// extend the clipping region with bottom padding, hand the space back
+// with a matching negative margin so line spacing doesn't change. A bit
+// deeper than the subheader's 0.14em: at display size the g's bowl needs
+// the full descender depth.
+.split-header .fullwidth {
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
 .fullwidth.subheader {
   margin-top: 1vh;
   // .fullwidth's line-height:1 + overflow:hidden clips descenders (the tail
@@ -484,6 +588,51 @@ p {
   // size, so left alone it opens a very visible hole).
   padding-bottom: 0.14em;
   margin-bottom: -0.14em;
+}
+
+// The intro's opening line: "I play with" in the house Spectral, only the
+// word "language" (the span) in New Tegomin. The line still opts out of the
+// tight stack: Tegomin's inline box governs the line box, and its hhea
+// metrics span 1.448em (ascent 1160 + descent 288, upm 1000 — browsers size
+// the glyph box from hhea). Anything smaller goes negative on half-leading
+// and .fullwidth's overflow:hidden cuts the g's descender flat.
+.intro-play {
+  line-height: 1.45;
+}
+
+.intro-play-word {
+  font-family: 'New Tegomin', serif;
+}
+
+// The postdoc ask pops in riso orange — the palette's designated emphasis
+// accent (yellow is spoken for as the link-hover cue) — at normal weight,
+// so it catches the eye by color rather than bolding. Same metrics as the
+// surrounding text, so the stretched-line measurement is unaffected.
+.postdoc-callout {
+  color: $orange;
+}
+
+// Undo the split-header descender rescue for this line (higher specificity
+// than .split-header .fullwidth): with honest line-height the padding would
+// just add more gap, and the negative margin would re-create the overlap.
+.split-header .fullwidth.intro-play {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+// Same for the mobile copy (#heading-content pads all .fullwidth lines).
+#heading-content .fullwidth.intro-play {
+  padding-bottom: 0;
+}
+
+// The Interactive section's voice lives in its title lines only: Space
+// Grotesk, all caps, for the title + date (they share the .subheader line).
+// Body text stays in the site default. text-resize.js mirrors both the
+// computed font and text-transform when measuring, so the stretched lines
+// re-fit to the caps-sans metrics automatically.
+.publication-item[data-post-id^="interactive-"] .subheader {
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
 }
 
 // Work titles are ink headings; hovering drops a yellow marker highlight
@@ -857,52 +1006,108 @@ p {
 // are reading this one" cue while the unfolded text is open.
 .publication-item:hover > .subheader a,
 .publication-item.highlighted > .subheader a,
-.publication-item.expanded > .subheader a {
+.publication-item.pried > .subheader a {
     background-color: $yellow;
     color: $ink;
 }
 // ---- Pry-style inline unfold ------------------------------------------------
 // Clicking a project on the main page unfolds its full post in place, the way
 // text unpacks in the game Pry: the container grows (grid-rows 0fr → 1fr, so
-// no hardcoded max-height), while each line of content swings down from a
-// folded-flat position, staggered top to bottom (--i set by the main-page JS).
+// no hardcoded max-height), while the content swings down from a folded-flat
+// position.
 
-.post-expand {
+// The one time knob for the whole pry: container growth, fold rotation, and
+// the JS column scroll (slaved to the container's height) all follow it.
+// Paper, not machinery: a brisk, near-constant pull with only a tiny
+// settle at the end (the old curve front-loaded 90% of the travel and
+// spent half the time easing out).
+$pry-duration: 0.24s;
+$pry-ease: cubic-bezier(0.2, 0.05, 0.8, 1);
+
+.post-pry {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.65s cubic-bezier(0.22, 0.9, 0.3, 1);
+    transition: grid-template-rows $pry-duration $pry-ease;
+    // The clip lives HERE, not on the inner: mid-transition the grid item
+    // is shorter than the row (Chrome sizes it quadratically in the fr
+    // factor), so clipping at the inner cut the bottom fold off at a
+    // horizontal line above the container's true bottom edge.
+    overflow: hidden;
 }
+
 
 // Child-scoped (>) so expanding a meta-card (Student Work) doesn't also
 // unfold the nested cards inside it — each opens on its own click.
-.publication-item.expanded > .post-expand {
+.publication-item.pried > .post-pry {
     grid-template-rows: 1fr;
 }
 
-// The fold: the whole content block is one surface, hinged at its top edge,
-// that swings open as the container grows. One rotation, not one per line —
-// per-line rotations under a shared perspective distort unevenly and read
-// as a venetian-blind wobble instead of a fold.
-.post-expand {
-    perspective: 900px;
-}
-
-.post-expand-inner {
-    overflow: hidden;
+// The fold: one sheet creased at the middle, being pulled flat — two pages
+// at 90° becoming one. The sheet's top edge is attached to the content
+// above (the container's fixed top edge), its bottom edge to the content
+// below (the container's moving bottom edge), and the crease floats between
+// them, so everything on screen moves in line with the crease and nothing
+// is revealed by the clip.
+//
+// The angle is NOT animated on its own clock: for the halves to stay joined
+// at the crease while the container grows, it must satisfy h = H·cos(θ)
+// every frame, so driveFold in main.html solves θ off the container's live
+// height (the same slaving the column scroll uses). CSS holds only the
+// resting states; mid-flight angles are inline styles.
+.post-pry-inner {
+    // min-height: 0 alone keeps the 0fr row squishable (no overflow:hidden
+    // here — see .post-pry for why the clip must sit on the container).
     min-height: 0;
-    transform: rotateX(-70deg);
-    transform-origin: top center;
-    transition: transform 0.65s cubic-bezier(0.22, 0.9, 0.3, 1);
+    position: relative;
+    // A close camera, so the halves visibly keystone (the receding crease
+    // edge narrows) — without that horizontal cue the fold reads as text
+    // wiping in vertically. Geometrically safe at any distance: driveFold
+    // pins the perspective origin to the crease each frame, which makes
+    // the halves meet exactly regardless of perspective.
+    perspective: 1000px;
 }
 
-.publication-item.expanded > .post-expand > .post-expand-inner {
+.pry-fold {
+    backface-visibility: hidden;
+}
+
+// Resting states: folded a full 90° away when closed, flat when open.
+.pry-fold-top {
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+// Hinged where the content below sits — the container's moving bottom
+// edge. Out of the container's flow, so the JS-maintained spacer stands in
+// for its height to keep the grid-rows 0fr→1fr animation measuring the
+// full content height.
+.pry-fold-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform-origin: bottom center;
+    transform: rotateX(90deg);
+}
+
+// Single-surface variant (Student Work meta-card): the nested cards inside
+// can't be split across two folds, so the whole block hinges at its top
+// edge only.
+.pry-fold-plain {
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+}
+
+// Child-scoped (>) so prying the Student Work meta-card doesn't also
+// unfold the nested cards' folds.
+.publication-item.pried > .post-pry > .post-pry-inner > .pry-fold {
     transform: none;
 }
 
 
 // Body lines are p.fullwidth.sub built by JS, so their size comes from the
 // column-width stretch (like the teasers) — no fixed font-size here.
-.expand-body {
+.pry-body {
     color: $ink;
 
     > * {
@@ -915,7 +1120,7 @@ p {
     }
 }
 
-.expand-links {
+.pry-links {
     margin: 0.5em 0 0;
 }
 
@@ -926,12 +1131,12 @@ p {
 // visible alongside.
 // Same "plate" treatment as the standalone post pages: multiply-blended into
 // the newsprint ground (no pasted-on white rectangle) with a small caption.
-.expand-figure {
+.pry-figure {
     margin: 0.9em 0;
 }
 
-.expand-images img,
-.expand-images video {
+.pry-images img,
+.pry-images video {
     display: block;
     width: auto;
     max-width: 100%;
@@ -939,7 +1144,7 @@ p {
     mix-blend-mode: multiply;
 }
 
-.expand-figure figcaption {
+.pry-figure figcaption {
     font-family: $serif-font;
     font-style: italic;
     font-size: 0.78rem;
@@ -950,10 +1155,16 @@ p {
 
 // Opt-out of the height cap (frontmatter `full: true` on an image): the
 // image spans the full column width regardless of how tall that makes it.
-.expand-images img.full,
-.expand-images video.full {
+.pry-images img.full,
+.pry-images video.full {
     width: 100%;
     max-height: none;
+}
+
+// The permalink's chain icon sits on the text baseline like a character.
+.pry-permalink svg {
+    display: inline-block;
+    vertical-align: -0.15em;
 }
 
 // Small ink circles separating the links on a line.
@@ -963,15 +1174,9 @@ p {
     vertical-align: middle;
 }
 
-// The permalink is an ordinary link in the links row — a chain icon instead
-// of text, but with the site's normal link color and hover.
-.expand-permalink svg {
-    display: inline-block;
-    vertical-align: middle;
-}
 
 // The truncated teaser is redundant once the real text is unfolded.
-.publication-item.expanded > .publication-content {
+.publication-item.pried > .publication-content {
     display: none;
 }
 
@@ -1052,7 +1257,6 @@ p {
 .split-header-right .split-header-inner {
     margin-left: -100%;
 }
-
 // The contact line keeps its old #contact styling (it's a class now, since
 // the block renders twice and ids must be unique).
 .contact a {
@@ -1060,7 +1264,8 @@ p {
     text-decoration: none;
 }
 
-.contact a:hover {
+.contact a:hover,
+.contact a.split-hover {
     color: $paper;
     text-decoration-color: transparent;
 }

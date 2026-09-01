@@ -119,7 +119,7 @@
                                 {% endif %}
                             </span>
                         </p>
-                        {% include post_expand.html post=post %}
+                        {% include post_pry.html post=post %}
                     </div>
                 {% endunless %}
             {% endfor %}
@@ -140,7 +140,7 @@
                             {% endif %}
                         </span>
                     </p>
-                    {% include post_expand.html post=post %}
+                    {% include post_pry.html post=post %}
                 </div>
             {% endfor %}
 
@@ -161,7 +161,7 @@
                             {% endif %}
                         </span>
                     </p>
-                {% include post_expand.html post=post %}
+                {% include post_pry.html post=post %}
                 </div>
             {% endfor %}
 
@@ -170,7 +170,7 @@
               above it, but styled as an aside (see .subheader.note). Reusable
               in any section list.
             {% endcomment %}
-            <p class="fullwidth subheader note">Expect more soon! I am looking for publishers</p>
+            <p class="fullwidth subheader note">More coming soon! I am looking for publishers</p>
             <p class="fullwidth subheader note">for an unreleased chapbook of concrete poetry.</p>
 
 
@@ -179,7 +179,7 @@
             {% comment %}
               Student Work: a meta-card. Its unfolded content is three nested
               publication-items, each of which unfolds in turn (the nesting is
-              handled by the child-scoped .expanded selectors in _styles.scss
+              handled by the child-scoped .pried selectors in _styles.scss
               and the closest-item guard in the click handler). The posts
               themselves are tagged student-work, which is in section_tags, so
               the Miscellanea loop below won't list them individually.
@@ -191,8 +191,14 @@
                     <a href="#">Student Work</a>
                     <span class="date">Spring 2019</span>
                 </p>
-                <div class="post-expand" aria-hidden="true">
-                    <div class="post-expand-inner">
+                <div class="post-pry" aria-hidden="true">
+                    <div class="post-pry-inner">
+                        {% comment %}
+                          Nested cards can't be duplicated for the two-half
+                          fold (their click targets would double), so this
+                          meta-card folds as a single top-hinged surface.
+                        {% endcomment %}
+                        <div class="pry-fold pry-fold-plain">
                         {% for student_title in student_titles %}
                             {% assign student_post = site.posts | where: "title", student_title | first %}
                             {% if student_post %}
@@ -207,10 +213,11 @@
                                             {% endif %}
                                         </span>
                                     </p>
-                                    {% include post_expand.html post=student_post %}
+                                    {% include post_pry.html post=student_post %}
                                 </div>
                             {% endif %}
                         {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,7 +262,7 @@
                                 {% endif %}
                             </span>
                         </p>
-                        {% include post_expand.html post=post %}
+                        {% include post_pry.html post=post %}
                     </div>
                 {% endunless %}
             {% endfor %}
@@ -325,7 +332,7 @@
                     </p>
 
                     <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div>
-                    {% include post_expand.html post=post %}
+                    {% include post_pry.html post=post %}
                 </div>
 
             {% endfor %}
@@ -347,7 +354,7 @@
                             {% endif %}
                         </span>
                     </p>
-                    {% include post_expand.html post=post %}
+                    {% include post_pry.html post=post %}
 
                     <div class="publication-content" data-content="{{ post.content | strip_html | escape }}" data-url="{{ post.url | relative_url }}" data-tags="{{ post.tags | join: ', ' }}" "></div> 
                 </div>
@@ -453,7 +460,7 @@
                 return lines;
             }
 
-            document.querySelectorAll('.expand-body[data-content]').forEach(div => {
+            document.querySelectorAll('.pry-body[data-content]').forEach(div => {
                 if (div.childElementCount) return; // already built
                 const raw = div.getAttribute('data-content');
                 if (!raw || !raw.trim()) return;
@@ -481,7 +488,7 @@
             // min/max character counts: pack links onto a line while it stays
             // under the max, start a new line when it wouldn't, and fold a
             // too-short final line back into the previous one.
-            document.querySelectorAll('.expand-links').forEach(container => {
+            document.querySelectorAll('.pry-links').forEach(container => {
                 if (container.dataset.grouped) return;
                 container.dataset.grouped = 'true';
                 const anchors = Array.from(container.querySelectorAll('a'));
@@ -527,6 +534,66 @@
                     });
                     container.appendChild(p);
                 });
+            });
+
+            // Partition each pry's content into the two fold halves at the
+            // element boundary nearest half height (see .pry-fold in
+            // _styles.scss). Runs after the body/link lines are built so the
+            // heights it measures are the real ones. Skips inners whose fold
+            // is pre-built in the markup (the Student Work meta-card).
+            document.querySelectorAll('.post-pry-inner').forEach(inner => {
+                if (inner.querySelector(':scope > .pry-fold')) return;
+                const groups = Array.from(inner.children);
+                if (!groups.length) return;
+                const mid = inner.scrollHeight / 2;
+
+                // Decide everything before moving anything — moving nodes
+                // perturbs the offsets being measured. offsetTop is relative
+                // to the position:relative inner for groups and their
+                // children alike.
+                const plan = groups.map(group => {
+                    const gTop = group.offsetTop;
+                    const gBottom = gTop + group.offsetHeight;
+                    if (gBottom <= mid) return { group, where: 'top' };
+                    if (gTop >= mid) return { group, where: 'bottom' };
+                    // Straddles the crease: split its children (figures,
+                    // lines) at the boundary instead.
+                    const movers = Array.from(group.children).filter(child =>
+                        child.offsetTop + child.offsetHeight / 2 > mid);
+                    return { group, where: 'split', movers };
+                });
+
+                const top = document.createElement('div');
+                top.className = 'pry-fold pry-fold-top';
+                const bottom = document.createElement('div');
+                bottom.className = 'pry-fold pry-fold-bottom';
+                plan.forEach(({ group, where, movers }) => {
+                    if (where === 'bottom') {
+                        bottom.appendChild(group);
+                    } else if (where === 'split') {
+                        // Same tag+classes shell so descendant styles
+                        // (.pry-images img, …) keep applying below the crease.
+                        const shell = group.cloneNode(false);
+                        movers.forEach(m => shell.appendChild(m));
+                        top.appendChild(group);
+                        bottom.appendChild(shell);
+                    } else {
+                        top.appendChild(group);
+                    }
+                });
+
+                // The bottom fold is out of the container's flow (it hinges
+                // at the container's moving bottom edge — see
+                // .pry-fold-bottom in _styles.scss), so a spacer stands in
+                // for its height to keep the container's measured content
+                // height honest.
+                const spacer = document.createElement('div');
+                inner.append(top, spacer, bottom);
+                const setSpacer = () => {
+                    spacer.style.height = bottom.scrollHeight + 'px';
+                };
+                setSpacer();
+                new ResizeObserver(setSpacer).observe(bottom);
             });
 
         }
@@ -618,14 +685,37 @@
     // Initialize hover effects after page load
     setupHoverEffects();
 
+    // The split header renders the intro twice (once per column, each copy
+    // clipped to its half — see "Split header" in _styles.scss), so a link
+    // straddling the seam is really two anchors, one per copy, each showing
+    // one half. Native :hover only lights the half under the pointer; this
+    // mirrors it onto the twin so the whole link highlights. Anchors are
+    // paired by index — the invariant that both copies are identical DOM is
+    // what the seamless alignment already depends on.
+    function setupSplitHeaderHoverSync() {
+        const inners = document.querySelectorAll('.split-header .split-header-inner');
+        if (inners.length !== 2) return;
+        const [leftAnchors, rightAnchors] =
+            Array.from(inners, inner => inner.querySelectorAll('a'));
+        if (leftAnchors.length !== rightAnchors.length) return;
+        leftAnchors.forEach((a, i) => {
+            const pairs = [[a, rightAnchors[i]], [rightAnchors[i], a]];
+            pairs.forEach(([self, twin]) => {
+                self.addEventListener('mouseenter', () => twin.classList.add('split-hover'));
+                self.addEventListener('mouseleave', () => twin.classList.remove('split-hover'));
+            });
+        });
+    }
+
+    setupSplitHeaderHoverSync();
     // ---- Pry-style inline unfold -------------------------------------------
     // Clicking a project unfolds the full post in place instead of navigating.
     // The container animates open via CSS (grid-rows); each content block gets
     // a sequential --i so the lines fan open top-to-bottom.
-    function setupExpandableProjects() {
+    function setupPryableProjects() {
         document.querySelectorAll('.publication-item').forEach(item => {
-            const expand = item.querySelector('.post-expand');
-            if (!expand) return;
+            const pry = item.querySelector('.post-pry');
+            if (!pry) return;
 
             // The title link is the only anchor that toggles the unfold —
             // everything else (the Publications teaser's links, the links
@@ -646,46 +736,166 @@
                     e.preventDefault();
                 }
 
-                const open = item.classList.toggle('expanded');
-                expand.setAttribute('aria-hidden', String(!open));
+                const open = item.classList.toggle('pried');
+                pry.setAttribute('aria-hidden', String(!open));
+
+                // Fold angles are slaved to the container's live height —
+                // both directions, open and close.
+                driveFold(pry);
 
                 // Bring the unfolded project's title to the top of its
-                // column, so the text opens downward into view. Driven by
-                // hand rather than scrollTo({smooth}) because the column is
-                // still growing while the unfold animates — for items near
-                // the bottom the target isn't reachable yet at click time, so
-                // each frame we re-derive the target and clamp to whatever
-                // scroll range currently exists ("as much as we can").
+                // column, so the text opens downward into view. The scroll is
+                // slaved to the pry itself — see scrollWithPry — so the two
+                // can't run on different clocks or easings.
                 if (open) {
                     const column = item.closest('.column');
-                    if (column) scrollItemToTop(column, item);
+                    if (column) scrollWithPry(column, item, pry);
                 }
             });
         });
     }
 
-    // Ease the column's scrollTop toward the item's top over the unfold
-    // duration, re-clamping every frame as the expanding content extends the
-    // scrollable range.
-    function scrollItemToTop(column, item) {
-        const DURATION = 700; // a touch longer than the 650ms unfold
-        const start = performance.now();
+    // The crease illusion: the sheet's top edge is attached to the content
+    // above, its bottom edge to the content below, and the two halves must
+    // stay joined at the floating crease while the container grows. That
+    // pins the fold angle to the container's live height — h = H·cos(θ),
+    // i.e. θ = acos(h/H) — so the angle can't run on its own CSS clock.
+    // The grid-rows transition supplies the timing and easing; each frame
+    // this just solves θ from the height and writes it inline. CSS keeps
+    // the resting states (±90° closed, flat open), so inline styles are
+    // cleared when the loop ends. A token guards against a re-click mid-
+    // flight: the newer loop takes over and the old one exits silently.
+    //
+    // Anchoring quirk: mid-transition, Chrome sizes the grid ITEM (inner)
+    // quadratically in the fr factor (f²·H while the row is f·H), so
+    // anything positioned against inner — the bottom fold's bottom: 0, the
+    // 50% perspective origin — floats high above the visible container.
+    // Both are therefore re-anchored to the pry's own box every frame: the
+    // bottom fold gets a translateY onto the visible bottom edge, and the
+    // perspective origin is pinned to the visible center (the h = H·cos(θ)
+    // meet-at-the-crease condition assumes a centered origin).
+    function driveFold(pry) {
+        const inner = pry.firstElementChild;
+        const folds = inner.querySelectorAll(':scope > .pry-fold');
+        if (!folds.length) return;
+        const token = (pry._foldToken = {});
+        const started = performance.now();
+        const cs = getComputedStyle(pry);
+        const cap = ((parseFloat(cs.transitionDuration) || 0.65)
+            + (parseFloat(cs.transitionDelay) || 0)) * 1000 * 1.5;
+        let done = false;
+
+        // True content height, measured with the folds momentarily laid
+        // flat: transformed boxes shrink inner.scrollHeight (a 90°-folded
+        // block contributes ~nothing), so the resting-state value lies.
+        // Synchronous with the first apply(), so nothing paints flat.
+        const savedTransforms = [];
+        folds.forEach(fold => {
+            savedTransforms.push(fold.style.transform);
+            fold.style.transform = 'none';
+        });
+        const full = inner.scrollHeight;
+        folds.forEach((fold, i) => { fold.style.transform = savedTransforms[i]; });
+
+        // Margins between/around the folds don't rotate — only the folds'
+        // own heights scale by cos(θ) — so solve the angle against the
+        // foldable height (full minus the constant margin remainder), or
+        // the halves drift apart by the margin amount mid-flight.
+        const topFold = folds[0];
+        const bottomFold = folds.length > 1 ? folds[folds.length - 1] : null;
+        const foldable = topFold.offsetHeight
+            + (bottomFold ? bottomFold.offsetHeight : 0);
+        const marginRest = full - foldable;
+
+        pry.addEventListener('transitionend', function end(e) {
+            if (e.target !== pry) return;
+            done = true;
+            pry.removeEventListener('transitionend', end);
+        });
+
+        function apply() {
+            const pryRect = pry.getBoundingClientRect();
+            const innerRect = inner.getBoundingClientRect();
+            const r = foldable > 0
+                ? Math.min(1, Math.max(0, (pryRect.height - marginRest) / foldable))
+                : 1;
+            const theta = Math.acos(r);
+            // Perspective origin pinned to the crease itself: an origin on
+            // the crease line projects both halves' crease edges to their
+            // shared point exactly, even when the split is asymmetric.
+            inner.style.perspectiveOrigin = '50% '
+                + (topFold.offsetTop + topFold.offsetHeight * r) + 'px';
+            folds.forEach(fold => {
+                if (fold.classList.contains('pry-fold-bottom')) {
+                    // Hinge onto the pry's visible bottom edge. bottom: 0
+                    // puts the fold's layout bottom at inner's bottom, so
+                    // the correction is just the two boxes' difference.
+                    const ty = pryRect.bottom - innerRect.bottom;
+                    fold.style.transform =
+                        'translateY(' + ty + 'px) rotateX(' + theta + 'rad)';
+                } else {
+                    fold.style.transform = 'rotateX(' + -theta + 'rad)';
+                }
+            });
+        }
+
+        // First application is synchronous with the class toggle, so the
+        // resting-state CSS never paints for a frame at the wrong angle.
+        apply();
+        requestAnimationFrame(function tick(now) {
+            if (pry._foldToken !== token) return;
+            apply();
+            if (!done && now - started < cap) {
+                requestAnimationFrame(tick);
+            } else {
+                folds.forEach(fold => { fold.style.transform = ''; });
+                inner.style.perspectiveOrigin = '';
+            }
+        });
+    }
+
+    // Scroll slaved to the pry: no timer or easing of its own. Each frame,
+    // progress is read off the pry container's live height (the grid-rows
+    // transition animates it 0 → content height, through the same bezier as
+    // the fold), and the scroll position is just that progress applied to the
+    // start→goal distance. The goal is re-derived and clamped every frame
+    // because the column's scroll range is still growing. The loop ends when
+    // the container's own transition does (transitionend, plus a safety cap).
+    function scrollWithPry(column, item, pry) {
+        const inner = pry.firstElementChild;
         const startTop = column.scrollTop;
-        const ease = t => 1 - Math.pow(1 - t, 3);
+        const started = performance.now();
+        // Safety cap derived from the CSS transition itself, so slowing the
+        // $pry-duration knob in _styles.scss slows this loop's leash too.
+        const cs = getComputedStyle(pry);
+        const cap = ((parseFloat(cs.transitionDuration) || 0.65)
+            + (parseFloat(cs.transitionDelay) || 0)) * 1000 * 1.5;
+        let done = false;
+
+        pry.addEventListener('transitionend', function end(e) {
+            if (e.target !== pry) return;
+            done = true;
+            pry.removeEventListener('transitionend', end);
+        });
 
         requestAnimationFrame(function tick(now) {
-            const t = Math.min(1, (now - start) / DURATION);
+            const full = inner.scrollHeight;
+            const p = full > 0
+                ? Math.min(1, pry.getBoundingClientRect().height / full)
+                : 1;
             const target = item.getBoundingClientRect().top
                 - column.getBoundingClientRect().top
                 + column.scrollTop;
             const maxScroll = column.scrollHeight - column.clientHeight;
             const goal = Math.min(target, maxScroll);
-            column.scrollTop = startTop + (goal - startTop) * ease(t);
-            if (t < 1) requestAnimationFrame(tick);
+            column.scrollTop = startTop + (goal - startTop) * p;
+            if (!done && p < 1 && now - started < cap) {
+                requestAnimationFrame(tick);
+            }
         });
     }
 
-    setupExpandableProjects();
+    setupPryableProjects();
 
     // Scrolling in the page margins scrolls the column nearest the pointer,
     // as though the mouse were inside it. Only the true margins — wheel

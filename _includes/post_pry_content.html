@@ -1,0 +1,67 @@
+{% comment %}
+  The pry's actual content, rendered once per fold half (see post_pry.html).
+  The two copies are pixel-identical; each half's clip-path shows only its
+  own half, so together they read as one sheet creased at the middle.
+{% endcomment %}
+{% if include.post.videos %}
+    <div class="pry-images">
+        {% for video in include.post.videos %}
+            <figure class="pry-figure">
+                <video src="{{ site.baseurl }}/assets/images/{{ video.src }}"
+                       autoplay muted loop playsinline
+                       aria-label="{{ video.alt }}"
+                       {% if video.full %}class="full"{% endif %}></video>
+                {% if video.alt %}<figcaption>{{ video.alt }}</figcaption>{% endif %}
+            </figure>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if include.post.images %}
+    <div class="pry-images">
+        {% for image in include.post.images %}
+            {% assign ext = image.src | split: "." | last | downcase %}
+            <figure class="pry-figure">
+                {% if ext == "mp4" or ext == "webm" or ext == "mov" %}
+                    <video src="{{ site.baseurl }}/assets/images/{{ image.src }}"
+                           autoplay muted loop playsinline
+                           aria-label="{{ image.alt }}"
+                           {% if image.full %}class="full"{% endif %}></video>
+                {% else %}
+                    <img src="{{ site.baseurl }}/assets/images/{{ image.src }}"
+                         alt="{{ image.alt }}" loading="lazy"
+                         {% if image.full %}class="full"{% endif %}>
+                {% endif %}
+                {% if image.alt %}<figcaption>{{ image.alt }}</figcaption>{% endif %}
+            </figure>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% comment %}
+  Body text is delivered as plain text and split into fullwidth lines
+  by the main-page JS, so each line stretches to the column width the
+  same way the teasers do.
+{% endcomment %}
+<div class="pry-body" data-content="{{ include.post.content | strip_html | escape }}"></div>
+
+{% comment %}
+  Links sit below the text. The main-page JS regroups these anchors
+  into one or more fullwidth lines whose character counts fall between
+  the min/max line gates.
+{% endcomment %}
+<div class="pry-links">
+    {% for link in include.post.links %}
+        <a class="post-link{% if link.award %} award{% endif %}" href="{{ link.url }}">
+            {%- if link.award %}{% include laurel.html side="left" %}{% endif -%}
+            {{ link.text }}
+            {%- if link.award %}{% include laurel.html side="right" %}{% endif -%}
+        </a>
+    {% endfor %}
+    {% comment %}
+      The post's own page: a word that says what happens, plus the chain
+      icon to mark it as the permalink.
+    {% endcomment %}
+    <a class="post-link pry-permalink" href="{{ include.post.url | relative_url }}"
+       title="{{ include.post.title }} — permalink">more&nbsp;<svg width="1em" height="1em" viewBox="0 0 24 24"><use href="#permalink-icon"/></svg></a>
+</div>

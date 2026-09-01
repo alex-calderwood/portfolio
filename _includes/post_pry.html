@@ -1,0 +1,15 @@
+{% comment %}
+  Inline pry-open full post body for the main page. Collapsed to zero
+  height via the grid-rows trick (see .post-pry in _styles.scss); the
+  main-page JS toggles .pried on the parent .publication-item.
+
+  The content renders once; the main-page JS partitions it at the element
+  boundary nearest half height into two .pry-fold halves — the top half
+  hinged at the container's top edge, the bottom half riding the container's
+  moving bottom edge — each starting folded 90° toward the viewer.
+{% endcomment %}
+<div class="post-pry" aria-hidden="true">
+    <div class="post-pry-inner">
+        {% include post_pry_content.html post=include.post %}
+    </div>
+</div>

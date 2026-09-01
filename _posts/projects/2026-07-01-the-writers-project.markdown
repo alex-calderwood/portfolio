@@ -6,6 +6,8 @@ date:   2026-07-01 17:41:39 -0700
 text: default
 tags: [art, research, project, ongoing, interactive]
 images: 
+  - src: the-writers-project-3.png
+    alt: "A screenshot of 'Drifts' a narrative version of The Writer's Project."
   - src: the-writers-project-2.png
     alt: "screenshot of a text editor that reads 'what does it mean to make a mistake?'"
 links:
