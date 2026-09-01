@@ -632,6 +632,38 @@ p {
   text-transform: uppercase;
 }
 
+// A drawn logotype standing in for a title's text (frontmatter `wordmark:`
+// on the post). It's a mask, not an image: the artwork supplies the shape
+// and `currentColor` supplies the ink, so the mark inherits the link colour,
+// the hover state and any future theme change instead of carrying its own
+// baked-in black or white.
+//
+// Sized in em off the line's own font-size, which means the davinci
+// fill-width pass stretches it exactly like the text it replaces (the
+// measuring span in text-resize.js clones innerHTML, so the em box measures
+// there too). 0.7em is Space Grotesk's cap height, and an inline-block sits
+// on the baseline — so an all-caps mark lands at the same height as the caps
+// beside it.
+.wordmark {
+  display: inline-block;
+  height: 0.7em;
+  vertical-align: baseline;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
+
+.wordmark-ubutok {
+  // Intrinsic 1604 × 452 (traced from the drawn original).
+  aspect-ratio: 1604 / 452;
+  mask-image: url('../images/ubutok-wordmark.svg');
+  -webkit-mask-image: url('../images/ubutok-wordmark.svg');
+}
+
 // Work titles are ink headings; hovering drops a yellow marker highlight
 // behind them — the "clickable" cue, and where yellow lives on the page.
 .subheader a {

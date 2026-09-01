@@ -1,6 +1,9 @@
 ---
 layout: post
-title: "A Prism (Digital Poem)"
+title: "A Prism"
+# Interactive titles hide their date by default (see the loop in
+# _layouts/main.html); these two show it.
+show_date: true
 date: 2025-6-17
 text: default
 tags: [publication, interactive]

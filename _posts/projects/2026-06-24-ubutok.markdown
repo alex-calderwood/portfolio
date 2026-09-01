@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "UbuTok"
+# Renders the drawn UbuTok logotype in place of the title text on the main
+# page — see .wordmark in _sass/_styles.scss.
+wordmark: ubutok
 date: 2026-06-24
 text: default
 tags: [ongoing, interactive, creative, art, system]

@@ -1,6 +1,9 @@
 ---
 layout: post
-title: "Ways of Knowing (Digital Poem)"
+title: "Ways of Knowing"
+# Interactive titles hide their date by default (see the loop in
+# _layouts/main.html); these two show it.
+show_date: true
 date: 2025-6-17
 text: default
 tags: [publication, interactive]

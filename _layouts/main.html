@@ -131,14 +131,28 @@
             {% for post in interactive_posts %}
                 <div class="publication-item" data-post-id="interactive-{{ post.title | slugify }}">
                     <p class="fullwidth subheader">
+                        {% comment %}
+                          A post can carry a drawn logotype instead of a set
+                          title (frontmatter `wordmark: <name>`): the span is
+                          an em-sized mask of the artwork painted in
+                          currentColor, so it stretches, recolours and
+                          highlights with the rest of the line. See .wordmark
+                          in _sass/_styles.scss.
+                        {% endcomment %}
                         <a href="{{ post.url | relative_url }}"
-                            data-tags="{{ post.tags | join: ',' }}">{{ post.title }}
+                            data-tags="{{ post.tags | join: ',' }}">{% if post.wordmark %}<span class="wordmark wordmark-{{ post.wordmark }}" role="img" aria-label="{{ post.title }}"></span>{% else %}{{ post.title }}{% endif %}
                         </a>
+                        {% comment %}
+                          Interactive titles run dateless (the work is
+                          ongoing, and the bare title reads as a sign rather
+                          than an entry). A post opts its date back in with
+                          `show_date: true` in its frontmatter.
+                        {% endcomment %}
+                        {% if post.show_date and post.date %}
                         <span class="date">
-                            {% if post.date %}
-                                {{ post.date | date: "%B %Y" }}
-                            {% endif %}
+                            {{ post.date | date: "%B %Y" }}
                         </span>
+                        {% endif %}
                     </p>
                     {% include post_pry.html post=post %}
                 </div>
