@@ -2,6 +2,11 @@
 
 ## Usage
 
+
+    npm run dev
+
+OR
+
     jekyll build
     jekyll serve
 
