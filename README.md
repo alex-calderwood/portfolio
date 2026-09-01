@@ -2,6 +2,11 @@
 
 ## Usage
 
+
+    ./start
+
+OR
+
     jekyll build
     jekyll serve
 
