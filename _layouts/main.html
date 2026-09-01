@@ -182,14 +182,17 @@
               handled by the child-scoped .pried selectors in _styles.scss
               and the closest-item guard in the click handler). The posts
               themselves are tagged student-work, which is in section_tags, so
-              the Miscellanea loop below won't list them individually.
+              the Miscellanea loop below won't list them individually. The
+              card's contents come from that same tag (reverse-chron, like
+              every other section) — tag a post student-work and it appears
+              here.
             {% endcomment %}
-            {% assign student_titles = "Semantic Compasses|Phonaesthesia|All is All Poetry" | split: "|" %}
+            {% assign student_posts = site.posts | where: "layout", "post" | where_exp: "post", "post.tags contains 'student-work'" %}
             {% capture student_card %}
             <div class="publication-item" data-post-id="student-work">
                 <p class="fullwidth subheader">
-                    <a href="#">Student Work</a>
-                    <span class="date">Spring 2019</span>
+                    <a href="#">Student Work (That I Want to Reveal)</a>
+                    <span class="date">pre-2020</span>
                 </p>
                 <div class="post-pry" aria-hidden="true">
                     <div class="post-pry-inner">
@@ -199,23 +202,20 @@
                           meta-card folds as a single top-hinged surface.
                         {% endcomment %}
                         <div class="pry-fold pry-fold-plain">
-                        {% for student_title in student_titles %}
-                            {% assign student_post = site.posts | where: "title", student_title | first %}
-                            {% if student_post %}
-                                <div class="publication-item nested" data-post-id="{{ student_post.title | slugify }}">
-                                    <p class="fullwidth subheader">
-                                        <a href="{{ student_post.url | relative_url }}"
-                                            data-tags="{{ student_post.tags | join: ',' }}">{{ student_post.title }}
-                                        </a>
-                                        <span class="date">
-                                            {% if student_post.date %}
-                                                {{ student_post.date | date: "%B %Y" }}
-                                            {% endif %}
-                                        </span>
-                                    </p>
-                                    {% include post_pry.html post=student_post %}
-                                </div>
-                            {% endif %}
+                        {% for student_post in student_posts %}
+                            <div class="publication-item nested" data-post-id="{{ student_post.title | slugify }}">
+                                <p class="fullwidth subheader">
+                                    <a href="{{ student_post.url | relative_url }}"
+                                        data-tags="{{ student_post.tags | join: ',' }}">{{ student_post.title }}
+                                    </a>
+                                    <span class="date">
+                                        {% if student_post.date %}
+                                            {{ student_post.date | date: "%B %Y" }}
+                                        {% endif %}
+                                    </span>
+                                </p>
+                                {% include post_pry.html post=student_post %}
+                            </div>
                         {% endfor %}
                         </div>
                     </div>

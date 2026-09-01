@@ -2,7 +2,7 @@
 layout: post
 title: "Coronavirus Bot"
 date:   2020-01-30 17:41:39 -0700
-tags: [art]
+tags: [student-work, art]
 ---
 The morning I found out that researchers had released the Coronavirus genome, I whipped together this bot to tweet it out, base-pair by base-pair. <br><br> 
 
