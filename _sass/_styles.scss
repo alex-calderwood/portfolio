@@ -4,6 +4,7 @@
 // opacify
 
 @use 'sass:color';
+@use 'sass:math';
 
 // ---- Palette — "Printed Matter" -------------------------------------------
 // Grounded in the brief's own lineage: concrete poetry and lettrism treat the
@@ -646,15 +647,34 @@ p {
 // Alignment is by CAP HEIGHT, not by box: an inline-block sits on the
 // baseline, so a mark whose artwork descends below its own baseline (the j
 // in "Project") would otherwise ride high by the depth of that descender.
-// Each mark therefore declares two numbers measured off the artwork —
-// $cap-em: 0.7em is Space Grotesk's cap height, so
-//   height  = 0.7em × (art height ÷ art cap height)
-//   drop    = 0.7em × (art descent ÷ art cap height)   [vertical-align]
-// which lands its capitals exactly on the caps beside it. A mark cropped to
-// its capitals (UbuTok) has zero descent and needs no drop.
+// Each mark is therefore described by three numbers measured off the artwork
+// — its total rows, its cap-height rows, and the rows hanging below its
+// baseline — and everything else is derived from them, so the mark's
+// capitals land on the same line as the capitals beside it.
+$wordmark-cap: 0.7em;   // Space Grotesk's cap height
+
+@mixin wordmark($file, $w, $h, $rows, $cap, $descent) {
+  aspect-ratio: math.div($w, $h);
+  height: math.div($wordmark-cap * $rows, $cap);
+  @if $descent > 0 {
+    vertical-align: math.div(-$wordmark-cap * $descent, $cap);
+  }
+  mask-image: url('../images/#{$file}');
+  -webkit-mask-image: url('../images/#{$file}');
+}
+
+// Line box tightened onto the mark. .fullwidth's line-height:1 sizes the line
+// to a full em of the *stretched* font — and at a title's display size the
+// empty descender band under a cap-height mark is a very visible hole. The
+// mark is the line's only content, so hand the line the mark's own height and
+// the box hugs it. (Text keeps line-height:1 everywhere else.)
+@mixin wordmark-line($rows, $cap) {
+  line-height: math.div(0.7 * $rows, $cap);
+}
+
 .wordmark {
   display: inline-block;
-  height: 0.7em;
+  height: $wordmark-cap;
   vertical-align: baseline;
   background-color: currentColor;
   mask-repeat: no-repeat;
@@ -665,32 +685,32 @@ p {
   -webkit-mask-size: contain;
 }
 
-// .fullwidth's line-height:1 + overflow:hidden clips below the em box, and a
-// wordmark's descender reaches deeper than the 0.14em the subheader already
-// rescues. Same trade as everywhere else on this page: extend the clipping
-// region with padding, hand the space straight back with a negative margin so
-// the gap under the title doesn't grow.
+// .fullwidth's overflow:hidden clips below the line box, and a mark's
+// descender reaches deeper than the 0.14em the subheader already rescues.
+// Same trade as everywhere else on this page: extend the clipping region with
+// padding, hand the space straight back with a negative margin so the gap
+// under the title doesn't grow.
 .fullwidth.subheader:has(.wordmark) {
   padding-bottom: 0.36em;
   margin-bottom: -0.36em;
 }
 
+// Traced 1604 × 452, cropped to the capitals — the whole mark is cap height,
+// so there's no descent to drop.
 .wordmark-ubutok {
-  // Intrinsic 1604 × 452 (traced from the drawn original), cropped to the
-  // capitals — the whole mark is cap height, so no descent to drop.
-  aspect-ratio: 1604 / 452;
-  mask-image: url('../images/ubutok-wordmark.svg');
-  -webkit-mask-image: url('../images/ubutok-wordmark.svg');
+  @include wordmark('ubutok-wordmark.svg', 1604, 452, 452, 452, 0);
+}
+.fullwidth.subheader:has(.wordmark-ubutok) {
+  @include wordmark-line(452, 452);
 }
 
+// Traced 3711 × 489. Measured on the artwork: 163 rows tall, cap height 102,
+// baseline at row 118 — so 45 rows hang below it (the j in "Project").
 .wordmark-writers-project {
-  // Intrinsic 3711 × 489. Measured on the artwork: cap height 102 of 163
-  // rows, baseline at row 118, so 45 rows hang below it.
-  aspect-ratio: 3711 / 489;
-  height: 0.7em * 163 / 102;
-  vertical-align: -0.7em * 45 / 102;
-  mask-image: url('../images/writers-project-wordmark.svg');
-  -webkit-mask-image: url('../images/writers-project-wordmark.svg');
+  @include wordmark('writers-project-wordmark.svg', 3711, 489, 163, 102, 45);
+}
+.fullwidth.subheader:has(.wordmark-writers-project) {
+  @include wordmark-line(163, 102);
 }
 
 // Work titles are ink headings; hovering drops a yellow marker highlight
