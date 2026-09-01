@@ -641,9 +641,17 @@ p {
 // Sized in em off the line's own font-size, which means the davinci
 // fill-width pass stretches it exactly like the text it replaces (the
 // measuring span in text-resize.js clones innerHTML, so the em box measures
-// there too). 0.7em is Space Grotesk's cap height, and an inline-block sits
-// on the baseline — so an all-caps mark lands at the same height as the caps
-// beside it.
+// there too).
+//
+// Alignment is by CAP HEIGHT, not by box: an inline-block sits on the
+// baseline, so a mark whose artwork descends below its own baseline (the j
+// in "Project") would otherwise ride high by the depth of that descender.
+// Each mark therefore declares two numbers measured off the artwork —
+// $cap-em: 0.7em is Space Grotesk's cap height, so
+//   height  = 0.7em × (art height ÷ art cap height)
+//   drop    = 0.7em × (art descent ÷ art cap height)   [vertical-align]
+// which lands its capitals exactly on the caps beside it. A mark cropped to
+// its capitals (UbuTok) has zero descent and needs no drop.
 .wordmark {
   display: inline-block;
   height: 0.7em;
@@ -657,11 +665,32 @@ p {
   -webkit-mask-size: contain;
 }
 
+// .fullwidth's line-height:1 + overflow:hidden clips below the em box, and a
+// wordmark's descender reaches deeper than the 0.14em the subheader already
+// rescues. Same trade as everywhere else on this page: extend the clipping
+// region with padding, hand the space straight back with a negative margin so
+// the gap under the title doesn't grow.
+.fullwidth.subheader:has(.wordmark) {
+  padding-bottom: 0.36em;
+  margin-bottom: -0.36em;
+}
+
 .wordmark-ubutok {
-  // Intrinsic 1604 × 452 (traced from the drawn original).
+  // Intrinsic 1604 × 452 (traced from the drawn original), cropped to the
+  // capitals — the whole mark is cap height, so no descent to drop.
   aspect-ratio: 1604 / 452;
   mask-image: url('../images/ubutok-wordmark.svg');
   -webkit-mask-image: url('../images/ubutok-wordmark.svg');
+}
+
+.wordmark-writers-project {
+  // Intrinsic 3711 × 489. Measured on the artwork: cap height 102 of 163
+  // rows, baseline at row 118, so 45 rows hang below it.
+  aspect-ratio: 3711 / 489;
+  height: 0.7em * 163 / 102;
+  vertical-align: -0.7em * 45 / 102;
+  mask-image: url('../images/writers-project-wordmark.svg');
+  -webkit-mask-image: url('../images/writers-project-wordmark.svg');
 }
 
 // Work titles are ink headings; hovering drops a yellow marker highlight
