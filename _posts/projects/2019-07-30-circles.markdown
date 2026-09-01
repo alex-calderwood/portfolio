@@ -4,7 +4,7 @@ layout: none
 title: "Circles"
 date:   2019-07-30 17:41:39 -0700
 text: base
-tags: [code]
+tags: [student-work, code]
 links:
   - text: Numberphile
     url: https://www.youtube.com/watch?v=bRIL9kMJJSc

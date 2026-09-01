@@ -590,26 +590,23 @@ p {
   margin-bottom: -0.14em;
 }
 
-// The intro's opening line: "I play with" in the house Spectral, only the
-// word "language" (the span) in New Tegomin. The line still opts out of the
-// tight stack: Tegomin's inline box governs the line box, and its hhea
-// metrics span 1.448em (ascent 1160 + descent 288, upm 1000 — browsers size
-// the glyph box from hhea). Anything smaller goes negative on half-leading
-// and .fullwidth's overflow:hidden cuts the g's descender flat.
-.intro-play {
-  line-height: 1.45;
-}
-
-.intro-play-word {
+// The postdoc ask pops in riso orange — the palette's designated emphasis
+// accent (yellow is spoken for as the link-hover cue) — and in New Tegomin,
+// at normal weight. Being an inline span with inherited line-height, it
+// doesn't change the line box; its deeper descenders are handled by the
+// line's own padding rescue below.
+.postdoc-callout {
+  color: $orange;
   font-family: 'New Tegomin', serif;
 }
 
-// The postdoc ask pops in riso orange — the palette's designated emphasis
-// accent (yellow is spoken for as the link-hover cue) — at normal weight,
-// so it catches the eye by color rather than bolding. Same metrics as the
-// surrounding text, so the stretched-line measurement is unaffected.
-.postdoc-callout {
-  color: $orange;
+// Tegomin's descenders reach 0.288em below the baseline — deeper than the
+// 0.2em clip extension .split-header .fullwidth provides — so the line
+// holding the callout extends its clip region a bit further (same
+// padding/negative-margin trade as the shared rule).
+.split-header .fullwidth.postdoc-line {
+  padding-bottom: 0.29em;
+  margin-bottom: -0.29em;
 }
 
 // Undo the split-header descender rescue for this line (higher specificity
