@@ -3,7 +3,7 @@
 ## Usage
 
 
-    ./start
+    npm run dev
 
 OR
 
