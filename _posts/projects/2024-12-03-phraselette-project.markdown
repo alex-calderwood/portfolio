@@ -8,6 +8,8 @@ images:
   - src: phraselette.png
     alt: "screenshot of the Phraselette interface"
 links:
+  - text: Write with Phraselette
+    url: https://nonsens.ing/phraselette/
   - text: Design of Interactive Systems
     url: https://dl.acm.org/doi/full/10.1145/3715336.3735832
   - text: Short Paper

@@ -8,6 +8,8 @@ images:
   - src: phraselette-2.png
     alt: "figure from the Phraselette DIS demo paper"
 links:
+  - text: Write with Phraselette
+    url: https://nonsens.ing/phraselette/
   - text: Design of Interactive Systems (Companion / Demo track)
     url: https://dl.acm.org/doi/10.1145/3715668.3735608
   - text: "Phraselette DIS Presentation Slides"
